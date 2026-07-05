@@ -1,0 +1,9 @@
+---
+import Bare from '../../../layouts/Bare.astro';
+import '../../../styles/checklist-bedankt.css';
+import bodyHtml from '../../../checklist-bedankt-body.html?raw';
+---
+<Bare title="Check je inbox | Local Levers" description="Je GBP-checklist is onderweg. Check je inbox." noindex>
+  <Fragment set:html={bodyHtml} />
+  <script>import '../../../scripts/checklist-bedankt.js';</script>
+</Bare>

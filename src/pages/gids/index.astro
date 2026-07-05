@@ -1,0 +1,74 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { groups, topics } from '../../data/topics.js';
+
+const total = topics.length;
+const title = 'Kennisbank voor klinieken en behandel-salons | Local Levers';
+const description = `Uitleg over vindbaarheid op Google Maps, je Bedrijfsprofiel, reviews en AI-zoekmachines. ${total} gidsen voor eigenaren van klinieken en salons.`;
+---
+
+<Layout title={title} description={description}>
+  <main class="pg">
+    <section class="pg-hero">
+      <div class="pg-inner narrow">
+        <a href="/" class="pg-brand">Local<span>Levers</span></a>
+        <p class="pg-eyebrow">Kennisbank</p>
+        <h1>Alles over vindbaar worden en gekozen worden</h1>
+        <p class="pg-lead">Praktische uitleg voor eigenaren van klinieken en behandel-salons. Hoe je hoger komt op Google Maps, je Bedrijfsprofiel op orde krijgt, meer reviews binnenhaalt, en meetelt in AI-antwoorden. Geen theorie, alleen wat werkt.</p>
+        <a href="/check/" class="pg-cta">Vraag je gratis vindbaarheids-rapport aan &rarr;</a>
+      </div>
+    </section>
+
+    {groups.map((g) => (
+      <section class="pg-block">
+        <div class="pg-inner narrow">
+          <h2>{g.title}</h2>
+          <ul class="hub-list">
+            {g.items.map((t) => (
+              <li><a href={`/gids/${t.slug}/`}>{t.h1}</a></li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ))}
+
+    <section class="pg-block pg-cta-block">
+      <div class="pg-inner narrow">
+        <h2>Zie waar je nu staat</h2>
+        <p class="pg-lead">In een gratis vindbaarheids-rapport laten we zien waar je staat op je winstgevende behandeling, en wie er boven je staat. Geen kosten, geen verplichting.</p>
+        <a href="/check/" class="pg-cta">Vraag je gratis vindbaarheids-rapport aan &rarr;</a>
+      </div>
+    </section>
+
+    <footer class="pg-footer">
+      <div class="pg-inner narrow">
+        <p>Marketing per type bedrijf: <a href="/marketing/">bekijk alle branches &rarr;</a></p>
+        <p class="pg-back">Local Levers &middot; Vindbaarheid en opvolging voor klinieken en behandel-salons</p>
+      </div>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .pg { background: var(--dark); color: var(--color-foreground); font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif; }
+  .pg-inner { max-width: 940px; margin: 0 auto; padding: 0 24px; }
+  .pg-inner.narrow { max-width: 760px; }
+  .pg-brand { font-family: 'Outfit Variable', sans-serif; font-weight: 800; font-size: 18px; color: #fff; text-decoration: none; }
+  .pg-brand span { color: var(--green-bright); }
+  .pg-hero { padding: 64px 0 48px; background: radial-gradient(700px circle at 80% 0%, rgba(34,169,107,0.16), transparent 55%), var(--dark); }
+  .pg-eyebrow { margin-top: 36px; font-family: 'Outfit Variable', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green-bright); }
+  .pg h1 { font-family: 'Outfit Variable', sans-serif; font-size: clamp(30px, 4.6vw, 46px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin: 14px 0 0; }
+  .pg-lead { font-size: 17px; line-height: 1.65; color: var(--light-muted); margin-top: 18px; }
+  .pg-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; background: var(--green-bright); color: #08130d; font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 15.5px; padding: 15px 26px; border-radius: 14px; text-decoration: none; }
+  .pg-block { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+  .pg h2 { font-family: 'Outfit Variable', sans-serif; font-size: clamp(22px, 3vw, 28px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.2; margin: 0 0 18px; }
+  .hub-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+  .hub-list li { border-top: 1px solid rgba(255,255,255,0.06); }
+  .hub-list li:first-child { border-top: none; }
+  .hub-list a { display: block; padding: 13px 0; font-size: 16px; line-height: 1.4; color: var(--light-muted); text-decoration: none; }
+  .hub-list a:hover { color: var(--green-bright); }
+  .pg-cta-block .pg-lead { margin-top: 14px; }
+  .pg-footer { padding: 36px 0 64px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 14px; color: var(--muted); }
+  .pg-footer a { color: var(--light-muted); text-decoration: underline; text-underline-offset: 3px; }
+  .pg-back { font-size: 13px; margin-top: 12px; }
+</style>

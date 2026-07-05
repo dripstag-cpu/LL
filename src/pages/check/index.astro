@@ -1,0 +1,12 @@
+---
+import Bare from '../../layouts/Bare.astro';
+import '../../styles/check.css';
+import bodyHtml from '../../check-body.html?raw';
+---
+<Bare
+  title="Waar sta jij nu? 2-min check | Local Levers"
+  description="Beantwoord 7 korte vragen en krijg een gratis vindbaarheids-rapport op maat voor je kliniek of salon."
+>
+  <Fragment set:html={bodyHtml} />
+  <script>import '../../scripts/check.js';</script>
+</Bare>

@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import bodyHtml from '../home-body.html?raw';
+import schemaJson from '../home-schema.json?raw';
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Local Levers',
+  url: 'https://locallevers.com',
+  image: 'https://locallevers.com/favicon.svg',
+  description:
+    'Local Levers maakt klinieken en behandel-salons in Nederland beter vindbaar op Google, Apple Maps, directories en in AI-zoekopdrachten, en zorgt dat geen aanvraag wegloopt.',
+  areaServed: { '@type': 'Country', name: 'Nederland' },
+  founder: { '@type': 'Person', name: 'Bryan Ubink' },
+  email: 'info@locallevers.com',
+  sameAs: ['https://instagram.com/bryanubink', 'https://linkedin.com/in/bryanubink'],
+  knowsAbout: [
+    'Lokale SEO',
+    'Google Bedrijfsprofiel',
+    'AI-zoekmachine vindbaarheid',
+    'Reputatiemanagement',
+    'Online vindbaarheid',
+  ],
+};
+---
+
+<Layout>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} is:inline />
+    <script type="application/ld+json" set:html={schemaJson} is:inline />
+  </Fragment>
+  <Fragment set:html={bodyHtml} />
+  <script>
+    import '../scripts/home.js';
+  </script>
+</Layout>

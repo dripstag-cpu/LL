@@ -1,0 +1,97 @@
+---
+// Lichte, self-hosted cookie-consent banner. Geen externe scripts.
+// Onthoudt de keuze in localStorage en zet window.LL_consent = {analytics, marketing}.
+// Wire toekomstige tracking (Meta-pixel, GA) achter LL_consent: laad ze alleen
+// als LL_consent.marketing / .analytics true is. Luister op event 'll-consent'.
+---
+<div id="ll-cookie" class="ll-cookie" hidden>
+  <div class="ll-cookie-inner">
+    <div class="ll-cookie-text">
+      <strong>We gebruiken cookies</strong>
+      <p>Functionele cookies zijn altijd aan. Analytische en marketingcookies gebruiken we alleen met je toestemming, om de site te verbeteren en advertenties relevanter te maken. Lees meer in ons <a href="/cookies/">cookiebeleid</a>.</p>
+    </div>
+    <div class="ll-cookie-actions">
+      <button type="button" data-ll="reject" class="ll-btn ghost">Alleen noodzakelijk</button>
+      <button type="button" data-ll="accept" class="ll-btn solid">Alles accepteren</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .ll-cookie { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 9999; }
+  .ll-cookie[hidden] { display: none; }
+  .ll-cookie-inner {
+    max-width: 940px; margin: 0 auto;
+    background: #0F1D15; color: #E8F0EB;
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+    padding: 18px 20px;
+    display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;
+    font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
+  }
+  .ll-cookie-text { flex: 1 1 320px; }
+  .ll-cookie-text strong { font-family: 'Outfit Variable', sans-serif; font-size: 15px; }
+  .ll-cookie-text p { margin: 6px 0 0; font-size: 13.5px; line-height: 1.55; color: #B4C6BB; }
+  .ll-cookie-text a { color: #2CC77E; text-decoration: underline; text-underline-offset: 2px; }
+  .ll-cookie-actions { display: flex; gap: 10px; flex: 0 0 auto; }
+  .ll-btn { font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 14px; padding: 11px 18px; border-radius: 11px; cursor: pointer; border: 1px solid transparent; white-space: nowrap; }
+  .ll-btn.solid { background: #22A96B; color: #08130D; }
+  .ll-btn.ghost { background: transparent; color: #E8F0EB; border-color: rgba(255,255,255,0.22); }
+  .ll-btn:hover { opacity: 0.92; }
+  @media (max-width: 560px) {
+    .ll-cookie-actions { flex: 1 1 100%; }
+    .ll-btn { flex: 1; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    // ====== VUL HIER JE META PIXEL ID IN (leeg = pixel staat uit) ======
+    var META_PIXEL_ID = '';
+    // ===================================================================
+    var KEY = 'll-consent';
+    var el = document.getElementById('ll-cookie');
+
+    function loadMetaPixel() {
+      if (!META_PIXEL_ID || window.__llPixel) return;
+      window.__llPixel = true;
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return; n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+        t = b.createElement(e); t.async = !0; t.src = v;
+        s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      window.fbq('init', META_PIXEL_ID);
+      window.fbq('track', 'PageView');
+    }
+
+    function apply(consent) {
+      window.LL_consent = consent;
+      if (consent && consent.marketing) loadMetaPixel();
+      window.dispatchEvent(new CustomEvent('ll-consent', { detail: consent }));
+    }
+    function save(analytics, marketing) {
+      var consent = { analytics: analytics, marketing: marketing, ts: Date.now() };
+      try { localStorage.setItem(KEY, JSON.stringify(consent)); } catch (e) {}
+      apply(consent);
+      if (el) el.hidden = true;
+    }
+    var stored = null;
+    try { stored = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+    if (stored) {
+      apply(stored);
+    } else if (el) {
+      el.hidden = false;
+    }
+    if (el) {
+      el.addEventListener('click', function (e) {
+        var t = e.target.closest('[data-ll]');
+        if (!t) return;
+        if (t.getAttribute('data-ll') === 'accept') save(true, true);
+        else save(false, false);
+      });
+    }
+  })();
+</script>

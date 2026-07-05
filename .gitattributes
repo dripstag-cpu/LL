@@ -1,0 +1,15 @@
+# Geport uit de oude, handgecodeerde site. Tellen niet mee voor GitHub's
+# taaldetectie, zodat de repo als Astro wordt herkend (wat het is).
+src/*-body.html linguist-vendored
+src/home-schema.json linguist-generated
+src/styles/global.css linguist-vendored
+src/styles/check.css linguist-vendored
+src/styles/audit.css linguist-vendored
+src/styles/checklist.css linguist-vendored
+src/styles/checklist-bedankt.css linguist-vendored
+src/scripts/*.js linguist-vendored
+public/assets/*.js linguist-vendored
+
+# Content-databestanden (gids-/branche-teksten): data, geen applicatiecode.
+src/data/*.js linguist-vendored
+src/data/topics/*.js linguist-vendored

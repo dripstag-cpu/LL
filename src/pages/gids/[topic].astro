@@ -1,0 +1,124 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { topics } from '../../data/topics.js';
+
+export function getStaticPaths() {
+  return topics
+    .filter((t) => t.published)
+    .map((t) => ({ params: { topic: t.slug }, props: { t } }));
+}
+
+const { t } = Astro.props;
+const title = `${t.h1} | Local Levers`;
+const description = t.lead.slice(0, 155);
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: t.faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: t.h1,
+  description,
+  author: { '@type': 'Organization', name: 'Local Levers' },
+  publisher: { '@type': 'Organization', name: 'Local Levers' },
+};
+const others = topics.filter((x) => x.published && x.slug !== t.slug).slice(0, 5);
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} is:inline />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline />
+  </Fragment>
+
+  <main class="pg">
+    <section class="pg-hero">
+      <div class="pg-inner narrow">
+        <a href="/" class="pg-brand">Local<span>Levers</span></a>
+        <p class="pg-eyebrow">Gids</p>
+        <h1>{t.h1}</h1>
+        <p class="pg-lead">{t.lead}</p>
+        <a href="/check/" class="pg-cta">Vraag je gratis vindbaarheids-rapport aan &rarr;</a>
+      </div>
+    </section>
+
+    <article class="pg-block">
+      <div class="pg-inner narrow prose">
+        {t.sections.map((s) => (
+          <>
+            <h2>{s.h}</h2>
+            <p>{s.p}</p>
+          </>
+        ))}
+      </div>
+    </article>
+
+    <section class="pg-block">
+      <div class="pg-inner narrow pg-faq">
+        <h2>Veelgestelde vragen</h2>
+        {t.faq.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="pg-block pg-cta-block">
+      <div class="pg-inner narrow">
+        <h2>Zie waar je nu staat</h2>
+        <p class="pg-lead">In een gratis vindbaarheids-rapport laten we zien waar je staat op je winstgevende behandeling, en wie er boven je staat. Geen kosten, geen verplichting.</p>
+        <a href="/check/" class="pg-cta">Vraag je gratis vindbaarheids-rapport aan &rarr;</a>
+      </div>
+    </section>
+
+    <footer class="pg-footer">
+      <div class="pg-inner narrow">
+        <p>Meer lezen:</p>
+        <ul class="pg-more">
+          {others.map((x) => (
+            <li><a href={`/gids/${x.slug}/`}>{x.h1}</a></li>
+          ))}
+        </ul>
+        <p class="pg-hublinks"><a href="/gids/">Hele kennisbank</a> &middot; <a href="/marketing/">Marketing per type bedrijf</a></p>
+        <p class="pg-back">Local Levers &middot; Vindbaarheid en opvolging voor klinieken en behandel-salons</p>
+      </div>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .pg { background: var(--dark); color: var(--color-foreground); font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif; }
+  .pg-inner { max-width: 940px; margin: 0 auto; padding: 0 24px; }
+  .pg-inner.narrow { max-width: 760px; }
+  .pg-brand { font-family: 'Outfit Variable', sans-serif; font-weight: 800; font-size: 18px; color: #fff; text-decoration: none; }
+  .pg-brand span { color: var(--green-bright); }
+  .pg-hero { padding: 64px 0 48px; background: radial-gradient(700px circle at 80% 0%, rgba(34,169,107,0.16), transparent 55%), var(--dark); }
+  .pg-eyebrow { margin-top: 36px; font-family: 'Outfit Variable', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green-bright); }
+  .pg h1 { font-family: 'Outfit Variable', sans-serif; font-size: clamp(30px, 4.6vw, 46px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin: 14px 0 0; }
+  .pg-lead { font-size: 17px; line-height: 1.65; color: var(--light-muted); margin-top: 18px; }
+  .pg-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; background: var(--green-bright); color: #08130d; font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 15.5px; padding: 15px 26px; border-radius: 14px; text-decoration: none; }
+  .pg-block { padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+  .pg h2 { font-family: 'Outfit Variable', sans-serif; font-size: clamp(22px, 3vw, 28px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.2; margin: 0; }
+  .prose h2 { margin-top: 34px; }
+  .prose h2:first-child { margin-top: 0; }
+  .prose p { font-size: 16px; line-height: 1.75; color: var(--light-muted); margin: 12px 0 0; }
+  .pg-faq details { border-top: 1px solid rgba(255,255,255,0.08); padding: 18px 0; }
+  .pg-faq summary { font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 17px; color: #fff; cursor: pointer; }
+  .pg-faq p { font-size: 15px; line-height: 1.65; color: var(--light-muted); margin: 12px 0 0; }
+  .pg-cta-block .pg-lead { margin-top: 14px; }
+  .pg-footer { padding: 36px 0 64px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 14px; color: var(--muted); }
+  .pg-more { list-style: none; padding: 0; margin: 12px 0 24px; display: flex; flex-direction: column; gap: 8px; }
+  .pg-more a { color: var(--light-muted); text-decoration: underline; text-underline-offset: 3px; }
+  .pg-hublinks { margin: 4px 0 20px; font-size: 14px; }
+  .pg-hublinks a { color: var(--green-bright); text-decoration: none; }
+  .pg-back { font-size: 13px; }
+</style>

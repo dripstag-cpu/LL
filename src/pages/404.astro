@@ -1,0 +1,55 @@
+---
+import Bare from '../layouts/Bare.astro';
+---
+<Bare title="Pagina niet gevonden | Local Levers" description="Deze pagina bestaat niet of is verplaatst." noindex>
+  <main class="nf">
+    <div class="nf-inner">
+      <a href="/" class="nf-brand">Local<span>Levers</span></a>
+      <p class="nf-code">404</p>
+      <h1>Deze pagina bestaat niet meer</h1>
+      <p class="nf-lead">De link is verouderd of er staat een typefout in het adres. Geen zorgen, hieronder kom je snel weer op weg.</p>
+
+      <div class="nf-links">
+        <a href="/" class="nf-btn primary">Naar de homepage &rarr;</a>
+        <a href="/check/" class="nf-btn">Gratis vindbaarheids-rapport</a>
+      </div>
+
+      <div class="nf-more">
+        <p>Of ga direct naar:</p>
+        <ul>
+          <li><a href="/marketing/">Marketing per type bedrijf</a></li>
+          <li><a href="/gids/">De kennisbank</a></li>
+          <li><a href="/checklist/">Gratis GBP-checklist</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</Bare>
+
+<style>
+  .nf {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 48px 24px;
+    background: radial-gradient(800px circle at 50% 0%, rgba(34,169,107,0.16), transparent 60%), #0A140F;
+    color: #F3F7F4;
+    font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
+  }
+  .nf-inner { max-width: 560px; }
+  .nf-brand { font-family: 'Outfit Variable', sans-serif; font-weight: 800; font-size: 18px; color: #fff; text-decoration: none; }
+  .nf-brand span { color: #22A96B; }
+  .nf-code { font-family: 'Outfit Variable', sans-serif; font-weight: 800; font-size: clamp(64px, 16vw, 120px); line-height: 1; letter-spacing: -0.03em; color: #22A96B; margin: 28px 0 4px; }
+  .nf h1 { font-family: 'Outfit Variable', sans-serif; font-size: clamp(26px, 4.5vw, 36px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin: 0; }
+  .nf-lead { color: #C4D3CB; font-size: 17px; line-height: 1.6; margin: 16px auto 0; max-width: 42ch; }
+  .nf-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 30px; }
+  .nf-btn { font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 15px; padding: 14px 24px; border-radius: 14px; text-decoration: none; border: 1px solid rgba(255,255,255,0.16); color: #F3F7F4; }
+  .nf-btn.primary { background: #22A96B; color: #08130D; border-color: #22A96B; }
+  .nf-btn:hover { border-color: #22A96B; }
+  .nf-more { margin-top: 36px; font-size: 14px; color: #8FA79A; }
+  .nf-more ul { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: center; }
+  .nf-more a { color: #C4D3CB; text-decoration: underline; text-underline-offset: 3px; }
+  .nf-more a:hover { color: #22A96B; }
+</style>

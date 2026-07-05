@@ -1,0 +1,1400 @@
+
+
+<!-- ====================================================================== -->
+<!-- STICKY NAV (verschijnt na hero)                                        -->
+<!-- ====================================================================== -->
+
+<header class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Local<span>Levers</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#sectionForWho">Voor wie</a></li>
+        <li><a href="#sectionPillars">Aanpak</a></li>
+        <li><a href="#sectionAbout">Over Bryan</a></li>
+        <li><a href="#sectionFaq">FAQ</a></li>
+      </ul>
+    </nav>
+    <a href="/check/" class="nav-cta">Gratis rapport</a>
+  </div>
+</header>
+
+
+<!-- ============================================================================
+     CHANGE-LOG · v8 (eerlijkheids- en taal-pass, 2026-06-26)
+
+     Design overal ongemoeid. Negen correcties:
+     1. Interne fasenamen weg: "Revenue Rescue"/"Acquisition Scaling" als label
+        eruit. RR-eyebrow → "Het 12-weken programma". Scale-eyebrow → "De
+        toevoeging: schalen met advertenties".
+     2. Prijs/facturatie weg: "voorspelbaar bedrag per 4 weken", "geen setup
+        fee", "4-wekelijks opzegbaar", "jaarcontract", "performance-share" uit
+        copy, proof, FAQ en JSON-LD. Geen bedrag, tarief of opzeg-structuur.
+     3. Voorbeeld-cijfers (14/340/67%) in programma-sectie herschreven als
+        duidelijk voorbeeld ("bij een gemiddelde kliniek zien we vaak").
+     4. Valse bron weg: "8-15% rebooking, branche-observatie" vervangen door
+        een HBR-cijfer (7x, The Short Life of Online Sales Leads).
+     5. Restjes brede doelgroep → kliniek-specifiek (pillars-sub, blog, FAQ,
+        checklist-modal, definition).
+     6. Techniek-jargon (schema, JSON-LD, llms.txt, CRO, upsells) in de
+        extras-sectie vertaald naar gewone uitkomst-taal, ingekort, geen prijs.
+     7. Consequente merk-wij. About-bio van "ik" naar wij + Bryan in 3e persoon.
+     8. Proof eerlijk: "Bewezen" weg, "we werken met" → "gebouwd voor", geen
+        kliniek-cases geclaimd. Proof gebouwd op marktdata + diagnose + gratis
+        analyse. Placeholder-klant "Slotenmaker Amsterdam" uit de logo-marquee.
+        Cool Rush (Leiden, cold therapy) toegevoegd als live-systeem zonder
+        cijfers, klein gehouden, expliciet andere niche.
+     9. FAQ "Wat kost het?" leidt naar de gratis analyse, geen bedrag/model.
+
+     ============================================================================
+     CHANGE-LOG · v7 (één programma-focus, 2026-06-26)
+
+     Volledige focus op één aanbod: het 12-weken programma "Revenue Rescue".
+     - Geen "fases / Phase 1/2/3 / tiers"-taal meer. Story-wrap "in drie fases"
+       → "één programma van 12 weken". RR-sectie herpositioneerd: eyebrow
+       "Revenue Rescue · Het 12-weken programma", intro dekt nu de hele
+       fundering (vindbaar + gekozen + nooit gemist) in 12 weken.
+     - Acquisition Scaling BLIJFT, maar als TOEVOEGING boven op het programma
+       (niet als losse fase/tier). Eyebrow "· Toevoeging op het programma",
+       intro + flow-tags ("In het programma" / "De toevoeging") herschreven.
+     - FAQ "Wat kost het?" / "Contracten" / "Garantie" + JSON-LD: fases/Phase
+       eruit, herschreven naar één programma + optionele toevoeging.
+     - "12 weken minimum" → "het programma loopt 12 weken".
+
+     ============================================================================
+     CHANGE-LOG · v6 (pakketten/prijzen weg, 2026-06-26)
+
+     Op verzoek Bryan: GEEN publieke pakketten of prijzen meer.
+     - Hele Pakketten-sectie (#sectionPricing: 3 tiers + "Vanaf €347" +
+       gratis-analyse-callout) volledig verwijderd, plus de bijbehorende
+       ScrollTrigger. Nav-link "Pakketten" → "Aanpak" (#sectionPillars).
+     - Elke publieke Local Levers-prijs eruit: €347 uit meta-description, FAQ
+       "Wat kost het?" en JSON-LD. "12 weken minimum op de tiers" → "Geen
+       jaarcontract". Proof/FAQ "tiers/recurring tiers/vast bedrag" herschreven
+       naar fase-taal zonder prijs.
+     - RR- en Scale-secties blijven (beschrijven de aanpak narratief, niet als
+       geprijsd pakket). Fasenamen daar blijven als sectielabels.
+     - Bewust BEHOUDEN: klant-economie in FAQ-voorbeelden (behandelwaarde van de
+       kliniek zelf, bv. haartransplantatie ~€5.000), want dat is geen Local
+       Levers-prijs maar de high-AOV-onderbouwing.
+
+     ============================================================================
+     CHANGE-LOG · v5 (inhoud-pass, design ongemoeid, 2026-06-26)
+
+     ALLEEN tekst + CTA-bestemmingen gewijzigd. Geen design, layout, kleuren,
+     fonts, secties of hero-animatie aangeraakt.
+
+     1. AANBOD: de €37 audit is volledig verwijderd als product. Het post-hero
+        aanbod "Stop met klanten verliezen die je nooit zag" blijft op zijn plek
+        maar wijst nu naar een GRATIS ANALYSE (https://go.locallevers.com/book).
+        Alle €37-CTA's, prijzen, badges en geld-terug-regels eruit.
+     2. CTA-ROUTING: alle €37-knoppen → "Vraag je gratis vindbaarheids-rapport aan" (booking).
+        Losse "2-min check"-knoppen → ook gratis analyse. Secundaire check-knoppen
+        naast een primaire (hero-soft, doctor-secondary) → gratis GBP-checklist.
+        2-min check is als offering verwijderd (keuze 2A). Quiz-modal is daardoor
+        onbereikbaar op de homepage geworden (dode code, blijft staan).
+     3. DOELGROEP (keuze 1A): versmald naar uitsluitend high-AOV klinieken
+        (esthetiek/injectables, medisch afslanken/GLP-1, ooglaseren,
+        haartransplantatie, plastische chirurgie). Dienstverleners-bucket en
+        tandartsen overal verwijderd. Pijler- en story-voorbeelden → klinieken.
+        "Hair transplant" → "Haartransplantatie". Eén taal (NL).
+     4. STEM: consequente merk-wij. "Een klein team" verwijderd. Bryan blijft als
+        oprichter genoemd; about-bio blijft first-person (coherent founder-blok).
+     5. FOOTER: interne fasenamen (Authority Foundation/Revenue Rescue/Acquisition
+        Scaling) en €37-audit-link vervangen door neutrale verwijzingen +
+        gratis analyse.
+     6. JSON-LD FAQ + meta title/description meegetrokken voor AEO-consistentie.
+
+     ============================================================================
+     CHANGE-LOG · Local Levers homepage rewrite v3 (ICP refinement, 2026-05-07)
+
+     V3 WIJZIGINGEN T.O.V. V2 (zelfde dag, ICP-refinement pass)
+
+     - Hero h1 BEHOUDEN: "Je concurrent krijgt de klant die van jou had moeten
+       zijn." (Bryan's mid-stream tweak, niet teruggezet naar "telefoontje").
+     - Hero eyebrow: "Voor klinieken en lokale service-bedrijven" → "Voor
+       klinieken en service-bedrijven die meer klanten willen zonder meer
+       gedoe". Twee andere varianten als comments hieronder.
+     - Hero card-text: "Geen lead glipt nog door de mazen" + oplossings-belofte
+       → "Het is niet één gemist contact. Het is een patroon." + pijn-verdieping
+       die eindigt op competitieve dreiging. Geen "consult", geen "patient".
+     - Floating badges: van response + reviews → AI-aanbeveling + 21:14 response.
+       Reviews-badge weggehaald (komt later in pagina). Sparkle-icoon (✨) op
+       badge 1 vervangt bliksem (laatste blijft op badge 2 voor snelheid).
+     - Definition prose: verticals uitgebreid (hair transplant + home automation
+       toegevoegd, "aannemers, zwembad-installateurs" → "renovatie, zwembadbouw,
+       zonnepanelen, home automation"). "consult" → "afspraak".
+     - Pijler-cards: elk pillar-body opent nu met een ander vertical-voorbeeld
+       (dierenkliniek voor Get found, renovatiebedrijf voor Get chosen, pool-
+       installateur voor Never miss a lead). "klant" → "klant".
+     - Story-wrap: "tandartsen, klinieken, aannemers" → "tandartsen, dieren-
+       klinieken, renovatiebedrijven en pool-installateurs" voor bredere ICP-
+       herkenning.
+
+     - PRICING CORRECTIE (kritiek): één vanaf-prijs op de hele pagina.
+       · pricing-sub: "We werken vanaf €347 per maand" als koepelterm.
+       · Tier 1 card: tier-price-block VERWIJDERD (geen €347 meer in de card).
+       · Tier 2 card: tier-price-block VERWIJDERD (geen €497 meer).
+       · Tier 3 card: bleef "Performance partnership, op uitnodiging" (label,
+         geen prijs).
+       · FAQ "Wat kost het?": herschreven, alleen €347 umbrella + €37 audit
+         + €150 ex BTW website. €497 helemaal weg uit copy én JSON-LD.
+
+     - FAQ: nieuw item toegevoegd: "Werkt dit ook voor niet-medische service-
+       bedrijven zoals aannemers of installateurs?" (direct na "Voor welke type
+       bedrijven werken jullie?"). Antwoord benoemt renovatie, pool, zonne-
+       panelen expliciet. JSON-LD ook bijgewerkt.
+
+     - "Voor welke type bedrijven" antwoord uitgebreid: dermatologen, hair
+       transplant-klinieken, home automation-specialisten toegevoegd.
+
+     ANDERE PRICING-VERMELDINGEN GECHECKT
+       · Hero CTA: "audit van €37" — OK (audit blijft concreet)
+       · AI-rec section sub: "€37, persoonlijk PDF-rapport" — OK
+       · Audit callout boven tier grid: "€37" — OK
+       · Final CTA: "De audit (€37)" — OK
+       · About / Footer: geen prijzen — OK
+     Conclusie: enige niet-audit prijzen op de pagina zijn nu de umbrella €347
+     in pricing-sub, en €150 ex BTW website in extras + FAQ. Geen Phase 2- of
+     Phase 3-prijs ergens zichtbaar.
+
+     ============================================================================
+     V2 WIJZIGINGEN (zelfde dag, eerste pass)
+     ============================================================================
+
+     WAT IS GEWIJZIGD (per sectie, met emotionele triggers)
+
+     1. HERO
+        Was: feature-stack ("Get found. Get chosen. Never miss a lead.") met
+             feature-eyebrow ("Lead-response en lokale SEO voor klinieken").
+        Nu:  audience-eyebrow + emotionele 2-regel claim.
+             Variant 1 actief: Verliesangst + Competitieve dreiging.
+             Variant 2 + 3 hieronder als comments, klaar om te swappen.
+        CTA-wrapper h2 ook herwerkt naar Verliesangst-trigger.
+        card-left-text h3 + p herwerkt: feature → emotie ("Geen lead glipt nog door").
+
+     2. DEFINITION (sectie 2)
+        Opener was feature-eerst ("Local Levers is online vindbaarheid en
+        lead-opvolging voor..."). Nu start hij met Verliesangst + Competitieve
+        dreiging ("Elke maand verlies je klanten aan concurrenten die simpelweg
+        vindbaarder zijn..."). Rest van de prose AEO-vriendelijk gehouden.
+
+     3. PIJLERS (sectie 3)
+        Reeds emotie-geleid (passes check). Geen wijzigingen.
+
+     4. STORY (sectie 4)
+        "Local Levers fixt dat in drie fases" → "lost dat op in drie fases"
+        (anglicisme weggewerkt).
+
+     5. AI BEVEELT JE CONCURRENT AAN (sectie 5)
+        Reeds sterk. Geen wijzigingen.
+
+     6. REVENUE RESCUE (sectie 6)
+        Reeds emotie-geleid. Geen wijzigingen.
+
+     6.5 ACQUISITION SCALING (sectie 6.5)
+        Reeds emotie-geleid. Geen wijzigingen.
+
+     7. EXTRAS (Daarnaast)
+        - "AI-zoekmachines kunnen 'm perfect lezen" → "precies lezen" (geen
+          superlatief).
+        - "Snelheid sub-1 seconde" → "Snelheid onder 1 seconde" (NL).
+        - "AI-search readiness" → "AI-search-ready" (compacter).
+        - Toegevoegd: "Vanaf €150 ex BTW" als losse vermelding bij de website-
+          card (per brief).
+
+     8. PRICING (sectie 7) — grootste herwerking
+        - Audit callout verplaatst van onderkant naar BOVEN de tier grid, met
+          badge "Begin hier", grotere h3, prominenter visueel. Argument:
+          de laagdrempelige instap moet niet als afterthought voelen, en
+          stuurt een deel van het verkeer direct naar de €37 audit.
+        - Per tier-card toegevoegd:
+          · tier-emotion (1-regel emotionele opener, bovenin)
+          · tier-price-block met "vanaf €X / maand"
+          · tier-price-sub: "exact aanbod afhankelijk van je situatie"
+        - Tier 1 Authority Foundation: emotie = Competitieve dreiging +
+          Erkenning. Prijs: vanaf €347/mo.
+        - Tier 2 Revenue Rescue: emotie = Onzichtbare bloeding + Verliesangst.
+          Prijs: vanaf €497/mo (anker, niet €747). Sub vermeldt expliciet dat
+          het exacte aanbod afhankelijk is van de situatie. CTA gewijzigd van
+          "Bekijk Revenue Rescue" naar "Plan een gesprek" om calls te triggeren.
+        - Tier 3 Acquisition Scaling: GEEN prijs, in plaats daarvan
+          "Performance partnership, op uitnodiging" met sub "We kijken eerst of
+          dit past". CTA blijft "Plan een gesprek".
+        - Pricing-sub herwerkt: framing dat elk bedrijf een ander startpunt
+          heeft, dus eerst kijken of het past (custom feel = call trigger).
+
+     8.5 BLOG SECTIE (NIEUW)
+        Tussen Proof en About geplaatst. Argument:
+        - Pricing → Proof bouwt het commerciële + bewijs verhaal.
+        - Blog reinforces autoriteit (zelfde signaal-richting als Proof).
+        - Daarna About personaliseert, FAQ adresseert objecties, Final CTA sluit.
+        Plaatsing tussen Pijlers en Pricing zou het emotionele momentum
+        breken (Story → AI-rec → RR → Scale is een opbouwende sequentie).
+        Drie cards met placeholders voor: AI-search, Google-profiel, Lead-response.
+        Eyebrow: "Inzichten". Sub conform brief.
+        CTA naar /blog/ onderaan.
+        Eigen GSAP scroll-reveal toegevoegd in dezelfde stijl als andere secties.
+
+     9. ABOUT (sectie 9)
+        Reeds emotie-geleid. Geen wijzigingen.
+
+     10. FAQ (sectie 10)
+        - "Wat kost het?" herschreven: alle €747 verwijderd, vervangen door
+          "vanaf €497/mo" met expliciete "afhankelijk van je situatie" framing.
+          Toegevoegd: complete website "vanaf €150 ex BTW".
+          Acquisition Scaling: "performance partnership op uitnodiging".
+        - Bijhorende FAQPage JSON-LD ook bijgewerkt om consistent te zijn.
+
+     11. FINAL CTA (sectie 11)
+        - "Voor wie clarity wil" → "Voor wie duidelijkheid wil" (NL).
+
+     EMOTIONELE TRIGGERS PER SECTIE
+        Hero:        Verliesangst + Competitieve dreiging
+        Definition:  Verliesangst + Competitieve dreiging
+        Pijlers:     Erkenning + Competitieve dreiging + Onzichtbare bloeding
+        Story:       Gemiste controle + Verliesangst
+        AI-rec:      Gemiste controle + Verliesangst
+        Revenue R.:  Onzichtbare bloeding + Verliesangst
+        Acq. Scale:  Onzichtbare bloeding + Zekerheid
+        Extras:      Gemak + Zekerheid
+        Pricing:     Zekerheid + Gemiste controle (custom feel)
+        Audit:       Gemak + Zekerheid (laagdrempelig)
+        Blog:        Erkenning + Status (autoriteits-content)
+        About:       Zekerheid (direct contact met oprichter)
+        FAQ:         Zekerheid + Risicovermijding
+        Final CTA:   Gemak + Zekerheid (3 paden, laagste risico)
+
+     HARD CONSTRAINTS GECHECKT
+        [x] Geen em dashes in zichtbare copy
+        [x] Geen emojis in copy (de 👍 in de ChatGPT-mockup is content van een
+            geciteerde AI-output, niet Bryan's voice)
+        [x] Geen Engelse termen waar NL kan
+        [x] Geen uitroeptekens
+        [x] Geen superlatieven
+        [x] Geen exacte €747 of €500-prijzen op de pagina of in JSON-LD
+        [x] Audit €37 concreet zichtbaar
+        [x] Website €150 ex BTW als losse vermelding
+        [x] Brand colors uit bestaande CSS variabelen
+        [x] Outfit (headings) + Plus Jakarta Sans (body)
+        [x] Iedere sectie opent met emotie
+        [x] GSAP animatie code intact
+        [x] iPhone mockup en floating badges intact (alleen badge 1 sub-tekst
+            licht aangescherpt naar zuiver Nederlands)
+
+     ============================================================================
+     HERO VARIANTS — h1 BEHOUDEN: "Je concurrent krijgt de klant / die van jou
+     had moeten zijn." Eyebrow heeft nu 3 varianten, A actief.
+
+     EYEBROW VARIANT A (NU ACTIEF) — universeel + admin-pijn
+     "Voor klinieken en service-bedrijven die meer klanten willen zonder meer gedoe"
+
+     EYEBROW VARIANT B — verliesangst-direct
+     "Voor lokale klinieken en service-bedrijven die geen klant meer willen verliezen aan wie sneller was"
+
+     EYEBROW VARIANT C — segment-specifiek met klantwaarde
+     "Voor klinieken en service-bedrijven met klantbedragen boven €200"
+
+     ============================================================================
+     HEROS H1-VARIANTEN (oudere v2-iteraties, h1 blijft nu hetzelfde)
+
+     v2 H1-VARIANT 2 — Gemiste controle + Verliesangst (AI angle)
+     Vervang de twee hero h1-line spans door:
+
+     <span class="hero-h1-line text-track gsap-reveal text-3d-matte">ChatGPT beveelt je concurrent aan.</span>
+     <span class="hero-h1-line text-days gsap-reveal text-green-glow">Jou niet.</span>
+
+     v2 H1-VARIANT 3 — Onzichtbare bloeding + Verliesangst (gekwantificeerd)
+     Vervang de twee hero h1-line spans door:
+
+     <span class="hero-h1-line text-track gsap-reveal text-3d-matte">14 berichten vorige maand.</span>
+     <span class="hero-h1-line text-days gsap-reveal text-green-glow">Allemaal klanten bij je concurrent.</span>
+
+     ============================================================================ -->
+
+<!-- ====================================================================== -->
+<!-- HERO — cinematic GSAP -->
+<!-- ====================================================================== -->
+<div class="cinematic-container" id="cinematicContainer">
+  <div class="bg-mesh" aria-hidden="true"></div>
+
+  <!--
+    HERO VARIANT KEUZE — er staan 3 varianten klaar.
+    Hieronder is VARIANT 1 actief. Variant 2 en 3 staan als HTML-comments boven de body
+    in het change-log blok. Wissel door .hero-h1-eyebrow + de twee .hero-h1-line spans
+    te vervangen door de gewenste set.
+  -->
+
+  <!-- LAYER 1: HERO TEXT (Variant 1 actief: Verliesangst + Competitieve dreiging) -->
+  <div class="hero-text-wrapper" id="heroTextWrapper">
+    <h1 class="hero-h1">
+      <span class="hero-h1-eyebrow gsap-reveal">Voor klinieken en behandel-salons die hun agenda vullen met hun meest winstgevende behandelingen</span>
+      <span class="hero-h1-line text-track gsap-reveal text-3d-matte">Je concurrent krijgt de klant</span>
+      <span class="hero-h1-line text-days gsap-reveal text-green-glow">die van jou had moeten zijn.</span>
+    </h1>
+  </div>
+
+  <!-- LAYER 2: CTA (revealed at end) -->
+  <div class="cta-wrapper gsap-reveal" id="ctaWrapper">
+    <h2 class="text-silver-matte">Stop met klanten verliezen die je nooit zag.</h2>
+    <p>Vraag je gratis vindbaarheids-rapport aan. We kijken naar je vindbaarheid, je reviews en je opvolging en laten zien waar je nu klanten laat liggen.</p>
+    <div class="cta-buttons">
+      <a href="/check/" class="btn-modern-light">
+        <div>
+          <div class="label-top">Gratis en vrijblijvend</div>
+          <div class="label-main">Vraag je gratis vindbaarheids-rapport aan →</div>
+        </div>
+      </a>
+    </div>
+    <p class="hero-guarantee" style="margin-top: 12px; font-size: 13px; color: var(--light-muted); text-align: center;">Geen kosten, geen verplichting. Je weet daarna precies waar je staat.</p>
+    <p class="hero-secondary" style="margin-top: 18px; text-align: center;">
+      <a href="/checklist/" style="color: var(--light-muted); text-decoration: underline; text-underline-offset: 4px; font-size: 14px;">Liever eerst zelf rondkijken? Pak de gratis checklist →</a>
+    </p>
+  </div>
+
+  <!-- LAYER 3: PREMIUM CARD WITH iPHONE -->
+  <div class="card-stage">
+    <div class="main-card premium-depth-card gsap-reveal" id="mainCard">
+      <div class="card-sheen" aria-hidden="true"></div>
+
+      <div class="card-grid">
+        <div class="card-left-text gsap-reveal" id="cardLeftText">
+          <h3>Het is niet één gemist contact. Het is een patroon.</h3>
+          <p>De vraag tijdens je afspraak die je niet kon oppakken. Het bericht om 21:00 dat je morgen pas zag. De klant van zes maanden geleden die nooit meer terugkwam. Bij elkaar opgeteld zijn dat geen incidenten. Het is een opening waar je concurrent in stapt.</p>
+        </div>
+
+        <div class="mockup-scroll-wrapper" id="mockupWrapper">
+          <div class="iphone-frame iphone-bezel" id="iphoneFrame">
+            <div style="position: absolute; top: 120px; left: -3px; width: 3px; height: 25px;" class="hardware-btn" aria-hidden="true"></div>
+            <div style="position: absolute; top: 160px; left: -3px; width: 3px; height: 45px;" class="hardware-btn" aria-hidden="true"></div>
+            <div style="position: absolute; top: 220px; left: -3px; width: 3px; height: 45px;" class="hardware-btn" aria-hidden="true"></div>
+            <div style="position: absolute; top: 170px; right: -3px; width: 3px; height: 70px; transform: scaleX(-1);" class="hardware-btn" aria-hidden="true"></div>
+
+            <div class="iphone-screen">
+              <div class="screen-glare" style="position: absolute; inset: 0; z-index: 40; pointer-events: none;" aria-hidden="true"></div>
+              <div class="dynamic-island"></div>
+
+              <div class="app-interface">
+                <div class="phone-widget app-header">
+                  <div>
+                    <div class="label">Vandaag</div>
+                    <div class="title">Inbox</div>
+                  </div>
+                  <div class="avatar">LL</div>
+                </div>
+
+                <div class="phone-widget metric-ring-wrapper">
+                  <svg aria-hidden="true">
+                    <circle cx="88" cy="88" r="64" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="12"></circle>
+                    <circle class="progress-ring" cx="88" cy="88" r="64" fill="none" stroke="url(#ringGrad)" stroke-width="12"></circle>
+                    <defs>
+                      <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#4ADE80"/>
+                        <stop offset="100%" stop-color="#1A7A54"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div class="center">
+                    <span class="counter-val" id="counterVal">0</span>
+                    <span class="counter-label">SECONDE RESPONSE</span>
+                  </div>
+                </div>
+
+                <div class="activity-list">
+                  <div class="phone-widget activity-item widget-depth">
+                    <div class="icon green">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div class="content">
+                      <div class="line-1 s1"></div>
+                      <div class="line-2 s1"></div>
+                    </div>
+                  </div>
+                  <div class="phone-widget activity-item widget-depth">
+                    <div class="icon blue">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                    <div class="content">
+                      <div class="line-1 s2"></div>
+                      <div class="line-2 s2"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="home-indicator-bar"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-badge floating-ui-badge gsap-reveal b1" id="badge1">
+            <div class="icon">✨</div>
+            <div class="text">
+              <div class="title">Aanbevolen door Google en ChatGPT</div>
+              <div class="sub">Bij zoekopdrachten in jouw stad</div>
+            </div>
+          </div>
+
+          <div class="floating-badge floating-ui-badge gsap-reveal b2" id="badge2">
+            <div class="icon">⚡</div>
+            <div class="text">
+              <div class="title">47 sec geantwoord</div>
+              <div class="sub">Op bericht om 21:14</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-right-text gsap-reveal" id="cardRightText">
+          <h2 class="text-card-silver-matte">LOCAL<br/><span style="color: var(--green-bright); -webkit-text-fill-color: var(--green-bright); background: none; filter: none;">LEVERS</span></h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================================================================== -->
+<!-- TRUST-STRIP — subtle one-liner credibility under hero                  -->
+<!-- ====================================================================== -->
+<div class="trust-strip" style="text-align:center; padding:24px 16px; color:var(--light-muted); font-size:14px; letter-spacing:0.02em; border-top:1px solid rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.04);">
+  10 jaar marketing: pre-sales · social · direct response · brand scaling · 10M+ Instagram-netwerk operationeel beheerd
+</div>
+
+<!-- ====================================================================== -->
+<!-- DOCTOR-FRAME MINI-BLOK — eerst diagnose, dan plan                      -->
+<!-- ====================================================================== -->
+
+<section class="section-doctor" id="sectionDoctor">
+  <div class="doctor-inner">
+    <div class="doctor-eyebrow"><span></span>Eerst diagnose, dan plan<span></span></div>
+    <p class="doctor-body">Een bureau dat zonder te kijken zegt 'we kunnen je groeien' is hetzelfde als een arts die zonder onderzoek pillen voorschrijft. Daarom werken we vanaf een analyse en niet vanaf een 'kennismakingsgesprek waar we wel zien waar het heen gaat'.</p>
+    <p class="doctor-body"><strong>Geen voorschrift zonder onderzoek.</strong> We kijken eerst naar je situatie, daarna pas een plan. Vraag je gratis vindbaarheids-rapport aan, of pak eerst zelf de checklist.</p>
+    <div class="doctor-ctas">
+      <a href="/check/" class="doctor-cta-primary">Vraag je gratis vindbaarheids-rapport aan →</a>
+      <a href="/checklist/" class="doctor-cta-secondary">Gratis checklist →</a>
+    </div>
+    <p class="doctor-guarantee">Gratis en vrijblijvend. Je weet daarna precies waar je staat.</p>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- SECTION 2 — DEFINITION (AEO-critical first 60 words of body prose) -->
+<!-- ====================================================================== -->
+<section class="section-definition" id="sectionDefinition">
+  <div class="definition-inner">
+    <div class="definition-eyebrow">Wat we doen</div>
+    <p class="definition-prose">
+      Elke maand kiezen klanten de kliniek die <span class="accent">simpelweg vindbaarder</span> is en sneller reageert. <strong>Local Levers</strong> draait dat om, gebouwd voor <strong>klinieken en behandel-salons</strong>. We zorgen dat je <strong>gevonden wordt waar mensen zoeken</strong>: op Google Maps, in Apple Maps, in de directories en in AI-antwoorden zoals ChatGPT. Dat je <strong>gekozen wordt</strong> via je reviews en reputatie. En dat <strong>geen enkele aanvraag meer wegloopt</strong>. Ook niet 's avonds, in het weekend, of als je net in een behandeling zit. Zo vul je je agenda met je meest winstgevende behandelingen. Geen agency, geen software-pakket.
+      <span class="signature">Local Levers, opgericht door <strong>Bryan Ubink</strong>. Vanuit Nederland.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- SECTION 2.5 — VOOR WIE? (twee buckets: klinieken + dienstverleners)    -->
+<!-- ====================================================================== -->
+
+<section class="section-forwho" id="sectionForWho">
+  <div class="forwho-inner">
+    <div class="forwho-header">
+      <div class="forwho-eyebrow"><span></span>Voor wie?<span></span></div>
+      <h2 class="forwho-h2">Klinieken en behandel-salons. <span class="accent">Toegespitst op jouw winstgevende werk.</span></h2>
+    </div>
+    <div class="forwho-grid">
+      <article class="premium-depth-card forwho-tile">
+        <div class="card-sheen" aria-hidden="true"></div>
+        <div class="forwho-tile-tag">Laser &amp; huid</div>
+        <h3 class="forwho-tile-title">Klinieken waar één behandeltraject al veel waard is</h3>
+        <p class="forwho-tile-list">Laserontharing · Huidverjonging · Microneedling · HIFU · Peelings</p>
+      </article>
+      <article class="premium-depth-card forwho-tile">
+        <div class="card-sheen" aria-hidden="true"></div>
+        <div class="forwho-tile-tag">Behandel-bedrijven</div>
+        <h3 class="forwho-tile-title">Zaken die leven van terugkerende behandelingen</h3>
+        <p class="forwho-tile-list">Huidtherapie · Beauty- en huidsalons · Lash &amp; brow · PMU</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- SECTION 3 — DRIE PIJLERS -->
+<!-- ====================================================================== -->
+<section class="section-pillars" id="sectionPillars">
+  <div class="pillars-inner">
+    <div class="pillars-eyebrow">Hoe we werken</div>
+    <h2 class="pillars-h2">Drie pijlers. Eén aanpak. <span class="accent">Meer van je beste werk.</span></h2>
+    <p class="pillars-sub">Drie problemen die elke kliniek heeft. Eén aanpak die ze alle drie oplost.</p>
+
+    <div class="pillars-grid">
+      <article class="pillar-card">
+        <div class="pillar-num">01</div>
+        <div class="pillar-eyebrow">Get found</div>
+        <h3 class="pillar-title">Vindbaar</h3>
+        <p class="pillar-body">Een laserkliniek in Amsterdam staat op plek 7. De concurrent op plek 1. Het verschil zit niet in behandelkwaliteit, het zit in profiel-compleetheid en review-velocity. We zorgen dat je verschijnt waar klanten zoeken: op Google Maps, in Apple Maps, in de directories en in de antwoorden die ChatGPT en Google AI nu over jouw branche geven.</p>
+        <div class="pillar-stat">
+          <div class="stat-num">Top 3 of niks</div>
+          <div class="stat-text">75% van alle kliks in Google Maps gaat naar de top 3 resultaten. Plek 1 alleen al pakt 33%. Onder plek 4 zak je onder de 1%. Of je staat boven, of je bestaat niet voor die klant.</div>
+          <div class="stat-source">BrightLocal Local Consumer Review Survey 2024</div>
+        </div>
+      </article>
+
+      <article class="pillar-card">
+        <div class="pillar-num">02</div>
+        <div class="pillar-eyebrow">Get chosen</div>
+        <h3 class="pillar-title">Gekozen</h3>
+        <p class="pillar-body">Een huidkliniek heeft 34 reviews. De concurrent 112. Bij een behandeltraject van honderden euro's kiest niemand de optie met minder bewijs. Klanten kiezen tussen jou en drie andere klinieken, en dat besluit valt op reviews, op je profiel, op signalen die binnen tien seconden binnenkomen. Wij bouwen de structuur waardoor jij die keuze wint.</p>
+        <div class="pillar-stat">
+          <div class="stat-num">78%</div>
+          <div class="stat-text">van Nederlanders vertrouwt bedrijven met 4,5★ of hoger significant meer dan bedrijven met 3,5★.</div>
+          <div class="stat-source">BrightLocal Local Consumer Review Survey 2024</div>
+        </div>
+      </article>
+
+      <article class="pillar-card">
+        <div class="pillar-num">03</div>
+        <div class="pillar-eyebrow">Never miss a lead</div>
+        <h3 class="pillar-title">Nooit gemist</h3>
+        <p class="pillar-body">Een groot deel van de aanvragen voor een consult komt buiten praktijkuren binnen. Zonder geautomatiseerde opvolging gaat 4 op de 5 naar wie het eerste reageert. Hetzelfde voor de gemiste oproep tijdens een behandeling, het bericht dat 's avonds binnenkomt, de klant die zes maanden niet is langs geweest. We vangen het op, voor je concurrent dat doet.</p>
+        <div class="pillar-stat">
+          <div class="stat-num">21× kans</div>
+          <div class="stat-text">Een lead binnen 5 minuten terugbellen maakt je 21× meer kans om hem te kwalificeren dan binnen 30 minuten.</div>
+          <div class="stat-source">HBR / InsideSales Lead Response Management Study</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- SECTION 4 — STORY (live ChatGPT demo) -->
+<!-- ====================================================================== -->
+<section class="section-story" id="sectionStory">
+  <div class="story-inner">
+    <div class="story-eyebrow">Wat AI nu over jouw branche zegt</div>
+    <h2 class="story-h2">Iemand vraagt ChatGPT: <em>"beste [...] in Amsterdam"</em>.</h2>
+
+    <div class="chatgpt-window" id="chatgptWindow">
+      <div class="chat-header">
+        <div class="chat-logo">ChatGPT</div>
+      </div>
+      <div class="chat-body">
+        <div class="user-msg">
+          <div class="user-bubble"><span>beste <span id="userPrompt"></span><span class="cursor" id="promptCursor"></span> in Amsterdam</span></div>
+        </div>
+        <div class="ai-msg">
+          <div class="ai-avatar"><svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M12 2.5L14.5 9.5L21.5 12L14.5 14.5L12 21.5L9.5 14.5L2.5 12L9.5 9.5Z"/></svg></div>
+          <div class="ai-content" id="aiContent">
+            <p class="ai-thinking" id="aiThinking">Zoeken op het web…</p>
+            <div class="google-map" id="aiMap">
+              <!-- Pin posities op echte Amsterdam-locaties (Bos en Lommer, Jordaan, centrum, Oud-Zuid) -->
+              <!-- Pin posities matchen werkelijke Amsterdam-locaties:
+                   Jordaan (W-centrum) · Reguliersgracht (centrum) · Linnaeus/Oost · Wibautstraat (Oost) · Oud-Zuid -->
+              <div class="map-marker" style="top: 27%; left: 33%;">
+                <span class="pin"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>4.4</span>
+                <span class="marker-name">Laserkliniek B</span>
+              </div>
+              <div class="map-marker" style="top: 40%; left: 51%;">
+                <span class="pin"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>4.6</span>
+                <span class="marker-name">Huidkliniek E</span>
+              </div>
+              <div class="map-marker" style="top: 60%; left: 78%;">
+                <span class="pin"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>4.7</span>
+                <span class="marker-name">Huidkliniek A</span>
+              </div>
+              <div class="map-marker" style="top: 68%; left: 60%;">
+                <span class="pin"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>4.9</span>
+                <span class="marker-name">Kliniek C</span>
+              </div>
+              <div class="map-marker" style="top: 75%; left: 24%;">
+                <span class="pin"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>4.8</span>
+                <span class="marker-name">Skin Studio D</span>
+              </div>
+            </div>
+            <p class="ai-text">Hier zijn een aantal van de <strong>beste klinieken in Amsterdam</strong>, gebaseerd op reviews, aanbod en reputatie.</p>
+            <hr class="ai-divider" />
+            <p class="ai-section-header"><strong>Top klinieken in Amsterdam</strong></p>
+            <ul class="ai-list">
+              <li class="ai-item">
+                <span class="name">Huidkliniek A</span><span class="rating">4.7</span>
+                <span class="quote">Moderne kliniek met brede openingstijden, ook 's avonds en in het weekend.</span>
+              </li>
+              <li class="ai-item">
+                <span class="name">Laserkliniek B</span><span class="rating">4.4</span>
+                <span class="quote">Populaire kliniek in het centrum met veel positieve reviews.</span>
+              </li>
+              <li class="ai-item">
+                <span class="name">Kliniek C</span><span class="rating">4.9</span>
+                <span class="quote">Kleinschaliger en exclusiever, met focus op kwaliteit en persoonlijke aandacht.</span>
+              </li>
+              <li class="ai-item">
+                <span class="name">Skin Studio D</span><span class="rating">4.8</span>
+                <span class="quote">Goed beoordeeld, vaak gekozen voor huidverbetering en laserbehandelingen.</span>
+              </li>
+              <li class="ai-item">
+                <span class="name">Huidkliniek E</span><span class="rating">4.6</span>
+                <span class="quote">Breed behandelaanbod, betrouwbaar voor laser- en huidbehandelingen.</span>
+              </li>
+            </ul>
+            <p class="ai-closing">Wil je dat ik kijk naar klinieken in een specifieke buurt of met een bepaalde specialisatie?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:14px;">Voorbeeld-illustratie. De genoemde klinieken zijn fictief, geen echte zoekresultaten.</p>
+
+    <div class="story-punch">
+      <p class="punch-line"><strong>Sta je er niet tussen?</strong> Dan besta je niet voor die klant.</p>
+      <p class="punch-line"><strong>Sta je er wél tussen?</strong> Dan vecht je tegen anderen op sterren, reviews en wie het beste bereikbaar is.</p>
+      <p class="punch-line final">Hoe dan ook, je verliest klanten waarvan je niet weet dat ze bestaan.</p>
+    </div>
+
+    <p class="story-wrap">Dit gebeurt elke dag. Voor laserklinieken en huidklinieken, voor huidtherapie en behandel-salons, voor elke zaak die te weinig zichtbaar is. <strong>Local Levers lost dat op met één programma van 12 weken.</strong></p>
+
+    <div style="text-align:center;margin-top:36px;">
+      <a href="/check/" style="display:inline-flex;align-items:center;gap:8px;background:var(--green-bright);color:#08130D;font-family:'Outfit',sans-serif;font-weight:700;font-size:16px;padding:16px 30px;border-radius:14px;text-decoration:none;">Vraag je gratis vindbaarheids-rapport aan <span>&rarr;</span></a>
+      <p style="margin-top:14px;font-size:14px;color:var(--light-muted);">Zie waar je echt staat, op Google, Apple en in wat ChatGPT zegt.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- SECTION 5 — AI BEVEELT JE CONCURRENT AAN -->
+<!-- ====================================================================== -->
+<section class="section-ai-recommend" id="sectionAiRecommend">
+  <div class="ai-rec-inner">
+    <div class="ai-rec-eyebrow"><span></span>AI maakt de keuze voor je klant</div>
+    <h2 class="ai-rec-h2">ChatGPT beveelt je <span class="ai-rec-strike">concurrent</span> aan. Niet jou.</h2>
+    <p class="ai-rec-sub">Wanneer iemand ChatGPT, Google AI of Perplexity vraagt om een aanbeveling in jouw regio, halen die assistenten hun antwoord uit Google Bedrijfsprofielen, reviews en website-data. Is jouw informatie incompleet of verouderd, dan slaat de AI je over en raadt je concurrent aan. Jij weet niet eens dat het is gebeurd.</p>
+
+    <p style="text-align:center;font-size:12px;color:var(--muted);margin:-8px 0 20px;">Voorbeeld-illustratie met een fictieve kliniek.</p>
+
+    <div class="ai-rec-stage">
+      <!-- Recommendation card (the competitor wins) -->
+      <div class="ai-rec-card">
+        <div class="ai-rec-card-head">
+          <div class="ai-rec-avatar">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 9.5 8.5 2.5 9 8 13.5 6.5 21 12 17.27 17.5 21 16 13.5 21.5 9 14.5 8.5z"/></svg>
+          </div>
+          <div class="ai-rec-card-meta">
+            <div class="ai-rec-card-title">AI Assistant</div>
+            <div class="ai-rec-card-status">1 aanbeveling</div>
+          </div>
+          <div class="ai-rec-card-time">net</div>
+        </div>
+
+        <div class="ai-rec-prompt">
+          <span class="ai-rec-prompt-label">Vraag van een potentiële klant</span>
+          "Ik wil laserontharing laten doen in Utrecht, welke kliniek kun je aanraden?"
+        </div>
+
+        <div class="ai-rec-answer">
+          Op basis van <strong>87 geverifieerde reviews</strong> (gemiddeld <strong>4,8 sterren</strong>), een compleet profiel met voor-en-na-foto's, prijsindicatie en behandelinformatie, raad ik <span class="ai-rec-name">Voorbeeldkliniek</span> aan. Hun reviews noemen specifiek laserontharing en het resultaat.
+        </div>
+
+        <div class="ai-rec-pills">
+          <span class="ai-rec-pill">87 reviews</span>
+          <span class="ai-rec-pill">★ 4,8</span>
+          <span class="ai-rec-pill">Compleet profiel</span>
+          <span class="ai-rec-pill">Voor-en-na-foto's</span>
+        </div>
+      </div>
+
+      <!-- Skipped (you) card -->
+      <div class="ai-rec-skipped">
+        <div class="ai-rec-skipped-head">
+          <span class="skip-tag">Niet meegenomen</span>
+          <div class="skip-headline">Jouw bedrijf werd overgeslagen.</div>
+        </div>
+        <ul class="ai-rec-skipped-list">
+          <li>
+            <span class="skip-num">23</span>
+            <span>reviews. Onder de drempel die de AI als 'voldoende sociaal bewijs' interpreteert.</span>
+          </li>
+          <li>
+            <span class="skip-num">2/8</span>
+            <span>behandelcategorieën ingevuld in je profiel. De AI weet niet dat je laserontharing doet.</span>
+          </li>
+          <li>
+            <span class="skip-num muted">0</span>
+            <span>schema-markup op je website. AI-crawlers kunnen de inhoud niet structureel lezen.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="ai-rec-pullquote">Dit is niet iets dat eraan komt. Het gebeurt <strong>nu al</strong>.</p>
+
+    <div class="ai-rec-cta-wrap">
+      <a href="/check/" class="ai-rec-cta">Check je AI-vindbaarheid <span class="arrow">→</span></a>
+      <p class="ai-rec-cta-sub">Vraag een gratis analyse aan. We laten zien hoe AI nu over jouw kliniek praat.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Mesh divider tussen AI (sectie 5) en Revenue Rescue (sectie 6) -->
+<div class="mesh-divider" aria-hidden="true"></div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 6 — REVENUE RESCUE -->
+<!-- ====================================================================== -->
+<section class="section-rr" id="sectionRR">
+  <div class="rr-inner">
+    <div class="rr-header">
+      <div class="rr-eyebrow"><span></span>Het 12-weken programma</div>
+      <h2 class="rr-h2">Stop met klanten verliezen die al naar je toe kwamen.</h2>
+      <p class="rr-intro">In 12 weken zetten we de hele fundering neer: vindbaar op Google en in AI, gekozen worden via reviews, en geen aanvraag meer missen. Eén programma dat alles doet wat nodig is om geen klant meer kwijt te raken.</p>
+      <p class="rr-lead">Bij een gemiddelde kliniek zien we vaak hetzelfde patroon: berichten die na 18:00 binnenkomen en pas dagen later worden gezien, oud-klanten die al maanden niet terugkwamen, aanvragen buiten praktijkuren waar niemand op reageert. Drie lekken die elke aanvraag die binnenkomt in gevaar brengen.</p>
+    </div>
+
+    <div class="rr-split">
+      <div class="rr-side rr-side--leak">
+        <span class="rr-side-tag">Wat we vaak zien bij klinieken</span>
+        <div class="rr-side-h3">Drie lekken die je nooit ziet.</div>
+        <ul class="rr-side-list">
+          <li>
+            <span class="rr-side-num">18:00+</span>
+            <div>berichten die na sluitingstijd binnenkomen, vaak pas dagen later gezien.</div>
+          </li>
+          <li>
+            <span class="rr-side-num">6+ mnd</span>
+            <div>klanten die al maanden niet terugkwamen, zonder dat iemand ze opnieuw benadert.</div>
+          </li>
+          <li>
+            <span class="rr-side-num">'s avonds</span>
+            <div>een groot deel van de aanvragen komt buiten praktijkuren binnen. Niemand vangt ze op.</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="rr-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+
+      <div class="rr-side rr-side--fix">
+        <span class="rr-side-tag">Wat het programma doet</span>
+        <div class="rr-side-h3">Elke lek dichtgezet. Automatisch.</div>
+        <ul class="rr-side-list">
+          <li>
+            <span class="rr-check">✓</span>
+            <div>Gemiste oproepen krijgen binnen 60 seconden automatisch een SMS of WhatsApp.</div>
+          </li>
+          <li>
+            <span class="rr-check">✓</span>
+            <div>Berichten na 18:00 worden direct beantwoord. Jij wordt 's ochtends gebriefd.</div>
+          </li>
+          <li>
+            <span class="rr-check">✓</span>
+            <div>Oude klanten krijgen een geautomatiseerde reactivatie-flow.</div>
+          </li>
+          <li>
+            <span class="rr-check">✓</span>
+            <div>WhatsApp, Instagram, Facebook en Google in één inbox.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rr-stats">
+      <div class="rr-stat">
+        <div class="rr-stat-num">27%</div>
+        <div class="rr-stat-text">van inkomende telefoontjes naar lokale bedrijven wordt nooit beantwoord.</div>
+        <div class="rr-stat-source">Invoca Buyer Experience Benchmark 2023</div>
+      </div>
+      <div class="rr-stat">
+        <div class="rr-stat-num">20-35%</div>
+        <div class="rr-stat-text">van gemiste oproepen wordt binnen 7 dagen teruggewonnen via auto-respons binnen 60 seconden.</div>
+        <div class="rr-stat-source">CallRail Lead Response benchmarks</div>
+      </div>
+      <div class="rr-stat">
+        <div class="rr-stat-num">7×</div>
+        <div class="rr-stat-text">meer kans op een gesprek met de beslisser als je binnen een uur op een aanvraag reageert, in plaats van een uur later.</div>
+        <div class="rr-stat-source">HBR, The Short Life of Online Sales Leads (2011)</div>
+      </div>
+    </div>
+
+    <div class="rr-cta-wrap">
+      <a href="/check/" class="rr-cta">Vraag je gratis vindbaarheids-rapport aan <span class="arrow">→</span></a>
+      <p class="rr-cta-sub">Live binnen 2 weken. Een programma van 12 weken. Of het bij je past hangt af van waar je staat, dat zien we in de analyse.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- SECTION 6.5 — ACQUISITION SCALING (toevoeging boven op het programma) -->
+<!-- ====================================================================== -->
+<section class="section-scale" id="sectionScale">
+  <div class="scale-inner">
+    <div class="scale-header">
+      <div class="scale-eyebrow"><span></span>De toevoeging: schalen met advertenties</div>
+      <h2 class="scale-h2">Adverteren zonder fundering is geld in een lekkende emmer.</h2>
+      <p class="scale-intro">Dit is de toevoeging boven op het 12-weken programma, voor klinieken die serieus willen groeien. Pas als je fundering staat, je bent vindbaar en je opvolging is dicht, voegen we advertenties toe. Een vaste maandelijkse samenwerking met een eenmalige setup, waarbij je zelf je advertentiebudget bepaalt.</p>
+    </div>
+
+    <div class="scale-flow-label">Hoe het opbouwt:</div>
+    <div class="scale-flow">
+      <div class="scale-step done">
+        <div class="scale-step-row">
+          <span class="scale-step-num">01</span>
+          <span class="scale-step-mark" aria-label="in het programma">✓</span>
+        </div>
+        <div class="scale-step-title">Vindbaar</div>
+        <div class="scale-step-body">Google ziet je. Patiënten ook. Reviews op orde, profiel compleet, AI-search aan.</div>
+        <span class="scale-step-tag">In het programma</span>
+      </div>
+
+      <div class="scale-flow-plus" aria-hidden="true">+</div>
+
+      <div class="scale-step done">
+        <div class="scale-step-row">
+          <span class="scale-step-num">02</span>
+          <span class="scale-step-mark" aria-label="in het programma">✓</span>
+        </div>
+        <div class="scale-step-title">Meer uit je klanten</div>
+        <div class="scale-step-body">Geen aanvraag gemist, plus reactivatie van oude klanten en slimme vervolg-aanbiedingen. Meer waarde uit wie je al hebt.</div>
+        <span class="scale-step-tag">In het programma</span>
+      </div>
+
+      <div class="scale-flow-plus" aria-hidden="true">+</div>
+
+      <div class="scale-step current">
+        <div class="scale-step-row">
+          <span class="scale-step-num">03</span>
+          <span class="scale-step-mark" aria-label="toevoeging">★</span>
+        </div>
+        <div class="scale-step-title">Schalen</div>
+        <div class="scale-step-body">Google Ads, en Meta met advertenties die wij maken. Nieuwe vraag boven op wat al loopt.</div>
+        <span class="scale-step-tag">De toevoeging</span>
+      </div>
+    </div>
+
+    <p class="scale-pull">Met de fundering erin vermenigvuldigen ads de leads die toch al binnenkomen. <strong>Zonder fundering lekt elke euro weg.</strong></p>
+
+    <div class="scale-cta-wrap">
+      <a href="/check/" class="scale-cta">Vraag je gratis vindbaarheids-rapport aan <span class="arrow">→</span></a>
+      <p class="scale-cta-sub" style="margin-top: 12px; font-size: 13px; color: var(--light-muted); text-align: center;">Geen call zonder diagnose. We kijken eerst.</p>
+      <p class="scale-cta-sub">Een toevoeging boven op het programma, geen los pakket. We kijken eerst of je fundering staat. Als die nog niet klaar is, beginnen we daar.</p>
+    </div>
+  </div>
+</section>
+<!-- ====================================================================== -->
+<!-- SECTION — DAARNAAST (websites + sales funnels) -->
+<!-- ====================================================================== -->
+<section class="section-extras" id="sectionExtras">
+  <div class="extras-inner">
+    <div class="extras-header">
+      <div class="extras-eyebrow"><span></span>Daarnaast</div>
+      <h2 class="extras-h2">We bouwen ook het hele plaatje opnieuw.</h2>
+      <p class="extras-sub">Vindbaarheid en opvolging zijn de basis. Daaronder: websites die in een seconde laden en die AI-zoekmachines goed kunnen lezen. Plus funnels die de bezoekers die binnenkomen ook écht klant maken.</p>
+    </div>
+
+    <div class="extras-grid">
+      <div class="extra-card">
+        <div class="extra-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+        </div>
+        <h3 class="extra-title">Een website die klanten oplevert</h3>
+        <p class="extra-body">Een nieuwe website die supersnel laadt en die Google en AI goed kunnen lezen. Veilig, altijd up-to-date, en gebouwd om bezoekers in afspraken om te zetten. Geen trage WordPress-site die vastloopt.</p>
+        <ul class="extra-list">
+          <li>Laadt in een seconde</li>
+          <li>Goed vindbaar in Google en AI</li>
+          <li>Veilig en altijd up-to-date</li>
+          <li>Gebouwd om bezoekers klant te maken</li>
+        </ul>
+        <div class="extra-foot">Vervangt je WordPress in 2 tot 3 weken.</div>
+      </div>
+
+      <div class="extra-card">
+        <div class="extra-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+        </div>
+        <h3 class="extra-title">Meer halen uit je bezoekers</h3>
+        <p class="extra-body">We zorgen dat de bezoekers die je nu al krijgt vaker een afspraak maken. Slimme pagina's en automatische opvolging via email en WhatsApp, tot iemand klant is.</p>
+        <ul class="extra-list">
+          <li>Pagina's die afspraken opleveren</li>
+          <li>Automatische opvolging via email en WhatsApp</li>
+          <li>Stap voor stap getest en verbeterd</li>
+          <li>Meer afspraken uit hetzelfde verkeer</li>
+        </ul>
+        <div class="extra-foot">Voor klinieken die meer uit hun bestaande verkeer willen halen</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- LOGO CLOUD — Eerder gewerkt met (Bryan's track record) -->
+<!-- ====================================================================== -->
+<section class="section-clients" id="sectionClients">
+  <div class="clients-eyebrow"><span></span>Eerder opgebouwd en geholpen groeien<span></span></div>
+  <p class="clients-tagline">10 jaar marketing achter dit werk. Van internationale merken tot lokale bedrijven om de hoek. Dezelfde mechaniek, nu voor klinieken en behandel-salons.</p>
+
+  <div class="clients-track-wrap">
+    <div class="clients-track">
+      <span class="client-name">Cultura Nederland</span>
+      <span class="client-name">Brakke Café</span>
+      <span class="client-name">Dutch Padel School</span>
+      <span class="client-name">Amigo Grill Amsterdam</span>
+      <span class="client-name">Sweetwood Producties</span>
+      <span class="client-name">Cool Rush Leiden</span>
+
+      <span class="client-name" aria-hidden="true">Cultura Nederland</span>
+      <span class="client-name" aria-hidden="true">Brakke Café</span>
+      <span class="client-name" aria-hidden="true">Dutch Padel School</span>
+      <span class="client-name" aria-hidden="true">Amigo Grill Amsterdam</span>
+      <span class="client-name" aria-hidden="true">Sweetwood Producties</span>
+      <span class="client-name" aria-hidden="true">Cool Rush Leiden</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7 (Pakketten) verwijderd 2026-06-26 — geen publieke pakketten of prijzen meer; alles leidt naar de gratis analyse -->
+
+<!-- ====================================================================== -->
+<!-- SECTION 7.5 — GBP-CHECKLIST MAGIC LANTERN ENTRY                        -->
+<!-- ====================================================================== -->
+
+<section class="section-magic" id="sectionMagic">
+  <div class="magic-inner">
+    <div class="magic-eyebrow"><span></span>Liever eerst zelf rondkijken?<span></span></div>
+    <h2 class="magic-h2">Pak de gratis GBP-checklist 2026</h2>
+    <p class="magic-body">13 punten waar elk Google-profiel op staat of valt in 2026, inclusief 4 nieuwe punten voor AI-zichtbaarheid in ChatGPT, Gemini en Perplexity. Geen marketing-bombardement, geen verkooppraat.</p>
+    <a href="/checklist/" class="magic-cta">Download de checklist (gratis) →</a>
+    <p class="magic-sub">PDF in je inbox plus 5 emails per niche verspreid over 2 weken. Daarna stopt het.</p>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- SECTION 8 — PROOF (LIGHT) -->
+<!-- ====================================================================== -->
+<section class="section-proof" id="sectionProof">
+  <div class="proof-inner">
+    <div class="proof-header">
+      <div class="proof-eyebrow"><span></span>Geen beloftes, wel onderbouwing<span></span></div>
+      <h2 class="proof-h2">We vragen je niet om ons te geloven. We laten het op je eigen profiel zien.</h2>
+      <p class="proof-sub">We combineren wat aantoonbaar werkt in de markt met een gratis diagnose op jouw eigen profiel. Die analyse legt met echte data het lek in jouw vindbaarheid bloot, voordat je iets betaalt.</p>
+    </div>
+
+    <div class="proof-grid">
+      <!-- Column 1 — De markt (mechanism data) -->
+      <article class="proof-card">
+        <div class="proof-card-head">
+          <span class="proof-card-tag">De markt</span>
+          <h3 class="proof-card-title">Wat we weten dat werkt</h3>
+          <p class="proof-card-sub">Cijfers uit marktdata, geen verzonnen claims.</p>
+        </div>
+        <ul class="proof-stats">
+          <li class="proof-stat">
+            <div class="proof-stat-num">76%</div>
+            <div>
+              <div class="proof-stat-text">van mobiele lokale zoekopdrachten resulteert binnen 24 uur in een aankoop.</div>
+              <span class="proof-stat-source">Think with Google 2024</span>
+            </div>
+          </li>
+          <li class="proof-stat">
+            <div class="proof-stat-num">17-22%</div>
+            <div>
+              <div class="proof-stat-text">click-through rate op de #1 plek in Google Maps.</div>
+              <span class="proof-stat-source">BrightLocal Local Consumer Review Survey 2024</span>
+            </div>
+          </li>
+          <li class="proof-stat">
+            <div class="proof-stat-num">5-7%</div>
+            <div>
+              <div class="proof-stat-text">stijging in conversies door wekelijkse Google Bedrijfsprofiel-posts.</div>
+              <span class="proof-stat-source">Google Business Profile docs + BrightLocal benchmarks</span>
+            </div>
+          </li>
+        </ul>
+      </article>
+
+      <!-- Column 2 — De aanpak (diagnose + gratis analyse als bewijs) -->
+      <article class="proof-card">
+        <div class="proof-card-head">
+          <span class="proof-card-tag">De aanpak</span>
+          <h3 class="proof-card-title">Waarom je ons niet op ons woord hoeft te geloven</h3>
+          <p class="proof-card-sub">We laten eerst je eigen situatie zien. Pas daarna beslis jij.</p>
+        </div>
+        <ul class="proof-checks">
+          <li class="proof-check">
+            <span class="proof-check-icon" aria-hidden="true">✓</span>
+            <div>
+              <strong>Eerst diagnose, dan pas een plan</strong>
+              Geen voorschrift zonder onderzoek. We kijken eerst waar je nu klanten laat liggen voordat we iets aanraden.
+            </div>
+          </li>
+          <li class="proof-check">
+            <span class="proof-check-icon" aria-hidden="true">✓</span>
+            <div>
+              <strong>Je ziet het lek op je eigen kliniek</strong>
+              De gratis analyse gaat over jouw situatie, niet over die van een ander. Concreet, op jouw profiel en jouw zoekwoorden.
+            </div>
+          </li>
+          <li class="proof-check">
+            <span class="proof-check-icon" aria-hidden="true">✓</span>
+            <div>
+              <strong>De analyse is gratis en vrijblijvend</strong>
+              Je weet daarna precies waar je staat. Geen kosten, geen verplichting.
+            </div>
+          </li>
+          <li class="proof-check">
+            <span class="proof-check-icon" aria-hidden="true">✓</span>
+            <div>
+              <strong>Maandelijks rapport via WhatsApp</strong>
+              Geen dashboards om te leren, geen verplichte calls.
+            </div>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- SECTION 8.5 — BLOG / INZICHTEN (LIGHT)                                -->
+<!-- Plek: na Proof, voor About. Argument in change-log.                    -->
+<!-- ====================================================================== -->
+<section class="section-blog" id="sectionBlog" style="display:none;">
+  <div class="blog-inner">
+    <div class="blog-header">
+      <div class="blog-eyebrow"><span></span>Inzichten<span></span></div>
+      <h2 class="blog-h2">Wat we zien gebeuren bij klinieken.</h2>
+      <p class="blog-sub">Praktische analyses over lokale zichtbaarheid, AI-search en de aanpak achter consistente klanten. Geschreven voor eigenaren, niet voor marketeers.</p>
+    </div>
+
+    <div class="blog-grid">
+      <a class="blog-card" href="/gids/vindbaar-in-chatgpt-als-kliniek/">
+        <div class="blog-image" aria-hidden="true">
+          <span class="placeholder-mark">AI</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-tag">AI Search</span>
+          <h3 class="blog-title">Waarom ChatGPT je concurrent aanbeveelt en jou niet.</h3>
+          <p class="blog-excerpt">AI-zoektools halen aanbevelingen uit signalen die de meeste klinieken niet eens kennen. Dit is wat ChatGPT, Perplexity en Google AI gebruiken om te beslissen wie ze noemen.</p>
+          <div class="blog-meta">
+            <span>14 april 2026</span>
+            <span class="dot"></span>
+            <span>7 min lezen</span>
+          </div>
+          <span class="blog-card-cta">Lees meer <span class="arrow">→</span></span>
+        </div>
+      </a>
+
+      <a class="blog-card" href="/gids/hoe-kom-ik-hoger-in-google-maps-als-kliniek/">
+        <div class="blog-image" aria-hidden="true">
+          <span class="placeholder-mark">GBP</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Google Maps</span>
+          <h3 class="blog-title">7 fouten op je Google Bedrijfsprofiel die je klanten kosten.</h3>
+          <p class="blog-excerpt">Een onvolledig profiel zakt in de Maps-pack en wordt door AI overgeslagen. Dit zijn de zeven dingen die het verschil maken tussen plek 1 en plek 8.</p>
+          <div class="blog-meta">
+            <span>2 april 2026</span>
+            <span class="dot"></span>
+            <span>9 min lezen</span>
+          </div>
+          <span class="blog-card-cta">Lees meer <span class="arrow">→</span></span>
+        </div>
+      </a>
+
+      <a class="blog-card" href="/gids/">
+        <div class="blog-image" aria-hidden="true">
+          <span class="placeholder-mark">67%</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Lead-response</span>
+          <h3 class="blog-title">67% van je leads komt buiten kantooruren. Wat gebeurt ermee?</h3>
+          <p class="blog-excerpt">De meeste klinieken zien deze leads pas na drie dagen. Tegen die tijd is je concurrent al gebeld. Wat goede after-hours opvolging er anders uit laat zien.</p>
+          <div class="blog-meta">
+            <span>21 maart 2026</span>
+            <span class="dot"></span>
+            <span>6 min lezen</span>
+          </div>
+          <span class="blog-card-cta">Lees meer <span class="arrow">→</span></span>
+        </div>
+      </a>
+    </div>
+
+    <div class="blog-all">
+      <a class="blog-all-link" href="/gids/">Bekijk alle artikelen <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- SECTION 9 — ABOUT BRYAN (WARM LIGHT) -->
+<!-- ====================================================================== -->
+<section class="section-about" id="sectionAbout">
+  <div class="about-inner">
+    <div class="about-photo-wrap">
+      <img src="/assets/bryan-ubink.webp" alt="Bryan Ubink, oprichter Local Levers" class="about-photo" width="720" height="877" loading="lazy" decoding="async">
+    </div>
+
+    <div class="about-content">
+      <div class="about-eyebrow"><span></span>Direct met de oprichter</div>
+      <h2 class="about-h2">Bryan Ubink</h2>
+
+      <div class="about-bio">
+        <p>Local Levers is opgericht door <strong>Bryan Ubink</strong>. Online marketing is altijd zijn grote passie geweest. In tien jaar bouwde hij daarmee een Instagram-netwerk van meer dan 10 miljoen volgers, met meme- en videopagina's en merk-samenwerkingen, onder andere met MrBeast. Daar leerde hij wat aandacht waard is, hoe Meta's advertentieplatform aan beide kanten werkt, en hoe je een publiek opbouwt zonder budget.</p>
+        <p>Daarna bouwde hij Dutch Padel School vanaf nul op, waar zijn twee werelden samenkwamen: marketing en de sport zelf. Hij schaalde het, verkocht zijn aandelen aan zijn partner, en ontdekte iets wat bleef hangen: hoe leuk hij lokale marketing vond, en hoe direct het effect is voor een ondernemer om de hoek.</p>
+        <p>Daarom is Local Levers er. Bryan weet uit eigen ervaring wat een lokale ondernemer voelt: cashflow-stress, geen tijd voor vage marketing-projecten, en gewoon meer van je beste klanten willen. Local Levers lost precies dat op, met dezelfde marketing-mechaniek, maar dan voor jouw kliniek of salon.</p>
+      </div>
+
+      <div class="about-meta">
+        <span class="about-tag">10 jaar marketing</span>
+        <span class="about-tag">Wereldmerken én lokaal</span>
+        <span class="about-tag">Direct contact via WhatsApp</span>
+      </div>
+
+      <div class="about-ctas">
+        <a class="about-cta-primary" href="/check/">Vraag je gratis vindbaarheids-rapport aan <span class="arrow">→</span></a>
+        <a class="about-cta-secondary" href="https://instagram.com/bryanubink" target="_blank" rel="noopener">Volg op Instagram <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- SECTION 10 — FAQ (LIGHT, AI-OPTIMIZED) -->
+<!-- ====================================================================== -->
+<section class="section-faq" id="sectionFaq">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <div class="faq-eyebrow"><span></span>Vragen die mensen stellen<span></span></div>
+      <h2 class="faq-h2">Eerlijke antwoorden voordat je start.</h2>
+      <p class="faq-sub">Korte, eerlijke antwoorden op de meest gestelde vragen over Local Levers, hoe we werken, en wat je kan verwachten.</p>
+    </div>
+
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary>Wat doet Local Levers precies?</summary>
+        <div class="faq-answer">
+          <p>Local Levers helpt klinieken en behandel-salons groeien via drie pijlers: <strong>vindbaar</strong> worden op Google Maps, Apple Maps, lokale directories en in AI-zoekmachines (ChatGPT, Perplexity, Google AI Overviews); <strong>gekozen</strong> worden via geautomatiseerde review-werving en reputatie-opbouw; en <strong>geen aanvraag missen</strong> via snelle opvolging, after-hours lead-capture en reactivatie van oude klanten. Wij zetten het op en beheren het, jij hoeft geen software te leren of dashboards bij te houden. Geleverd vanuit Nederland, met directe communicatie via WhatsApp.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Voor welke type klinieken werken jullie?</summary>
+        <div class="faq-answer">
+          <p>Laser- en huidklinieken, en behandel-bedrijven waar reputatie en online vindbaarheid direct bepalen hoeveel klanten er binnenkomen:</p>
+          <p>Laserontharing en huidverjonging, microneedling, HIFU en peelings, plus huidtherapie en behandel-salons.</p>
+          <p>Onze aanpak is er voor zaken waar online vindbaarheid, reviews en response-snelheid direct bepalen hoeveel nieuwe klanten er per maand binnenkomen.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Werkt dit ook voor mijn type kliniek?</summary>
+        <div class="faq-answer">
+          <p>Ja. De drie pijlers werken identiek voor elke behandel-kliniek. Een laserkliniek, een huidkliniek of een huidtherapiepraktijk heeft dezelfde drie problemen: je staat niet op plek 1 in Google, je hebt minder reviews dan de concurrent, en een groot deel van je aanvragen komt buiten praktijkuren binnen waar niemand op reageert.</p>
+          <p>Wat verschilt: de behandelnamen op je profiel, de zoekwoorden die we targeten, en de toon van automatische berichten. De fundering is hetzelfde. Een laserkuur van honderden euro's vraagt om dezelfde mate van zichtbaarheid en vertrouwen als elk ander behandeltraject: meer reviews dan de concurrent, snellere opvolging, een compleet profiel dat AI-zoekmachines kunnen lezen.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Hoe is dit anders dan een gewoon marketingbureau?</summary>
+        <div class="faq-answer">
+          <p>Veel marketingbureaus verkopen generieke SEO-pakketten of social-media-management met vage rapporten over impressies en bereik. Local Levers bouwt meetbare, traceerbare systemen specifiek voor klinieken: hogere Google Maps-rankings, AI-search-vindbaarheid, geautomatiseerde Google-review-werving, gemiste-lead-recovery, after-hours respons-automatisering en reactivatie van dormante klanten.</p>
+          <p>Geen agency-overhead, geen account-managers. Je werkt direct met de mensen die het werk doen, met Bryan Ubink als oprichter als vast aanspreekpunt. Maandelijks WhatsApp-rapport met precies hoeveel nieuwe klanten erbij kwamen, via welk kanaal, en wat er hierna gebeurt.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Hoe help je mijn bedrijf in AI-zoekresultaten zoals ChatGPT?</summary>
+        <div class="faq-answer">
+          <p>AI-zoektools als ChatGPT, Google AI Overviews en Perplexity halen bedrijfsaanbevelingen uit Google Bedrijfsprofielen, online reviews, gestructureerde website-data (schema.org) en directory-listings. Wanneer iemand een AI-assistent vraagt om een aanbeveling als <em>"beste laserkliniek in mijn buurt"</em> of <em>"top huidkliniek in Utrecht"</em>, beveelt de AI klinieken aan met complete profielen, hoge review-aantallen, consistente directory-listings en schema-markup op hun website.</p>
+          <p>Wij optimaliseren al die signalen zodat AI jouw bedrijf herkent als vertrouwde lokale aanbeveling: schema-markup en llms.txt op je website, aanwezigheid op Bing Places, Apple Maps en Foursquare, je Google Bedrijfsprofiel compleet maken met accurate categorieën, services en bedrijfsattributen.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Hoe snel zie ik resultaat?</summary>
+        <div class="faq-answer">
+          <p>In de eerste <strong>2 tot 4 weken</strong> zetten we het fundament neer: je Google-profiel compleet, de eerste review-aanvragen die uitgaan, en snellere opvolging op wat binnenkomt.</p>
+          <p>Vindbaarheid en reviews bouwen daarna op. Dat kost tijd: ranking-verbetering loopt over <strong>60 tot 90 dagen</strong> terwijl je profiel autoriteit opbouwt. We doen een nulmeting bij de start en laten je elke maand zien hoe het beweegt.</p>
+          <p>Voorbeeld 1: een huidkliniek met 340 oude klanten en €200 gemiddelde behandelwaarde kan bij zelfs maar 10% reactivatie binnen 30 dagen een flink deel van die omzet terugwinnen. Voorbeeld 2: een laserkliniek die nu 12 aanvragen per maand mist na 18:00 wint daar bij 25% recovery 3 extra behandeltrajecten op terug.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Hoe zit het met contracten en opzeggen?</summary>
+        <div class="faq-answer">
+          <p>Je zit nergens aan vast voordat je precies weet wat je krijgt. Het programma loopt <strong>12 weken</strong>, want dat is wat reviews-velocity en ranking-verbetering nodig hebben om zichtbaar effect te hebben.</p>
+          <p>De precieze afspraken stemmen we af op jouw situatie en bespreken we in het gesprek na de gratis analyse. Geen verrassingen, alles vooraf duidelijk.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Hoe zit het met data-privacy en AVG?</summary>
+        <div class="faq-answer">
+          <p>Local Levers werkt onder volledige <strong>AVG/GDPR-compliance</strong> in alle Europese markten. We verwerken alleen contact- en planningsdata, nooit medische dossiers. Alles wordt versleuteld opgeslagen in een AVG-conforme omgeving.</p>
+          <p>Elk contact moet expliciet opt-in geven voordat zij communicatie ontvangen. Elk geautomatiseerd bericht bevat een opt-out-optie. Een verwerkersovereenkomst (DPA) wordt getekend bij onboarding. Het recht op data-verwijdering wordt binnen 72 uur na verzoek gehonoreerd. In geautomatiseerde berichten gebruiken we alleen generieke verwijzingen ("je laatste bezoek"), nooit specifieke behandel- of dienstdetails.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Moet ik tech-savvy zijn om dit te gebruiken?</summary>
+        <div class="faq-answer">
+          <p>Helemaal niet. Wij doen de complete setup en het doorlopende beheer van je Google Bedrijfsprofiel-optimalisatie, review-automatisering, AI-search-vindbaarheid, lead-response-systeem en klant-reactivatie.</p>
+          <p>Je krijgt maandelijks een rapport via WhatsApp met heldere cijfers: wat er is veranderd, hoeveel nieuwe klanten erbij kwamen, en wat er hierna gebeurt. Geen dashboards om te leren, geen software om te beheren, geen wekelijkse meetings, geen technische beslissingen voor jou. Alles draait op de achtergrond zodat jij je kunt focussen op je kliniek.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Wat kost het?</summary>
+        <div class="faq-answer">
+          <p>Dat hangt af van waar je nu staat: hoeveel reviews je hebt, of je profiel compleet is, hoeveel aanvragen je nu mist en hoe groot je klantenbestand al is. Een kliniek die al goed loopt heeft iets anders nodig dan een kliniek die net begint.</p>
+          <p>Daarom zetten we geen prijs op de site. Wat past, en wat het oplevert, wordt duidelijk in de gratis analyse. Daarin laten we zien waar je nu klanten laat liggen en wat het programma daaraan zou doen. Pas daarna bespreken we wat het kost, afgestemd op jouw situatie.</p>
+          <p>Wil je weten waar je staat? Vraag de <strong>gratis analyse</strong> aan. Gratis en vrijblijvend, geen verplichting.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Waar is Local Levers gevestigd?</summary>
+        <div class="faq-answer">
+          <p>Local Levers werkt vanuit Nederland en bedient klinieken door heel Europa. Alle diensten (Google Bedrijfsprofiel-optimalisatie, review-management, vindbaarheid in AI-zoekmachines, lead-response-automatisering en website-development) worden remote geleverd. Communicatie verloopt direct via WhatsApp, met maandelijkse rapportage. Geen kantoorbezoeken nodig.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Krijg ik een garantie?</summary>
+        <div class="faq-answer">
+          <p>Ja. De analyse vooraf is gratis en vrijblijvend, zonder verplichting. Op het programma: aan het einde van maand 1 minimaal 3 van 5 meetbare verbeteringen, anders de tweede maand gratis. De toevoeging met advertenties heeft een eigen afspraak die we in het gesprek bespreken.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Wat is de logische eerste stap?</summary>
+        <div class="faq-answer">
+          <p>Twee paden, afhankelijk van waar je staat:</p>
+          <ol style="padding-left: 20px; margin-top: 8px;">
+            <li>Weet dat je hulp wil, eerst diagnose: vraag een gratis analyse aan via <a href="/check/" style="color: inherit; text-decoration: underline;">de booking</a>.</li>
+            <li>Wil eerst zelf rondkijken: pak de gratis GBP-checklist op <a href="/checklist/" style="color: inherit; text-decoration: underline;">/checklist</a>.</li>
+          </ol>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Kan ik direct een gesprek inplannen?</summary>
+        <div class="faq-answer">
+          <p>Ja. Je vraagt een gratis analyse aan via <a href="/check/" style="color: inherit; text-decoration: underline;">de booking</a>. We kijken eerst naar je situatie, zodat het gesprek inhoudelijk wordt in plaats van oriënterend. Bij goede match bespreken we de vervolgstappen. Bij niet-match krijg je een eerlijk antwoord en gratis materiaal om zelf mee aan de slag te gaan.</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQPage JSON-LD voor AI search optimization -->
+
+
+<!-- ====================================================================== -->
+<!-- SECTION 11 — FINAL CTA (DARK) -->
+<!-- ====================================================================== -->
+<section class="section-final" id="sectionFinal">
+  <div class="final-inner">
+    <div class="final-header">
+      <div class="final-eyebrow"><span></span>Klaar om te starten?<span></span></div>
+      <h2 class="final-h2">Kies waar je begint.</h2>
+      <p class="final-sub">Geen druk om vandaag te beslissen. Begin met de optie die voor jou het laagste risico voelt.</p>
+    </div>
+
+    <div class="final-grid">
+      <article class="final-card">
+        <span class="final-card-tag">Voor wie wil testen</span>
+        <h3 class="final-card-title">De gratis checklist</h3>
+        <p class="final-card-body">13-punts Google Maps Checklist 2026. Geen telefoongesprek vereist. Alleen je e-mailadres.</p>
+        <a class="final-card-cta" href="/checklist/">Download gratis <span class="arrow">→</span></a>
+      </article>
+
+      <article class="final-card final-card--featured">
+        <span class="final-card-badge">Meeste mensen starten hier</span>
+        <span class="final-card-tag">Voor wie duidelijkheid wil</span>
+        <h3 class="final-card-title">De gratis check</h3>
+        <p class="final-card-body">We kijken naar je vindbaarheid, je reviews en je opvolging en laten zien waar je nu klanten laat liggen. Gratis en vrijblijvend, geen abonnement.</p>
+        <a class="final-card-cta" href="/check/">Vraag je gratis vindbaarheids-rapport aan <span class="arrow">→</span></a>
+      </article>
+    </div>
+
+    <p class="final-trust">De analyse is gratis en vrijblijvend, zonder verplichting · Eerst zien waar je staat · AVG-compliant</p>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- POST-FINAL PS BLOCK                                                    -->
+<!-- ====================================================================== -->
+<section style="padding: 72px 24px; background: var(--dark); border-top: 1px solid rgba(255,255,255,0.04);">
+  <div style="max-width: 720px; margin: 0 auto;">
+    <p style="color: var(--light-muted); font-size: 16px; line-height: 1.65; margin-bottom: 18px;"><strong style="color: var(--color-foreground);">PS:</strong> De klinieken die hier over zes maanden boven jou staan in Google Maps, zijn nu degenen die deze week een gratis analyse aanvragen. Profielen veranderen niet vanzelf. Reviews komen niet vanzelf binnen. AI-zichtbaarheid bouwt zich niet vanzelf op.</p>
+    <p style="color: var(--light-muted); font-size: 16px; line-height: 1.65;"><strong style="color: var(--color-foreground);">PPS:</strong> Iedere maand dat je niet weet waar je staat, kiest iemand die op zoek was naar wat jij verkoopt voor de concurrent. Dat is de werkelijke kost van wachten.</p>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- FOOTER -->
+<!-- ====================================================================== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Local<span>Levers</span></div>
+        <p class="footer-tagline">Get found. Get chosen. Never miss a lead. Vindbaarheid en lead-response voor laser- en huidklinieken in Nederland.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Voor welk bedrijf</h4>
+        <ul>
+          <li><a href="/marketing/laserklinieken/">Laserklinieken</a></li>
+          <li><a href="/marketing/huidklinieken/">Huidklinieken</a></li>
+          <li><a href="/marketing/huidtherapie/">Huidtherapie</a></li>
+          <li><a href="/marketing/schoonheidssalons/">Schoonheidssalons</a></li>
+          <li><a href="/marketing/">Alle branches &rarr;</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kennisbank</h4>
+        <ul>
+          <li><a href="/gids/hoe-kom-ik-hoger-in-google-maps-als-kliniek/">Hoger in Google Maps</a></li>
+          <li><a href="/gids/meer-google-reviews-krijgen-als-kliniek/">Meer reviews krijgen</a></li>
+          <li><a href="/gids/vindbaar-in-chatgpt-als-kliniek/">Vindbaar in ChatGPT</a></li>
+          <li><a href="/gids/">Alle gidsen &rarr;</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/checklist/">Gratis checklist</a></li>
+          <li><a href="/check/">Gratis analyse</a></li>
+          <li><a href="#sectionFaq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Bedrijf</h4>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/cookies/">Cookies</a></li>
+          <li><a href="/voorwaarden/">Voorwaarden</a></li>
+          <li><a href="https://instagram.com/bryanubink" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:info@locallevers.com">E-mail</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 LocalLevers · Bryan Ubink · Nederland</div>
+      <div>KvK 72087986 · BTW NL002405113B91</div>
+    </div>
+  </div>
+</footer>
+
+
+
+<!-- ============================================================ -->
+<!-- LOCAL LEVERS MODALS - INLINE (geen cache issues)             -->
+<!-- Quiz "Waar sta jij nu?" + GBP-checklist + exit-intent        -->
+<!-- Source: website/assets/locallevers-modals.js                 -->
+<!-- ============================================================ -->
+
+

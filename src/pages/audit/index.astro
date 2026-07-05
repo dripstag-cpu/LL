@@ -1,0 +1,14 @@
+---
+import Bare from '../../layouts/Bare.astro';
+import '../../styles/audit.css';
+import bodyHtml from '../../audit-body.html?raw';
+---
+<Bare
+  title="Actieplan voor je vindbaarheid | Local Levers"
+  description="Krijg binnen 48 uur een persoonlijke Loom van 3-5 minuten plus een actieplan met de belangrijkste fixes voor je vindbaarheid."
+  noindex
+>
+  <Fragment set:html={bodyHtml} />
+  <script is:inline src="/assets/locallevers-modals.js" defer></script>
+  <script>import '../../scripts/audit.js';</script>
+</Bare>

@@ -1,0 +1,40 @@
+---
+// Minimale layout voor funnel-, juridische en 404-pagina's.
+// Zelfde self-hosted fonts en head als de hoofd-Layout, maar ZONDER de
+// homepage-CSS (global.css), zodat de eigen page-CSS niet botst.
+import '@fontsource-variable/outfit';
+import '@fontsource-variable/plus-jakarta-sans';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+const {
+  title = 'Local Levers',
+  description = 'Vindbaarheid en opvolging voor klinieken en behandel-salons.',
+  noindex = false,
+} = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex, nofollow" /> : <link rel="canonical" href={canonicalURL} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Local Levers" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

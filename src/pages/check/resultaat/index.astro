@@ -1,0 +1,8 @@
+---
+import Bare from '../../../layouts/Bare.astro';
+import bodyHtml from '../../../check-resultaat-body.html?raw';
+---
+<Bare title="Redirect | Local Levers" noindex>
+  <Fragment set:html={bodyHtml} />
+  <script>import '../../../scripts/check-resultaat.js';</script>
+</Bare>

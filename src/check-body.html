@@ -1,0 +1,180 @@
+<!-- ====================================================================== -->
+<!-- HEADER + PROGRESS -->
+<!-- ====================================================================== -->
+<header class="quiz-header">
+  <div class="quiz-header-inner">
+    <a class="quiz-logo" href="/">Local<span>Levers</span></a>
+    <div class="quiz-counter" id="quizCounter"></div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</header>
+
+<!-- ====================================================================== -->
+<!-- INTRO -->
+<!-- ====================================================================== -->
+<section class="screen active" id="screenIntro">
+  <div class="wrap screen-inner">
+    <div class="eyebrow">2-min check</div>
+    <div class="intro">
+      <h1>Waar sta jij nu?</h1>
+      <p class="lead">7 korte vragen. Daarna maken we een gratis vindbaarheids-rapport voor jouw bedrijf.</p>
+      <ul class="features">
+        <li>7 vragen, ongeveer 2 minuten</li>
+        <li>Gratis rapport in je inbox</li>
+        <li>Geen verkooppraat, geen automatische call-boekingen</li>
+      </ul>
+      <button class="btn-primary" id="startBtn">Start de check</button>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- Q1 — bedrijfstype (ICP-gate) -->
+<!-- ====================================================================== -->
+<section class="screen" id="screenQ1" data-q="1">
+  <div class="wrap screen-inner">
+    <div class="eyebrow">Vraag 1 van 7</div>
+    <h2 class="q-title">Wat voor bedrijf heb je?</h2>
+    <div class="options" data-question="q1">
+      <button class="option" data-value="laser" data-points="20">Laserkliniek (ontharing, huidverjonging)</button>
+      <button class="option" data-value="skin" data-points="20">Huidkliniek of skin clinic (microneedling, HIFU, peels)</button>
+      <button class="option" data-value="salon" data-points="20">Huidtherapie of behandel-salon</button>
+      <button class="option" data-value="other" data-points="5">Ander lokaal bedrijf met klanten die langskomen</button>
+      <button class="option" data-value="online" data-points="0" data-disqualify="true">Online-only of geen vaste locatie</button>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- Q2 — bedrijfsnaam + plaats -->
+<!-- ====================================================================== -->
+<section class="screen" id="screenQ2" data-q="2">
+  <div class="wrap screen-inner">
+    <div class="eyebrow">Vraag 2 van 7</div>
+    <h2 class="q-title">Wat is je bedrijfsnaam en plaats?</h2>
+    <p class="q-help">Zo maken we het rapport specifiek voor jouw bedrijf.</p>
+    <input type="text" class="email-input" id="q2-bedrijf" placeholder="Bedrijfsnaam" autocomplete="organization">
+    <input type="text" class="email-input" id="q2-plaats" placeholder="Plaats" autocomplete="address-level2">
+    <div class="action-row">
+      <button class="btn-primary" id="q2-next" disabled>Volgende</button>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- Q3 — winstdienst (vrij tekstveld) -->
+<!-- ====================================================================== -->
+<section class="screen" id="screenQ3" data-q="3">
+  <div class="wrap screen-inner">
+    <div class="eyebrow">Vraag 3 van 7</div>
+    <h2 class="q-title">Welke behandeling zou je het liefst meer doen?</h2>
+    <input type="text" class="email-input" id="q3-input" placeholder="bijv. laserontharing of microneedling">
+    <div class="action-row">
+      <button class="btn-primary" id="q3-next" disabled>Volgende</button>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- Q4 — AOV -->
+<!-- ====================================================================== -->
+<section class="screen" id="screenQ4" data-q="4">
+  <div class="wrap screen-inner">
+    <div class="eyebrow">Vraag 4 van 7</div>
+    <h2 class="q-title">Wat is je gemiddelde klantbedrag (AOV)?</h2>
+    <div class="options" data-question="q4">
+      <button class="option" data-value="lt100" data-disqualify="true">Minder dan €100</button>
+      <button class="option" data-value="100-200">€100 tot €200</button>
+      <button class="option" data-value="200-500">€200 tot €500</button>
+      <button class="option" data-value="500-2000">€500 tot €2.000</button>
+      <button class="option" data-value="gt2000">Meer dan €2.000</button>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- Q5 — timing / urgentie (geen disqualify, alleen prioriteit) -->
+<!-- ====================================================================== -->
+<section class="screen" id="screenQ5" data-q="5">
+  <div class="wrap screen-inner">
+    <div class="eyebrow">Vraag 5 van 7</div>
+    <h2 class="q-title">Wanneer wil je hier stappen in zetten?</h2>
+    <div class="options" data-question="q5">
+      <button class="option" data-value="nu" data-points="20">Nu, dit speelt en ik wil vooruit</button>
+      <button class="option" data-value="3mnd" data-points="15">Binnen 3 maanden</button>
+      <button class="option" data-value="halfjaar" data-points="10">Binnen een half jaar</button>
+      <button class="option" data-value="ditjaar" data-points="5">Dit jaar, maar geen haast</button>
+      <button class="option" data-value="orienteren" data-points="0">Ik oriënteer me alleen even</button>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- Q6 — grootste frustratie -->
+<!-- ====================================================================== -->
+<section class="screen" id="screenQ6" data-q="6">
+  <div class="wrap screen-inner">
+    <div class="eyebrow">Vraag 6 van 7</div>
+    <h2 class="q-title">Wat is je grootste frustratie op dit moment?</h2>
+    <div class="options" data-question="q6">
+      <button class="option" data-value="zichtbaarheid">Ik sta niet hoog genoeg in Google</button>
+      <button class="option" data-value="miscalls">Ik mis te veel telefoontjes of berichten</button>
+      <button class="option" data-value="weinig-klanten">Ik krijg te weinig nieuwe klanten</button>
+      <button class="option" data-value="concurrent">Mijn concurrent doet het beter en ik weet niet waarom</button>
+      <button class="option" data-value="te-druk">Ik heb het te druk om er iets aan te doen</button>
+      <button class="option" data-value="geen">Geen grote frustratie, ik kijk gewoon wat er mogelijk is</button>
+      <button class="option" data-value="anders" id="q6-anders">Anders, namelijk...</button>
+    </div>
+    <div id="q6-anders-wrap" style="display:none;">
+      <input type="text" class="email-input" id="q6-anders-input" placeholder="Vertel kort wat je frustratie is">
+      <div class="action-row">
+        <button class="btn-primary" id="q6-next" disabled>Volgende</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- Q7 — contact + consent -->
+<!-- ====================================================================== -->
+<section class="screen" id="screenQ7" data-q="7">
+  <div class="wrap screen-inner">
+    <div class="eyebrow">Bijna klaar</div>
+    <h2 class="q-title">Waar mag ik het rapport naartoe sturen?</h2>
+    <form class="email-form" id="contactForm" novalidate>
+      <input type="text" class="email-input" id="voornaamInput" placeholder="Je voornaam" autocomplete="given-name" required>
+      <input type="email" class="email-input" id="emailInput" placeholder="jouw@email.nl" autocomplete="email" required>
+      <label class="consent-row"><input type="checkbox" id="consentInput"><span>Ja, ik ontvang graag het gratis rapport en af en toe praktische tips over online vindbaarheid van Local Levers. Ik kan me op elk moment weer uitschrijven.</span></label>
+      <button class="btn-primary" type="submit" id="contactSubmit" disabled>Stuur me het rapport</button>
+      <div class="error-msg" id="emailError"></div>
+    </form>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- RESULT — QUALIFIED -->
+<!-- ====================================================================== -->
+<section class="screen" id="screenResultQualified">
+  <div class="wrap screen-inner">
+    <div class="eyebrow">Je resultaat</div>
+    <div class="result-card">
+      <h1>Top <span class="accent" id="rqVoornaam"></span>, we maken je gratis vindbaarheids-rapport voor <span id="rqBedrijf"></span> in <span id="rqPlaats"></span> en sturen het deze week.</h1>
+      <p class="lead">We scannen je vindbaarheid op <strong id="rqWinstdienst"></strong> in <strong id="rqPlaats2"></strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- RESULT — UNQUALIFIED -->
+<!-- ====================================================================== -->
+<section class="screen" id="screenResultUnqualified">
+  <div class="wrap screen-inner">
+    <div class="eyebrow">Je resultaat</div>
+    <div class="result-card">
+      <h1>We zijn waarschijnlijk niet de juiste fit</h1>
+      <p class="lead">Local Levers is gebouwd voor laser- en huidklinieken en behandel-bedrijven. Voor andere bedrijfstypes zijn er bureaus die beter passen.</p>
+      <p>Je krijgt geen verkoopgesprek aangeboden. Wel kun je de gratis GBP-checklist nemen, die werkt voor elk lokaal bedrijf met een Google-profiel.</p>
+      <a href="/checklist/" class="result-cta" data-result-cta="unqualified">Download de gratis checklist</a>
+    </div>
+  </div>
+</section>

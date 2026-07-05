@@ -1,0 +1,37 @@
+---
+import '@fontsource-variable/outfit';
+import '@fontsource-variable/plus-jakarta-sans';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = 'Local Levers | Vindbaarheid en opvolging voor klinieken en behandel-salons',
+  description = 'Local Levers maakt klinieken en behandel-salons beter vindbaar op Google, Apple en in AI-zoekopdrachten, met een sterk fundament, reviews en slimme opvolging.',
+} = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Local Levers" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
