@@ -361,7 +361,7 @@ html, body {
   }
   .card-stage {
     position: relative; inset: auto; order: 2;
-    margin-top: 48px; pointer-events: auto;
+    margin-top: 38px; pointer-events: auto;
   }
   .main-card { width: 100%; height: auto; border-radius: 0; }
   .card-grid { height: auto; }
@@ -381,7 +381,6 @@ html, body {
     border: none !important;
     overflow: visible !important;
   }
-  .card-stage { margin-top: -8px; }
   /* Badges tonen en op de telefoon laten zweven */
   #badge1, #badge2 {
     display: flex !important;
