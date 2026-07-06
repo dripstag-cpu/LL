@@ -371,8 +371,33 @@ html, body {
   #mainCard, #cardLeftText, #cardRightText, #mockupWrapper, #ctaWrapper {
     visibility: visible !important;
   }
+  /* Geen apart groen kaart-blok op mobiel: telefoon op de hero-achtergrond */
+  .main-card, .premium-depth-card {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    overflow: visible !important;
+  }
+  .card-stage { margin-top: -8px; }
   #badge1, #badge2 { display: none; }
 }
+
+/* Alle gevulde CTA-knoppen gelijk aan de menu-knop (.nav-cta): diepgroen + witte tekst */
+.btn-modern-light,
+.doctor-cta-primary,
+.rr-cta,
+.ai-rec-cta,
+.final-card--featured .final-card-cta {
+  background: var(--green) !important;
+  color: #fff !important;
+  border-color: var(--green) !important;
+}
+.btn-modern-light .label-top,
+.btn-modern-light .label-main,
+.doctor-cta-primary,
+.rr-cta,
+.ai-rec-cta { color: #fff !important; }
+.btn-modern-light .label-top { opacity: 0.85; }
 
 .card-right-text {
   display: flex; align-items: center; justify-content: flex-end;

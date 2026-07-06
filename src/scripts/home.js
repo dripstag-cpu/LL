@@ -96,9 +96,29 @@ scrollTl
   .to('#ctaWrapper', { scale: 1, filter: 'blur(0px)', ease: 'expo.inOut', duration: 1.0 }, 'pullback')
   .to('#mainCard', { y: -window.innerHeight - 300, ease: 'power3.in', duration: 0.9 });
 } else {
-  // Mobiel: geen pinned scroll-animatie. Mockup direct in eindstaat tonen.
+  // Mobiel: geen zware cinematic pin, maar simpele, betrouwbare fade-up reveals.
   if (counterEl) counterEl.textContent = '47';
   gsap.set('.progress-ring', { strokeDashoffset: 250 });
+
+  const mReveal = (sel, extra) => gsap.from(sel, Object.assign({
+    scrollTrigger: { trigger: sel, start: 'top 88%' },
+    opacity: 0, y: 34, duration: 0.7, ease: 'power3.out',
+  }, extra || {}));
+
+  // Telefoon dramatisch in beeld laten komen bij het scrollen (wow-factor, zonder pinning)
+  gsap.from('#mockupWrapper', {
+    scrollTrigger: { trigger: '#mockupWrapper', start: 'top 92%' },
+    opacity: 0, y: 90, scale: 0.7, rotationX: 30, rotationY: -14,
+    transformPerspective: 1000, transformOrigin: 'center 70%',
+    duration: 1.2, ease: 'expo.out',
+  });
+  gsap.from('.phone-widget', {
+    scrollTrigger: { trigger: '#mockupWrapper', start: 'top 78%' },
+    opacity: 0, y: 22, scale: 0.96, stagger: 0.08, duration: 0.6, ease: 'back.out(1.4)',
+  });
+  mReveal('#cardLeftText');
+  mReveal('#cardRightText');
+  mReveal('#ctaWrapper');
 }
 
 // === Mouse interaction (mesh bg + card sheen + iPhone parallax) ===
