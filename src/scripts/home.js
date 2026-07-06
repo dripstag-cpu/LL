@@ -119,6 +119,10 @@ scrollTl
   mReveal('#cardLeftText');
   mReveal('#cardRightText');
   mReveal('#ctaWrapper');
+  gsap.from(['#badge1', '#badge2'], {
+    scrollTrigger: { trigger: '#mockupWrapper', start: 'top 64%' },
+    opacity: 0, y: 18, scale: 0.85, stagger: 0.14, duration: 0.6, ease: 'back.out(1.5)',
+  });
 }
 
 // === Mouse interaction (mesh bg + card sheen + iPhone parallax) ===
@@ -126,7 +130,7 @@ const mainCardEl = document.getElementById('mainCard');
 const iphoneEl = document.getElementById('iphoneFrame');
 let rafId;
 
-window.addEventListener('mousemove', (e) => {
+if (!isMobile) window.addEventListener('mousemove', (e) => {
   cancelAnimationFrame(rafId);
   rafId = requestAnimationFrame(() => {
     // Global mesh background tracking

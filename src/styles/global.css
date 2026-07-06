@@ -379,7 +379,19 @@ html, body {
     overflow: visible !important;
   }
   .card-stage { margin-top: -8px; }
-  #badge1, #badge2 { display: none; }
+  /* Badges tonen en op de telefoon laten zweven */
+  #badge1, #badge2 {
+    display: flex !important;
+    visibility: visible !important;
+    position: absolute;
+    min-width: 0;
+    max-width: 74%;
+  }
+  #badge1 { top: 40px; left: 0; right: auto; bottom: auto; }
+  #badge2 { bottom: 64px; right: 0; left: auto; top: auto; }
+  /* Geen muis-sheen/glare artefacten op touch, geen tap-highlight-lijn */
+  .card-sheen, .screen-glare { display: none !important; }
+  * { -webkit-tap-highlight-color: transparent; }
 }
 
 /* Alle gevulde CTA-knoppen gelijk aan de menu-knop (.nav-cta): diepgroen + witte tekst */
