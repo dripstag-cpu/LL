@@ -1,7 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import bodyHtml from '../home-body.html?raw';
+import bodyHtmlRaw from '../home-body.html?raw';
 import schemaJson from '../home-schema.json?raw';
+
+// Strip HTML-comments (o.a. het changelog-blok) uit de output; de bron behoudt ze.
+const bodyHtml = bodyHtmlRaw.replace(/<!--[\s\S]*?-->/g, '');
 
 const orgSchema = {
   '@context': 'https://schema.org',

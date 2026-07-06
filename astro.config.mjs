@@ -14,7 +14,9 @@ export default defineConfig({
     }),
   ],
   build: {
-    inlineStylesheets: 'auto',
+    // Inline alle CSS in de HTML zodat er geen render-blocking CSS-request is
+    // (sneller First Contentful Paint / Speed Index op mobiel).
+    inlineStylesheets: 'always',
   },
   compressHTML: true,
 });
