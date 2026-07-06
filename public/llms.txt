@@ -9,8 +9,29 @@
 
 Local Levers is een done-for-you service, geen software. Geleverd vanuit Nederland, met directe communicatie via WhatsApp.
 
-## Instap
-Een gratis vindbaarheids-rapport laat zien waar een bedrijf staat op zijn winstgevende behandeling, tegenover de concurrenten. Aanvragen via de gratis check.
+## Belangrijkste pagina's
+- [Home](https://locallevers.com/): wat Local Levers doet en voor wie.
+- [Gratis vindbaarheids-rapport](https://locallevers.com/check/): korte check die laat zien waar je staat op je winstgevende behandeling.
+- [Gratis GBP-checklist](https://locallevers.com/checklist/): 13-punts checklist voor je Google Bedrijfsprofiel in 2026.
+- [Kennisbank](https://locallevers.com/gids/): uitleg over vindbaarheid, reviews en AI-zoekmachines voor klinieken en salons.
+- [Marketing per type bedrijf](https://locallevers.com/marketing/): pagina's per branche.
+
+## Voor welke bedrijven
+- [Laserklinieken](https://locallevers.com/marketing/laserklinieken/)
+- [Huidklinieken](https://locallevers.com/marketing/huidklinieken/)
+- [Huidtherapie](https://locallevers.com/marketing/huidtherapie/)
+- [Schoonheidssalons](https://locallevers.com/marketing/schoonheidssalons/)
+
+## Uitleg (gidsen)
+- [Hoger komen in Google Maps](https://locallevers.com/gids/hoe-kom-ik-hoger-in-google-maps-als-kliniek/)
+- [Vindbaar worden in ChatGPT en AI](https://locallevers.com/gids/vindbaar-in-chatgpt-als-kliniek/)
+- [Meer Google-reviews krijgen](https://locallevers.com/gids/meer-google-reviews-krijgen-als-kliniek/)
+- [Waarom staat mijn concurrent hoger](https://locallevers.com/gids/waarom-staat-mijn-concurrent-hoger-in-google-maps/)
+
+## Juridisch
+- [Privacyverklaring](https://locallevers.com/privacy/)
+- [Cookiebeleid](https://locallevers.com/cookies/)
+- [Algemene voorwaarden](https://locallevers.com/voorwaarden/)
 
 ## Contact
-info@locallevers.com
+- E-mail: info@locallevers.com

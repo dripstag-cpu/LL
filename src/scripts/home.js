@@ -33,10 +33,12 @@ const counterEl = document.getElementById('counterVal');
 gsap.set('.hero-h1-eyebrow', { autoAlpha: 0, y: 20 });
 gsap.set('.text-track', { autoAlpha: 0, y: 60, scale: 0.85, filter: 'blur(20px)', rotationX: -20 });
 gsap.set('.text-days', { autoAlpha: 0, y: 60, scale: 0.85, filter: 'blur(20px)', rotationX: -20 });
-gsap.set('#mainCard', { y: window.innerHeight + 200, autoAlpha: 1 });
-gsap.set(['#cardLeftText', '#cardRightText', '#mockupWrapper', '#badge1', '#badge2'], { autoAlpha: 0 });
-gsap.set('.phone-widget', { autoAlpha: 0 });
-gsap.set('#ctaWrapper', { autoAlpha: 0, scale: 0.8, filter: 'blur(30px)' });
+if (!isMobile) {
+  gsap.set('#mainCard', { y: window.innerHeight + 200, autoAlpha: 1 });
+  gsap.set(['#cardLeftText', '#cardRightText', '#mockupWrapper', '#badge1', '#badge2'], { autoAlpha: 0 });
+  gsap.set('.phone-widget', { autoAlpha: 0 });
+  gsap.set('#ctaWrapper', { autoAlpha: 0, scale: 0.8, filter: 'blur(30px)' });
+}
 
 // === Intro: hero text reveal ===
 const introTl = gsap.timeline({ delay: 0.3 });
@@ -45,7 +47,8 @@ introTl
   .to('.text-track', { duration: 1.4, autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', rotationX: 0, ease: 'expo.out' }, '-=0.3')
   .to('.text-days', { duration: 1.6, autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', rotationX: 0, ease: 'expo.out' }, '-=0.9');
 
-// === Scroll-driven cinematic timeline ===
+// === Scroll-driven cinematic timeline (alleen desktop; mobiel toont statisch) ===
+if (!isMobile) {
 const scrollTl = gsap.timeline({
   scrollTrigger: {
     trigger: '#cinematicContainer',
@@ -92,6 +95,11 @@ scrollTl
   }, 'pullback')
   .to('#ctaWrapper', { scale: 1, filter: 'blur(0px)', ease: 'expo.inOut', duration: 1.0 }, 'pullback')
   .to('#mainCard', { y: -window.innerHeight - 300, ease: 'power3.in', duration: 0.9 });
+} else {
+  // Mobiel: geen pinned scroll-animatie. Mockup direct in eindstaat tonen.
+  if (counterEl) counterEl.textContent = '47';
+  gsap.set('.progress-ring', { strokeDashoffset: 250 });
+}
 
 // === Mouse interaction (mesh bg + card sheen + iPhone parallax) ===
 const mainCardEl = document.getElementById('mainCard');
