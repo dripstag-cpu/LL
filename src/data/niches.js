@@ -39,7 +39,7 @@ export const niches = [
     slug: 'huidklinieken',
     label: 'huidklinieken',
     labelSingular: 'huidkliniek',
-    h1: 'Marketing voor huid- en skin clinics',
+    h1: 'Marketing voor huidklinieken',
     intro:
       'Huidverjonging, microneedling, HIFU en peelings zijn behandeltrajecten met terugkerende klanten. De keuze begint online, en daar val je op tussen een handvol klinieken in dezelfde stad. Wij zorgen dat je gevonden en gekozen wordt.',
     pains: [

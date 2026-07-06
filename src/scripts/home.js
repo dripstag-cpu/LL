@@ -107,7 +107,7 @@ scrollTl
 
   // Telefoon dramatisch in beeld laten komen bij het scrollen (wow-factor, zonder pinning)
   gsap.from('#mockupWrapper', {
-    scrollTrigger: { trigger: '#mockupWrapper', start: 'top 92%' },
+    scrollTrigger: { trigger: '#mockupWrapper', start: 'top 55%' },
     opacity: 0, y: 90, scale: 0.7, rotationX: 30, rotationY: -14,
     transformPerspective: 1000, transformOrigin: 'center 70%',
     duration: 1.2, ease: 'expo.out',

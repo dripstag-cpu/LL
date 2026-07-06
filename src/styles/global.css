@@ -343,6 +343,8 @@ html, body {
 }
 @media (max-width: 1024px) { .mockup-scroll-wrapper { height: 380px; } }
 
+.cl-short { display: none; }
+
 /* Mobiel: cinematic hero statisch stapelen (scroll-animatie staat uit in JS) */
 @media (max-width: 767px) {
   .cinematic-container {
@@ -354,12 +356,12 @@ html, body {
   }
   .hero-text-wrapper {
     position: relative; order: 1;
-    width: 100%; padding: 6vh 20px 0;
+    width: 100%; padding: 4vh 20px 0;
     min-height: 0; justify-content: center;
   }
   .card-stage {
     position: relative; inset: auto; order: 2;
-    margin-top: 5vh; pointer-events: auto;
+    margin-top: 2.5vh; pointer-events: auto;
   }
   .main-card { width: 100%; height: auto; border-radius: 0; }
   .card-grid { height: auto; }
@@ -387,8 +389,15 @@ html, body {
     min-width: 0;
     max-width: 74%;
   }
-  #badge1 { top: 40px; left: 0; right: auto; bottom: auto; }
+  #badge1 { top: 26px; left: 0; right: auto; bottom: auto; }
   #badge2 { bottom: 64px; right: 0; left: auto; top: auto; }
+  /* Ring-label kort houden zodat het in de cirkel past */
+  .cl-long { display: none; }
+  .cl-short { display: inline; }
+  /* Knop-tekst passend maken (geen lelijke 2 regels) */
+  .btn-modern-light .label-main { font-size: 14px !important; letter-spacing: -0.01em; }
+  .btn-modern-light { padding-left: 16px !important; padding-right: 16px !important; }
+  .doctor-cta-primary, .rr-cta, .ai-rec-cta, .final-card-cta { font-size: 14px !important; }
   /* Geen muis-sheen/glare artefacten op touch, geen tap-highlight-lijn */
   .card-sheen, .screen-glare { display: none !important; }
   * { -webkit-tap-highlight-color: transparent; }
