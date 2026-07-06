@@ -374,8 +374,9 @@ html, body {
   .hero-text-wrapper .gsap-reveal {
     visibility: visible !important;
   }
-  /* Geen apart groen kaart-blok op mobiel: telefoon op de hero-achtergrond */
-  .main-card, .premium-depth-card {
+  /* Geen apart groen kaart-blok op mobiel: alleen de hero-kaart transparant
+     (NIET alle .premium-depth-card, want de 'Voor wie'-tegels gebruiken die ook) */
+  #mainCard {
     background: transparent !important;
     box-shadow: none !important;
     border: none !important;
@@ -401,6 +402,8 @@ html, body {
   /* Geen muis-sheen/glare artefacten op touch, geen tap-highlight-lijn */
   .card-sheen, .screen-glare { display: none !important; }
   * { -webkit-tap-highlight-color: transparent; }
+  /* Decoratieve mesh-divider veel kleiner op mobiel (was min. 280px = groot leeg gat) */
+  .mesh-divider { height: 90px !important; }
 }
 
 /* Alle gevulde CTA-knoppen gelijk aan de menu-knop (.nav-cta): diepgroen + witte tekst */
@@ -590,7 +593,7 @@ html, body {
   z-index: 30;
   min-width: 220px;
 }
-.floating-badge.b1 { top: 24px; left: -64px; }
+.floating-badge.b1 { top: -54px; left: -24px; }
 .floating-badge.b2 { bottom: 80px; right: -80px; }
 @media (max-width: 1024px) {
   .floating-badge {
