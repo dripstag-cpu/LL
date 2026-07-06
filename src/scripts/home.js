@@ -30,9 +30,11 @@ const containerEl = document.getElementById('cinematicContainer');
 const counterEl = document.getElementById('counterVal');
 
 // === Initial states ===
-gsap.set('.hero-h1-eyebrow', { autoAlpha: 0, y: 20 });
-gsap.set('.text-track', { autoAlpha: 0, y: 60, scale: 0.85, filter: 'blur(20px)', rotationX: -20 });
-gsap.set('.text-days', { autoAlpha: 0, y: 60, scale: 0.85, filter: 'blur(20px)', rotationX: -20 });
+if (!isMobile) {
+  gsap.set('.hero-h1-eyebrow', { autoAlpha: 0, y: 20 });
+  gsap.set('.text-track', { autoAlpha: 0, y: 60, scale: 0.85, filter: 'blur(20px)', rotationX: -20 });
+  gsap.set('.text-days', { autoAlpha: 0, y: 60, scale: 0.85, filter: 'blur(20px)', rotationX: -20 });
+}
 if (!isMobile) {
   gsap.set('#mainCard', { y: window.innerHeight + 200, autoAlpha: 1 });
   gsap.set(['#cardLeftText', '#cardRightText', '#mockupWrapper', '#badge1', '#badge2'], { autoAlpha: 0 });
@@ -40,12 +42,14 @@ if (!isMobile) {
   gsap.set('#ctaWrapper', { autoAlpha: 0, scale: 0.8, filter: 'blur(30px)' });
 }
 
-// === Intro: hero text reveal ===
-const introTl = gsap.timeline({ delay: 0.3 });
-introTl
-  .to('.hero-h1-eyebrow', { duration: 0.7, autoAlpha: 1, y: 0, ease: 'power3.out' })
-  .to('.text-track', { duration: 1.4, autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', rotationX: 0, ease: 'expo.out' }, '-=0.3')
-  .to('.text-days', { duration: 1.6, autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', rotationX: 0, ease: 'expo.out' }, '-=0.9');
+// === Intro: hero text reveal (alleen desktop; op mobiel meteen zichtbaar voor snelle LCP) ===
+if (!isMobile) {
+  const introTl = gsap.timeline({ delay: 0.3 });
+  introTl
+    .to('.hero-h1-eyebrow', { duration: 0.7, autoAlpha: 1, y: 0, ease: 'power3.out' })
+    .to('.text-track', { duration: 1.4, autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', rotationX: 0, ease: 'expo.out' }, '-=0.3')
+    .to('.text-days', { duration: 1.6, autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', rotationX: 0, ease: 'expo.out' }, '-=0.9');
+}
 
 // === Scroll-driven cinematic timeline (alleen desktop; mobiel toont statisch) ===
 if (!isMobile) {

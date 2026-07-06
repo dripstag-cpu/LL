@@ -361,7 +361,7 @@ html, body {
   }
   .card-stage {
     position: relative; inset: auto; order: 2;
-    margin-top: 2.5vh; pointer-events: auto;
+    margin-top: 48px; pointer-events: auto;
   }
   .main-card { width: 100%; height: auto; border-radius: 0; }
   .card-grid { height: auto; }
@@ -370,7 +370,8 @@ html, body {
     width: 100%; padding: 0 20px; margin-top: 48px;
   }
   /* Hero-kaart elementen zichtbaar maken zonder de scroll-animatie */
-  #mainCard, #cardLeftText, #cardRightText, #mockupWrapper, #ctaWrapper {
+  #mainCard, #cardLeftText, #cardRightText, #mockupWrapper, #ctaWrapper,
+  .hero-text-wrapper .gsap-reveal {
     visibility: visible !important;
   }
   /* Geen apart groen kaart-blok op mobiel: telefoon op de hero-achtergrond */
