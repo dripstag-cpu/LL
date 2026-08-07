@@ -25,7 +25,7 @@ window.gsap=gsap; window.ScrollTrigger=ScrollTrigger;
 
 gsap.registerPlugin(ScrollTrigger);
 
-const isMobile = window.innerWidth < 768;
+const isMobile = window.innerWidth < 1025;
 const containerEl = document.getElementById('cinematicContainer');
 const counterEl = document.getElementById('counterVal');
 
@@ -109,12 +109,12 @@ scrollTl
     opacity: 0, y: 34, duration: 0.7, ease: 'power3.out',
   }, extra || {}));
 
-  // Telefoon dramatisch in beeld laten komen bij het scrollen (wow-factor, zonder pinning)
+  // Telefoon recht en gecentreerd in beeld laten komen: rustige fade-up,
+  // geen 3D-kanteling (die liet de telefoon scheef staan op mobiel/tablet).
   gsap.from('#mockupWrapper', {
-    scrollTrigger: { trigger: '#mockupWrapper', start: 'top 55%' },
-    opacity: 0, y: 90, scale: 0.7, rotationX: 30, rotationY: -14,
-    transformPerspective: 1000, transformOrigin: 'center 70%',
-    duration: 1.2, ease: 'expo.out',
+    scrollTrigger: { trigger: '#mockupWrapper', start: 'top 82%' },
+    opacity: 0, y: 44,
+    duration: 0.9, ease: 'power3.out',
   });
   gsap.from('.phone-widget', {
     scrollTrigger: { trigger: '#mockupWrapper', start: 'top 78%' },
@@ -187,7 +187,7 @@ ScrollTrigger.create({
 });
 
 // === Section 4 — ChatGPT demo with niche carousel ===
-const niches = ['laserkliniek', 'huidkliniek', 'skinkliniek'];
+const niches = ['laserkliniek', 'schoonheidssalon', 'huidkliniek'];
 const TYPE_SPEED = 65;
 const ERASE_SPEED = 32;
 const PAUSE_AFTER_TYPE = 750;
@@ -254,14 +254,6 @@ async function runStorySequence() {
   gsap.to('.ai-item', { autoAlpha: 1, y: 0, stagger: 0.14, duration: 0.45, ease: 'power3.out' });
   await _wait(0.14 * 5 * 1000 + 350);
   gsap.to('.ai-closing', { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power3.out' });
-  await _wait(700);
-
-  // Punch landing — 2 setups + final
-  gsap.to('.punch-line:not(.final)', { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.6, ease: 'power3.out' });
-  await _wait(1700);
-  gsap.to('.punch-line.final', { autoAlpha: 1, y: 0, duration: 0.9, ease: 'power3.out' });
-  await _wait(1100);
-  gsap.to('.story-wrap', { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out' });
 }
 
 let storyPlayed = false;
@@ -271,6 +263,24 @@ ScrollTrigger.create({
   onEnter: () => {
     if (storyPlayed) return; storyPlayed = true;
     runStorySequence();
+  }
+});
+
+// Story punch-lines + wrap — los inladen on scroll, zoals de rest van de secties
+ScrollTrigger.create({
+  trigger: '.story-punch',
+  start: 'top 82%',
+  once: true,
+  onEnter: () => {
+    gsap.to('.punch-line', { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.18, ease: 'power3.out' });
+  }
+});
+ScrollTrigger.create({
+  trigger: '.story-wrap',
+  start: 'top 88%',
+  once: true,
+  onEnter: () => {
+    gsap.to('.story-wrap', { autoAlpha: 1, y: 0, duration: 0.7, ease: 'power3.out' });
   }
 });
 
@@ -433,63 +443,63 @@ console.log('[LLModals] loading inline...');
   'use strict';
 
   const CSS = `
-  .llm-backdrop { position: fixed; inset: 0; z-index: 9998; background: rgba(8,8,7,0.78); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: none; align-items: flex-start; justify-content: center; overflow-y: auto; padding: 32px 16px; animation: llmFade 220ms ease-out; }
+  .llm-backdrop { position: fixed; inset: 0; z-index: 9998; background: rgba(20,20,19,0.45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: none; align-items: flex-start; justify-content: center; overflow-y: auto; padding: 32px 16px; animation: llmFade 220ms ease-out; }
   .llm-backdrop.open { display: flex; }
   @keyframes llmFade { from { opacity: 0; } to { opacity: 1; } }
   @keyframes llmRise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-  .llm-modal { position: relative; width: 100%; max-width: 640px; background: #0a0a09; border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; color: #FAFAF8; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; line-height: 1.6; overflow: hidden; animation: llmRise 280ms cubic-bezier(0.2,0.8,0.2,1); }
-  .llm-modal-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(20,20,19,0.6); position: sticky; top: 0; z-index: 5; }
+  .llm-modal { position: relative; width: 100%; max-width: 640px; background: #FFFFFF; border: 1px solid #E4E3DC; border-radius: 20px; color: #141413; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; line-height: 1.6; overflow: hidden; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.25); animation: llmRise 280ms cubic-bezier(0.2,0.8,0.2,1); }
+  .llm-modal-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid #E4E3DC; background: #FAFAF8; position: sticky; top: 0; z-index: 5; }
   .llm-modal-logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 15px; }
-  .llm-modal-logo span { color: #4ADE80; }
-  .llm-modal-counter { font-size: 12px; color: #A0A09A; font-variant-numeric: tabular-nums; }
-  .llm-modal-close { background: transparent; border: none; cursor: pointer; width: 32px; height: 32px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; color: #A0A09A; transition: background 200ms, color 200ms; margin-left: 12px; }
-  .llm-modal-close:hover { background: rgba(255,255,255,0.06); color: #FAFAF8; }
+  .llm-modal-logo span { color: #1A7A54; }
+  .llm-modal-counter { font-size: 12px; color: #8c8c87; font-variant-numeric: tabular-nums; }
+  .llm-modal-close { background: transparent; border: none; cursor: pointer; width: 32px; height: 32px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; color: #64645F; transition: background 200ms, color 200ms; margin-left: 12px; }
+  .llm-modal-close:hover { background: rgba(20,20,19,0.05); color: #0a0a09; }
   .llm-modal-close svg { width: 18px; height: 18px; }
-  .llm-progress { height: 3px; background: rgba(255,255,255,0.06); position: relative; }
-  .llm-progress-fill { height: 100%; background: #4ADE80; width: 0%; transition: width 400ms cubic-bezier(0.2,0.8,0.2,1); }
+  .llm-progress { height: 3px; background: #E4E3DC; position: relative; }
+  .llm-progress-fill { height: 100%; background: #1A7A54; width: 0%; transition: width 400ms cubic-bezier(0.2,0.8,0.2,1); }
   .llm-modal-body { padding: 32px 28px 36px; }
   .llm-modal-body * { box-sizing: border-box; }
-  .llm-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #4ADE80; margin-bottom: 14px; }
-  .llm-eyebrow::before { content: ''; width: 20px; height: 1px; background: rgba(74,222,128,0.4); }
-  .llm-title { font-family: 'Outfit', sans-serif; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; font-size: clamp(22px, 4vw, 30px); margin-bottom: 12px; }
-  .llm-title .accent { color: #4ADE80; }
-  .llm-help { color: #A0A09A; font-size: 14px; margin-bottom: 22px; }
+  .llm-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #1A7A54; margin-bottom: 14px; }
+  .llm-eyebrow::before { content: ''; width: 20px; height: 1px; background: rgba(26,122,84,0.4); }
+  .llm-title { font-family: 'Outfit', sans-serif; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; font-size: clamp(22px, 4vw, 30px); margin-bottom: 12px; color: #0a0a09; }
+  .llm-title .accent { color: #1A7A54; }
+  .llm-help { color: #64645F; font-size: 14px; margin-bottom: 22px; }
   .llm-screen { display: none; }
   .llm-screen.active { display: block; animation: llmRise 280ms ease-out; }
   .llm-features { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 10px; }
-  .llm-features li { padding-left: 22px; position: relative; color: #A0A09A; font-size: 14px; }
-  .llm-features li::before { content: ''; position: absolute; left: 0; top: 10px; width: 12px; height: 1px; background: #4ADE80; }
+  .llm-features li { padding-left: 22px; position: relative; color: #64645F; font-size: 14px; }
+  .llm-features li::before { content: ''; position: absolute; left: 0; top: 10px; width: 12px; height: 1px; background: #1A7A54; }
   .llm-options { display: grid; gap: 8px; margin-bottom: 22px; }
-  .llm-option { display: block; padding: 16px 18px; min-height: 52px; background: #141413; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; color: #FAFAF8; font-family: inherit; font-size: 15px; line-height: 1.4; cursor: pointer; text-align: left; transition: border-color 180ms, background 180ms; }
-  .llm-option:hover { border-color: #1A7A54; background: rgba(26,122,84,0.08); }
-  .llm-option.selected { border-color: #4ADE80; background: rgba(74,222,128,0.08); box-shadow: 0 0 0 1px #4ADE80; }
-  .llm-input { display: block; width: 100%; padding: 16px 18px; min-height: 52px; background: #141413; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; color: #FAFAF8; font-family: inherit; font-size: 16px; margin-bottom: 18px; }
-  .llm-input:focus { outline: none; border-color: #4ADE80; }
+  .llm-option { display: block; padding: 16px 18px; min-height: 52px; background: #FFFFFF; border: 1px solid #E4E3DC; border-radius: 10px; color: #141413; font-family: inherit; font-size: 15px; line-height: 1.4; cursor: pointer; text-align: left; transition: border-color 180ms, background 180ms; }
+  .llm-option:hover { border-color: #1A7A54; background: rgba(26,122,84,0.06); }
+  .llm-option.selected { border-color: #1A7A54; background: rgba(26,122,84,0.08); box-shadow: 0 0 0 1px #1A7A54; }
+  .llm-input { display: block; width: 100%; padding: 16px 18px; min-height: 52px; background: #FFFFFF; border: 1px solid #E4E3DC; border-radius: 10px; color: #141413; font-family: inherit; font-size: 16px; margin-bottom: 18px; }
+  .llm-input:focus { outline: none; border-color: #1A7A54; }
   .llm-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #1A7A54; color: #fff; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px; padding: 14px 24px; min-height: 52px; border: none; border-radius: 10px; width: 100%; cursor: pointer; transition: background 200ms, transform 200ms; }
-  .llm-btn-primary:hover:not(:disabled) { background: #1f9067; transform: translateY(-1px); }
-  .llm-btn-primary:disabled { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.3); cursor: not-allowed; transform: none; }
-  .llm-result { padding: 24px; background: #141413; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; margin-bottom: 4px; }
-  .llm-result h2 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: clamp(22px, 3.5vw, 30px); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
-  .llm-result h2 .accent { color: #4ADE80; }
-  .llm-result p { color: #A0A09A; font-size: 15px; margin-bottom: 14px; }
-  .llm-result p.lead { color: #FAFAF8; font-size: 16px; }
-  .llm-result p strong { color: #FAFAF8; }
+  .llm-btn-primary:hover:not(:disabled) { background: #156243; transform: translateY(-1px); }
+  .llm-btn-primary:disabled { background: #E4E3DC; color: #A0A09A; cursor: not-allowed; transform: none; }
+  .llm-result { padding: 24px; background: #FAFAF8; border: 1px solid #E4E3DC; border-radius: 14px; margin-bottom: 4px; }
+  .llm-result h2 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: clamp(22px, 3.5vw, 30px); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; color: #0a0a09; }
+  .llm-result h2 .accent { color: #1A7A54; }
+  .llm-result p { color: #64645F; font-size: 15px; margin-bottom: 14px; }
+  .llm-result p.lead { color: #141413; font-size: 16px; }
+  .llm-result p strong { color: #0a0a09; }
   .llm-result ul { list-style: none; padding: 0; margin: 0 0 16px; }
-  .llm-result ul li { padding-left: 22px; position: relative; color: #A0A09A; font-size: 15px; margin-bottom: 10px; }
-  .llm-result ul li::before { content: ''; position: absolute; left: 0; top: 11px; width: 12px; height: 1px; background: #4ADE80; }
-  .llm-callout { padding: 16px; background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.2); border-radius: 10px; margin: 16px 0; font-size: 15px; color: #FAFAF8; }
-  .llm-callout strong { color: #4ADE80; font-size: 20px; font-family: 'Outfit', sans-serif; }
+  .llm-result ul li { padding-left: 22px; position: relative; color: #64645F; font-size: 15px; margin-bottom: 10px; }
+  .llm-result ul li::before { content: ''; position: absolute; left: 0; top: 11px; width: 12px; height: 1px; background: #1A7A54; }
+  .llm-callout { padding: 16px; background: rgba(26,122,84,0.06); border: 1px solid rgba(26,122,84,0.18); border-radius: 10px; margin: 16px 0; font-size: 15px; color: #141413; }
+  .llm-callout strong { color: #1A7A54; font-size: 20px; font-family: 'Outfit', sans-serif; }
   .llm-cta { display: inline-flex; align-items: center; justify-content: center; background: #1A7A54; color: #fff; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px; padding: 14px 24px; min-height: 52px; border-radius: 10px; text-decoration: none; margin-top: 12px; transition: background 200ms, transform 200ms; border: none; cursor: pointer; }
-  .llm-cta:hover { background: #1f9067; transform: translateY(-1px); }
-  .llm-result-sub { color: #A0A09A; font-size: 13px; margin-top: 12px; font-style: italic; }
-  .llm-error { color: #ff6b6b; font-size: 13px; margin-top: 6px; min-height: 18px; }
-  .llm-note { color: #A0A09A; font-size: 13px; margin-top: 10px; font-style: italic; }
+  .llm-cta:hover { background: #156243; transform: translateY(-1px); }
+  .llm-result-sub { color: #64645F; font-size: 13px; margin-top: 12px; font-style: italic; }
+  .llm-error { color: #C4391D; font-size: 13px; margin-top: 6px; min-height: 18px; }
+  .llm-note { color: #64645F; font-size: 13px; margin-top: 10px; font-style: italic; }
   .llm-checklist-bullets { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 10px; }
-  .llm-checklist-bullets li { padding-left: 22px; position: relative; color: #A0A09A; font-size: 14px; }
-  .llm-checklist-bullets li::before { content: ''; position: absolute; left: 0; top: 10px; width: 12px; height: 1px; background: #4ADE80; }
+  .llm-checklist-bullets li { padding-left: 22px; position: relative; color: #64645F; font-size: 14px; }
+  .llm-checklist-bullets li::before { content: ''; position: absolute; left: 0; top: 10px; width: 12px; height: 1px; background: #1A7A54; }
   .llm-consent { display: flex; gap: 10px; align-items: flex-start; margin: 4px 0 16px; cursor: pointer; }
   .llm-consent input { margin-top: 3px; width: 16px; height: 16px; flex-shrink: 0; accent-color: #1A7A54; cursor: pointer; }
-  .llm-consent span { color: #A0A09A; font-size: 13px; line-height: 1.5; }
+  .llm-consent span { color: #64645F; font-size: 13px; line-height: 1.5; }
   body.llm-no-scroll { overflow: hidden; }
   @media (max-width: 480px) { .llm-backdrop { padding: 0; } .llm-modal { border-radius: 0; min-height: 100vh; max-width: 100%; } .llm-modal-body { padding: 24px 20px 32px; } .llm-title { font-size: 22px; } }
   `;
@@ -691,8 +701,8 @@ console.log('[LLModals] loading inline...');
   function openQuiz() { track('quiz_modal_opened', {}); openModal(); modalBodyEl.innerHTML = quizMarkup(); setCounter('', 0); initQuiz(); }
 
   function checklistMarkup() {
-    return '<section class="llm-screen active" data-screen="checklist-form"><div class="llm-eyebrow">Voor klinieken</div><h2 class="llm-title">GBP-checklist 2026: weet binnen <span class="accent">10 minuten</span> waar je staat</h2><p class="llm-help">13 punten die in 2026 bepalen of je Google-profiel werkt of niet, inclusief 4 nieuwe punten voor AI-zichtbaarheid. We zullen je nooit spammen. Pinky promise.</p><ul class="llm-checklist-bullets"><li>13-punts checklist als PDF, drukklaar.</li><li>4 nieuwe punten voor ChatGPT, Gemini en Perplexity.</li><li>Prioritering: welke 3 punten als eerste, welke 10 daarna.</li><li>5 emails met inzichten specifiek voor klinieken.</li></ul><form data-cl-form novalidate><input type="text" class="llm-input" data-cl-name placeholder="Wat is je voornaam?" autocomplete="given-name" required style="margin-bottom:12px;"><input type="email" class="llm-input" data-cl-input placeholder="Wat is jouw beste email?" autocomplete="email" required><label class="llm-consent"><input type="checkbox" data-cl-consent><span>Ja, stuur mij de checklist en af en toe praktische tips over online vindbaarheid van Local Levers. Ik kan me op elk moment weer uitschrijven.</span></label><button type="submit" class="llm-btn-primary" data-cl-submit disabled>Stuur me de checklist</button><div class="llm-error" data-cl-error></div><p class="llm-note">PDF plus 5 emails verspreid over 2 weken. Uitschrijven met &eacute;&eacute;n klik.</p></form></section>'
-      + '<section class="llm-screen" data-screen="checklist-thanks"><div class="llm-eyebrow">Check je inbox</div><h2 class="llm-title">De PDF is onderweg.</h2><p class="llm-help" style="font-size:15px;color:#FAFAF8;margin-bottom:20px;">Kijk ook even in spam mocht hij niet binnen 5 minuten binnen zijn.</p><div class="llm-result" style="border-left:3px solid #4ADE80;margin-bottom:14px;"><h2 style="font-size:20px;">Wil je nu ook weten waar je staat?</h2><p>De checklist is een DIY-tool. Vraag je gratis vindbaarheids-rapport aan en we maken een vindbaarheids-rapport op maat voor jouw bedrijf.</p><button class="llm-cta" data-open-quiz-after-checklist>Vraag je gratis vindbaarheids-rapport aan</button><p class="llm-result-sub">Gratis en vrijblijvend. Geen verplichting.</p></div></section>';
+    return '<section class="llm-screen active" data-screen="checklist-form"><div class="llm-eyebrow">Voor lokale zaken</div><h2 class="llm-title">GBP-checklist 2026: weet binnen <span class="accent">10 minuten</span> waar je staat</h2><p class="llm-help">13 punten die in 2026 bepalen of je Google-profiel werkt of niet, inclusief 4 nieuwe punten voor vindbaarheid in ChatGPT en Perplexity. We zullen je nooit spammen. Pinky promise.</p><ul class="llm-checklist-bullets"><li>13-punts checklist als PDF, drukklaar.</li><li>4 nieuwe punten voor ChatGPT, Gemini en Perplexity.</li><li>Prioritering: welke 3 punten als eerste, welke 10 daarna.</li><li>5 emails met inzichten voor lokale zaken.</li></ul><form data-cl-form novalidate><input type="text" class="llm-input" data-cl-name placeholder="Wat is je voornaam?" autocomplete="given-name" required style="margin-bottom:12px;"><input type="email" class="llm-input" data-cl-input placeholder="Wat is jouw beste email?" autocomplete="email" required><label class="llm-consent"><input type="checkbox" data-cl-consent><span>Ja, stuur mij de checklist en af en toe praktische tips over online vindbaarheid van Local Levers. Ik kan me op elk moment weer uitschrijven.</span></label><button type="submit" class="llm-btn-primary" data-cl-submit disabled>Stuur me de checklist</button><div class="llm-error" data-cl-error></div><p class="llm-note">PDF plus 5 emails verspreid over 2 weken. Uitschrijven met &eacute;&eacute;n klik.</p></form></section>'
+      + '<section class="llm-screen" data-screen="checklist-thanks"><div class="llm-eyebrow">Check je inbox</div><h2 class="llm-title">De PDF is onderweg.</h2><p class="llm-help" style="font-size:15px;color:#141413;margin-bottom:20px;">Kijk ook even in spam mocht hij niet binnen 5 minuten binnen zijn.</p><div class="llm-result" style="border-left:3px solid #1A7A54;margin-bottom:14px;"><h2 style="font-size:20px;">Wil je nu ook weten waar je staat?</h2><p>De checklist is een DIY-tool. Vraag je gratis vindbaarheids-rapport aan en we maken een vindbaarheids-rapport op maat voor jouw bedrijf.</p><button class="llm-cta" data-open-quiz-after-checklist>Vraag je gratis vindbaarheids-rapport aan</button><p class="llm-result-sub">Gratis en vrijblijvend. Geen verplichting.</p></div></section>';
   }
 
   function initChecklist() {
@@ -795,4 +805,37 @@ console.log('[LLModals] loading inline...');
     testExitIntent: function () { try { localStorage.removeItem('ll_checklist_optin'); } catch (_) {} try { sessionStorage.removeItem('ll_exit_shown'); } catch (_) {} openChecklist(); },
     clearFlags: function () { try { localStorage.removeItem('ll_checklist_optin'); } catch (_) {} try { sessionStorage.removeItem('ll_exit_shown'); } catch (_) {} console.log('LL flags cleared.'); }
   };
+})();
+
+// ====================================================================== //
+// CTA-kliks: welke sectie levert de klik op                               //
+// ====================================================================== //
+// Elke CTA in home-body.html draagt een data-cta met de sectienaam. We
+// luisteren op pointerdown in plaats van click, want bij een click is de
+// pagina al aan het navigeren en kan het verzoek worden afgebroken.
+(function () {
+  var laatsteEl = null;
+  var laatsteTijd = 0;
+
+  function meld(el) {
+    if (!el) return;
+    var nu = Date.now();
+    if (el === laatsteEl && nu - laatsteTijd < 1000) return;
+    laatsteEl = el;
+    laatsteTijd = nu;
+    var href = el.getAttribute('href') || '';
+    var doel = href.replace(/^\/|\/$/g, '') || 'onbekend';
+    if (window.llTrack) window.llTrack('cta_klik', { positie: el.dataset.cta, target: doel });
+  }
+
+  function vanEvent(e) {
+    var t = e.target;
+    return t && t.closest ? t.closest('a[data-cta]') : null;
+  }
+
+  document.addEventListener('pointerdown', function (e) { meld(vanEvent(e)); }, true);
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter') return;
+    meld(vanEvent(e));
+  }, true);
 })();

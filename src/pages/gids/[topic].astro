@@ -45,7 +45,7 @@ const others = topics.filter((x) => x.published && x.slug !== t.slug).slice(0, 5
         <p class="pg-eyebrow">Gids</p>
         <h1>{t.h1}</h1>
         <p class="pg-lead">{t.lead}</p>
-        <a href="/check/" class="pg-cta">Vraag je gratis vindbaarheids-rapport aan &rarr;</a>
+        <a href="/sprint/" class="pg-cta">Vraag je gratis vindbaarheids-rapport aan &rarr;</a>
       </div>
     </section>
 
@@ -76,7 +76,7 @@ const others = topics.filter((x) => x.published && x.slug !== t.slug).slice(0, 5
       <div class="pg-inner narrow">
         <h2>Zie waar je nu staat</h2>
         <p class="pg-lead">In een gratis vindbaarheids-rapport laten we zien waar je staat op je winstgevende behandeling, en wie er boven je staat. Geen kosten, geen verplichting.</p>
-        <a href="/check/" class="pg-cta">Vraag je gratis vindbaarheids-rapport aan &rarr;</a>
+        <a href="/sprint/" class="pg-cta">Vraag je gratis vindbaarheids-rapport aan &rarr;</a>
       </div>
     </section>
 
@@ -96,29 +96,29 @@ const others = topics.filter((x) => x.published && x.slug !== t.slug).slice(0, 5
 </Layout>
 
 <style>
-  .pg { background: var(--dark); color: var(--color-foreground); font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif; }
+  .pg { background: #FAFAF8; color: #0a0a09; font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif; }
   .pg-inner { max-width: 940px; margin: 0 auto; padding: 0 24px; }
   .pg-inner.narrow { max-width: 760px; }
-  .pg-brand { font-family: 'Outfit Variable', sans-serif; font-weight: 800; font-size: 18px; color: #fff; text-decoration: none; }
-  .pg-brand span { color: var(--green-bright); }
-  .pg-hero { padding: 64px 0 48px; background: radial-gradient(700px circle at 80% 0%, rgba(34,169,107,0.16), transparent 55%), var(--dark); }
-  .pg-eyebrow { margin-top: 36px; font-family: 'Outfit Variable', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green-bright); }
+  .pg-brand { font-family: 'Outfit Variable', sans-serif; font-weight: 800; font-size: 18px; color: #0a0a09; text-decoration: none; }
+  .pg-brand span { color: #1A7A54; }
+  .pg-hero { padding: 64px 0 48px; background: radial-gradient(700px circle at 80% 0%, rgba(26,122,84,0.08), transparent 55%), #FAFAF8; }
+  .pg-eyebrow { margin-top: 36px; font-family: 'Outfit Variable', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #1A7A54; }
   .pg h1 { font-family: 'Outfit Variable', sans-serif; font-size: clamp(30px, 4.6vw, 46px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin: 14px 0 0; }
-  .pg-lead { font-size: 17px; line-height: 1.65; color: var(--light-muted); margin-top: 18px; }
-  .pg-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; background: var(--green); color: #fff; font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 15.5px; padding: 15px 26px; border-radius: 14px; text-decoration: none; }
-  .pg-block { padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+  .pg-lead { font-size: 17px; line-height: 1.65; color: #64645F; margin-top: 18px; }
+  .pg-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; background: #1A7A54; color: #fff; font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 15.5px; padding: 15px 26px; border-radius: 14px; text-decoration: none; }
+  .pg-block { padding: 48px 0; border-top: 1px solid #E4E3DC; }
   .pg h2 { font-family: 'Outfit Variable', sans-serif; font-size: clamp(22px, 3vw, 28px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.2; margin: 0; }
   .prose h2 { margin-top: 34px; }
   .prose h2:first-child { margin-top: 0; }
-  .prose p { font-size: 16px; line-height: 1.75; color: var(--light-muted); margin: 12px 0 0; }
-  .pg-faq details { border-top: 1px solid rgba(255,255,255,0.08); padding: 18px 0; }
-  .pg-faq summary { font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 17px; color: #fff; cursor: pointer; }
-  .pg-faq p { font-size: 15px; line-height: 1.65; color: var(--light-muted); margin: 12px 0 0; }
+  .prose p { font-size: 16px; line-height: 1.75; color: #64645F; margin: 12px 0 0; }
+  .pg-faq details { border-top: 1px solid #E4E3DC; padding: 18px 0; }
+  .pg-faq summary { font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 17px; color: #0a0a09; cursor: pointer; }
+  .pg-faq p { font-size: 15px; line-height: 1.65; color: #64645F; margin: 12px 0 0; }
   .pg-cta-block .pg-lead { margin-top: 14px; }
-  .pg-footer { padding: 36px 0 64px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 14px; color: var(--muted); }
+  .pg-footer { padding: 36px 0 64px; border-top: 1px solid #E4E3DC; font-size: 14px; color: #64645F; }
   .pg-more { list-style: none; padding: 0; margin: 12px 0 24px; display: flex; flex-direction: column; gap: 8px; }
-  .pg-more a { color: var(--light-muted); text-decoration: underline; text-underline-offset: 3px; }
+  .pg-more a { color: #64645F; text-decoration: underline; text-underline-offset: 3px; }
   .pg-hublinks { margin: 4px 0 20px; font-size: 14px; }
-  .pg-hublinks a { color: var(--green-bright); text-decoration: none; }
+  .pg-hublinks a { color: #1A7A54; text-decoration: none; }
   .pg-back { font-size: 13px; }
 </style>

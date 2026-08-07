@@ -39,13 +39,13 @@ export const topics = [
     slug: 'vindbaar-in-chatgpt-als-kliniek',
     published: true,
     keyword: 'vindbaar in chatgpt als lokaal bedrijf kliniek',
-    h1: 'Hoe word je als kliniek genoemd door ChatGPT en andere AI?',
+    h1: 'Hoe word je als kliniek genoemd door ChatGPT en Perplexity?',
     lead:
-      'Steeds meer mensen vragen niet Google maar ChatGPT, Perplexity of Google AI om een aanbeveling in hun buurt. Die assistenten halen hun antwoord uit je Google Bedrijfsprofiel, reviews, directory-vermeldingen en gestructureerde website-data. Is die informatie incompleet, dan slaan ze je over en noemen ze je concurrent. Zo zorg je dat je wel genoemd wordt.',
+      'Steeds meer mensen vragen niet Google maar ChatGPT, Perplexity of Google AI Overviews om een aanbeveling in hun buurt. Die assistenten halen hun antwoord uit je Google Bedrijfsprofiel, reviews, directory-vermeldingen en gestructureerde website-data. Is die informatie incompleet, dan slaan ze je over en noemen ze je concurrent. Zo zorg je dat je wel genoemd wordt.',
     sections: [
       {
-        h: 'AI put uit dezelfde signalen als lokale zoekresultaten, plus structuur',
-        p: 'Een compleet Google Bedrijfsprofiel, een hoog en recent review-aantal, consistente vermeldingen op Bing Places (een databron van ChatGPT), Apple Maps en Foursquare, en schema-markup op je website. Hoe duidelijker en consistenter je online staat, hoe makkelijker een AI je herkent als betrouwbare lokale aanbeveling.',
+        h: 'ChatGPT put uit dezelfde signalen als lokale zoekresultaten, plus structuur',
+        p: 'Een compleet Google Bedrijfsprofiel, een hoog en recent review-aantal, consistente vermeldingen op Bing Places (een databron van ChatGPT), Apple Maps en Foursquare, en schema-markup op je website. Hoe duidelijker en consistenter je online staat, hoe makkelijker ChatGPT je herkent als betrouwbare lokale aanbeveling.',
       },
       {
         h: 'Bing eerst, want dat voedt ChatGPT',
@@ -53,17 +53,17 @@ export const topics = [
       },
       {
         h: 'Beschrijf je behandelingen zoals mensen ze omschrijven',
-        p: 'AI matcht op taal. Als je profiel en site je behandelingen expliciet en in gewone woorden benoemen, is de kans groter dat je wordt genoemd bij een vraag over die behandeling. Vage of onvolledige omschrijvingen laten de AI raden, en dan kiest hij de duidelijkste optie, meestal je concurrent.',
+        p: 'ChatGPT matcht op taal. Als je profiel en site je behandelingen expliciet en in gewone woorden benoemen, is de kans groter dat je wordt genoemd bij een vraag over die behandeling. Vage of onvolledige omschrijvingen laten ChatGPT raden, en dan kiest hij de duidelijkste optie, meestal je concurrent.',
       },
     ],
     faq: [
       {
-        q: 'Is AI-vindbaarheid nu al belangrijk in Nederland?',
-        a: 'Het groeit snel, maar voor de meeste lokale keuzes is Google Maps nog leidend. Zie AI-vindbaarheid als een voorsprong opbouwen: laag-concurrentie nu, waardevoller naarmate meer mensen het gebruiken. Wij leiden met Maps en reviews, en nemen AI mee.',
+        q: 'Is vindbaarheid in ChatGPT en Perplexity nu al belangrijk in Nederland?',
+        a: 'Het groeit snel, maar voor de meeste lokale keuzes is Google Maps nog leidend. Zie vindbaarheid in ChatGPT en Perplexity als een voorsprong opbouwen: laag-concurrentie nu, waardevoller naarmate meer mensen het gebruiken. Wij leiden met Maps en reviews, en nemen ChatGPT en Perplexity mee.',
       },
       {
-        q: 'Kan ik zien of ik nu voorkom in AI-antwoorden?',
-        a: 'Ja. We kunnen scannen wat ChatGPT, Gemini en Google AI antwoorden op vragen over jouw type behandeling in jouw stad, en of jij daar tussen staat. Dat zit in het gratis vindbaarheids-rapport.',
+        q: 'Kan ik zien of ik nu voorkom in de antwoorden van ChatGPT en Perplexity?',
+        a: 'Ja. We kunnen scannen wat ChatGPT, Gemini en Google AI Overviews antwoorden op vragen over jouw type behandeling in jouw stad, en of jij daar tussen staat. Dat zit in het gratis vindbaarheids-rapport.',
       },
     ],
   },
@@ -117,7 +117,7 @@ export const topics = [
       },
       {
         h: 'Consistentie over alle platforms',
-        p: 'Sta je op Bing, Apple Maps, Foursquare en de relevante directories, met overal dezelfde gegevens? Die consistentie versterkt je betrouwbaarheid in de ogen van Google, en het maakt je meteen vindbaar in AI-antwoorden die uit die bronnen putten.',
+        p: 'Sta je op Bing, Apple Maps, Foursquare en de relevante directories, met overal dezelfde gegevens? Die consistentie versterkt je betrouwbaarheid in de ogen van Google, en het maakt je meteen vindbaar in de antwoorden van ChatGPT en Perplexity die uit die bronnen putten.',
       },
     ],
     faq: [
@@ -155,7 +155,7 @@ export const topics = [
     faq: [
       {
         q: 'Zit ik meteen vast aan een contract?',
-        a: 'Nee. Het rapport is gratis en vrijblijvend. Een eventueel maandelijks traject heeft een korte minimumtermijn en daarna zeg je maandelijks op. Geen jaarcontract.',
+        a: 'Nee. Wat gratis is, blijft gratis en verplicht tot niets. Kies je daarna voor de doorlopende Reputatie Motor, dan spreken we de looptijd vooraf helder af, zonder setup-kosten en zonder kleine lettertjes.',
       },
     ],
   },

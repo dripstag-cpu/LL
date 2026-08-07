@@ -1,0 +1,68 @@
+---
+// Umami analytics (cookieloos, dus geen toestemming nodig) plus de gedeelde
+// llTrack-helper waar alle track()-stubs in de losse scripts op uitkomen.
+//
+// llTrack doet drie dingen die je niet in elk script apart wilt herhalen:
+//   1. page_view negeren, want Umami telt pageviews zelf. Anders staat de
+//      eventlijst vol met een getal dat er al is.
+//   2. alleen eigenschappen uit ALLOWED doorlaten. Naam, e-mail, bedrijfsnaam
+//      en zoekterm horen in GHL, niet in de analytics. Zodra die hier wel in
+//      belanden is het geen anonieme meting meer.
+//   3. events bufferen tot het (defer geladen) Umami-script klaarstaat, zodat
+//      een klik in de eerste seconde niet verloren gaat.
+---
+
+<!--
+  data-domains beperkt het meten tot de echte site. Zonder die regel belanden
+  localhost- en Vercel-preview-bezoeken in je cijfers.
+-->
+<script
+  is:inline
+  defer
+  src="https://cloud.umami.is/script.js"
+  data-website-id="b7737fe5-092d-4fc2-9ad9-369e0ccf9fbc"
+  data-domains="locallevers.com,www.locallevers.com"></script>
+
+<script is:inline>
+  (function () {
+    var ALLOWED = [
+      'category', 'value', 'winstdienst', 'timing', 'prioriteit',
+      'target', 'position', 'positie', 'source', 'score', 'vraag', 'question',
+    ];
+    var queue = [];
+
+    function flush() {
+      if (!window.umami || typeof window.umami.track !== 'function') return false;
+      while (queue.length) {
+        var ev = queue.shift();
+        try { window.umami.track(ev[0], ev[1]); } catch (e) {}
+      }
+      return true;
+    }
+
+    window.llTrack = function (name, props) {
+      try {
+        if (!name || name === 'page_view') return;
+        var clean = {};
+        if (props) {
+          for (var k in props) {
+            if (!Object.prototype.hasOwnProperty.call(props, k)) continue;
+            if (ALLOWED.indexOf(k) === -1) continue;
+            var v = props[k];
+            if (v === null || v === undefined || v === '') continue;
+            clean[k] = typeof v === 'number' ? v : String(v).slice(0, 100);
+          }
+        }
+        queue.push([String(name).slice(0, 50), clean]);
+        flush();
+      } catch (e) {}
+    };
+
+    // Het Umami-script laadt met defer. Blijf kort proberen tot het er is.
+    var tries = 0;
+    var timer = setInterval(function () {
+      if (flush() || ++tries > 40) clearInterval(timer);
+    }, 250);
+    window.addEventListener('load', flush);
+  })();
+</script>

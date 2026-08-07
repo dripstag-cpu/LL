@@ -14,15 +14,15 @@ export const topics = [
     sections: [
       {
         h: 'Ze halen hun antwoord uit bronnen die jij deels zelf beheert',
-        p: 'Een answer engine verzint geen aanbevelingen, hij vat samen wat hij op het web vindt over jouw type behandeling in jouw stad. Je Google Bedrijfsprofiel, je reviews en je vermeldingen op andere platforms zijn de bronnen waar hij op leunt. Hoe consistenter en completer die zijn, hoe makkelijker de AI jou als betrouwbare optie herkent. Ontbrekende of tegenstrijdige gegevens laten hem twijfelen, en bij twijfel valt hij terug op de duidelijkste naam.',
+        p: 'Een answer engine verzint geen aanbevelingen, hij vat samen wat hij op het web vindt over jouw type behandeling in jouw stad. Je Google Bedrijfsprofiel, je reviews en je vermeldingen op andere platforms zijn de bronnen waar hij op leunt. Hoe consistenter en completer die zijn, hoe makkelijker de answer engine jou als betrouwbare optie herkent. Ontbrekende of tegenstrijdige gegevens laten hem twijfelen, en bij twijfel valt hij terug op de duidelijkste naam.',
       },
       {
         h: 'Gemini leunt op Google, Perplexity op een bredere mix',
-        p: 'Google Gemini put sterk uit het Google-ecosysteem, dus je Bedrijfsprofiel, je Maps-gegevens en je reviews wegen daar zwaar. Perplexity trekt breder uit het open web en verschillende bronnen door elkaar, waardoor consistente vermeldingen op meerdere plekken meer gewicht krijgen. Voor allebei geldt: staan je naam, adres en behandelingen overal gelijk, dan kan de AI je met vertrouwen citeren. Verschilt het per platform, dan wordt je onduidelijker en dus makkelijker overgeslagen.',
+        p: 'Google Gemini put sterk uit het Google-ecosysteem, dus je Bedrijfsprofiel, je Maps-gegevens en je reviews wegen daar zwaar. Perplexity trekt breder uit het open web en verschillende bronnen door elkaar, waardoor consistente vermeldingen op meerdere plekken meer gewicht krijgen. Voor allebei geldt: staan je naam, adres en behandelingen overal gelijk, dan kunnen ze je met vertrouwen citeren. Verschilt het per platform, dan wordt je onduidelijker en dus makkelijker overgeslagen.',
       },
       {
         h: 'Beschrijf je behandelingen in de woorden die mensen echt gebruiken',
-        p: 'Een answer engine matcht op taal en betekenis. Als je profiel en je site je behandelingen expliciet en in gewone mensentaal benoemen, herkent de AI de link met de vraag die iemand stelt. Vakjargon of vage omschrijvingen dwingen hem te raden wat je precies doet. Noem dus concreet welke behandelingen je aanbiedt en voor wie, zodat er geen gat zit tussen de vraag en wat er over jou te vinden is.',
+        p: 'Een answer engine matcht op taal en betekenis. Als je profiel en je site je behandelingen expliciet en in gewone mensentaal benoemen, herkent de answer engine de link met de vraag die iemand stelt. Vakjargon of vage omschrijvingen dwingen hem te raden wat je precies doet. Noem dus concreet welke behandelingen je aanbiedt en voor wie, zodat er geen gat zit tussen de vraag en wat er over jou te vinden is.',
       },
     ],
     faq: [
@@ -38,7 +38,7 @@ export const topics = [
     keyword: 'wat is aeo answer engine optimization',
     h1: 'Wat is AEO (Answer Engine Optimization)?',
     lead:
-      'AEO staat voor Answer Engine Optimization: je zichtbaarheid regelen in tools die direct een antwoord geven in plaats van een lijst met links, zoals ChatGPT, Perplexity en Google Gemini. Waar klassieke SEO gaat over hoger komen in de zoekresultaten, gaat AEO over genoemd worden in het antwoord zelf. Voor een lokale kliniek betekent dat: als iemand de AI om een aanbeveling vraagt, wil je dat jouw naam valt.',
+      'AEO staat voor Answer Engine Optimization: je zichtbaarheid regelen in tools die direct een antwoord geven in plaats van een lijst met links, zoals ChatGPT, Perplexity en Google Gemini. Waar klassieke SEO gaat over hoger komen in de zoekresultaten, gaat AEO over genoemd worden in het antwoord zelf. Voor een lokale kliniek betekent dat: als iemand zo\'n answer engine om een aanbeveling vraagt, wil je dat jouw naam valt.',
     sections: [
       {
         h: 'Het verschil met SEO',
@@ -46,11 +46,11 @@ export const topics = [
       },
       {
         h: 'Waar AEO in de praktijk op neerkomt',
-        p: 'De signalen overlappen sterk met wat lokale vindbaarheid al sterk maakt: een compleet Google Bedrijfsprofiel, een gezond en recent review-aantal, en consistente vermeldingen op platforms als Bing Places, Apple Maps en directories. Daarbovenop komt gestructureerde data op je website, zodat een machine je behandelingen, adres en openingstijden ondubbelzinnig kan uitlezen. Het is geen apart geheim kanaal, het is je bestaande online aanwezigheid netjes en eenduidig maken zodat een AI erop durft te bouwen.',
+        p: 'De signalen overlappen sterk met wat lokale vindbaarheid al sterk maakt: een compleet Google Bedrijfsprofiel, een gezond en recent review-aantal, en consistente vermeldingen op platforms als Bing Places, Apple Maps en directories. Daarbovenop komt gestructureerde data op je website, zodat een machine je behandelingen, adres en openingstijden ondubbelzinnig kan uitlezen. Het is geen apart geheim kanaal, het is je bestaande online aanwezigheid netjes en eenduidig maken zodat een answer engine erop durft te bouwen.',
       },
       {
         h: 'Waarom je er eerlijk mee moet omgaan',
-        p: 'Niemand kan garanderen dat je in een AI-antwoord verschijnt, want de aanbieders bepalen zelf hoe ze bronnen wegen en dat verandert. Wat je wel kunt doen, is de bronnen waaruit ze putten zo compleet en consistent maken dat je een logische keuze bent. Beloftes over vaste posities of aantallen horen hier niet thuis. Het eerlijke kader is: je vergroot je kans, je bouwt een voorsprong op, maar je koopt geen plek.',
+        p: 'Niemand kan garanderen dat je in een antwoord van ChatGPT of Perplexity verschijnt, want de aanbieders bepalen zelf hoe ze bronnen wegen en dat verandert. Wat je wel kunt doen, is de bronnen waaruit ze putten zo compleet en consistent maken dat je een logische keuze bent. Beloftes over vaste posities of aantallen horen hier niet thuis. Het eerlijke kader is: je vergroot je kans, je bouwt een voorsprong op, maar je koopt geen plek.',
       },
     ],
     faq: [
@@ -60,7 +60,7 @@ export const topics = [
       },
       {
         q: 'Kan ik zelf zien of AEO iets oplevert?',
-        a: 'Deels. Je kunt aan de AI zelf vragen stellen over jouw type behandeling in jouw stad en kijken of je genoemd wordt. Dat is een momentopname, geen harde meting, omdat antwoorden variëren. Het geeft wel een indruk van waar je nu staat ten opzichte van je concurrenten.',
+        a: 'Deels. Je kunt aan ChatGPT zelf vragen stellen over jouw type behandeling in jouw stad en kijken of je genoemd wordt. Dat is een momentopname, geen harde meting, omdat antwoorden variëren. Het geeft wel een indruk van waar je nu staat ten opzichte van je concurrenten.',
       },
     ],
   },
@@ -68,7 +68,7 @@ export const topics = [
     slug: 'kom-ik-voor-in-ai-zoekresultaten',
     published: true,
     keyword: 'voorkomen in ai zoekresultaten',
-    h1: 'Kom je voor in AI-zoekresultaten? Zo check je het',
+    h1: 'Kom je voor in ChatGPT en Perplexity? Zo check je het',
     lead:
       'Je kunt zelf vrij snel testen of ChatGPT, Perplexity en Google Gemini jou noemen bij een lokale vraag. Het is geen exacte wetenschap, want de antwoorden wisselen per keer en per gebruiker, maar het geeft een eerlijk beeld van waar je staat. Zo pak je die check gestructureerd aan.',
     sections: [
@@ -82,13 +82,13 @@ export const topics = [
       },
       {
         h: 'Waarom de uitkomst per keer verschilt',
-        p: 'AI-antwoorden zijn niet zo stabiel als een zoekresultaat. Dezelfde vraag kan vandaag jou noemen en morgen niet, afhankelijk van hoe het model bronnen weegt en welke gegevens het op dat moment ophaalt. Trek dus geen harde conclusies uit een enkele test. Doe de check een paar keer, verspreid over een aantal dagen, en let op het patroon in plaats van op een losse uitkomst.',
+        p: 'De antwoorden van ChatGPT en Perplexity zijn niet zo stabiel als een zoekresultaat. Dezelfde vraag kan vandaag jou noemen en morgen niet, afhankelijk van hoe het model bronnen weegt en welke gegevens het op dat moment ophaalt. Trek dus geen harde conclusies uit een enkele test. Doe de check een paar keer, verspreid over een aantal dagen, en let op het patroon in plaats van op een losse uitkomst.',
       },
     ],
     faq: [
       {
         q: 'Wat als ik nergens genoemd word?',
-        a: 'Dat is voor veel lokale ondernemers op dit moment nog normaal, en het betekent vooral dat je bronnen nog niet compleet of consistent genoeg zijn om opgepikt te worden. Begin bij de basis: een volledig Google Bedrijfsprofiel, meer en recentere reviews, en consistente vermeldingen op Bing en Apple. Dat zijn precies de bronnen waar de AI uit put.',
+        a: 'Dat is voor veel lokale ondernemers op dit moment nog normaal, en het betekent vooral dat je bronnen nog niet compleet of consistent genoeg zijn om opgepikt te worden. Begin bij de basis: een volledig Google Bedrijfsprofiel, meer en recentere reviews, en consistente vermeldingen op Bing en Apple. Dat zijn precies de bronnen waar ChatGPT en Perplexity uit putten.',
       },
     ],
   },
@@ -98,11 +98,11 @@ export const topics = [
     keyword: 'bing belangrijk voor chatgpt',
     h1: 'Waarom Bing belangrijk is als je in ChatGPT wil staan',
     lead:
-      'De meeste ondernemers besteden geen seconde aan Bing, want in Nederland zoekt bijna iedereen met Google. Toch is Bing een van de databronnen waar ChatGPT op leunt als het om actuele en lokale informatie gaat. Dat maakt een compleet Bing-profiel een van de directste en minst benutte manieren om in AI-antwoorden op te duiken.',
+      'De meeste ondernemers besteden geen seconde aan Bing, want in Nederland zoekt bijna iedereen met Google. Toch is Bing een van de databronnen waar ChatGPT op leunt als het om actuele en lokale informatie gaat. Dat maakt een compleet Bing-profiel een van de directste en minst benutte manieren om in de antwoorden van ChatGPT en Perplexity op te duiken.',
     sections: [
       {
         h: 'ChatGPT put onder de motorkap deels uit Bing',
-        p: 'Voor actuele en lokale vragen leunt ChatGPT op web-data, en Bing is daarin een belangrijke bron. Dat betekent dat wat Bing over je bedrijf weet, kan doorwerken in wat ChatGPT over je zegt. Sta je alleen goed op Google maar niet op Bing, dan mis je precies de bron die aan de AI-kant meetelt. Je Google-aanwezigheid alleen is dus geen garantie dat je in ChatGPT verschijnt.',
+        p: 'Voor actuele en lokale vragen leunt ChatGPT op web-data, en Bing is daarin een belangrijke bron. Dat betekent dat wat Bing over je bedrijf weet, kan doorwerken in wat ChatGPT over je zegt. Sta je alleen goed op Google maar niet op Bing, dan mis je precies de bron die aan de kant van ChatGPT meetelt. Je Google-aanwezigheid alleen is dus geen garantie dat je in ChatGPT verschijnt.',
       },
       {
         h: 'Bijna niemand staat compleet op Bing, en dat is je kans',
@@ -110,13 +110,13 @@ export const topics = [
       },
       {
         h: 'Zorg dat je Bing- en Google-gegevens gelijk zijn',
-        p: 'Het punt is niet alleen dat je op Bing staat, maar dat je daar exact hetzelfde staat als elders. Dezelfde bedrijfsnaam, hetzelfde adres, hetzelfde telefoonnummer en dezelfde behandelingen. Verschilt het, dan geef je de AI tegenstrijdige signalen en wordt je minder betrouwbaar als bron. Consistentie tussen Google, Bing en je website is wat een machine het vertrouwen geeft om jou te noemen.',
+        p: 'Het punt is niet alleen dat je op Bing staat, maar dat je daar exact hetzelfde staat als elders. Dezelfde bedrijfsnaam, hetzelfde adres, hetzelfde telefoonnummer en dezelfde behandelingen. Verschilt het, dan geef je ChatGPT tegenstrijdige signalen en wordt je minder betrouwbaar als bron. Consistentie tussen Google, Bing en je website is wat een machine het vertrouwen geeft om jou te noemen.',
       },
     ],
     faq: [
       {
         q: 'Levert Bing me ook gewoon bezoekers op los van ChatGPT?',
-        a: 'In Nederland is het directe zoekverkeer via Bing beperkt, dus verwacht daar niet veel klanten van. De waarde zit vooral in de rol als databron voor AI en in de consistentie van je gegevens over platforms heen. Je doet het voor de indirecte zichtbaarheid, niet voor het Bing-verkeer zelf.',
+        a: 'In Nederland is het directe zoekverkeer via Bing beperkt, dus verwacht daar niet veel klanten van. De waarde zit vooral in de rol als databron voor ChatGPT en Perplexity en in de consistentie van je gegevens over platforms heen. Je doet het voor de indirecte zichtbaarheid, niet voor het Bing-verkeer zelf.',
       },
     ],
   },
@@ -126,7 +126,7 @@ export const topics = [
     keyword: 'bing places aanmelden',
     h1: 'Je bedrijf aanmelden bij Bing Places',
     lead:
-      'Bing Places for Business is de tegenhanger van je Google Bedrijfsprofiel, maar dan voor Bing. Aanmelden is gratis en kost eenmalig wat tijd. Omdat weinig Nederlandse ondernemers het doen, staat een compleet profiel je meteen voor op de concurrentie, en het telt mee als databron voor AI-tools zoals ChatGPT.',
+      'Bing Places for Business is de tegenhanger van je Google Bedrijfsprofiel, maar dan voor Bing. Aanmelden is gratis en kost eenmalig wat tijd. Omdat weinig Nederlandse ondernemers het doen, staat een compleet profiel je meteen voor op de concurrentie, en het telt mee als databron voor zoektools als ChatGPT.',
     sections: [
       {
         h: 'Importeren vanuit Google of van nul opbouwen',
@@ -134,11 +134,11 @@ export const topics = [
       },
       {
         h: 'Vul het profiel compleet in, niet half',
-        p: 'Zet je juiste bedrijfsnaam, adres, telefoonnummer, openingstijden en de juiste categorie erin, en voeg je behandelingen, foto\'s en een heldere omschrijving toe. Een half ingevuld profiel is voor Bing en voor AI-tools bijna net zo onduidelijk als geen profiel. Besteed vooral aandacht aan het benoemen van je behandelingen in gewone taal, want dat is waarop je gematcht wordt. Hoe completer, hoe eerder je als serieuze aanbieder wordt gezien.',
+        p: 'Zet je juiste bedrijfsnaam, adres, telefoonnummer, openingstijden en de juiste categorie erin, en voeg je behandelingen, foto\'s en een heldere omschrijving toe. Een half ingevuld profiel is voor Bing en voor zoektools als ChatGPT bijna net zo onduidelijk als geen profiel. Besteed vooral aandacht aan het benoemen van je behandelingen in gewone taal, want dat is waarop je gematcht wordt. Hoe completer, hoe eerder je als serieuze aanbieder wordt gezien.',
       },
       {
         h: 'Verificatie en gelijkheid met je andere vermeldingen',
-        p: 'Na het invullen verifieert Bing je bedrijf, meestal via een code per post, telefoon of e-mail, zodat bevestigd is dat je echt de eigenaar bent. Wacht die verificatie af, want een onbevestigd profiel weegt minder. Let er tot slot op dat je gegevens hier woord voor woord gelijk zijn aan die op Google, Apple en je website. Die consistentie is precies wat je vindbaarheid en je betrouwbaarheid als AI-bron versterkt.',
+        p: 'Na het invullen verifieert Bing je bedrijf, meestal via een code per post, telefoon of e-mail, zodat bevestigd is dat je echt de eigenaar bent. Wacht die verificatie af, want een onbevestigd profiel weegt minder. Let er tot slot op dat je gegevens hier woord voor woord gelijk zijn aan die op Google, Apple en je website. Die consistentie is precies wat je vindbaarheid en je betrouwbaarheid als bron voor ChatGPT en Perplexity versterkt.',
       },
     ],
     faq: [
@@ -166,7 +166,7 @@ export const topics = [
       },
       {
         h: 'Houd je gegevens overal gelijk',
-        p: 'Ook hier is consistentie de rode draad. Je naam, adres en telefoonnummer op Apple moeten precies overeenkomen met wat op Google, Bing en je website staat. Verschillen tussen platforms verwarren zowel klanten als de systemen die je gegevens uitlezen, inclusief AI-tools. Zie Apple Business Connect niet als een losstaand klusje, maar als een van de plekken waar je hetzelfde, kloppende verhaal vertelt.',
+        p: 'Ook hier is consistentie de rode draad. Je naam, adres en telefoonnummer op Apple moeten precies overeenkomen met wat op Google, Bing en je website staat. Verschillen tussen platforms verwarren zowel klanten als de systemen die je gegevens uitlezen, inclusief zoektools als ChatGPT en Perplexity. Zie Apple Business Connect niet als een losstaand klusje, maar als een van de plekken waar je hetzelfde, kloppende verhaal vertelt.',
       },
     ],
     faq: [
@@ -186,7 +186,7 @@ export const topics = [
     sections: [
       {
         h: 'Waarom een machine struikelt over kleine verschillen',
-        p: 'Zoekmachines en AI-tools proberen te bepalen of verschillende vermeldingen naar hetzelfde bedrijf verwijzen. Staat je adres op de ene plek als straat met een afkorting en ergens anders voluit, of gebruik je twee verschillende telefoonnummers, dan ontstaat er twijfel of het wel om jou gaat. Die twijfel vertaalt zich in minder vertrouwen en dus in een zwakkere positie. Voor een mens zijn het futiliteiten, voor een systeem zijn het losse eindjes.',
+        p: 'Zoekmachines en zoektools als ChatGPT proberen te bepalen of verschillende vermeldingen naar hetzelfde bedrijf verwijzen. Staat je adres op de ene plek als straat met een afkorting en ergens anders voluit, of gebruik je twee verschillende telefoonnummers, dan ontstaat er twijfel of het wel om jou gaat. Die twijfel vertaalt zich in minder vertrouwen en dus in een zwakkere positie. Voor een mens zijn het futiliteiten, voor een systeem zijn het losse eindjes.',
       },
       {
         h: 'Waar het in de praktijk misgaat',
@@ -194,7 +194,7 @@ export const topics = [
       },
       {
         h: 'Consistentie werkt op alle kanalen tegelijk',
-        p: 'Het mooie is dat een keer je NAP overal gelijktrekken meteen op meerdere fronten helpt: je lokale vindbaarheid, je betrouwbaarheid als AI-bron en het vertrouwen van klanten die je gegevens op verschillende plekken tegenkomen. Kies een vaste schrijfwijze voor je naam, adres en telefoonnummer, en gebruik die overal exact zo. Het is geen eenmalig kunstje maar iets om te bewaken, zeker na een verhuizing, een naamswijziging of een nieuw telefoonnummer.',
+        p: 'Het mooie is dat een keer je NAP overal gelijktrekken meteen op meerdere fronten helpt: je lokale vindbaarheid, je betrouwbaarheid als bron voor ChatGPT en Perplexity en het vertrouwen van klanten die je gegevens op verschillende plekken tegenkomen. Kies een vaste schrijfwijze voor je naam, adres en telefoonnummer, en gebruik die overal exact zo. Het is geen eenmalig kunstje maar iets om te bewaken, zeker na een verhuizing, een naamswijziging of een nieuw telefoonnummer.',
       },
     ],
     faq: [
@@ -214,23 +214,23 @@ export const topics = [
     keyword: 'waar bedrijf online vermelden',
     h1: 'Op welke platforms moet je kliniek of salon online staan?',
     lead:
-      'Je hoeft niet op honderd plekken te staan, maar wel op de plekken die er echt toe doen. Voor een lokale kliniek of salon draait het om een handvol kernplatforms plus een paar bronnen die steeds belangrijker worden voor AI-vindbaarheid. Dit is een overzicht van waar je aandacht heen moet, en waarom.',
+      'Je hoeft niet op honderd plekken te staan, maar wel op de plekken die er echt toe doen. Voor een lokale kliniek of salon draait het om een handvol kernplatforms plus een paar bronnen die steeds belangrijker worden voor je vindbaarheid in ChatGPT en Perplexity. Dit is een overzicht van waar je aandacht heen moet, en waarom.',
     sections: [
       {
         h: 'Begin bij de plekken die het meeste verkeer bepalen',
         p: 'Je Google Bedrijfsprofiel is voor de meeste lokale klinieken en salons veruit het belangrijkste, want daar begint het overgrote deel van de zoektochten in Nederland. Zet daar je volledige energie in: complete categorieën, behandelingen, foto\'s, openingstijden en een gezond, recent review-aantal. Direct daarna komt Apple Maps, omdat een groot deel van je doelgroep een iPhone gebruikt en standaard op die kaart zoekt. Deze twee samen dekken het leeuwendeel van hoe klanten je nu vinden.',
       },
       {
-        h: 'Voeg de AI-databronnen toe voor de voorsprong',
-        p: 'Naast Google en Apple staan er platforms die vooral meetellen als bron voor AI-tools en voor je algehele consistentie: Bing Places, dat doorwerkt in ChatGPT, en directory-achtige bronnen zoals Foursquare die door verschillende systemen worden uitgelezen. Weinig ondernemers vullen deze in, wat het een goedkope manier maakt om je voor te bereiden op zoekgedrag dat groeit. Zie het als de fundering onder je AI-vindbaarheid, niet als een kanaal waar nu al veel klanten vandaan komen.',
+        h: 'Voeg de databronnen voor ChatGPT en Perplexity toe voor de voorsprong',
+        p: 'Naast Google en Apple staan er platforms die vooral meetellen als bron voor zoektools als ChatGPT en voor je algehele consistentie: Bing Places, dat doorwerkt in ChatGPT, en directory-achtige bronnen zoals Foursquare die door verschillende systemen worden uitgelezen. Weinig ondernemers vullen deze in, wat het een goedkope manier maakt om je voor te bereiden op zoekgedrag dat groeit. Zie het als de fundering onder je vindbaarheid in ChatGPT en Perplexity, niet als een kanaal waar nu al veel klanten vandaan komen.',
       },
       {
         h: 'Je eigen website als het punt waar alles samenkomt',
-        p: 'Je website is de enige plek die je volledig zelf beheert, en juist daarom telt hij mee. Met kloppende contactgegevens en gestructureerde data over je behandelingen, adres en openingstijden maak je het voor zoekmachines en AI makkelijk om je te begrijpen. Zorg dat de gegevens op je site exact overeenkomen met die op de platforms. Zo versterken je website en je vermeldingen elkaar in plaats van tegenstrijdige signalen af te geven.',
+        p: 'Je website is de enige plek die je volledig zelf beheert, en juist daarom telt hij mee. Met kloppende contactgegevens en gestructureerde data over je behandelingen, adres en openingstijden maak je het voor zoekmachines en ChatGPT makkelijk om je te begrijpen. Zorg dat de gegevens op je site exact overeenkomen met die op de platforms. Zo versterken je website en je vermeldingen elkaar in plaats van tegenstrijdige signalen af te geven.',
       },
       {
         h: 'Kwaliteit boven kwantiteit, en consistentie boven alles',
-        p: 'De verleiding is om op zoveel mogelijk plekken te staan, maar tien halve of tegenstrijdige vermeldingen doen meer kwaad dan goed. Beter een beperkt aantal kernplatforms dat compleet en consistent is dan een lange lijst die je niet bijhoudt. Kies je platforms bewust, houd je naam, adres en telefoonnummer overal gelijk, en werk ze bij als er iets verandert. Dat is wat je vindbaar en betrouwbaar houdt, op zowel klassieke als AI-gedreven zoekopdrachten.',
+        p: 'De verleiding is om op zoveel mogelijk plekken te staan, maar tien halve of tegenstrijdige vermeldingen doen meer kwaad dan goed. Beter een beperkt aantal kernplatforms dat compleet en consistent is dan een lange lijst die je niet bijhoudt. Kies je platforms bewust, houd je naam, adres en telefoonnummer overal gelijk, en werk ze bij als er iets verandert. Dat is wat je vindbaar en betrouwbaar houdt, op zowel klassieke zoekopdrachten als in ChatGPT en Perplexity.',
       },
     ],
     faq: [

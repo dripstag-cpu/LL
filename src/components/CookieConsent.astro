@@ -1,62 +1,125 @@
 ---
-// Lichte, self-hosted cookie-consent banner. Geen externe scripts.
-// Onthoudt de keuze in localStorage en zet window.LL_consent = {analytics, marketing}.
-// Wire toekomstige tracking (Meta-pixel, GA) achter LL_consent: laad ze alleen
-// als LL_consent.marketing / .analytics true is. Luister op event 'll-consent'.
+// Consent, Meta-pixel en CAPI-velden in één module.
+//
+// Uitgangspunten:
+//   - Zonder toestemming laadt de pixel niet en worden fbclid, _fbp en _fbc
+//     niet vastgelegd. UTM-waarden bewaren we wel: dat zijn campagne-
+//     parameters die de bezoeker zelf meebrengt, geen apparaat-identificatie.
+//   - Weigeren is even prominent als accepteren (zelfde knop, zelfde plek).
+//   - Intrekken kan altijd via een link met data-ll="voorkeuren", of via
+//     window.LL.openVoorkeuren(). Bij intrekken wissen we _fbp en _fbc.
+//   - De keuze reist mee naar GHL in het veld marketing_consent, zodat de
+//     Conversion API-actie daar server-side op kan filteren. Server-side is
+//     geen ontsnapping aan toestemming.
+//
+// Umami staat hier bewust NIET achter: dat is cookieloos en anoniem.
 ---
+
 <div id="ll-cookie" class="ll-cookie" hidden>
   <div class="ll-cookie-inner">
     <div class="ll-cookie-text">
       <strong>We gebruiken cookies</strong>
-      <p>Functionele cookies zijn altijd aan. Analytische en marketingcookies gebruiken we alleen met je toestemming, om de site te verbeteren en advertenties relevanter te maken. Lees meer in ons <a href="/cookies/">cookiebeleid</a>.</p>
+      <p>Functioneel is altijd aan. Marketingcookies alleen met je toestemming, om onze advertenties te meten. <a href="/cookies/">Cookiebeleid</a>.</p>
     </div>
     <div class="ll-cookie-actions">
-      <button type="button" data-ll="reject" class="ll-btn ghost">Alleen noodzakelijk</button>
-      <button type="button" data-ll="accept" class="ll-btn solid">Alles accepteren</button>
+      <button type="button" data-ll="reject" class="ghost">Alleen noodzakelijk</button>
+      <button type="button" data-ll="accept" class="solid">Alles accepteren</button>
     </div>
   </div>
 </div>
 
 <style>
-  .ll-cookie { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 9999; }
+  .ll-cookie { position: fixed; left: 14px; right: 14px; bottom: 14px; z-index: 9999; }
   .ll-cookie[hidden] { display: none; }
   .ll-cookie-inner {
     max-width: 940px; margin: 0 auto;
     background: #0F1D15; color: #E8F0EB;
     border: 1px solid rgba(255,255,255,0.12); border-radius: 16px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.45);
-    padding: 18px 20px;
-    display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    padding: 16px 18px;
+    display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between;
     font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
   }
-  .ll-cookie-text { flex: 1 1 320px; }
-  .ll-cookie-text strong { font-family: 'Outfit Variable', sans-serif; font-size: 15px; }
-  .ll-cookie-text p { margin: 6px 0 0; font-size: 13.5px; line-height: 1.55; color: #B4C6BB; }
+  .ll-cookie-text { flex: 1 1 300px; }
+  .ll-cookie-text strong { font-family: 'Outfit Variable', sans-serif; font-size: 14.5px; }
+  .ll-cookie-text p { margin-top: 4px; font-size: 12.5px; line-height: 1.45; color: #B4C6BB; }
   .ll-cookie-text a { color: #2CC77E; text-decoration: underline; text-underline-offset: 2px; }
-  .ll-cookie-actions { display: flex; gap: 10px; flex: 0 0 auto; }
-  .ll-btn { font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 14px; padding: 11px 18px; border-radius: 11px; cursor: pointer; border: 1px solid transparent; white-space: nowrap; }
-  .ll-btn.solid { background: #22A96B; color: #08130D; }
-  .ll-btn.ghost { background: transparent; color: #E8F0EB; border-color: rgba(255,255,255,0.22); }
-  .ll-btn:hover { opacity: 0.92; }
+  .ll-cookie-actions { display: flex; gap: 8px; flex: 0 0 auto; }
+  .ll-cookie-actions button {
+    font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 13.5px;
+    padding: 10px 16px; border-radius: 11px; cursor: pointer;
+    border: 1px solid transparent; white-space: nowrap;
+  }
+  .ll-cookie-actions .solid { background: #22A96B; color: #08130D; }
+  .ll-cookie-actions .ghost { background: transparent; color: #E8F0EB; border-color: rgba(255,255,255,0.22); }
   @media (max-width: 560px) {
+    .ll-cookie { left: 10px; right: 10px; bottom: 10px; }
+    .ll-cookie-inner { padding: 13px 14px; gap: 10px; }
+    .ll-cookie-text { flex: 1 1 100%; }
+    .ll-cookie-text p { font-size: 12px; }
     .ll-cookie-actions { flex: 1 1 100%; }
-    .ll-btn { flex: 1; }
+    .ll-cookie-actions button { flex: 1; padding: 10px 8px; font-size: 13px; }
   }
 </style>
 
 <script is:inline>
   (function () {
-    // ====== VUL HIER JE META PIXEL ID IN (leeg = pixel staat uit) ======
-    var META_PIXEL_ID = '';
-    // ===================================================================
-    var KEY = 'll-consent';
-    var el = document.getElementById('ll-cookie');
+    /* ====== CONFIGURATIE ============================================== */
+    var META_PIXEL_ID = '1712093073452181';   // Dataset ID uit Meta. Leeg = pixel laadt niet.
+    /* ================================================================== */
 
-    function loadMetaPixel() {
+    var CONSENT_KEY = 'll-consent';
+    var CONSENT_VERSIE = 2;          // ophogen als de doelen wijzigen, dan vraagt hij opnieuw
+    var ATTRIB_KEY = 'll-attributie';
+    var LEAD_KEY = 'll-lead-id';
+
+    /* --- helpers ----------------------------------------------------- */
+    function qs(naam) {
+      try { return new URLSearchParams(window.location.search).get(naam) || ''; } catch (e) { return ''; }
+    }
+    function cookie(naam) {
+      var m = document.cookie.match(new RegExp('(^|;\\s*)' + naam + '=([^;]*)'));
+      return m ? decodeURIComponent(m[2]) : '';
+    }
+    function wisCookie(naam) {
+      var host = window.location.hostname;
+      var varianten = ['', '; domain=' + host, '; domain=.' + host.replace(/^www\./, '')];
+      for (var i = 0; i < varianten.length; i++) {
+        document.cookie = naam + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/' + varianten[i];
+      }
+    }
+    function lees(sleutel, opslag) {
+      try { return JSON.parse((opslag || localStorage).getItem(sleutel) || 'null'); } catch (e) { return null; }
+    }
+    function schrijf(sleutel, waarde, opslag) {
+      try { (opslag || localStorage).setItem(sleutel, JSON.stringify(waarde)); } catch (e) {}
+    }
+    function uuid() {
+      if (window.crypto && window.crypto.randomUUID) return window.crypto.randomUUID();
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = (Math.random() * 16) | 0;
+        return (c === 'x' ? r : ((r & 0x3) | 0x8)).toString(16);
+      });
+    }
+
+    /* --- consent ----------------------------------------------------- */
+    function opgeslagenConsent() {
+      var c = lees(CONSENT_KEY);
+      if (!c) return null;
+      if (c.versie !== CONSENT_VERSIE) return null;   // doelen gewijzigd, opnieuw vragen
+      return c;
+    }
+    function heeftConsent() {
+      var c = opgeslagenConsent();
+      return !!(c && c.marketing);
+    }
+
+    function laadPixel() {
       if (!META_PIXEL_ID || window.__llPixel) return;
       window.__llPixel = true;
       !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return; n = f.fbq = function () {
+        if (f.fbq) return;
+        n = f.fbq = function () {
           n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
         };
         if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
@@ -65,33 +128,177 @@
       })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
       window.fbq('init', META_PIXEL_ID);
       window.fbq('track', 'PageView');
+      // _fbp bestaat pas nadat de pixel geladen is, dus daarna opnieuw vangen.
+      setTimeout(vangAttributie, 400);
     }
 
-    function apply(consent) {
+    function pasToe(consent) {
       window.LL_consent = consent;
-      if (consent && consent.marketing) loadMetaPixel();
+      if (consent && consent.marketing) laadPixel();
+      vangAttributie();
+      leegWachtrij();
       window.dispatchEvent(new CustomEvent('ll-consent', { detail: consent }));
     }
-    function save(analytics, marketing) {
-      var consent = { analytics: analytics, marketing: marketing, ts: Date.now() };
-      try { localStorage.setItem(KEY, JSON.stringify(consent)); } catch (e) {}
-      apply(consent);
+
+    function bewaarKeuze(marketing) {
+      var vorige = heeftConsent();
+      var consent = { marketing: !!marketing, versie: CONSENT_VERSIE, ts: new Date().toISOString() };
+      schrijf(CONSENT_KEY, consent);
+      var el = document.getElementById('ll-cookie');
       if (el) el.hidden = true;
+
+      if (vorige && !marketing) {
+        // Ingetrokken: fb-identificatoren weg en opnieuw laden, want een
+        // eenmaal geladen pixel krijg je niet meer uit de pagina.
+        wisCookie('_fbp'); wisCookie('_fbc');
+        var a = lees(ATTRIB_KEY) || {};
+        a.fbclid = ''; a.fbp = ''; a.fbc = '';
+        schrijf(ATTRIB_KEY, a);
+        pasToe(consent);
+        window.location.reload();
+        return;
+      }
+      pasToe(consent);
     }
-    var stored = null;
-    try { stored = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
-    if (stored) {
-      apply(stored);
-    } else if (el) {
-      el.hidden = false;
+
+    function toonBanner() {
+      var el = document.getElementById('ll-cookie');
+      if (el) el.hidden = false;
     }
-    if (el) {
-      el.addEventListener('click', function (e) {
-        var t = e.target.closest('[data-ll]');
+
+    function initBanner() {
+      var consent = opgeslagenConsent();
+      if (consent) pasToe(consent);
+      else toonBanner();
+
+      document.addEventListener('click', function (e) {
+        var t = e.target && e.target.closest ? e.target.closest('[data-ll]') : null;
         if (!t) return;
-        if (t.getAttribute('data-ll') === 'accept') save(true, true);
-        else save(false, false);
+        var actie = t.getAttribute('data-ll');
+        if (actie === 'accept') bewaarKeuze(true);
+        else if (actie === 'reject') bewaarKeuze(false);
+        else if (actie === 'voorkeuren') { e.preventDefault(); toonBanner(); }
       });
     }
+
+    /* --- attributie ---------------------------------------------------
+       First touch wint en staat in localStorage, niet in sessionStorage:
+       iemand die dinsdag via een advertentie binnenkomt en vrijdag pas het
+       formulier invult moet nog steeds aan die advertentie hangen.        */
+    function vangAttributie() {
+      var vorig = lees(ATTRIB_KEY) || {};
+      var data = {
+        utm_source: vorig.utm_source || qs('utm_source'),
+        utm_medium: vorig.utm_medium || qs('utm_medium'),
+        utm_campaign: vorig.utm_campaign || qs('utm_campaign'),
+        utm_content: vorig.utm_content || qs('utm_content'),
+        utm_term: vorig.utm_term || qs('utm_term'),
+        variant: vorig.variant || qs('v'),
+        referrer: vorig.referrer || document.referrer || '',
+        landingspagina: vorig.landingspagina || (window.location.origin + window.location.pathname),
+        eerste_bezoek: vorig.eerste_bezoek || new Date().toISOString(),
+        fbclid: vorig.fbclid || '',
+        fbp: vorig.fbp || '',
+        fbc: vorig.fbc || ''
+      };
+
+      // UTM's blijven first touch: die zeggen welke campagne de klant bracht.
+      // fbclid en fbc juist last touch, want dat zijn Meta's matching-sleutels
+      // en Meta's eigen _fbc-cookie overschrijft ook bij elke nieuwe klik.
+      // Koppel je een conversie aan een oude klik, dan matcht Meta hem niet.
+      if (heeftConsent()) {
+        var fbclid = qs('fbclid');
+        if (fbclid) {
+          data.fbclid = fbclid;
+          data.fbc = 'fb.1.' + Date.now() + '.' + fbclid;
+        }
+        var fbcCookie = cookie('_fbc');
+        if (fbcCookie) data.fbc = fbcCookie;   // de echte cookie wint altijd
+        data.fbp = cookie('_fbp') || data.fbp;
+      }
+
+      schrijf(ATTRIB_KEY, data);
+      return data;
+    }
+
+    /* --- lead_id en event_id voor CAPI-deduplicatie -------------------- */
+    function leadId() {
+      var id = '';
+      try { id = sessionStorage.getItem(LEAD_KEY) || ''; } catch (e) {}
+      if (!id) {
+        id = uuid();
+        try { sessionStorage.setItem(LEAD_KEY, id); } catch (e) {}
+      }
+      return id;
+    }
+    function zetLeadId(id) {
+      if (!id || !/^[a-z0-9-]{8,64}$/i.test(id)) return leadId();
+      try { sessionStorage.setItem(LEAD_KEY, id); } catch (e) {}
+      return id;
+    }
+    function eventId(naam) {
+      return leadId() + '-' + String(naam).toLowerCase();
+    }
+
+    /* --- events -------------------------------------------------------- */
+    var STANDAARD = ['Lead', 'PageView', 'ViewContent', 'Schedule', 'Purchase', 'CompleteRegistration'];
+    var wachtrij = [];
+    var gevuurd = {};
+
+    function verstuur(naam, params, id) {
+      if (!window.fbq) return false;
+      var methode = STANDAARD.indexOf(naam) !== -1 ? 'track' : 'trackCustom';
+      window.fbq(methode, naam, params || {}, { eventID: id });
+      return true;
+    }
+    function leegWachtrij() {
+      if (!window.fbq) return;
+      while (wachtrij.length) {
+        var q = wachtrij.shift();
+        verstuur(q.naam, q.params, q.id);
+      }
+    }
+    function track(naam, params) {
+      if (gevuurd[naam]) return null;
+      gevuurd[naam] = true;
+      var id = eventId(naam);
+      if (!verstuur(naam, params, id)) wachtrij.push({ naam: naam, params: params, id: id });
+      return id;
+    }
+
+    /* --- velden voor de GHL-payload ------------------------------------
+       Alles wat het formulier moet meesturen, inclusief de consent-status.
+       Op die status filtert de Conversion API-actie in GHL.               */
+    function velden() {
+      var a = vangAttributie();
+      var c = opgeslagenConsent();
+      return {
+        utm_source: a.utm_source, utm_medium: a.utm_medium, utm_campaign: a.utm_campaign,
+        utm_content: a.utm_content, utm_term: a.utm_term,
+        variant: a.variant, referrer: a.referrer, landingspagina: a.landingspagina,
+        fbclid: a.fbclid, fbp: a.fbp, fbc: a.fbc,
+        lead_id: leadId(),
+        event_source_url: window.location.href,
+        user_agent: navigator.userAgent,
+        marketing_consent: heeftConsent() ? 'ja' : 'nee',
+        consent_ts: (c && c.ts) || ''
+      };
+    }
+
+    /* --- publiek -------------------------------------------------------- */
+    window.LL = {
+      track: track,
+      leadId: leadId,
+      setLeadId: zetLeadId,
+      eventId: eventId,
+      attributie: vangAttributie,
+      velden: velden,
+      heeftConsent: heeftConsent,
+      openVoorkeuren: toonBanner
+    };
+
+    vangAttributie();
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initBanner);
+    else initBanner();
   })();
 </script>

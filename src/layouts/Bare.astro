@@ -4,6 +4,8 @@
 // homepage-CSS (global.css), zodat de eigen page-CSS niet botst.
 import '@fontsource-variable/outfit';
 import '@fontsource-variable/plus-jakarta-sans';
+import Analytics from '../components/Analytics.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 
 interface Props {
   title?: string;
@@ -34,9 +36,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <Analytics />
     <slot name="head" />
   </head>
   <body>
     <slot />
+    <CookieConsent />
   </body>
 </html>

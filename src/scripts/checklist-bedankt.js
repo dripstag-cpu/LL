@@ -1,7 +1,8 @@
+// Loopt via window.llTrack (components/Analytics.astro). Die filtert de
+// persoonsgegevens eruit en stuurt de rest door naar Umami.
 function track(eventName, payload) {
   try {
-    if (window.dataLayer) window.dataLayer.push({ event: eventName, ...payload });
-    console.log('[track]', eventName, payload || {});
+    if (window.llTrack) window.llTrack(eventName, payload);
   } catch (e) {}
 }
 document.addEventListener('DOMContentLoaded', () => { track('page_view', { page: 'checklist_thanks' }); });

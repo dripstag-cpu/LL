@@ -1,0 +1,599 @@
+/* ======================================================================
+   Local Levers - /sprint/ landingspagina
+   Licht thema, mobiel eerst. Brand tokens conform locallevers-design.
+   ====================================================================== */
+
+:root {
+  --green: #1A7A54;
+  --green-dark: #156243;
+  --green-bright: #4ADE80;
+  --green-soft: rgba(26, 122, 84, 0.08);
+  --ink: #141413;
+  --ink-strong: #0a0a09;
+  --muted: #64645F;
+  --page: #FAFAF8;
+  --card: #FFFFFF;
+  --border: #E4E3DC;
+  --warm: #F4FAF6;
+  --error: #C4391D;
+  --radius: 16px;
+  --shadow-card: 0 24px 50px -30px rgba(0, 0, 0, 0.18);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--page);
+  color: var(--ink);
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: 'Outfit Variable', 'Outfit', system-ui, sans-serif;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--ink-strong);
+}
+
+a { color: inherit; }
+img { max-width: 100%; height: auto; display: block; }
+button, input, select, textarea { font-family: inherit; font-size: inherit; }
+
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+.wrap-narrow { width: 100%; max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+.section { padding: 56px 0; }
+.section-alt { background: var(--warm); }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Outfit Variable', 'Outfit', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 13px;
+}
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: rgba(26, 122, 84, 0.45);
+}
+
+.section-title {
+  font-size: clamp(25px, 5.4vw, 36px);
+  margin-bottom: 12px;
+}
+.section-sub {
+  color: var(--muted);
+  font-size: 16px;
+  max-width: 620px;
+  margin-bottom: 30px;
+}
+
+/* ====== Header ====================================================== */
+.site-header {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+  background: rgba(250, 250, 248, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.wordmark {
+  font-family: 'Outfit Variable', 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  color: var(--ink-strong);
+}
+.wordmark span { color: var(--green); }
+.header-note {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ====== Hero ======================================================== */
+.hero {
+  position: relative;
+  padding: 22px 0 48px;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -280px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 700px;
+  background: radial-gradient(circle at 50% 50%, rgba(26, 122, 84, 0.10) 0%, rgba(26, 122, 84, 0) 62%);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero .wrap { position: relative; z-index: 1; }
+
+/* Mobiel staat het formulier direct onder de kop en subregel; de
+   ondersteunende punten zakken eronder, zodat de knop binnen het eerste
+   scherm valt. Op desktop staan de punten weer links onder de kop. */
+.hero-grid {
+  display: grid;
+  gap: 26px;
+  align-items: start;
+  grid-template-areas:
+    'copy'
+    'form'
+    'punten';
+}
+.hero-copy { grid-area: copy; }
+.form-card { grid-area: form; }
+.hero-points { grid-area: punten; }
+
+.hero h1 {
+  font-size: clamp(29px, 6.9vw, 50px);
+  margin-bottom: 14px;
+  max-width: 15ch;
+}
+.hero-sub {
+  font-size: clamp(15.5px, 4vw, 18px);
+  color: var(--muted);
+  max-width: 46ch;
+  margin-bottom: 0;
+}
+.hero-points {
+  list-style: none;
+  display: grid;
+  gap: 9px;
+  margin: 0;
+}
+.hero-points li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 15px;
+  color: var(--ink);
+}
+.hero-points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 14px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--green);
+}
+
+/* ====== Formulier =================================================== */
+.form-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+  padding: 24px 20px 22px;
+}
+.form-card h2 {
+  font-size: 21px;
+  margin-bottom: 4px;
+}
+.form-card .form-intro {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.field { margin-bottom: 11px; }
+.field label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.field input {
+  display: block;
+  width: 100%;
+  min-height: 50px;
+  padding: 13px 15px;
+  background: #FCFCFB;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--ink);
+  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+.field input::placeholder { color: #A0A09A; }
+.field input:focus {
+  outline: none;
+  background: #fff;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(26, 122, 84, 0.14);
+}
+.field input[aria-invalid='true'] {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(196, 57, 29, 0.10);
+}
+.field-error {
+  display: none;
+  color: var(--error);
+  font-size: 13px;
+  margin-top: 6px;
+}
+.field.has-error .field-error { display: block; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 56px;
+  padding: 16px 24px;
+  background: var(--green);
+  color: #fff;
+  font-family: 'Outfit Variable', 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  border: none;
+  border-radius: 13px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+.btn:hover {
+  background: var(--green-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px -16px rgba(26, 122, 84, 0.7);
+}
+.btn:disabled { opacity: 0.55; cursor: progress; transform: none; box-shadow: none; }
+
+.form-note {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 12px;
+  line-height: 1.5;
+}
+.form-status {
+  display: none;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 11px;
+  font-size: 14px;
+}
+.form-status.is-error {
+  display: block;
+  background: rgba(196, 57, 29, 0.07);
+  border: 1px solid rgba(196, 57, 29, 0.24);
+  color: var(--error);
+}
+
+/* ====== Stappen ===================================================== */
+.steps {
+  display: grid;
+  gap: 16px;
+  counter-reset: stap;
+}
+.step {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+}
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--green-soft);
+  color: var(--green);
+  font-family: 'Outfit Variable', 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.step h3 { font-size: 19px; margin-bottom: 8px; }
+.step p { color: var(--muted); font-size: 15px; }
+
+/* ====== Wat het niet is ============================================= */
+.qa-list { display: grid; gap: 14px; }
+.qa {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.qa .q {
+  font-family: 'Outfit Variable', 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--ink-strong);
+  margin-bottom: 8px;
+  letter-spacing: -0.015em;
+}
+.qa .a { color: var(--muted); font-size: 15px; }
+.qa .a strong { color: var(--green); font-weight: 700; }
+
+/* ====== Schermen ==================================================== */
+.shots { display: grid; gap: 22px; }
+.shot {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.shot-media {
+  background: var(--warm);
+  padding: 18px 18px 0;
+  display: flex;
+  justify-content: center;
+}
+.shot-media img {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 12px 12px 0 0;
+}
+/* Het telefoonscherm loopt door tot de onderkant van de kaart; het
+   VOORBEELD-label staat er nog volledig in. */
+.shot-media.is-tall img { max-width: 300px; }
+.shot-media.is-wide { padding: 18px; align-items: center; }
+.shot-media.is-wide img { max-width: 460px; border-radius: 12px; }
+/* Captions op één lijn onderin, ook al zijn de schermen verschillend hoog. */
+.shot-caption { padding: 16px 18px 18px; margin-top: auto; }
+.shot-caption h3 { font-size: 16px; margin-bottom: 6px; }
+.shot-caption p { color: var(--muted); font-size: 14.5px; }
+.shots-note {
+  margin-top: 18px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+/* ====== Voor wie ==================================================== */
+.fit-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+}
+.fit-list { list-style: none; display: grid; gap: 12px; margin-top: 18px; }
+.fit-list li {
+  position: relative;
+  padding-left: 30px;
+  font-size: 15.5px;
+  color: var(--ink);
+}
+.fit-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--green-soft);
+  border: 1px solid rgba(26, 122, 84, 0.28);
+}
+.fit-list li::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  width: 8px;
+  height: 4px;
+  border-left: 2px solid var(--green);
+  border-bottom: 2px solid var(--green);
+  transform: rotate(-45deg);
+}
+
+/* ====== FAQ ========================================================= */
+.faq { display: grid; gap: 12px; }
+.faq-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.faq-item[open] { border-color: rgba(26, 122, 84, 0.32); }
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: 'Outfit Variable', 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 16.5px;
+  letter-spacing: -0.015em;
+  color: var(--ink-strong);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '';
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--green);
+  border-bottom: 2px solid var(--green);
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 220ms ease;
+}
+.faq-item[open] summary::after { transform: rotate(225deg) translateY(-2px); }
+.faq-answer { padding: 0 20px 20px; color: var(--muted); font-size: 15px; }
+.faq-answer p + p { margin-top: 10px; }
+.faq-answer strong { color: var(--ink); font-weight: 600; }
+
+/* ====== Slot ======================================================== */
+.final {
+  background: #101210;
+  color: #F2F4F1;
+  padding: 56px 0;
+  text-align: center;
+}
+.final h2 {
+  color: #fff;
+  font-size: clamp(26px, 6vw, 38px);
+  margin-bottom: 12px;
+}
+.final p {
+  color: #AFB6AE;
+  font-size: 16px;
+  max-width: 44ch;
+  margin: 0 auto 26px;
+}
+.final .btn {
+  width: auto;
+  min-width: 260px;
+  background: var(--green);
+}
+.final .final-note { font-size: 13px; color: #8E958D; margin: 16px auto 0; }
+
+/* ====== Footer ====================================================== */
+.site-footer {
+  padding: 26px 0 34px;
+  border-top: 1px solid var(--border);
+  background: var(--page);
+}
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-links { display: flex; flex-wrap: wrap; gap: 16px; }
+.footer-links a {
+  font-size: 13.5px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.footer-links a:hover { color: var(--ink); text-decoration: underline; }
+.footer-copy { font-size: 13px; color: var(--muted); }
+.footer-legal { font-size: 12.5px; color: var(--muted); margin-top: 8px; }
+/* Platform-disclaimer: wij zijn geen partner van Meta of Google en
+   suggereren dat nergens. */
+.footer-disclaimer {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  line-height: 1.55;
+  color: #8C8C87;
+  max-width: 78ch;
+}
+
+/* ====== Cookie-consent ============================================== */
+.ll-cookie { position: fixed; left: 14px; right: 14px; bottom: 14px; z-index: 9999; }
+.ll-cookie[hidden] { display: none; }
+.ll-cookie-inner {
+  max-width: 940px;
+  margin: 0 auto;
+  background: #0F1D15;
+  color: #E8F0EB;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  padding: 16px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+}
+.ll-cookie-text { flex: 1 1 300px; }
+.ll-cookie-text strong { font-family: 'Outfit Variable', 'Outfit', sans-serif; font-size: 14.5px; }
+.ll-cookie-text p { margin-top: 4px; font-size: 12.5px; line-height: 1.45; color: #B4C6BB; }
+.ll-cookie-text a { color: #2CC77E; text-decoration: underline; text-underline-offset: 2px; }
+.ll-cookie-actions { display: flex; gap: 8px; flex: 0 0 auto; }
+.ll-cookie-actions button {
+  font-family: 'Outfit Variable', 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 10px 16px;
+  border-radius: 11px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.ll-cookie-actions .solid { background: #22A96B; color: #08130D; }
+.ll-cookie-actions .ghost { background: transparent; color: #E8F0EB; border-color: rgba(255, 255, 255, 0.22); }
+@media (max-width: 560px) {
+  .ll-cookie { left: 10px; right: 10px; bottom: 10px; }
+  .ll-cookie-inner { padding: 13px 14px; gap: 10px; }
+  .ll-cookie-text { flex: 1 1 100%; }
+  .ll-cookie-text p { font-size: 12px; }
+  .ll-cookie-actions { flex: 1 1 100%; }
+  .ll-cookie-actions button { flex: 1; padding: 10px 8px; font-size: 13px; }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ====== Breekpunten ================================================= */
+@media (min-width: 640px) {
+  .section { padding: 68px 0; }
+  .form-card { padding: 28px 26px 26px; }
+  .steps { grid-template-columns: repeat(3, 1fr); }
+  .qa-list { grid-template-columns: repeat(2, 1fr); }
+  .shots { grid-template-columns: repeat(2, 1fr); }
+  .shot.is-wide { grid-column: 1 / -1; }
+  .fit-list { grid-template-columns: repeat(2, 1fr); }
+  .fit-card { padding: 30px 28px; }
+}
+
+@media (min-width: 980px) {
+  .hero { padding: 60px 0 76px; }
+  .hero-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-areas:
+      'copy form'
+      'punten form';
+    column-gap: 56px;
+    row-gap: 26px;
+    align-items: start;
+  }
+  .hero-sub { margin-bottom: 0; }
+  .form-card { align-self: start; }
+  .section { padding: 84px 0; }
+  .section-sub { margin-bottom: 40px; }
+  /* Twee schermen naast elkaar, de kaart eronder over de volle breedte.
+     Zo blijft de chat leesbaar in plaats van weggedrukt in een derde kolom. */
+  .shot-media.is-wide img { max-width: 520px; }
+  .shot.is-wide .shot-media.is-wide img { max-width: 640px; }
+  .shots { gap: 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

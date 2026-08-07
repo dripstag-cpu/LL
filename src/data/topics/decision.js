@@ -4,7 +4,7 @@ export const topics = [
     published: true,
     keyword: 'marketing uitbesteden of zelf doen',
     h1: 'Marketing uitbesteden of zelf doen als kliniek?',
-    lead: `Het eerlijke antwoord hangt af van waar je tijd en aandacht naartoe gaan. Zelf doen kan prima voor de dagelijkse dingen zoals reageren op reviews en je agenda vullen. Voor het onderliggende systeem, je vindbaarheid op Google, AI en alle relevante directories, loop je zonder vaste routine snel achter. De vraag is niet wie het het beste kan, maar wat elke week echt gebeurt naast je behandelagenda.`,
+    lead: `Het eerlijke antwoord hangt af van waar je tijd en aandacht naartoe gaan. Zelf doen kan prima voor de dagelijkse dingen zoals reageren op reviews en je agenda vullen. Voor het onderliggende systeem, je vindbaarheid op Google, in ChatGPT en Perplexity en alle relevante directories, loop je zonder vaste routine snel achter. De vraag is niet wie het het beste kan, maar wat elke week echt gebeurt naast je behandelagenda.`,
     sections: [
       {
         h: 'Wat kost het je echt om het zelf te doen',
@@ -12,11 +12,11 @@ export const topics = [
       },
       {
         h: 'Wat verandert er als je het uitbesteedt',
-        p: `Uitbesteden betekent dat het onderhoud een vaste routine wordt in plaats van iets dat afhangt van je drukte. Het profiel blijft compleet, reviewverzoeken gaan automatisch de deur uit, en je gegevens blijven overal gelijk. Belangrijker: iemand houdt in de gaten of je nog terugkomt in AI-zoekopdrachten en of je concurrenten je voorbijstreven. Dat is werk dat pas rendeert als het maand na maand doorloopt, en dat is nou juist het deel dat een eigenaar naast het echte werk zelden volhoudt.`
+        p: `Uitbesteden betekent dat het onderhoud een vaste routine wordt in plaats van iets dat afhangt van je drukte. Het profiel blijft compleet, reviewverzoeken gaan automatisch de deur uit, en je gegevens blijven overal gelijk. Belangrijker: iemand houdt in de gaten of je nog terugkomt in ChatGPT en Perplexity en of je concurrenten je voorbijstreven. Dat is werk dat pas rendeert als het maand na maand doorloopt, en dat is nou juist het deel dat een eigenaar naast het echte werk zelden volhoudt.`
       },
       {
         h: 'Een tussenweg die het risico klein houdt',
-        p: `Je hoeft niet te kiezen tussen alles zelf doen of meteen een jaarcontract tekenen. Begin met een gratis vindbaarheids-rapport dat laat zien waar je nu staat op Google, AI en de directories die klanten gebruiken. Daarna kun je met een klein actieplan zelf aan de slag, of de uitvoering overdragen. Zo baseer je de beslijssing op wat er in jouw geval echt mist, niet op een algemeen verhaal. Geen langlopende verplichting voordat je ziet of het werkt voor jouw kliniek.`
+        p: `Je hoeft niet te kiezen tussen alles zelf doen of meteen een jaarcontract tekenen. Begin met een gratis vindbaarheids-rapport dat laat zien waar je nu staat op Google, in ChatGPT en Perplexity en de directories die klanten gebruiken. Daarna kun je met een klein actieplan zelf aan de slag, of de uitvoering overdragen. Zo baseer je de beslijssing op wat er in jouw geval echt mist, niet op een algemeen verhaal. Geen langlopende verplichting voordat je ziet of het werkt voor jouw kliniek.`
       }
     ],
     faq: [
@@ -31,15 +31,15 @@ export const topics = [
     published: true,
     keyword: 'marketingbureau kiezen kliniek',
     h1: 'Hoe kies je een marketingbureau voor je kliniek of salon?',
-    lead: `Kijk niet naar het mooiste portfolio, maar naar wat een bureau precies voor je vindbaarheid en opvolging doet. De meeste bureaus richten zich op social media, meer volgers en betaalde advertenties. Voor een lokale kliniek zit de winst vaak ergens anders: op Google, AI-zoekopdrachten, directories, reviews en het opvolgen van aanvragen. Het verschil zit dus niet in wie de mooiste posts maakt, maar in wat er onder de motorkap wordt geregeld.`,
+    lead: `Kijk niet naar het mooiste portfolio, maar naar wat een bureau precies voor je vindbaarheid en opvolging doet. De meeste bureaus richten zich op social media, meer volgers en betaalde advertenties. Voor een lokale kliniek zit de winst vaak ergens anders: op Google, in ChatGPT en Perplexity, directories, reviews en het opvolgen van aanvragen. Het verschil zit dus niet in wie de mooiste posts maakt, maar in wat er onder de motorkap wordt geregeld.`,
     sections: [
       {
         h: 'Vraag wat ze concreet onderhouden',
-        p: `Een goed gesprek gaat over uitvoering, niet over sfeer. Vraag welke platformen ze bijhouden en hoe vaak. Zit daar alleen Google bij, of ook Bing Places, Apple Maps, Foursquare en de niche-directories waar klanten en AI-tools hun informatie vandaan halen. Vraag of ze je gegevens overal gelijk houden en of ze reviewverzoeken automatiseren. Als het antwoord vooral over content en volgers gaat, weet je dat de vindbaarheid waar je klanten echt zoeken buiten beeld blijft.`
+        p: `Een goed gesprek gaat over uitvoering, niet over sfeer. Vraag welke platformen ze bijhouden en hoe vaak. Zit daar alleen Google bij, of ook Bing Places, Apple Maps, Foursquare en de niche-directories waar klanten en zoektools als ChatGPT hun informatie vandaan halen. Vraag of ze je gegevens overal gelijk houden en of ze reviewverzoeken automatiseren. Als het antwoord vooral over content en volgers gaat, weet je dat de vindbaarheid waar je klanten echt zoeken buiten beeld blijft.`
       },
       {
-        h: 'Let op de blinde vlek: AI en directories',
-        p: `Steeds meer mensen zoeken een behandeling via ChatGPT, Google AI-overzichten of Perplexity in plaats van alleen de klassieke zoekresultaten. Die AI-tools halen hun antwoorden uit bronnen zoals Bing en directory-vermeldingen. Een bureau dat alleen naar social media en advertenties kijkt, mist dit volledig, omdat het een ander soort werk is. Het is geen creatief werk maar consistentie-werk: overal dezelfde naam, adres en telefoon, complete profielen en actuele informatie. Vraag expliciet hoe een bureau je zichtbaar houdt in AI-zoekopdrachten.`
+        h: 'Let op de blinde vlek: ChatGPT en directories',
+        p: `Steeds meer mensen zoeken een behandeling via ChatGPT, Google AI Overviews of Perplexity in plaats van alleen de klassieke zoekresultaten. Die tools halen hun antwoorden uit bronnen zoals Bing en directory-vermeldingen. Een bureau dat alleen naar social media en advertenties kijkt, mist dit volledig, omdat het een ander soort werk is. Het is geen creatief werk maar consistentie-werk: overal dezelfde naam, adres en telefoon, complete profielen en actuele informatie. Vraag expliciet hoe een bureau je zichtbaar houdt in ChatGPT en Perplexity.`
       },
       {
         h: 'Kijk naar de instap en de contractvorm',
@@ -49,7 +49,7 @@ export const topics = [
     faq: [
       {
         q: 'Is een groter bureau altijd beter?',
-        a: `Niet per se. Grootte zegt weinig over hoe goed een bureau past bij een lokale kliniek. Wat telt is of ze het werk doen dat voor jou verschil maakt: vindbaarheid over meerdere platformen, reviews en opvolging van aanvragen. Een groot bureau dat vooral op social media en advertenties draait, kan minder opleveren dan een partij die zich richt op lokale vindbaarheid en AI-zichtbaarheid.`
+        a: `Niet per se. Grootte zegt weinig over hoe goed een bureau past bij een lokale kliniek. Wat telt is of ze het werk doen dat voor jou verschil maakt: vindbaarheid over meerdere platformen, reviews en opvolging van aanvragen. Een groot bureau dat vooral op social media en advertenties draait, kan minder opleveren dan een partij die zich richt op lokale vindbaarheid en zichtbaarheid in ChatGPT en Perplexity.`
       }
     ]
   },
@@ -58,7 +58,7 @@ export const topics = [
     published: true,
     keyword: 'instagram of google salon klanten',
     h1: 'Instagram of Google: waar komen je salonklanten echt vandaan?',
-    lead: `Instagram bouwt bekendheid, maar de meeste nieuwe klanten boeken op het moment dat ze actief zoeken, en dat gebeurt vaker op Google en in kaart- en AI-zoekopdrachten dan in een feed. Een mooie Instagram helpt als iemand je al kent. De klant die vandaag een behandeling wil, typt eerder een zoekopdracht dan dat hij door je posts scrolt. Beide hebben een rol, maar ze doen niet hetzelfde werk.`,
+    lead: `Instagram bouwt bekendheid, maar de meeste nieuwe klanten boeken op het moment dat ze actief zoeken, en dat gebeurt vaker op Google, in kaart-apps en in ChatGPT en Perplexity dan in een feed. Een mooie Instagram helpt als iemand je al kent. De klant die vandaag een behandeling wil, typt eerder een zoekopdracht dan dat hij door je posts scrolt. Beide hebben een rol, maar ze doen niet hetzelfde werk.`,
     sections: [
       {
         h: 'Het verschil tussen ontdekken en beslissen',
@@ -66,7 +66,7 @@ export const topics = [
       },
       {
         h: 'Waar de zoekende klant vandaag echt kijkt',
-        p: `Zoeken is breder geworden dan alleen Google. Naast de klassieke resultaten en Google Maps gebruiken mensen Apple Maps, en steeds vaker vragen ze het aan AI-tools zoals ChatGPT of Google AI-overzichten. Die tools halen hun antwoorden uit bronnen zoals Bing Places en directory-vermeldingen. Als je informatie daar niet compleet en consistent staat, val je op het beslismoment gewoon weg, hoe goed je Instagram ook is. Dit is precies het deel dat de meeste salons niet bijhouden, omdat het onzichtbaar is tot je het mist.`
+        p: `Zoeken is breder geworden dan alleen Google. Naast de klassieke resultaten en Google Maps gebruiken mensen Apple Maps, en steeds vaker vragen ze het aan ChatGPT, Perplexity of Google AI Overviews. Die tools halen hun antwoorden uit bronnen zoals Bing Places en directory-vermeldingen. Als je informatie daar niet compleet en consistent staat, val je op het beslismoment gewoon weg, hoe goed je Instagram ook is. Dit is precies het deel dat de meeste salons niet bijhouden, omdat het onzichtbaar is tot je het mist.`
       },
       {
         h: 'Reviews zijn de doorslag, niet de likes',
@@ -76,7 +76,7 @@ export const topics = [
     faq: [
       {
         q: 'Moet ik dan stoppen met Instagram?',
-        a: `Nee. Instagram houdt je zichtbaar bij mensen die je al kennen en laat sfeer en resultaat zien. Het punt is dat het je vindbaarheid op het beslismoment niet vervangt. Zorg dat je op Google, in kaart-apps, AI-zoekopdrachten en directories compleet en goed beoordeeld staat, en gebruik Instagram daarnaast om in beeld te blijven.`
+        a: `Nee. Instagram houdt je zichtbaar bij mensen die je al kennen en laat sfeer en resultaat zien. Het punt is dat het je vindbaarheid op het beslismoment niet vervangt. Zorg dat je op Google, in kaart-apps, in ChatGPT en Perplexity en directories compleet en goed beoordeeld staat, en gebruik Instagram daarnaast om in beeld te blijven.`
       }
     ]
   },
@@ -97,7 +97,7 @@ export const topics = [
       },
       {
         h: 'Waarom onderhoud het echte werk is',
-        p: `Een profiel compleet maken is eenmalig, compleet houden is doorlopend. Openingstijden rond feestdagen, nieuwe behandelingen, verse foto's en een gestage stroom nieuwe reviews vragen om onderhoud dat blijft terugkomen. Zonder ritme verwatert het weer, en dan zak je langzaam weg in de resultaten. Daarom werkt een profiel het beste als onderdeel van een groter geheel waarin ook je vindbaarheid op Bing, Apple Maps, directories en AI-zoekopdrachten meeloopt. Google is het startpunt, niet het eindpunt.`
+        p: `Een profiel compleet maken is eenmalig, compleet houden is doorlopend. Openingstijden rond feestdagen, nieuwe behandelingen, verse foto's en een gestage stroom nieuwe reviews vragen om onderhoud dat blijft terugkomen. Zonder ritme verwatert het weer, en dan zak je langzaam weg in de resultaten. Daarom werkt een profiel het beste als onderdeel van een groter geheel waarin ook je vindbaarheid op Bing, Apple Maps, directories en ChatGPT en Perplexity meeloopt. Google is het startpunt, niet het eindpunt.`
       }
     ],
     faq: [
@@ -178,7 +178,7 @@ export const topics = [
       },
       {
         h: 'Vindbaarheid en opvang horen bij elkaar',
-        p: `Buiten openingstijden gevonden worden en die aanvragen opvangen zijn twee kanten van hetzelfde. Als je op Google, in kaart-apps en AI-zoekopdrachten 's avonds goed vindbaar bent, komen er juist dan aanvragen binnen. Zonder opvang lekken die weer weg. De vindbaarheid brengt de aanvraag, de automatische opvang houdt hem vast tot jij er bent. Pas als beide op orde zijn, benut je de uren waarop je gesloten bent zonder dat het je een minuut extra werk kost.`
+        p: `Buiten openingstijden gevonden worden en die aanvragen opvangen zijn twee kanten van hetzelfde. Als je op Google, in kaart-apps en in ChatGPT en Perplexity 's avonds goed vindbaar bent, komen er juist dan aanvragen binnen. Zonder opvang lekken die weer weg. De vindbaarheid brengt de aanvraag, de automatische opvang houdt hem vast tot jij er bent. Pas als beide op orde zijn, benut je de uren waarop je gesloten bent zonder dat het je een minuut extra werk kost.`
       }
     ],
     faq: [

@@ -4,11 +4,23 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://locallevers.com',
+  // Oude/dode funnels naar de ene werkende voordeur sturen (2026-08-07):
+  // /check (gratis vindbaarheids-rapport, webhook nooit gekoppeld) en
+  // /audit (dode 37-euro-funnel) leiden nu naar de gratis sprint.
+  redirects: {
+    '/check': '/sprint',
+    '/check/resultaat': '/sprint',
+    '/audit': '/sprint',
+  },
   integrations: [
     sitemap({
-      // Houd funnel-, bedankt- en redirect-pagina's uit de sitemap (noindex).
+      // De /sprint/-landingspagina is een statisch bestand in public/, dus de
+      // sitemap-integratie pakt 'm niet automatisch op. Handmatig toevoegen.
+      // De bedankt-/quizpagina blijft er bewust buiten (noindex-funnel).
+      customPages: ['https://locallevers.com/sprint/'],
+      // Houd funnel-, bedankt- en redirect-pagina's uit de sitemap.
       filter: (page) =>
-        !['/check/resultaat/', '/audit/', '/checklist/bedankt/'].includes(
+        !['/check/', '/check/resultaat/', '/audit/', '/checklist/bedankt/'].includes(
           new URL(page).pathname,
         ),
     }),

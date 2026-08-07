@@ -17,7 +17,7 @@ export const topics = [
       },
       {
         h: 'Zorg dat je gegevens overal identiek zijn',
-        p: 'Google vergelijkt je naam, adres en telefoonnummer met wat er elders online over je staat. Als je op Bing, Apple Maps, een branchegids of je eigen site net anders geschreven staat, verzwakt dat het vertrouwen. Consistente gegevens over al die plekken versterken je positie in Maps en maken je meteen vindbaar in AI-antwoorden, die uit precies die bronnen putten. Deze consistentie is saai werk, maar het is een van de sterkste dingen die je kunt doen.',
+        p: 'Google vergelijkt je naam, adres en telefoonnummer met wat er elders online over je staat. Als je op Bing, Apple Maps, een branchegids of je eigen site net anders geschreven staat, verzwakt dat het vertrouwen. Consistente gegevens over al die plekken versterken je positie in Maps en maken je meteen vindbaar in de antwoorden van ChatGPT en Perplexity, die uit precies die bronnen putten. Deze consistentie is saai werk, maar het is een van de sterkste dingen die je kunt doen.',
       },
       {
         h: 'Houd het profiel levend',
@@ -109,7 +109,7 @@ export const topics = [
       },
       {
         h: 'Waar je tijd meer oplevert',
-        p: 'Voor de meeste klinieken en salons zitten de grootste winsten niet in posts maar in een compleet profiel, een doorlopende stroom reviews en consistente vermeldingen op Bing, Apple Maps en de relevante directories, plus vindbaarheid in AI-antwoorden. Die onderdelen wegen zwaarder en werken langer door. Wij hebben posts daarom bewust niet als vaste taak opgenomen: we sturen liever op de dingen die aantoonbaar meer bewegen.',
+        p: 'Voor de meeste klinieken en salons zitten de grootste winsten niet in posts maar in een compleet profiel, een doorlopende stroom reviews en consistente vermeldingen op Bing, Apple Maps en de relevante directories, plus vindbaarheid in ChatGPT en Perplexity. Die onderdelen wegen zwaarder en werken langer door. Wij hebben posts daarom bewust niet als vaste taak opgenomen: we sturen liever op de dingen die aantoonbaar meer bewegen.',
       },
       {
         h: 'Wanneer een post wel zinvol is',
@@ -169,7 +169,7 @@ export const topics = [
       },
       {
         h: 'Beschrijf elke behandeling zoals de klant hem noemt',
-        p: 'Gebruik de woorden die je klanten zelf gebruiken, niet alleen je vakjargon. Iemand tikt eerder een gewone omschrijving in dan een medische term, dus benoem beide waar dat kan. Voeg bij elke dienst een korte, duidelijke omschrijving toe zodat zowel de bezoeker als Google begrijpt wat je precies biedt. Deze aanpak helpt je ook in AI-antwoorden, want assistenten matchen op de taal waarin mensen hun vraag stellen.',
+        p: 'Gebruik de woorden die je klanten zelf gebruiken, niet alleen je vakjargon. Iemand tikt eerder een gewone omschrijving in dan een medische term, dus benoem beide waar dat kan. Voeg bij elke dienst een korte, duidelijke omschrijving toe zodat zowel de bezoeker als Google begrijpt wat je precies biedt. Deze aanpak helpt je ook in de antwoorden van ChatGPT en Perplexity, want die assistenten matchen op de taal waarin mensen hun vraag stellen.',
       },
       {
         h: 'Houd je dienstenlijst actueel',
@@ -233,7 +233,7 @@ export const topics = [
       },
       {
         h: 'Verwerk je behandelingen en je plaats op een natuurlijke manier',
-        p: 'Noem je winstgevende behandelingen en je stad in gewone, lopende zinnen, zodat de termen waarop je gevonden wilt worden terugkomen zonder dat het geforceerd leest. Google en AI-assistenten matchen op taal, dus de woorden die je klant zou intikken horen ergens in je tekst te staan. Prop het veld niet vol met een opsomming van zoektermen, want dat leest slecht en werkt averechts. Schrijf voor de mens, met de zoekterm er natuurlijk in verweven.',
+        p: 'Noem je winstgevende behandelingen en je stad in gewone, lopende zinnen, zodat de termen waarop je gevonden wilt worden terugkomen zonder dat het geforceerd leest. Google, ChatGPT en Perplexity matchen op taal, dus de woorden die je klant zou intikken horen ergens in je tekst te staan. Prop het veld niet vol met een opsomming van zoektermen, want dat leest slecht en werkt averechts. Schrijf voor de mens, met de zoekterm er natuurlijk in verweven.',
       },
       {
         h: 'Sluit af met wat je onderscheidt en houd het net',

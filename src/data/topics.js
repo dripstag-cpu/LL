@@ -15,7 +15,7 @@ const BATCHES = [
   { key: 'maps', group: 'Google Maps en lokale ranking', items: maps },
   { key: 'gbp', group: 'Je Google Bedrijfsprofiel', items: gbp },
   { key: 'reviews', group: 'Reviews en reputatie', items: reviews },
-  { key: 'ai-directories', group: 'AI-zoekmachines en directories', items: aiDirectories },
+  { key: 'ai-directories', group: 'ChatGPT, Perplexity en directories', items: aiDirectories },
   { key: 'decision', group: 'Kiezen en opvolgen', items: decision },
   { key: 'core', group: 'Veelgestelde vragen', items: core },
 ];

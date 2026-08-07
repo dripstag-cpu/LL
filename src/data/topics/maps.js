@@ -74,7 +74,7 @@ export const topics = [
       },
       {
         h: "Waarom het over meer gaat dan Google Maps alleen",
-        p: "Lokale zichtbaarheid speelt zich niet op een enkel platform af. Mensen zoeken via Google Maps, via de gewone Google-resultaten, via Bing, via Apple Maps en steeds vaker via AI-zoekmachines die klinieken en salons aanbevelen. Een compleet beeld van je lokale stem telt al die kanalen mee. Wie alleen op Google Maps stuurt, mist het deel van de markt dat je elders zoekt en vindt of juist niet vindt."
+        p: "Lokale zichtbaarheid speelt zich niet op een enkel platform af. Mensen zoeken via Google Maps, via de gewone Google-resultaten, via Bing, via Apple Maps en steeds vaker via zoektools als ChatGPT en Perplexity die klinieken en salons aanbevelen. Een compleet beeld van je lokale stem telt al die kanalen mee. Wie alleen op Google Maps stuurt, mist het deel van de markt dat je elders zoekt en vindt of juist niet vindt."
       },
       {
         h: "Wat je met dit inzicht doet",
@@ -124,7 +124,7 @@ export const topics = [
     published: true,
     keyword: "lokale seo klinieken",
     h1: "Lokale SEO voor klinieken en salons: hoe werkt het?",
-    lead: "Lokale SEO is het geheel aan werk dat ervoor zorgt dat je kliniek of salon gevonden wordt door mensen in de buurt die naar jouw behandelingen zoeken. Het draait om drie pijlers: een sterk en compleet Google Business Profiel, verse reviews en reputatiebeheer, en consistente aanwezigheid op alle platforms waar mensen en AI-zoekmachines bedrijven vinden.",
+    lead: "Lokale SEO is het geheel aan werk dat ervoor zorgt dat je kliniek of salon gevonden wordt door mensen in de buurt die naar jouw behandelingen zoeken. Het draait om drie pijlers: een sterk en compleet Google Business Profiel, verse reviews en reputatiebeheer, en consistente aanwezigheid op alle platforms waar mensen en zoektools als ChatGPT en Perplexity bedrijven vinden.",
     sections: [
       {
         h: "Waarom lokale SEO anders werkt dan gewone SEO",
@@ -135,8 +135,8 @@ export const topics = [
         p: "Je profiel is de plek waar de meeste beslissingen vallen. Iemand die je vindt, kijkt naar je cijfer, je foto's, je openingstijden en de behandelingen die je noemt, en belt of boekt vaak direct vanuit dat profiel zonder ooit je website te bezoeken. Een profiel met de juiste categorieen, complete diensten en verse reviews doet meer voor je omzet dan bijna elke andere online inspanning. Daarom begint lokale SEO voor een behandel-salon altijd bij het profiel."
       },
       {
-        h: "Consistentie over platforms en AI-zoekmachines",
-        p: "Google is niet de enige plek waar mensen zoeken. Bing voedt onder meer de antwoorden van populaire AI-assistenten, Apple Maps bedient iedereen met een iPhone, en directories en AI-zoekmachines bevelen steeds vaker rechtstreeks bedrijven aan. Op al die plekken moet je naam, adres en telefoonnummer identiek staan, anders raakt het beeld versnipperd. Consistente vermeldingen versterken je Google-positie en zorgen tegelijk dat je ook buiten Google gevonden wordt."
+        h: "Consistentie over platforms, ook in ChatGPT en Perplexity",
+        p: "Google is niet de enige plek waar mensen zoeken. Bing voedt onder meer de antwoorden van ChatGPT en Perplexity, Apple Maps bedient iedereen met een iPhone, en directories en die zoektools bevelen steeds vaker rechtstreeks bedrijven aan. Op al die plekken moet je naam, adres en telefoonnummer identiek staan, anders raakt het beeld versnipperd. Consistente vermeldingen versterken je Google-positie en zorgen tegelijk dat je ook buiten Google gevonden wordt."
       },
       {
         h: "Reputatie als doorlopend proces",
@@ -202,7 +202,7 @@ export const topics = [
       },
       {
         h: "Een fundament dat op beide plekken werkt",
-        p: "Je hoeft niet te kiezen, want de signalen overlappen. Een compleet Google Business Profiel, een gestage stroom verse reviews en consistente vermeldingen op Bing, Apple Maps en directories versterken tegelijk je positie op de kaart en in de gewone resultaten. Dezelfde basis zorgt er bovendien voor dat AI-zoekmachines je herkennen wanneer iemand daar een aanbeveling vraagt. Door dat fundament op orde te brengen, ben je op meerdere plekken tegelijk vindbaar in plaats van te gokken op een enkel kanaal."
+        p: "Je hoeft niet te kiezen, want de signalen overlappen. Een compleet Google Business Profiel, een gestage stroom verse reviews en consistente vermeldingen op Bing, Apple Maps en directories versterken tegelijk je positie op de kaart en in de gewone resultaten. Dezelfde basis zorgt er bovendien voor dat ChatGPT en Perplexity je herkennen wanneer iemand daar een aanbeveling vraagt. Door dat fundament op orde te brengen, ben je op meerdere plekken tegelijk vindbaar in plaats van te gokken op een enkel kanaal."
       }
     ],
     faq: [
@@ -212,7 +212,7 @@ export const topics = [
       },
       {
         q: "Waar zoeken mijn klanten voor een behandeling het vaakst?",
-        a: "Voor lokale behandelingen zoeken de meeste mensen op hun telefoon en belanden ze snel bij een kaartblok met drie bedrijven, of dat nu via Maps of via de gewone zoekbalk gaat. Daarom is een plek in die top 3 meestal het belangrijkst. Tegelijk groeit het aantal mensen dat via AI-zoekmachines een aanbeveling vraagt, dus ook daar wil je herkend worden."
+        a: "Voor lokale behandelingen zoeken de meeste mensen op hun telefoon en belanden ze snel bij een kaartblok met drie bedrijven, of dat nu via Maps of via de gewone zoekbalk gaat. Daarom is een plek in die top 3 meestal het belangrijkst. Tegelijk groeit het aantal mensen dat via zoektools als ChatGPT en Perplexity een aanbeveling vraagt, dus ook daar wil je herkend worden."
       }
     ]
   }

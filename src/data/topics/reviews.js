@@ -22,7 +22,7 @@ export const topics = [
       },
       {
         h: 'Waarom de sterkste zet vaak reageren is, niet verwijderen',
-        p: 'Toekomstige klanten lezen niet alleen de review, maar vooral hoe jij erop reageert. Een kalme, professionele reactie op een kritische review laat zien dat je feedback serieus neemt, en dat weegt vaak zwaarder mee dan de klacht zelf. Diezelfde reacties zijn ook zichtbaar voor de systemen die AI-antwoorden voeden, die meewegen hoe een bedrijf met klanten omgaat. Wegwerken wat niet weg mag, kost energie; goed reageren bouwt vertrouwen op.',
+        p: 'Toekomstige klanten lezen niet alleen de review, maar vooral hoe jij erop reageert. Een kalme, professionele reactie op een kritische review laat zien dat je feedback serieus neemt, en dat weegt vaak zwaarder mee dan de klacht zelf. Diezelfde reacties zijn ook zichtbaar voor de systemen die de antwoorden van ChatGPT en Perplexity voeden, die meewegen hoe een bedrijf met klanten omgaat. Wegwerken wat niet weg mag, kost energie; goed reageren bouwt vertrouwen op.',
       },
     ],
     faq: [
@@ -114,7 +114,7 @@ export const topics = [
       },
       {
         h: 'Waarom het aantal minder telt dan de meeste denken',
-        p: 'Zodra je genoeg reviews hebt om betrouwbaar te ogen, wint de versheid het van het aantal. Een profiel dat elke week een paar nieuwe reviews krijgt, oogt levendiger en relevanter dan een met honderd reviews waarvan de laatste van twee jaar geleden is. Diezelfde signalen bepalen mede of je opduikt in AI-antwoorden over jouw type behandeling. Blijf dus na de eerste opbouw vooral bezig met de stroom op gang houden, niet met een eindgetal najagen.',
+        p: 'Zodra je genoeg reviews hebt om betrouwbaar te ogen, wint de versheid het van het aantal. Een profiel dat elke week een paar nieuwe reviews krijgt, oogt levendiger en relevanter dan een met honderd reviews waarvan de laatste van twee jaar geleden is. Diezelfde signalen bepalen mede of je opduikt in de antwoorden van ChatGPT en Perplexity over jouw type behandeling. Blijf dus na de eerste opbouw vooral bezig met de stroom op gang houden, niet met een eindgetal najagen.',
       },
     ],
     faq: [
@@ -130,7 +130,7 @@ export const topics = [
     keyword: 'review velocity',
     h1: 'Waarom de versheid van je reviews zwaarder telt dan het aantal',
     lead:
-      'Review-velocity is het tempo waarin er nieuwe reviews binnenkomen, en dat weegt vaak zwaarder dan hoeveel je er in totaal hebt. Een profiel dat blijft groeien, vertelt Google en de AI-systemen dat je nu actief en relevant bent. Een profiel dat op een hoog maar stilstaand aantal blijft hangen, mist dat signaal. Verse reviews houden je dus levend in de resultaten.',
+      'Review-velocity is het tempo waarin er nieuwe reviews binnenkomen, en dat weegt vaak zwaarder dan hoeveel je er in totaal hebt. Een profiel dat blijft groeien, vertelt Google, ChatGPT en Perplexity dat je nu actief en relevant bent. Een profiel dat op een hoog maar stilstaand aantal blijft hangen, mist dat signaal. Verse reviews houden je dus levend in de resultaten.',
     sections: [
       {
         h: 'Wat review-velocity is en waarom het meeweegt',
@@ -142,7 +142,7 @@ export const topics = [
       },
       {
         h: 'Versheid houd je alleen vol met een systeem',
-        p: 'Losse acties zorgen voor pieken en dalen; een vaste routine houdt de stroom gelijkmatig. Als er na elke afgeronde behandeling automatisch een vriendelijk verzoek uitgaat, komen er doorlopend nieuwe reviews binnen zonder dat jij er elke keer aan hoeft te denken. Dat is het verschil tussen een profiel dat langzaam veroudert en een dat vers blijft, en dezelfde versheid helpt je ook zichtbaar te blijven in AI-aanbevelingen.',
+        p: 'Losse acties zorgen voor pieken en dalen; een vaste routine houdt de stroom gelijkmatig. Als er na elke afgeronde behandeling automatisch een vriendelijk verzoek uitgaat, komen er doorlopend nieuwe reviews binnen zonder dat jij er elke keer aan hoeft te denken. Dat is het verschil tussen een profiel dat langzaam veroudert en een dat vers blijft, en dezelfde versheid helpt je ook zichtbaar te blijven in de aanbevelingen van ChatGPT en Perplexity.',
       },
     ],
     faq: [

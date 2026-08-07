@@ -1,7 +1,8 @@
+// Loopt via window.llTrack (components/Analytics.astro). Die filtert de
+// persoonsgegevens eruit en stuurt de rest door naar Umami.
 function track(eventName, payload) {
   try {
-    if (window.dataLayer) window.dataLayer.push({ event: eventName, ...payload });
-    console.log('[track]', eventName, payload || {});
+    if (window.llTrack) window.llTrack(eventName, payload);
   } catch (e) {}
 }
 
@@ -25,6 +26,17 @@ input.addEventListener('input', validate);
 consentInput.addEventListener('change', validate);
 validate();
 
+// Eén keer vuren zodra iemand echt begint te typen. Samen met checklist_optin
+// laat dit zien hoeveel mensen starten en alsnog afhaken.
+let formGestart = false;
+function markeerStart() {
+  if (formGestart) return;
+  formGestart = true;
+  track('form_start', { source: 'checklist' });
+}
+nameInput.addEventListener('input', markeerStart, { once: true });
+input.addEventListener('input', markeerStart, { once: true });
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   err.textContent = '';
@@ -45,10 +57,23 @@ form.addEventListener('submit', async (e) => {
     err.textContent = 'Vink de toestemming aan.';
     return;
   }
+  // Inbound-webhook van de GHL-workflow "Checklist aanvraag". window.LL.velden()
+  // levert attributie, fbp/fbc en de consent-status; die reizen mee zodat de
+  // Conversion API-actie in GHL op marketing_consent kan filteren.
+  const GHL_ENDPOINT = 'https://services.leadconnectorhq.com/hooks/agbm4h41aVGOzDyuSc16/webhook-trigger/48006a0d-16d1-486c-ab2f-d8b3613d6b4e';
   try {
-    // const GHL_ENDPOINT = 'https://services.leadconnectorhq.com/hooks/...';
-    // await fetch(GHL_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, source: 'checklist' }) });
-    track('checklist_optin', { name, email });
+    const velden = (window.LL && window.LL.velden) ? window.LL.velden() : {};
+    await fetch(GHL_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.assign({}, velden, {
+        formulier: 'checklist-aanvraag',
+        voornaam: name,
+        email: email.toLowerCase(),
+        optin_checklist: 'ja'
+      }))
+    });
+    track('checklist_optin', { source: 'checklist' });
   } catch (e) {
     console.warn('Submit failed:', e);
   }

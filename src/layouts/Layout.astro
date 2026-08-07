@@ -2,14 +2,16 @@
 import '@fontsource-variable/outfit';
 import '@fontsource-variable/plus-jakarta-sans';
 import '../styles/global.css';
+import Analytics from '../components/Analytics.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 
 interface Props {
   title?: string;
   description?: string;
 }
 const {
-  title = 'Local Levers | Vindbaarheid en opvolging voor klinieken en behandel-salons',
-  description = 'Local Levers maakt klinieken en behandel-salons beter vindbaar op Google, Apple en in AI-zoekopdrachten, met een sterk fundament, reviews en slimme opvolging.',
+  title = 'Local Levers | Vindbaarheid en opvolging voor klinieken en lokale specialisten',
+  description = 'Local Levers maakt klinieken en lokale specialisten beter vindbaar op Google, Apple en in AI-zoekopdrachten, met een sterk fundament, reviews en slimme opvolging.',
 } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -31,9 +33,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <Analytics />
     <slot name="head" />
   </head>
   <body>
     <slot />
+    <CookieConsent />
   </body>
 </html>

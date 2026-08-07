@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gratis Online Reputatie Sprint | Local Levers</title>
+<meta name="description" content="Zeven dagen lang zetten wij je review-verzameling aan, uit jouw naam. Gratis, zonder verplichtingen in de sprint-week. Daarna beslis jij.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://locallevers.com/sprint/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Local Levers">
+<meta property="og:title" content="Gratis Online Reputatie Sprint | Local Levers">
+<meta property="og:description" content="Zeven dagen lang zetten wij je review-verzameling aan, uit jouw naam. Gratis, zonder verplichtingen in de sprint-week. Daarna beslis jij.">
+<meta property="og:url" content="https://locallevers.com/sprint/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="sprint.css">
+<!-- Umami, cookieloos en anoniem, dus zonder toestemming. Meet alleen op locallevers.com. -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="b7737fe5-092d-4fc2-9ad9-369e0ccf9fbc" data-domains="locallevers.com,www.locallevers.com"></script>
+</head>
+<body>
+<!-- LL:BODY-START (alles hierbinnen gaat naar src/sprint-body.html bij de Astro-port) -->
+
+<header class="site-header">
+  <div class="wrap">
+    <span class="wordmark">Local<span>Levers</span></span>
+    <span class="header-note">Een paar zaken per maand</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= HERO + FORMULIER 1 ================= -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-grid">
+
+        <div class="hero-copy">
+          <span class="eyebrow">Gratis Online Reputatie Sprint</span>
+          <h1 id="heroKop">Je eerste 5 tot 10 echte vijfsterren-reviews. Binnen zeven dagen, gratis.</h1>
+          <p class="hero-sub">Zeven dagen, gratis. Wij zetten je review-verzameling aan, uit jouw naam.</p>
+        </div>
+
+        <ul class="hero-points">
+          <li>Wij zetten het aan, jij staat gewoon bij je klanten.</li>
+          <li>Geen verplichtingen in de sprint-week.</li>
+          <li>Na zeven dagen zie je zelf wat het opleverde.</li>
+          <li>Wij nemen een paar zaken per maand aan.</li>
+        </ul>
+
+        <div class="form-card">
+          <h2>Vraag de gratis sprint aan</h2>
+          <p class="form-intro">Vier velden, daarna nog een paar korte vragen.</p>
+
+          <form id="sprintForm" novalidate>
+            <div class="field" id="field-bedrijfsnaam">
+              <label for="bedrijfsnaam">Bedrijfsnaam</label>
+              <input type="text" id="bedrijfsnaam" name="bedrijfsnaam" autocomplete="organization" placeholder="Studio Lumi" required>
+              <span class="field-error" id="err-bedrijfsnaam">Vul de naam van je zaak in.</span>
+            </div>
+
+            <div class="field" id="field-naam">
+              <label for="naam">Naam</label>
+              <input type="text" id="naam" name="naam" autocomplete="name" placeholder="Je voor- en achternaam" required>
+              <span class="field-error" id="err-naam">Vul je naam in.</span>
+            </div>
+
+            <div class="field" id="field-email">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="jij@jouwzaak.nl" required>
+              <span class="field-error" id="err-email">Vul een geldig e-mailadres in.</span>
+            </div>
+
+            <div class="field" id="field-telefoon">
+              <label for="telefoon">Telefoon (WhatsApp)</label>
+              <input type="tel" id="telefoon" name="telefoon" autocomplete="tel" inputmode="tel" placeholder="06 12 34 56 78" required>
+              <span class="field-error" id="err-telefoon">Vul een Nederlands telefoonnummer in, bijvoorbeeld 06 12345678.</span>
+            </div>
+
+            <!-- Verborgen velden: attributie en match-kwaliteit voor de server-side events -->
+            <input type="hidden" name="lead_id" id="h_lead_id">
+            <input type="hidden" name="telefoon_e164" id="h_telefoon_e164">
+            <input type="hidden" name="utm_source" id="h_utm_source">
+            <input type="hidden" name="utm_medium" id="h_utm_medium">
+            <input type="hidden" name="utm_campaign" id="h_utm_campaign">
+            <input type="hidden" name="utm_content" id="h_utm_content">
+            <input type="hidden" name="utm_term" id="h_utm_term">
+            <input type="hidden" name="fbclid" id="h_fbclid">
+            <input type="hidden" name="fbp" id="h_fbp">
+            <input type="hidden" name="fbc" id="h_fbc">
+            <input type="hidden" name="landingspagina" id="h_landingspagina">
+            <input type="hidden" name="event_source_url" id="h_event_source_url">
+            <input type="hidden" name="tijdstip" id="h_tijdstip">
+            <input type="hidden" name="user_agent" id="h_user_agent">
+
+            <button type="submit" class="btn" id="sprintSubmit">Vraag de gratis sprint aan</button>
+            <p class="form-note">Geen verplichtingen in de sprint-week. Wij nemen persoonlijk contact op.</p>
+            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HOE HET WERKT ================= -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <span class="eyebrow">Hoe het werkt</span>
+      <h2 class="section-title">Drie stappen, zeven dagen.</h2>
+      <p class="section-sub">Geen voorbereiding, geen project. Wij zetten het aan en jij kijkt aan het eind of het je bevalt.</p>
+
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">1</span>
+          <h3>Je vraagt de sprint aan</h3>
+          <p>Je vult het formulier in en beantwoordt daarna een paar korte vragen. Daarmee weten we voor welke behandeling of dienst je gevonden wilt worden, zodat we meteen de goede kant op werken.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <h3>Wij zetten het aan</h3>
+          <p>Je review-verzameling gaat draaien, uit jouw naam. Eerst vragen we je klant hoe het was. Wie tevreden is krijgt de review-vraag, wie iets kwijt wil komt bij jou terecht en niet op Google. In dezelfde week zetten we je profiel en je vindbaarheid op orde en bouwen we de kaart van je stad.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <h3>Na zeven dagen kijk je zelf</h3>
+          <p>Je ziet de reviews die zijn binnengekomen en de kaart met waar je staat, met uitleg in gewone taal. Pas daarna beslis je of je verder wilt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WAT HET NIET IS ================= -->
+  <section class="section">
+    <div class="wrap">
+      <span class="eyebrow">Wat het niet is</span>
+      <h2 class="section-title">De vragen die je waarschijnlijk hebt.</h2>
+      <p class="section-sub">Je hebt dit soort beloftes eerder gehoord. Daarom eerst wat je niet krijgt.</p>
+
+      <div class="qa-list">
+        <div class="qa">
+          <p class="q">Eerst een verkoopgesprek voordat je iets gezien hebt?</p>
+          <p class="a"><strong>Nee.</strong> We zetten het eerst aan. Praten doen we pas als er iets te bekijken valt, en alleen als jij dat wilt.</p>
+        </div>
+        <div class="qa">
+          <p class="q">Vastzitten aan iets na die week?</p>
+          <p class="a"><strong>Nee.</strong> De sprint-week is gratis en verplicht je tot niets. Wat daarna komt, beslis jij, met alles al voor je op tafel.</p>
+        </div>
+        <div class="qa">
+          <p class="q">Weer een rapport waar je niks mee kunt?</p>
+          <p class="a"><strong>Nee.</strong> Je krijgt de kaart van je stad: waar je staat als iemand in jouw buurt zoekt, met uitleg in gewone taal erbij.</p>
+        </div>
+        <div class="qa">
+          <p class="q">Steeds iemand anders aan de lijn?</p>
+          <p class="a"><strong>Nee.</strong> Je hebt direct contact met de persoon die het werk doet. Wij nemen een paar zaken per maand aan en denken met je mee waar het nodig is.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ZO ZIET HET ERUIT ================= -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <span class="eyebrow">Zo ziet het eruit</span>
+      <h2 class="section-title">De schermen waar het om draait.</h2>
+      <p class="section-sub">Dit is wat er tijdens je sprint-week gebeurt, en wat je aan het eind terugziet.</p>
+
+      <div class="shots">
+        <div class="shot">
+          <div class="shot-media is-tall">
+            <img src="img/whatsapp-sprint.png" alt="Chatgesprek waarin de klant eerst wordt gevraagd hoe het was en daarna pas de review-vraag krijgt" width="430" height="672" loading="lazy">
+          </div>
+          <div class="shot-caption">
+            <h3>Eerst vragen we hoe het was</h3>
+            <p>Is je klant tevreden, dan volgt de review-vraag. Is dat niet zo, dan komt de feedback bij jou en niet op Google.</p>
+          </div>
+        </div>
+
+        <div class="shot">
+          <div class="shot-media is-wide">
+            <img src="img/reactie.png" alt="Een vijfsterren-review met daaronder een reactie namens de zaak, geplaatst binnen 48 uur" width="620" height="574" loading="lazy">
+          </div>
+          <div class="shot-caption">
+            <h3>Elke review beantwoord</h3>
+            <p>Binnen 48 uur, uit jouw naam. Dat telt mee voor je positie en het leest als een zaak die oplet.</p>
+          </div>
+        </div>
+
+        <div class="shot is-wide">
+          <div class="shot-media is-wide">
+            <img src="img/grid.png" alt="Kaart van de stad met per buurt de positie in de zoekresultaten" width="860" height="792" loading="lazy">
+          </div>
+          <div class="shot-caption">
+            <h3>De kaart van je stad</h3>
+            <p>Per buurt zie je waar je staat als iemand naar jouw behandeling zoekt. Groen is de top drie, rood is daarbuiten.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="shots-note">Dit zijn schermen uit ons eigen systeem, met voorbeelddata. In je sprint-week staat jouw zaak erin.</p>
+    </div>
+  </section>
+
+  <!-- ================= VOOR WIE ================= -->
+  <section class="section">
+    <div class="wrap-narrow">
+      <span class="eyebrow">Voor wie het is</span>
+      <h2 class="section-title">Voor een zaak die al draait.</h2>
+      <div class="fit-card">
+        <p>De sprint werkt door jouw eigen tevreden klanten op het juiste moment te vragen. Dat betekent dat er iets te vragen moet zijn: klanten die terugkomen, werk waar mensen blij mee weggaan. Salons en studio's voorop. Klinieken en praktijken zijn net zo welkom, en andere lokale zaken die op afspraak werken ook.</p>
+        <ul class="fit-list">
+          <li>Je hebt tevreden klanten, maar online zie je dat nauwelijks terug.</li>
+          <li>Je hebt een lijst met recente klantcontacten.</li>
+          <li>Je beslist zelf, of je beslist mee.</li>
+          <li>Je wilt de best beoordeelde keus in je stad worden.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="section section-alt">
+    <div class="wrap-narrow">
+      <span class="eyebrow">Vragen</span>
+      <h2 class="section-title">Wat je nog wilt weten.</h2>
+
+      <div class="faq">
+        <details class="faq-item">
+          <summary>Wat kost het na de sprint?</summary>
+          <div class="faq-answer">
+            <p>De sprint-week zelf is gratis. Wil je daarna doorgaan, dan heet dat de Reputatie Motor: we bouwen je reviews en vindbaarheid maand na maand verder op. Wat dat kost en welke termijn daarbij past, bespreken we pas als je hebt gezien wat de week opleverde.</p>
+            <p>Geen druk om daar nu iets over te vinden. Je beslist met alle resultaten al voor je op tafel.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Wat moet ik zelf doen?</summary>
+          <div class="faq-answer">
+            <p>Bij de start lever je een lijst aan met minimaal 140 recente klantcontacten. Dat regelen we netjes met een verwerkersovereenkomst, en je krijgt van ons een simpel format of de export-instructie voor jouw kassa- of afsprakensysteem.</p>
+            <p>Verder geef je ons beheerder-toegang tot je bedrijfsprofiel en reageer je die week binnen 48 uur als we iets vragen. Daarna hoef je vrijwel niets te doen.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Wat gebeurt er met slechte feedback?</summary>
+          <div class="faq-answer">
+            <p>Die komt bij jou terecht. We vragen je klant eerst hoe het was. Is iemand tevreden, dan volgt de review-vraag. Is iemand dat niet, dan gaat het bericht naar jou in plaats van naar Google, zodat je het zelf kunt rechtzetten.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Krijg ik een garantie?</summary>
+          <div class="faq-answer">
+            <p>Ja. De sprint-week zelf kost je niets en verplicht je tot niets, je ziet wat het opleverde voordat je iets beslist. Op het doorlopende vervolg werken we met een maandgarantie die meebeweegt met de fase: in de opbouwmaanden elke maand nieuwe reviews erbij en een betere dekking op de kaart dan de maand ervoor, of die maand is gratis, zolang je ons klantcontacten blijft aanleveren. Het volledige traject leggen we bij de start uit.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Wat gebeurt er met mijn gegevens?</summary>
+          <div class="faq-answer">
+            <p>Je eigen gegevens gebruiken we alleen om contact met je op te nemen over de sprint. De klantcontacten die je aanlevert gebruiken we uitsluitend om namens jou om feedback en reviews te vragen, onder een verwerkersovereenkomst. We verkopen of delen ze niet, en op jouw verzoek verwijderen we ze.</p>
+            <p>Meer daarover staat in ons <a href="/privacy/">privacybeleid</a>.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Hoeveel plekken zijn er?</summary>
+          <div class="faq-answer">
+            <p>Wij nemen een paar zaken per maand aan. Dat is echte capaciteit: tijdens de sprint doen wij het werk, van het inrichten tot het beantwoorden van reviews. Is de maand vol, dan zeggen we dat gewoon en kijken we naar de volgende.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SLOT ================= -->
+  <section class="final">
+    <div class="wrap-narrow">
+      <h2>Zeven dagen. Gratis. Daarna beslis jij.</h2>
+      <p>Wij zetten je review-verzameling aan en jij kijkt aan het eind van de week wat het opleverde.</p>
+      <a href="#top" class="btn" id="ctaTerug">Vraag de gratis sprint aan</a>
+      <p class="final-note">Geen verplichtingen in de sprint-week. Wij nemen persoonlijk contact op.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-row">
+      <span class="footer-copy">&copy; 2026 LocalLevers &middot; Bryan Ubink &middot; Nederland</span>
+      <nav class="footer-links" aria-label="Juridisch">
+        <a href="/privacy/">Privacy</a>
+        <a href="/voorwaarden/">Voorwaarden</a>
+        <a href="/cookies/">Cookies</a>
+      </nav>
+    </div>
+    <p class="footer-legal">KvK 72087986 &middot; BTW NL002405113B91</p>
+    <p class="footer-disclaimer">Deze pagina hoort niet bij Meta Platforms, Inc. en wordt daar niet door onderschreven of gecontroleerd. Facebook en Instagram zijn handelsmerken van Meta Platforms, Inc. Google is een handelsmerk van Google LLC.</p>
+  </div>
+</footer>
+
+<div id="ll-cookie" class="ll-cookie" hidden>
+  <div class="ll-cookie-inner">
+    <div class="ll-cookie-text">
+      <strong>We gebruiken cookies</strong>
+      <p>Functioneel is altijd aan. Marketingcookies alleen met je toestemming, om onze advertenties te meten. <a href="/cookies/">Cookiebeleid</a>.</p>
+    </div>
+    <div class="ll-cookie-actions">
+      <button type="button" data-ll="reject" class="ghost">Alleen noodzakelijk</button>
+      <button type="button" data-ll="accept" class="solid">Alles accepteren</button>
+    </div>
+  </div>
+</div>
+
+<!-- LL:BODY-END -->
+<script src="ll-tracking.js"></script>
+<script src="sprint.js"></script>
+</body>
+</html>

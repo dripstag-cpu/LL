@@ -1,11 +1,12 @@
 # Local Levers
 
-> Local Levers helpt klinieken en behandel-salons (laser- en huidklinieken, huidtherapie, beauty-salons) in Nederland beter vindbaar worden op Google Maps, Apple Maps, lokale directories en in AI-zoekopdrachten, en zorgt dat geen aanvraag wegloopt.
+> Local Levers helpt klinieken en lokale specialisten in Nederland beter vindbaar worden op Google Maps, Apple Maps, lokale directories en in AI-zoekopdrachten, en zorgt dat geen aanvraag wegloopt.
 
 ## Wat Local Levers doet
-- Fundament: gevonden worden op de winstgevende behandeling, over Google, Apple, directories en AI heen, plus reputatie- en review-opbouw.
-- Meer uit je klanten: reactivatie van oude klanten en vervolg-aanbiedingen via automatisering.
-- Groeimotor: advertenties plus AI-opvolging van gemiste calls, DM's en niet-boekers. Alleen voor laser en salons.
+- Vindbaarheid: gevonden worden op je winstgevende dienst, over Google Maps, Apple Maps, directories en AI-zoekmachines heen.
+- Reviews en reputatie: een geautomatiseerd review-systeem dat je reputatie opbouwt, plus reviews die snel worden beantwoord.
+- Opvolging: gemiste oproepen, berichten en aanvragen automatisch opgevangen, plus reactivatie van oude klanten.
+- Rapportage: maandelijks een kort rapport via WhatsApp over je positie, je reviews en je AI-zichtbaarheid.
 
 Local Levers is een done-for-you service, geen software. Geleverd vanuit Nederland, met directe communicatie via WhatsApp.
 
@@ -13,7 +14,7 @@ Local Levers is een done-for-you service, geen software. Geleverd vanuit Nederla
 - [Home](https://locallevers.com/): wat Local Levers doet en voor wie.
 - [Gratis vindbaarheids-rapport](https://locallevers.com/check/): korte check die laat zien waar je staat op je winstgevende behandeling.
 - [Gratis GBP-checklist](https://locallevers.com/checklist/): 13-punts checklist voor je Google Bedrijfsprofiel in 2026.
-- [Kennisbank](https://locallevers.com/gids/): uitleg over vindbaarheid, reviews en AI-zoekmachines voor klinieken en salons.
+- [Kennisbank](https://locallevers.com/gids/): uitleg over vindbaarheid, reviews en AI-zoekmachines voor klinieken en lokale specialisten.
 - [Marketing per type bedrijf](https://locallevers.com/marketing/): pagina's per branche.
 
 ## Voor welke bedrijven

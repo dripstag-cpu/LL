@@ -1,0 +1,317 @@
+/* ======================================================================
+   Local Levers - /sprint/bedankt/ kwalificatie-quiz
+   Laadt bovenop sprint.css (tokens, knoppen, cookie-banner, footer).
+   ====================================================================== */
+
+/* Footer onderaan houden, ook bij een kort vraagscherm. */
+body.quiz-body {
+  background: var(--page);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+body.quiz-body .quiz-main { flex: 1 0 auto; }
+body.quiz-body .site-footer { flex-shrink: 0; }
+
+/* ====== Kop met voortgang ========================================== */
+.quiz-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(250, 250, 248, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.quiz-header-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.quiz-counter {
+  font-size: 13px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.progress-track {
+  height: 3px;
+  background: rgba(20, 20, 19, 0.08);
+  width: 100%;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--green);
+  transition: width 380ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ====== Schermen =================================================== */
+.quiz-main { padding: 0 0 64px; }
+.quiz-wrap { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+
+.screen { display: none; padding: 36px 0 0; }
+.screen.is-active { display: block; animation: quizIn 320ms ease-out; }
+@keyframes quizIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.q-kop {
+  font-size: clamp(23px, 5.6vw, 31px);
+  margin-bottom: 10px;
+}
+.q-help {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: 24px;
+}
+
+/* ====== Antwoordknoppen ============================================ */
+.opties { display: grid; gap: 10px; }
+.optie {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 17px 18px;
+  min-height: 56px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+.optie:hover { border-color: var(--green); background: var(--green-soft); }
+.optie:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.optie.is-selected {
+  border-color: var(--green);
+  background: var(--green-soft);
+  box-shadow: 0 0 0 1px var(--green);
+}
+
+/* ====== Tekstveld ================================================== */
+.tekstveld {
+  display: block;
+  width: 100%;
+  min-height: 56px;
+  padding: 16px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  color: var(--ink);
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+.tekstveld:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(26, 122, 84, 0.14);
+}
+.veld-hint { font-size: 13.5px; color: var(--muted); margin-bottom: 20px; }
+
+/* Herstelveld: alleen zichtbaar als we de aanvraag niet kunnen terugvinden. */
+.herstel {
+  margin: 4px 0 4px;
+  padding: 18px;
+  background: var(--warm);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.herstel[hidden] { display: none; }
+.herstel label {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.herstel .tekstveld { margin-bottom: 8px; }
+.herstel .veld-hint { margin-bottom: 0; }
+
+.knop-rij { margin-top: 20px; display: flex; gap: 12px; align-items: center; }
+.knop-rij .btn { flex: 1; }
+.btn-terug {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 16px;
+  min-height: 48px;
+  border-radius: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-terug:hover { color: var(--ink); border-color: #C9C8C0; }
+
+/* ====== Vervolgvraag binnen een vraag (vraag 6) ==================== */
+.vervolgvraag {
+  margin-top: 18px;
+  padding: 18px;
+  background: var(--warm);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  animation: quizIn 280ms ease-out;
+}
+.vervolgvraag[hidden] { display: none; }
+.vervolgvraag h2 {
+  font-family: 'Outfit Variable', 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: var(--ink-strong);
+  margin-bottom: 8px;
+}
+.vervolgvraag p {
+  color: var(--muted);
+  font-size: 14.5px;
+  margin-bottom: 14px;
+}
+
+/* ====== Spelregels-kaart (vraag 9) ================================= */
+.regels {
+  background: var(--warm);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 18px 16px;
+  margin-bottom: 22px;
+}
+.regels ol { margin: 0; padding-left: 20px; display: grid; gap: 10px; }
+.regels li { font-size: 15px; color: var(--ink); }
+
+/* ====== Uitkomstschermen =========================================== */
+.uitkomst-kaart {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+  padding: 26px 20px;
+}
+.uitkomst-kaart h1 { font-size: clamp(25px, 5.8vw, 34px); margin-bottom: 12px; }
+.uitkomst-kaart p { color: var(--muted); font-size: 15.5px; }
+.uitkomst-kaart p + p { margin-top: 12px; }
+.uitkomst-kaart p.lead { color: var(--ink); font-size: 17px; }
+
+.nu-lijst { list-style: none; display: grid; gap: 14px; margin: 22px 0 4px; }
+.nu-lijst li {
+  position: relative;
+  padding-left: 30px;
+  font-size: 15.5px;
+  color: var(--ink);
+}
+.nu-lijst li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--green);
+}
+.nu-lijst li::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 12px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+.nu-lijst strong { color: var(--ink-strong); font-weight: 700; }
+
+.let-op {
+  margin-top: 20px;
+  padding: 16px 18px;
+  background: var(--warm);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  font-size: 15px;
+  color: var(--ink);
+}
+
+/* ====== Videoblok ================================================== */
+.video-blok { margin: 26px 0 4px; }
+.video-blok h2 { font-size: 19px; margin-bottom: 10px; }
+.video-kader {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #101210;
+  aspect-ratio: 16 / 9;
+}
+.video-kader video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  padding: 24px;
+  background: linear-gradient(160deg, #12211a 0%, #101210 70%);
+  color: #DDE4DC;
+}
+.video-placeholder .play {
+  flex: 0 0 auto;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.video-placeholder .play::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 14px solid rgba(255, 255, 255, 0.75);
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  margin-left: 4px;
+}
+.video-placeholder strong { font-family: 'Outfit Variable', 'Outfit', sans-serif; font-size: 17px; color: #fff; }
+.video-placeholder span { font-size: 13.5px; color: #9AA79D; max-width: 34ch; }
+
+/* ====== Boekblok =================================================== */
+.boek-blok {
+  margin-top: 24px;
+  padding: 20px 18px;
+  background: var(--warm);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.boek-blok h2 { font-size: 19px; margin-bottom: 8px; }
+.boek-blok p { color: var(--muted); font-size: 15px; margin-bottom: 16px; }
+.boek-blok .btn { width: 100%; }
+.boek-melding {
+  display: none;
+  margin-top: 10px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.boek-melding.is-zichtbaar { display: block; }
+
+.slot-regel {
+  margin-top: 22px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+@media (min-width: 640px) {
+  .uitkomst-kaart { padding: 34px 32px; }
+  .screen { padding: 48px 0 0; }
+  .boek-blok { padding: 24px; }
+  .boek-blok .btn { width: auto; min-width: 300px; }
+}
