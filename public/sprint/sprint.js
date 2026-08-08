@@ -13,7 +13,7 @@
      Leeg laten betekent: niet versturen, wel doorsturen naar de
      bedankpagina. Zo is de hele flow lokaal te doorlopen.            */
   var GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/agbm4h41aVGOzDyuSc16/webhook-trigger/9a6bdc8d-fadc-48d9-94ca-7f8ebf9053b4';
-  var BEDANKT_URL = 'bedankt/';
+  var BEDANKT_URL = '/sprint/bedankt/';
   /* ================================================================== */
 
   /* --- 1. Belofte-echo ---------------------------------------------- */
