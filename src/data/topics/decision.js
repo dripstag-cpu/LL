@@ -16,7 +16,7 @@ export const topics = [
       },
       {
         h: 'Een tussenweg die het risico klein houdt',
-        p: `Je hoeft niet te kiezen tussen alles zelf doen of meteen een jaarcontract tekenen. Begin met een gratis vindbaarheids-rapport dat laat zien waar je nu staat op Google, in ChatGPT en Perplexity en de directories die klanten gebruiken. Daarna kun je met een klein actieplan zelf aan de slag, of de uitvoering overdragen. Zo baseer je de beslijssing op wat er in jouw geval echt mist, niet op een algemeen verhaal. Geen langlopende verplichting voordat je ziet of het werkt voor jouw kliniek.`
+        p: `Je hoeft niet te kiezen tussen alles zelf doen of meteen een jaarcontract tekenen. Begin met de gratis Online Reputatie Sprint, die laat zien waar je nu staat op Google, in ChatGPT en Perplexity en de directories die klanten gebruiken. Daarna kun je met een klein actieplan zelf aan de slag, of de uitvoering overdragen. Zo baseer je de beslijssing op wat er in jouw geval echt mist, niet op een algemeen verhaal. Geen langlopende verplichting voordat je ziet of het werkt voor jouw kliniek.`
       }
     ],
     faq: [
@@ -103,7 +103,7 @@ export const topics = [
     faq: [
       {
         q: 'Ik heb al een Google-vermelding, is dat niet genoeg?',
-        a: `Een vermelding hebben en een compleet, actueel profiel voeren zijn twee verschillende dingen. Veel vermeldingen missen diensten, foto's of recente reviews, en dat kost je zichtbaarheid en vertrouwen op het beslismoment. Een gratis vindbaarheids-rapport laat precies zien wat er in jouw geval mist en of het onderhoud loopt.`
+        a: `Een vermelding hebben en een compleet, actueel profiel voeren zijn twee verschillende dingen. Veel vermeldingen missen diensten, foto's of recente reviews, en dat kost je zichtbaarheid en vertrouwen op het beslismoment. De gratis Online Reputatie Sprint laat precies zien wat er in jouw geval mist en of het onderhoud loopt.`
       }
     ]
   },

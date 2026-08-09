@@ -27,7 +27,7 @@ export const topics = [
     faq: [
       {
         q: 'Wat is het belangrijkste onderdeel om als eerste aan te pakken?',
-        a: 'Begin bij je hoofdcategorie en je diensten, want die bepalen op welke zoektermen je uberhaupt in beeld komt. Daarna je reviews en je consistentie over de andere platforms. Een gratis vindbaarheids-rapport laat zien welk onderdeel bij jou het meeste laat liggen.',
+        a: 'Begin bij je hoofdcategorie en je diensten, want die bepalen op welke zoektermen je uberhaupt in beeld komt. Daarna je reviews en je consistentie over de andere platforms. De gratis Online Reputatie Sprint laat zien welk onderdeel bij jou het meeste laat liggen.',
       },
       {
         q: 'Kan ik mijn profiel zelf optimaliseren?',

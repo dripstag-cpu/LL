@@ -27,7 +27,7 @@ export const topics = [
     faq: [
       {
         q: 'Kan ik zelf zien waarom mijn concurrent hoger staat?',
-        a: 'Deels. Je kunt je eigen positie op verschillende plekken in je stad meten en die naast de concurrent leggen. Een vindbaarheids-rapport doet dat gestructureerd: het laat op een raster zien waar jij en je concurrenten staan op jouw winstgevende zoekterm.',
+        a: 'Deels. Je kunt je eigen positie op verschillende plekken in je stad meten en die naast de concurrent leggen. Wij doen dat gestructureerd: op een raster zie je waar jij en je concurrenten staan op jouw winstgevende zoekterm, en dat zie je terug in de gratis sprint.',
       },
       {
         q: 'Hoe snel kan ik stijgen?',
@@ -63,7 +63,7 @@ export const topics = [
       },
       {
         q: 'Kan ik zien of ik nu voorkom in de antwoorden van ChatGPT en Perplexity?',
-        a: 'Ja. We kunnen scannen wat ChatGPT, Gemini en Google AI Overviews antwoorden op vragen over jouw type behandeling in jouw stad, en of jij daar tussen staat. Dat zit in het gratis vindbaarheids-rapport.',
+        a: 'Ja. We kunnen scannen wat ChatGPT, Gemini en Google AI Overviews antwoorden op vragen over jouw type behandeling in jouw stad, en of jij daar tussen staat. Dat brengen we in de gratis Online Reputatie Sprint voor je in kaart.',
       },
     ],
   },
@@ -149,7 +149,7 @@ export const topics = [
       },
       {
         h: 'Begin met wat gratis is',
-        p: 'Voordat je iets uitgeeft, laten we in een gratis vindbaarheids-rapport zien waar je staat en wat er te winnen is. Geen verplichting. Pas als dat de moeite waard blijkt, bespreken we wat een vervolg kost.',
+        p: 'Voordat je iets uitgeeft, laten we in de gratis Online Reputatie Sprint zien waar je staat en wat er te winnen is. Geen verplichting. Pas als dat de moeite waard blijkt, bespreken we wat een vervolg kost.',
       },
     ],
     faq: [
