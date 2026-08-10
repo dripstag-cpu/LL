@@ -18,13 +18,17 @@
 
   /* --- 1. Belofte-echo ---------------------------------------------- */
   var KOPPEN = {
-    'ad-1': 'Je eerste 5 tot 10 echte vijfsterren-reviews. Binnen zeven dagen, gratis.',
+    'ad-1': 'Zij ziet je score, je aantal en hoe oud je laatste review is. Meer niet.',
     'ad-2': 'Tevreden klanten zijn geen reviews. Zeven dagen lang vragen wij het wel.',
     'ad-3': 'Dit regelen wij. Zeven dagen gratis, jij staat gewoon bij je klanten.',
     'ad-4': 'Zie zwart op wit waar jij staat als iemand in jouw stad zoekt.',
     'ad-5': 'Eerst zien wat het oplevert. Daarna beslis jij.'
   };
-  var STANDAARD_KOP = KOPPEN['ad-1'];
+  /* De standaardkop is bewust niet gelijk aan een van de ad-varianten: hij moet ook
+     werken voor wie zonder utm binnenkomt. Niet meer "je eerste 5 tot 10 reviews",
+     want doc 48 verbiedt een aantal beloven en die zin spreekt bovendien een beginner
+     aan terwijl de startpoort 140 klantcontacten eist. */
+  var STANDAARD_KOP = 'Iemand zoekt nu jouw beste behandeling in jouw stad. Sta jij in de top drie?';
 
   function zetKop() {
     var el = document.getElementById('heroKop');
