@@ -49,52 +49,23 @@
         </ul>
 
         <div class="form-card">
-          <h2>Vraag de gratis sprint aan</h2>
-          <p class="form-intro">Vier velden, daarna nog een paar korte vragen.</p>
+          <h2>Welke behandeling of dienst wil je meer doen?</h2>
+          <p class="form-intro">Zeg het hieronder, dan laten we zien waar je nu staat.</p>
 
-          <form id="sprintForm" novalidate>
-            <div class="field" id="field-bedrijfsnaam">
-              <label for="bedrijfsnaam">Bedrijfsnaam</label>
-              <input type="text" id="bedrijfsnaam" name="bedrijfsnaam" autocomplete="organization" placeholder="Studio Lumi" required>
-              <span class="field-error" id="err-bedrijfsnaam">Vul de naam van je zaak in.</span>
+          <form id="startForm" novalidate>
+            <div class="field" id="field-winstdienst">
+              <label for="winstdienst" class="sr-alleen">Behandeling of dienst</label>
+              <input type="text" id="winstdienst" name="winstdienst" autocomplete="off" placeholder="bijvoorbeeld laserontharing" required>
+              <span class="field-error" id="err-winstdienst">Vul de behandeling in waar je meer van wilt doen.</span>
+            </div>
+            <div class="field" id="field-stad">
+              <label for="stad">In welke stad zit je?</label>
+              <input type="text" id="stad" name="stad" autocomplete="address-level2" placeholder="bijvoorbeeld Almere" required>
+              <span class="field-error" id="err-stad">Vul je stad in.</span>
             </div>
 
-            <div class="field" id="field-naam">
-              <label for="naam">Naam</label>
-              <input type="text" id="naam" name="naam" autocomplete="name" placeholder="Je voor- en achternaam" required>
-              <span class="field-error" id="err-naam">Vul je naam in.</span>
-            </div>
-
-            <div class="field" id="field-email">
-              <label for="email">E-mail</label>
-              <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="jij@jouwzaak.nl" required>
-              <span class="field-error" id="err-email">Vul een geldig e-mailadres in.</span>
-            </div>
-
-            <div class="field" id="field-telefoon">
-              <label for="telefoon">Telefoon (WhatsApp)</label>
-              <input type="tel" id="telefoon" name="telefoon" autocomplete="tel" inputmode="tel" placeholder="06 12 34 56 78" required>
-              <span class="field-error" id="err-telefoon">Vul een Nederlands telefoonnummer in, bijvoorbeeld 06 12345678.</span>
-            </div>
-
-            <!-- Verborgen velden: attributie en match-kwaliteit voor de server-side events -->
-            <input type="hidden" name="lead_id" id="h_lead_id">
-            <input type="hidden" name="telefoon_e164" id="h_telefoon_e164">
-            <input type="hidden" name="utm_source" id="h_utm_source">
-            <input type="hidden" name="utm_medium" id="h_utm_medium">
-            <input type="hidden" name="utm_campaign" id="h_utm_campaign">
-            <input type="hidden" name="utm_content" id="h_utm_content">
-            <input type="hidden" name="utm_term" id="h_utm_term">
-            <input type="hidden" name="fbclid" id="h_fbclid">
-            <input type="hidden" name="fbp" id="h_fbp">
-            <input type="hidden" name="fbc" id="h_fbc">
-            <input type="hidden" name="landingspagina" id="h_landingspagina">
-            <input type="hidden" name="event_source_url" id="h_event_source_url">
-            <input type="hidden" name="tijdstip" id="h_tijdstip">
-            <input type="hidden" name="user_agent" id="h_user_agent">
-
-            <button type="submit" class="btn" id="sprintSubmit">Vraag de gratis sprint aan</button>
-            <p class="form-note">Geen verplichtingen in de sprint-week. Wij nemen persoonlijk contact op.</p>
+            <button type="submit" class="btn" id="startSubmit">Kijk waar ik nu sta</button>
+            <p class="form-note">Zeven dagen. Gratis. Vier plekken per maand.</p>
             <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
           </form>
         </div>

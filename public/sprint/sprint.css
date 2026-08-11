@@ -611,3 +611,8 @@ body.ll-typt .ll-cookie { visibility: hidden; }
   html { scroll-behavior: auto; }
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
+
+/* Label dat alleen voor schermlezers bestaat: de vraag staat al als kop
+   boven het veld, dus visueel herhalen zou dubbel zijn. */
+.sr-alleen { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

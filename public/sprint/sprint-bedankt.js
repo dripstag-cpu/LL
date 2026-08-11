@@ -11,6 +11,9 @@
   /* ====== CONFIGURATIE, hier vult Bryan in ==========================
      Inbound-webhook van de GHL-workflow "Sprint kwalificatie".
      Boekingslink: de GHL-kalender voor de sprint-doorloop.           */
+  /* Webhook 1 hoort bij workflow A en maakt het contact aan. We vuren hem nu
+     vanaf het slotscherm, samen met webhook 2. Zo hoeft er in GHL niets om. */
+  var GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/agbm4h41aVGOzDyuSc16/webhook-trigger/9a6bdc8d-fadc-48d9-94ca-7f8ebf9053b4';
   var GHL_QUIZ_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/agbm4h41aVGOzDyuSc16/webhook-trigger/7478ac71-09ea-4b7b-8dba-80b9e6596f42';
   var BOEKING_URL = 'https://api.leadconnectorhq.com/widget/booking/QzCITDWEPnRz1TfPeXbJ';
 
@@ -25,6 +28,25 @@
   };
   /* ================================================================== */
 
+  /* Umami-buffer. sprint.js draait hier niet, dus de quizpagina heeft zijn
+     eigen kleine wachtrij nodig voor de trechter-events. */
+  if (!window.llTrack) {
+    (function () {
+      var rij = [], klaar = false;
+      function spoel() {
+        if (!window.umami || typeof window.umami.track !== 'function') return false;
+        klaar = true;
+        while (rij.length) { var e = rij.shift(); try { window.umami.track(e[0], e[1]); } catch (x) {} }
+        return true;
+      }
+      window.llTrack = function (naam, data) {
+        if (klaar || spoel()) { try { window.umami.track(naam, data); } catch (x) {} }
+        else rij.push([naam, data]);
+      };
+      var n = 0, t = setInterval(function () { if (spoel() || ++n > 40) clearInterval(t); }, 250);
+    })();
+  }
+
   var VRAGEN = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9'];
 
   var state = {
@@ -36,7 +58,8 @@
     verzonden: false,
     gestart: false,
     laatsteVraag: '',
-    deelVerstuurdBij: -1
+    deelVerstuurdBij: -1,
+    uitslag: null
   };
 
   /* --- aanvraaggegevens uit formulier 1 ------------------------------ */
@@ -160,7 +183,11 @@
   function volgende(vraag) {
     var index = VRAGEN.indexOf(vraag);
     if (index === -1 || index === VRAGEN.length - 1) return afronden();
-    toon(VRAGEN[index + 1]);
+    var volg = VRAGEN[index + 1];
+    // q2 (de winstdienst) is al beantwoord op scherm 1, dus die slaan we over.
+    if (volg === 'q2' && state.winstdienst) volg = VRAGEN[index + 2] || null;
+    if (!volg) return afronden();
+    toon(volg);
   }
 
   /* --- antwoorden ---------------------------------------------------- */
@@ -287,33 +314,101 @@
   }
 
   /* --- afronden ------------------------------------------------------- */
+  /* De vragen zijn klaar. We versturen nog niets: eerst het slotscherm,
+     want daar komen naam, bedrijfsnaam, e-mail en telefoon binnen. Pas
+     daarna gaat alles in een keer naar GHL. */
   function afronden() {
+    if (state.verzonden) return;
+    state.uitslag = routeer();
+    window.LL.track('QuizComplete', { content_name: 'Sprint kwalificatie' });
+    if (window.llTrack) window.llTrack('sprint-quiz-af');
+    vulSamenvatting();
+    toon('gegevens');
+    if (window.llTrack) window.llTrack('sprint-slot-zicht');
+  }
+
+  /* Wordt aangeroepen als het slotscherm verstuurd is. */
+  function rondEchtAf() {
     if (state.verzonden) return;
     state.verzonden = true;
     wisVoortgang();
 
-    var uitslag = routeer();
+    var uitslag = state.uitslag || routeer();
     var payload = bouwPayload(uitslag);
 
     window.__llQuiz = {
-      route: uitslag.route,
-      score: payload.score,
-      tags: payload.tags,
-      gefaald: uitslag.gefaald,
-      rechtvaardiging: payload.rechtvaardiging,
-      lead_id: payload.lead_id,
-      // waarop GHL dit contact kan terugvinden, handig bij het testen
-      match: payload.email ? 'lead_id en e-mail' : 'alleen lead_id'
+      route: uitslag.route, score: payload.score, tags: payload.tags,
+      gefaald: uitslag.gefaald, rechtvaardiging: payload.rechtvaardiging,
+      lead_id: payload.lead_id, match: payload.email ? 'lead_id en e-mail' : 'alleen lead_id'
     };
 
-    // QuizComplete is het reserve-optimalisatiedoel; browser-side is prima.
-    window.LL.track('QuizComplete', { content_name: 'Sprint kwalificatie' });
+    /* Lead vuurt hier, want hier komen de contactgegevens echt binnen. */
+    window.LL.track('Lead', { content_name: 'Online Reputatie Sprint' });
+    if (window.llTrack) window.llTrack('sprint-toezegging');
 
     verstuur(payload);
+    verstuurAanvraag(payload);
 
     if (uitslag.route === 'HOT') toonHot();
     else if (uitslag.route === 'MID') toonMid(uitslag.gefaald);
     else toonDq();
+  }
+
+  /* --- slotscherm ----------------------------------------------------- */
+  function vulSamenvatting() {
+    var el = document.getElementById('gegevensSamenvatting');
+    if (!el) return;
+    var a = state.aanvraag || {};
+    var delen = [];
+    if (state.winstdienst) delen.push('Je wilt meer ' + state.winstdienst + (a.stad ? ' in ' + a.stad : ''));
+    /* De knoplabels dragen vaak een tweede regel met uitleg. Voor de
+       samenvatting willen we alleen het eerste stukje. */
+    function kort(a) {
+      if (!a) return '';
+      return (a.label || '').split('\n')[0].split(',')[0].trim().toLowerCase();
+    }
+    var agenda = kort(state.antwoorden.q4), waarde = kort(state.antwoorden.q3);
+    if (agenda) delen.push('je agenda is ' + agenda);
+    if (waarde) delen.push('een klant is bij jou ' + waarde + ' waard');
+    el.textContent = delen.length
+      ? delen.join(', ') + '. Daar gaan we naar kijken: waar je nu staat als iemand daarop zoekt, en wie er boven je staan.'
+      : 'Nog drie dingen, dan kunnen we kijken of het past.';
+  }
+
+  function geldigNummer(v) { return !!naarE164NL(v); }
+
+  function naarE164NL(ruw) {
+    var n = (ruw || '').replace(/[^0-9+]/g, '');
+    if (n.indexOf('0031') === 0) n = '+31' + n.slice(4);
+    else if (n.indexOf('+31') === 0) n = '+31' + n.slice(3);
+    else if (n.indexOf('31') === 0 && n.length >= 11) n = '+31' + n.slice(2);
+    else if (n.indexOf('0') === 0) n = '+31' + n.slice(1);
+    else return '';
+    return /^\+31[1-9][0-9]{8}$/.test(n) ? n : '';
+  }
+
+  function markeerVeld(id, fout) {
+    var wrap = document.getElementById('field-' + id);
+    if (wrap) wrap.classList.toggle('has-error', !!fout);
+  }
+
+  /* Webhook 1: dezelfde payload die formulier 1 vroeger stuurde, zodat
+     workflow A het contact ongewijzigd kan aanmaken. */
+  function verstuurAanvraag(payload) {
+    if (!GHL_WEBHOOK_URL) return;
+    var data = {
+      formulier: 'sprint-aanvraag',
+      naam: payload.naam, bedrijfsnaam: payload.bedrijfsnaam,
+      email: payload.email, telefoon: payload.telefoon,
+      telefoon_e164: payload.telefoon_e164, lead_id: payload.lead_id,
+      winstdienst: payload.winstdienst, stad: payload.stad
+    };
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','fbp','fbc',
+     'landingspagina','event_source_url','tijdstip','user_agent'].forEach(function (k) { data[k] = payload[k] || ''; });
+    try {
+      fetch(GHL_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data), keepalive: true }).catch(function () {});
+    } catch (e) {}
   }
 
   function bouwPayload(uitslag) {
@@ -324,6 +419,11 @@
     // enige sleutel waarop GHL het bestaande contact kan vinden.
     if (!data.email && state.herstelEmail) data.email = state.herstelEmail.toLowerCase();
     data.winstdienst = state.winstdienst;
+    var g = state.gegevens || {};
+    if (g.naam) data.naam = g.naam;
+    if (g.bedrijfsnaam) data.bedrijfsnaam = g.bedrijfsnaam;
+    if (g.email) data.email = g.email;
+    if (g.telefoon) { data.telefoon = g.telefoon; data.telefoon_e164 = naarE164NL(g.telefoon); }
     data.score = score();
     data.route = uitslag.route;
     data.tags = tags(uitslag.route);
@@ -405,6 +505,11 @@
     data.lead_id = window.LL.leadId();
     if (!data.email && state.herstelEmail) data.email = state.herstelEmail.toLowerCase();
     data.winstdienst = state.winstdienst;
+    var g = state.gegevens || {};
+    if (g.naam) data.naam = g.naam;
+    if (g.bedrijfsnaam) data.bedrijfsnaam = g.bedrijfsnaam;
+    if (g.email) data.email = g.email;
+    if (g.telefoon) { data.telefoon = g.telefoon; data.telefoon_e164 = naarE164NL(g.telefoon); }
     data.antwoorden_gegeven = n;
     data.laatste_vraag = state.laatsteVraag;
     if (state.antwoorden.q3 && state.antwoorden.q5) data.rechtvaardiging = rechtvaardiging();
@@ -497,6 +602,13 @@
     var lid = leesLeadIdUitLink();
     state.aanvraag = leesAanvraag();
 
+    /* De winstdienst en de stad komen van scherm 1. Daarmee is vraag q2 al
+       beantwoord en slaan we hem over, en kunnen we de rest personaliseren. */
+    if (state.aanvraag && state.aanvraag.winstdienst) {
+      state.winstdienst = state.aanvraag.winstdienst;
+      state.antwoorden.q2 = { waarde: state.winstdienst, label: state.winstdienst, punten: 0 };
+    }
+
     var introZaak = document.getElementById('introZaak');
     if (introZaak && zaaknaam()) introZaak.textContent = ', ' + zaaknaam();
 
@@ -507,7 +619,9 @@
     var herstelVeld = document.getElementById('herstelEmail');
     var herstelHint = document.getElementById('herstelHint');
     var bekend = !!lid || !!(state.aanvraag && state.aanvraag.email);
-    if (!bekend) herstelBlok.hidden = false;
+    // Het e-mailadres vragen we nu op het slotscherm, dus dit blok blijft dicht.
+    if (herstelBlok) herstelBlok.hidden = true;
+    bekend = true;
 
     /* Was diegene al begonnen, dan pakken we de draad op in plaats van
        hem opnieuw negen vragen te laten doen. Dat is precies de situatie
@@ -578,7 +692,51 @@
       if (e.key === 'Enter') { e.preventDefault(); verder.click(); }
     });
 
-    voortgang('intro');
+    /* Slotscherm: hier komen de contactgegevens binnen en pas daarna
+       gaat alles naar GHL. */
+    var gForm = document.getElementById('gegevensForm');
+    if (gForm) {
+      ['naam', 'bedrijfsnaam', 'email', 'telefoon'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.addEventListener('input', function () { markeerVeld(id, false); });
+      });
+      gForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var v = {
+          naam: (document.getElementById('naam').value || '').trim(),
+          bedrijfsnaam: (document.getElementById('bedrijfsnaam').value || '').trim(),
+          email: (document.getElementById('email').value || '').trim(),
+          telefoon: (document.getElementById('telefoon').value || '').trim()
+        };
+        var fout = {
+          naam: v.naam.length < 2,
+          bedrijfsnaam: v.bedrijfsnaam.length < 2,
+          email: !geldigEmail(v.email),
+          telefoon: !geldigNummer(v.telefoon)
+        };
+        Object.keys(fout).forEach(function (k) { markeerVeld(k, fout[k]); });
+        var eerste = Object.keys(fout).filter(function (k) { return fout[k]; })[0];
+        if (eerste) {
+          if (window.llTrack) window.llTrack('sprint-form-fout', { veld: eerste });
+          var el2 = document.getElementById(eerste);
+          if (el2) el2.focus();
+          return;
+        }
+        state.gegevens = v;
+        var knop = document.getElementById('gegevensSubmit');
+        if (knop) { knop.disabled = true; knop.textContent = 'Een moment'; }
+        rondEchtAf();
+      });
+    }
+
+    /* Komt iemand van scherm 1, dan is de intro een dode klik. Direct door
+       naar de eerste vraag. */
+    if (state.aanvraag && state.aanvraag.winstdienst && !alGegeven) {
+      state.gestart = true;
+      toon('q1');
+    } else {
+      voortgang('intro');
+    }
   }
 
   if (document.readyState === 'loading') {

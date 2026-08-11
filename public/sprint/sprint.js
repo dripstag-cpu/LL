@@ -99,115 +99,68 @@
     else input.removeAttribute('aria-invalid');
   }
 
-  function valideer() {
-    var waarden = {
-      bedrijfsnaam: (document.getElementById('bedrijfsnaam').value || '').trim(),
-      naam: (document.getElementById('naam').value || '').trim(),
-      email: (document.getElementById('email').value || '').trim(),
-      telefoon: (document.getElementById('telefoon').value || '').trim()
-    };
-    var fouten = {
-      bedrijfsnaam: waarden.bedrijfsnaam.length < 2,
-      naam: waarden.naam.length < 2,
-      email: !geldigEmail(waarden.email),
-      telefoon: !naarE164(waarden.telefoon)
-    };
-    Object.keys(fouten).forEach(function (k) { markeer(k, fouten[k]); });
-    var eersteFout = Object.keys(fouten).filter(function (k) { return fouten[k]; })[0];
-    return { ok: !eersteFout, eersteFout: eersteFout, waarden: waarden };
-  }
 
   /* --- 4. Versturen --------------------------------------------------- */
-  function verzamel(waarden) {
-    var form = document.getElementById('sprintForm');
-    var data = {};
-    Array.prototype.forEach.call(form.elements, function (el) {
-      if (el.name) data[el.name] = el.value;
-    });
-    data.bedrijfsnaam = waarden.bedrijfsnaam;
-    data.naam = waarden.naam;
-    data.voornaam = waarden.naam.split(' ')[0];
-    data.achternaam = waarden.naam.split(' ').slice(1).join(' ');
-    data.email = waarden.email.toLowerCase();
-    data.telefoon = waarden.telefoon;
-    data.telefoon_e164 = naarE164(waarden.telefoon);
-    data.formulier = 'sprint-aanvraag';
-    return data;
-  }
 
   function bewaarVoorBedankpagina(data) {
     try { sessionStorage.setItem('ll-sprint-aanvraag', JSON.stringify(data)); } catch (e) {}
   }
 
-  function toonFout(bericht) {
-    var status = document.getElementById('formStatus');
-    if (!status) return;
-    status.textContent = bericht;
-    status.className = 'form-status is-error';
-  }
 
   function init() {
     zetKop();
     vulVerborgenVelden();
     window.addEventListener('ll-consent', vulVerborgenVelden);
 
-    var form = document.getElementById('sprintForm');
+    var form = document.getElementById('startForm');
     if (!form) return;
-    var knop = document.getElementById('sprintSubmit');
+    var knop = document.getElementById('startSubmit');
 
-    ['bedrijfsnaam', 'naam', 'email', 'telefoon'].forEach(function (id) {
+    ['winstdienst', 'stad'].forEach(function (id) {
       var el = document.getElementById(id);
       if (!el) return;
-      el.addEventListener('input', function () {
-        markeer(id, false);
-        // E.164 blijft meelopen, zodat het veld ook zonder submit klopt.
-        if (id === 'telefoon') document.getElementById('h_telefoon_e164').value = naarE164(el.value);
-      });
+      el.addEventListener('input', function () { markeer(id, false); });
     });
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var check = valideer();
-      if (!check.ok) {
-        var el = document.getElementById(check.eersteFout);
-        if (el) el.focus();
-        return;
-      }
 
-      vulVerborgenVelden();
-      document.getElementById('h_telefoon_e164').value = naarE164(check.waarden.telefoon);
+      var winstdienst = (document.getElementById('winstdienst').value || '').trim();
+      var stad = (document.getElementById('stad').value || '').trim();
+      var fout = { winstdienst: winstdienst.length < 2, stad: stad.length < 2 };
+      Object.keys(fout).forEach(function (k) { markeer(k, fout[k]); });
+      var eerste = Object.keys(fout).filter(function (k) { return fout[k]; })[0];
+      if (eerste) { var el = document.getElementById(eerste); if (el) el.focus(); return; }
 
-      var data = verzamel(check.waarden);
+      /* Alles wat de quizpagina nodig heeft, plus de attributie die we hier
+         al hebben. De quiz stuurt het straks in één keer door naar GHL. */
+      var data = { winstdienst: winstdienst, stad: stad };
+      var form2 = document.getElementById('startForm');
+      Array.prototype.forEach.call(form2.elements, function (el2) {
+        if (el2.name && el2.type === 'hidden') data[el2.name] = el2.value;
+      });
+      var a = window.LL.attributie();
+      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','fbp','fbc'].forEach(function (k) {
+        if (!data[k]) data[k] = a[k] || '';
+      });
+      data.lead_id = window.LL.leadId();
+      data.landingspagina = window.location.pathname;
+      data.event_source_url = window.location.href;
+      data.tijdstip = new Date().toISOString();
+      data.user_agent = navigator.userAgent;
+
       bewaarVoorBedankpagina(data);
 
       knop.disabled = true;
-      knop.textContent = 'Bezig met versturen';
+      knop.textContent = 'Een moment';
 
-      // Lead vuurt precies één keer, met het event_id dat GHL ook krijgt.
-      window.LL.track('Lead', { content_name: 'Online Reputatie Sprint' });
+      /* QuizStart is het optimalisatie-event. Hier begint de kwalificatie,
+         en dit gebeurt veel vaker dan een volledige aanmelding. Lead vuurt
+         pas op het slotscherm, waar naam, e-mail en telefoon binnenkomen. */
+      window.LL.track('QuizStart', { content_name: 'Online Reputatie Sprint' });
+      if (window.llTrack) window.llTrack('sprint-stap1');
 
-      // Het lead_id gaat mee in de link, zodat de quiz het contact ook
-      // terugvindt als de bezoeker daar in een ander venster belandt.
-      function door() {
-        window.location.href = BEDANKT_URL + '?lid=' + encodeURIComponent(window.LL.leadId());
-      }
-
-      if (!GHL_WEBHOOK_URL) {
-        // Nog geen webhook gekoppeld: de flow loopt lokaal gewoon door.
-        if (window.console) console.warn('[sprint] GHL_WEBHOOK_URL is leeg, aanvraag niet verstuurd.', data);
-        door();
-        return;
-      }
-
-      fetch(GHL_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      }).then(door).catch(function () {
-        // Niet de lead verliezen: doorgaan naar de quiz, daar gaat alles opnieuw mee.
-        toonFout('Het versturen duurde langer dan verwacht. We gaan door naar de vragen, je aanvraag staat genoteerd.');
-        setTimeout(door, 1200);
-      });
+      window.location.href = BEDANKT_URL + '?lid=' + encodeURIComponent(window.LL.leadId());
     });
   }
 
@@ -254,6 +207,8 @@
       wachtrij.push([naam, data]);
     }
   }
+  window.llTrack = tel;
+
   var pogingen = 0;
   var timer = setInterval(function () {
     if (spoel() || ++pogingen > 40) clearInterval(timer);
@@ -265,7 +220,7 @@
   }
 
   function start() {
-    var form = document.getElementById('sprintForm');
+    var form = document.getElementById('startForm');
 
     /* 1. Scroll-diepte. Zegt of mensen voorbij de kop komen. */
     var vlaggen = { 50: eenmalig(function () { tel('sprint-scroll-50'); }),
@@ -305,6 +260,7 @@
     var origineel = window.LL && window.LL.track;
     if (origineel) {
       window.LL.track = function (naam, params) {
+        if (naam === 'QuizStart') tel('sprint-stap1');
         if (naam === 'Lead') tel('sprint-lead');
         return origineel.apply(window.LL, arguments);
       };
