@@ -22,7 +22,9 @@
     'ad-2': 'Tevreden klanten zijn geen reviews. Zeven dagen lang vragen wij het wel.',
     'ad-3': 'Dit regelen wij. Zeven dagen gratis, jij staat gewoon bij je klanten.',
     'ad-4': 'Zie zwart op wit waar jij staat als iemand in jouw stad zoekt.',
-    'ad-5': 'Eerst zien wat het oplevert. Daarna beslis jij.'
+    'ad-5': 'Eerst zien wat het oplevert. Daarna beslis jij.',
+    'ad-7': 'Je agenda zit vol. Alleen niet met de behandeling waar je het meeste aan verdient.',
+    'ad-8': 'Je losse behandelingen lopen. Je trajecten niet.'
   };
   /* De standaardkop is bewust niet gelijk aan een van de ad-varianten: hij moet ook
      werken voor wie zonder utm binnenkomt. Niet meer "je eerste 5 tot 10 reviews",
