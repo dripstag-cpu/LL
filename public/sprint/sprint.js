@@ -215,3 +215,103 @@
     init();
   }
 })();
+
+/* ======================================================================
+   Trechter-events naar Umami (toegevoegd 2026-08-11)
+   ----------------------------------------------------------------------
+   Waarom: Umami berekent tijd-op-pagina en bounce uitsluitend uit het
+   verschil tussen twee pageviews. Deze pagina heeft er maar een, dus elke
+   niet-converterende bezoeker leest als nul seconden en als bounce. Dat
+   zegt niets over of iemand de pagina las of het formulier aanraakte.
+   Custom events tellen niet mee in die twee getallen, maar ze verschijnen
+   wel in het events-rapport, en dat is precies de trechter die we missen:
+   bezoek -> gescrold -> formulier aangeraakt -> fout -> verstuurd.
+
+   Cookieloos en zonder toestemming, net als de rest van Umami. Er gaat
+   geen enkel persoonsgegeven mee, alleen de naam van de stap.
+   ====================================================================== */
+(function () {
+  'use strict';
+
+  // Umami laadt met defer. Bufferen tot het er is, daarna alsnog versturen.
+  var wachtrij = [];
+  var klaar = false;
+  function spoel() {
+    if (!window.umami || typeof window.umami.track !== 'function') return false;
+    klaar = true;
+    while (wachtrij.length) {
+      var ev = wachtrij.shift();
+      try { window.umami.track(ev[0], ev[1]); } catch (e) {}
+    }
+    return true;
+  }
+  function tel(naam, data) {
+    if (klaar || spoel()) {
+      try { window.umami.track(naam, data); } catch (e) {}
+    } else {
+      wachtrij.push([naam, data]);
+    }
+  }
+  var pogingen = 0;
+  var timer = setInterval(function () {
+    if (spoel() || ++pogingen > 40) clearInterval(timer);
+  }, 250);
+
+  function eenmalig(fn) {
+    var gedaan = false;
+    return function () { if (gedaan) return; gedaan = true; fn.apply(null, arguments); };
+  }
+
+  function start() {
+    var form = document.getElementById('sprintForm');
+
+    /* 1. Scroll-diepte. Zegt of mensen voorbij de kop komen. */
+    var vlaggen = { 50: eenmalig(function () { tel('sprint-scroll-50'); }),
+                    90: eenmalig(function () { tel('sprint-scroll-90'); }) };
+    function kijkScroll() {
+      var h = document.documentElement;
+      var totaal = (h.scrollHeight - h.clientHeight);
+      if (totaal <= 0) return;
+      var pct = (h.scrollTop || document.body.scrollTop) / totaal * 100;
+      if (pct >= 50) vlaggen[50]();
+      if (pct >= 90) vlaggen[90]();
+    }
+    window.addEventListener('scroll', kijkScroll, { passive: true });
+    kijkScroll();
+
+    if (!form) return;
+
+    /* 2. Formulier aangeraakt. Het getal dat we nu het hardst missen:
+          hoeveel bezoekers beginnen uberhaupt met invullen. */
+    var raakteAan = eenmalig(function () { tel('sprint-form-start'); });
+    form.addEventListener('focusin', raakteAan);
+
+    /* 3. Validatiefout. Vertelt op welk veld mensen stranden. */
+    var foutGemeld = false;
+    form.addEventListener('submit', function () {
+      setTimeout(function () {
+        var eerste = form.querySelector('.has-error');
+        if (!eerste) return;
+        var veld = eerste.querySelector('input, select, textarea');
+        var naam = (veld && (veld.id || veld.name)) || 'onbekend';
+        if (!foutGemeld) { tel('sprint-form-fout', { veld: naam }); foutGemeld = true; }
+      }, 60);
+    });
+
+    /* 4. Verstuurd. Dubbelt met het Lead-event naar Meta, maar dan in
+          dezelfde bak als de rest van de trechter, dus vergelijkbaar. */
+    var origineel = window.LL && window.LL.track;
+    if (origineel) {
+      window.LL.track = function (naam, params) {
+        if (naam === 'Lead') tel('sprint-lead');
+        return origineel.apply(window.LL, arguments);
+      };
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();
