@@ -508,6 +508,20 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 /* ====== Cookie-consent ============================================== */
 .ll-cookie { position: fixed; left: 14px; right: 14px; bottom: 14px; z-index: 9999; }
 .ll-cookie[hidden] { display: none; }
+
+/* ------------------------------------------------------------------
+   Banner wegzetten terwijl iemand in een veld typt (2026-08-11).
+   Reden: de banner staat fixed aan de onderkant. Op iOS schuift een
+   fixed element mee omhoog zodra het toetsenbord openklapt, en landt
+   hij dan precies op het veld waar de bezoeker in typt. Op een echte
+   iPhone lag hij over het telefoonveld heen.
+   Geen consent-probleem: er wordt niets gezet zolang er niet gekozen
+   is, en de banner komt terug zodra het veld de focus verliest.
+   De klasse .ll-typt is het vangnet voor browsers zonder :has().
+   ------------------------------------------------------------------ */
+body:has(input:focus, textarea:focus, select:focus) .ll-cookie,
+body.ll-typt .ll-cookie { visibility: hidden; }
+
 .ll-cookie-inner {
   max-width: 940px;
   margin: 0 auto;

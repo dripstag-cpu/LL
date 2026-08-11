@@ -317,3 +317,23 @@
     start();
   }
 })();
+
+/* Vangnet voor browsers zonder :has(): klasse op de body zetten zolang er een
+   invoerveld focus heeft. De korte vertraging voorkomt geflikker bij het springen
+   van veld naar veld. Toelichting staat in sprint.css. */
+(function () {
+  var t, velden = 'input, textarea, select';
+  function isVeld(el) { return el && el.matches && el.matches(velden); }
+  document.addEventListener('focusin', function (e) {
+    if (!isVeld(e.target)) return;
+    clearTimeout(t);
+    document.body.classList.add('ll-typt');
+  });
+  document.addEventListener('focusout', function (e) {
+    if (!isVeld(e.target)) return;
+    clearTimeout(t);
+    t = setTimeout(function () {
+      if (!isVeld(document.activeElement)) document.body.classList.remove('ll-typt');
+    }, 80);
+  });
+})();
