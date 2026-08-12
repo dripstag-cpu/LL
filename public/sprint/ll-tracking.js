@@ -223,9 +223,45 @@
     return id;
   }
 
+  /* Is dit event in deze sessie al weggegaan? `fired` dekt alleen de huidige
+     pagina, en de sprint-trechter loopt over twee pagina's. Het eventlogboek
+     staat in sessionStorage en overleeft de doorverwijzing, dus dat is de
+     bron. Nodig voor QuizStart, dat op scherm 1 en op de quiz-intro staat. */
+  function alGevuurd(name) {
+    if (fired[name]) return true;
+    var log = window.__llEvents || [];
+    for (var i = 0; i < log.length; i++) {
+      if (log[i] && log[i].event === name) return true;
+    }
+    return false;
+  }
+
+  /* Vuurt een event hooguit één keer per browser binnen het venster, standaard
+     30 dagen. Voor QuizStart, het optimalisatie-event: dat hoort één persoon
+     één keer te tellen. Een sessie-check is daarvoor te kort, want wie later
+     terugkomt krijgt een nieuw lead_id en begint schoon, terwijl Meta hem aan
+     dezelfde fbp-cookie hangt en hem dus dubbel zou tellen. Geeft het
+     event_id terug als er echt iets weg is, anders null.                 */
+  var EENMALIG_KEY = 'll-eenmalig';
+  function trackEenmalig(name, params, dagen) {
+    if (alGevuurd(name)) return null;
+    var log = {};
+    try { log = JSON.parse(localStorage.getItem(EENMALIG_KEY) || '{}') || {}; } catch (e) {}
+    var nu = new Date().getTime();
+    if (log[name] && (nu - log[name]) < (dagen || 30) * 864e5) return null;
+    var id = track(name, params);
+    if (id) {
+      log[name] = nu;
+      try { localStorage.setItem(EENMALIG_KEY, JSON.stringify(log)); } catch (e) {}
+    }
+    return id;
+  }
+
   /* --- publiek ------------------------------------------------------- */
   window.LL = {
     track: track,
+    trackEenmalig: trackEenmalig,
+    alGevuurd: alGevuurd,
     leadId: leadId,
     setLeadId: setLeadId,
     eventId: eventId,

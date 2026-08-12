@@ -157,7 +157,11 @@
       /* QuizStart is het optimalisatie-event. Hier begint de kwalificatie,
          en dit gebeurt veel vaker dan een volledige aanmelding. Lead vuurt
          pas op het slotscherm, waar naam, e-mail en telefoon binnenkomen. */
-      window.LL.track('QuizStart', { content_name: 'Online Reputatie Sprint' });
+      window.LL.trackEenmalig('QuizStart', { content_name: 'Online Reputatie Sprint' });
+      /* Umami telt wel elke keer. Dat meet gedrag, niet personen: iemand die
+         twee keer via een advertentie binnenkomt is twee bezoeken in de
+         trechter. Dus dit getal kan hoger liggen dan het aantal QuizStarts
+         in Meta, en dat is geen fout. */
       if (window.llTrack) window.llTrack('sprint-stap1');
 
       /* Even wachten voor we doorsturen. Gemeten 2026-08-11 op de live pagina:
@@ -262,16 +266,11 @@
       }, 60);
     });
 
-    /* 4. Verstuurd. Dubbelt met het Lead-event naar Meta, maar dan in
-          dezelfde bak als de rest van de trechter, dus vergelijkbaar. */
-    var origineel = window.LL && window.LL.track;
-    if (origineel) {
-      window.LL.track = function (naam, params) {
-        if (naam === 'QuizStart') tel('sprint-stap1');
-        if (naam === 'Lead') tel('sprint-lead');
-        return origineel.apply(window.LL, arguments);
-      };
-    }
+    /* Hier stond een omhulsel om LL.track dat QuizStart naar Umami spiegelde.
+       Dat dubbelde met de directe llTrack-aanroep in de verzendafhandeling,
+       waardoor sprint-stap1 twee keer geteld werd. Het spiegelen van Lead was
+       op deze pagina sowieso dood: Lead vuurt op het slotscherm van de
+       bedankpagina. Elke pagina meldt nu zijn eigen events, één keer. */
   }
 
   if (document.readyState === 'loading') {

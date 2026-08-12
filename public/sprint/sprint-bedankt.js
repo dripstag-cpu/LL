@@ -636,6 +636,15 @@
       startKnop.textContent = 'Ga verder waar je gebleven was';
     }
 
+    /* Drie manieren waarop iemand al als starter geteld is: hij kwam van
+       scherm 1, er staan al antwoorden bewaard, of het event staat nog in het
+       logboek van deze sessie. In alle drie de gevallen niet opnieuw vuren. */
+    function alStarter() {
+      if (state.aanvraag && state.aanvraag.winstdienst) return true;
+      if (alGegeven) return true;
+      return !!(window.LL && window.LL.alGevuurd && window.LL.alGevuurd('QuizStart'));
+    }
+
     document.getElementById('startQuiz').addEventListener('click', function () {
       if (!bekend) {
         var v = (herstelVeld.value || '').trim();
@@ -649,8 +658,13 @@
       }
       if (!state.gestart) {
         state.gestart = true;
-        // Voedt de retargeting-doelgroep "quiz-starters zonder finish" (doc 46).
-        window.LL.track('QuizStart', { content_name: 'Sprint kwalificatie' });
+        /* QuizStart is het optimalisatie-event en hoort één keer per persoon te
+           vuren. Op scherm 1 is dat al gebeurd, dus hier alleen nog voor wie
+           rechtstreeks op deze pagina binnenkomt en nog nergens stond. Anders
+           telt een terugkerende bezoeker twee keer mee in de optimalisatie. */
+        if (!alStarter()) {
+          window.LL.trackEenmalig('QuizStart', { content_name: 'Sprint kwalificatie' });
+        }
       }
       toon(alGegeven ? eersteOpenVraag() : 'q1');
     });
