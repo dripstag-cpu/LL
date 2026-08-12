@@ -160,7 +160,14 @@
       window.LL.track('QuizStart', { content_name: 'Online Reputatie Sprint' });
       if (window.llTrack) window.llTrack('sprint-stap1');
 
-      window.location.href = BEDANKT_URL + '?lid=' + encodeURIComponent(window.LL.leadId());
+      /* Even wachten voor we doorsturen. Gemeten 2026-08-11 op de live pagina:
+         zonder deze pauze breekt Safari/WebKit het QuizStart-verzoek af bij de
+         navigatie, 4 van 4 keer. Chromium voltooit het wel, 5 van 5. Het meeste
+         advertentieverkeer komt uit de in-app browser op iPhone, dus dat is de
+         maat. Met 250 ms voltooide WebKit 4 van 4. */
+      setTimeout(function () {
+        window.location.href = BEDANKT_URL + '?lid=' + encodeURIComponent(window.LL.leadId());
+      }, 250);
     });
   }
 
