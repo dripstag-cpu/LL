@@ -1,0 +1,234 @@
+---
+// Vangnetpagina voor hoge-klantwaarde specialisten zonder eigen branchepagina
+// (2026-08-16). Bewust GEEN item in niches.js: dan zou hij in de groepslogica en
+// de zusterlinks van [niche].astro belanden, terwijl hij juist de rest opvangt.
+// Alleen beroepen met hoge klantwaarde en een afspraak-model. Geen kappers,
+// barbershops of horeca (bewust geschrapt), geen tandheelkunde (eerder als
+// doelgroep afgevallen), en geen beroepen die al een eigen pagina hebben.
+// Ook medisch pedicures zijn eruit (2026-08-16): lage prijs per bezoek, en dat
+// botst met het criterium in de FAQ hieronder. Vervangen door audiciens.
+import Layout from '../../layouts/Layout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import { topics } from '../../data/topics.js';
+
+const title = 'Marketing voor lokale specialisten | Local Levers';
+const description =
+  'Manueel therapeut, podotherapeut, diëtist, acupuncturist of psycholoog? Zo word je lokaal gevonden en gekozen: op Google, in AI-zoekhulpen en op je reviews.';
+
+// De beroepen letterlijk bij naam, want herkenning is het hele punt van deze
+// pagina. Wie zichzelf hier terugleest, haakt niet af.
+const beroepen = [
+  'Manueel therapeuten',
+  'Podotherapeuten',
+  'Oefentherapeuten Cesar en Mensendieck',
+  'Ergotherapeuten',
+  'Logopedisten',
+  'Diëtisten',
+  'Acupuncturisten',
+  'Psychologen en psychotherapeuten',
+  'Orthopedisch schoenmakers',
+  'Audiciens',
+];
+
+const pains = [
+  {
+    h: 'Je vak is specialistisch, online zie je er hetzelfde uit',
+    p: 'Iemand die zoekt naar hulp bij zijn klacht ziet een paar praktijken onder elkaar en kan er niet aan aflezen wie waar goed in is. Zonder een compleet profiel op de behandeling die je het liefst doet, val je in dezelfde hoop als de praktijk verderop.',
+  },
+  {
+    h: 'Je krijgt te weinig reviews voor het werk dat je levert',
+    p: 'Je klanten zijn vaak tevreden, maar niemand vraagt ze op het juiste moment om een review. Daardoor staat er een oud aantal op je profiel terwijl je al honderden behandelingen verder bent, en dat is precies wat een nieuwe klant meeweegt.',
+  },
+  {
+    h: 'De aanvraag die na sluitingstijd binnenkomt, ligt morgen al ergens anders',
+    p: 'Wie een klacht heeft, mailt of belt meestal buiten kantooruren en probeert er twee of drie. De praktijk die als eerste reageert, krijgt de afspraak. Als jij pas een dag later kijkt, is die keuze meestal al gemaakt.',
+  },
+];
+
+const faq = [
+  {
+    q: 'Mijn beroep staat er niet bij, kunnen jullie er dan wel iets mee?',
+    a: 'Waarschijnlijk wel. De vraag die telt is niet hoe je vak heet, maar of nieuwe klanten je online opzoeken, of ze kiezen op reviews en of een klant je meer dan een paar tientjes waard is. Zit je daarboven en werk je op afspraak, dan werkt dezelfde aanpak.',
+  },
+  {
+    q: 'Ik werk deels met verwijzingen, heeft vindbaarheid dan zin?',
+    a: 'Ja. Een groeiend deel van de mensen zoekt zelf, zonder verwijzing, en kiest op reviews en op je plek in de lokale resultaten. Voor die stroom bepaalt je vindbaarheid hoeveel nieuwe klanten er binnenkomen, naast wat er via verwijzing loopt.',
+  },
+  {
+    q: 'Werken jullie voor elk lokaal bedrijf?',
+    a: 'Nee. Onze aanpak vraagt een klant die genoeg oplevert om de investering terug te verdienen, en dat lukt niet bij een lage prijs per bezoek. We werken met praktijken en specialisten waar een klant of een heel traject substantieel is en waar mensen op afspraak komen.',
+  },
+  {
+    q: 'Wat kost het, en wat zit er in dat bedrag?',
+    a: '€397 ex btw per maand, geen opstartkosten, maandelijks opzegbaar. Daarin zit alles: je Google Bedrijfsprofiel onderhouden op je winstgevende behandeling, je gegevens gelijk op Bing Places en Apple Business Connect, je zichtbaarheid in AI-zoekhulpen zoals ChatGPT en Perplexity gemeten, en elke maand een rapport met een kaart van je stad waarop je ziet waar je staat, met een ingesproken toelichting. Daarbij het review-systeem op je bestaande klantenlijst, waarbij tevreden klanten meteen doorgaan naar je profiel en wie iets aan te merken heeft eerst bij jou terechtkomt, met de link naar je profiel er nog steeds bij, en elke review wordt beantwoord. En je website met hosting, een chat die de meeste vragen meteen beantwoordt en de juiste afspraak-link geeft, een terugbelbericht als je een oproep mist, en automatisch antwoord op berichten via Facebook en Instagram. De website is in bruikleen zolang je klant bent en kun je bij beëindiging afkopen voor €1.000. Bevalt de eerste maand je niet, dan krijg je hem terug. Los bij te bestellen: Google Ads-beheer voor €250 per maand ex advertentiebudget, en het terughalen van je oude klanten als apart traject.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+// Bewust de brede gidsen, niet de kliniek-specifieke: deze bezoeker heeft geen
+// kliniek. Alleen wat ook echt gepubliceerd is.
+const guides = [
+  'online-vindbaarheid-verbeteren',
+  'lokale-vindbaarheid',
+  'online-reputatiemanagement',
+  'juiste-google-categorie-kiezen',
+  'reviews-vragen-zonder-opdringerig',
+]
+  .map((slug) => topics.find((t) => t.slug === slug && t.published))
+  .filter(Boolean);
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline />
+  </Fragment>
+
+  <SiteNav />
+
+  <main class="pg">
+    <section class="pg-hero">
+      <div class="pg-inner">
+        <p class="pg-eyebrow">Voor lokale specialisten</p>
+        <h1>Marketing voor lokale specialisten</h1>
+        <p class="pg-lead">Staat jouw vak niet bij de branches op deze site? Dat betekent niet dat het niet werkt. Voor elke praktijk waar mensen op afspraak komen en waar een klant meer is dan een eenmalig tientje, geldt dezelfde beweging: gevonden worden, gekozen worden op je reviews, en geen aanvraag laten weglopen.</p>
+        <a data-cta="specialisten-hero" href="/gesprek/" class="pg-cta">Plan een gesprek</a>
+        <p class="pg-note">€397 ex btw per maand. Geen opstartkosten, maandelijks opzegbaar.</p>
+      </div>
+    </section>
+
+    <section class="pg-block">
+      <div class="pg-inner">
+        <h2>Voor wie dit werkt</h2>
+        <p class="pg-lead">Deze praktijken hebben geen eigen pagina op deze site, maar wel precies hetzelfde probleem.</p>
+        <ul class="pg-beroepen">
+          {beroepen.map((b) => <li>{b}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="pg-block">
+      <div class="pg-inner">
+        <h2>Waar lokale specialisten klanten laten liggen</h2>
+        <div class="pg-cards">
+          {pains.map((pain) => (
+            <article>
+              <h3>{pain.h}</h3>
+              <p>{pain.p}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="pg-block">
+      <div class="pg-inner">
+        <h2>Hoe wij het oplossen</h2>
+        <div class="pg-pillars">
+          <div>
+            <span class="pg-pnum">01</span>
+            <h3>Gevonden worden</h3>
+            <p>Je Google Bedrijfsprofiel onderhouden op je winstgevende behandeling, je gegevens gelijk op Bing Places en Apple Business Connect, en je zichtbaarheid in AI-zoekhulpen zoals ChatGPT en Perplexity gemeten. Elke maand een rapport met een kaart van je stad waarop je ziet waar je staat.</p>
+          </div>
+          <div>
+            <span class="pg-pnum">02</span>
+            <h3>Gekozen worden</h3>
+            <p>Je bestaande klanten krijgen op het juiste moment de vraag hoe het ging. Wie tevreden is gaat meteen door naar je profiel, wie iets aan te merken heeft komt eerst bij jou, met de link naar je profiel er nog steeds bij. Elke review wordt beantwoord.</p>
+          </div>
+          <div>
+            <span class="pg-pnum">03</span>
+            <h3>Geboekt worden</h3>
+            <p>Een website met hosting, een chat die de meeste vragen meteen beantwoordt en de juiste afspraak-link geeft, een terugbelbericht als je een oproep mist, en automatisch antwoord op berichten via Facebook en Instagram.</p>
+            <p class="pg-pnote">Je agenda blijft van jou. Heb je een eigen boekingssysteem, dan raken we dat niet aan en stuurt de chat naar de juiste link.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pg-block">
+      <div class="pg-inner pg-faq">
+        <h2>Veelgestelde vragen</h2>
+        {faq.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="pg-block">
+      <div class="pg-inner">
+        <h2>Uitleg die hierbij hoort</h2>
+        <p class="pg-lead">Wil je eerst weten hoe het werkt? Deze gidsen leggen de onderdelen uit die het zwaarst wegen.</p>
+        <ul class="pg-guides">
+          {guides.map((t) => (
+            <li>
+              <a href={`/gids/${t.slug}/`}>
+                <span class="pg-guide-title">{t.h1}</span>
+                <span class="pg-guide-arrow">&rarr;</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="pg-links"><a href="/gids/">Alle {topics.length} gidsen in de kennisbank &rarr;</a></p>
+      </div>
+    </section>
+
+    <section class="pg-block pg-cta-block">
+      <div class="pg-inner">
+        <h2>Wat het kost</h2>
+        <p class="pg-lead">€397 ex btw per maand voor het hele systeem: je vindbaarheid, je reviews en je website met de opvolging eromheen. Geen opstartkosten, maandelijks opzegbaar. Bevalt de eerste maand je niet, dan krijg je hem terug. Op de volgende pagina staat een video waarin je ziet wat we doen en wat je ervoor krijgt.</p>
+        <a data-cta="specialisten-slot" href="/gesprek/" class="pg-cta">Plan een gesprek</a>
+      </div>
+    </section>
+
+  </main>
+</Layout>
+
+<style>
+  .pg { background: #FAFAF8; color: #0a0a09; font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif; }
+  .pg-inner { max-width: 940px; margin: 0 auto; padding: 0 24px; }
+  .pg-hero { padding: 56px 0 64px; background: radial-gradient(700px circle at 80% 0%, rgba(26,122,84,0.08), transparent 55%), radial-gradient(500px circle at 0% 100%, rgba(26,122,84,0.06), transparent 60%), #FAFAF8; }
+  .pg-eyebrow { font-family: 'Outfit Variable', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #1A7A54; }
+  .pg h1 { font-family: 'Outfit Variable', sans-serif; font-size: clamp(32px, 5vw, 52px); font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; margin: 14px 0 0; max-width: 18ch; }
+  .pg-lead { font-size: 17px; line-height: 1.6; color: #64645F; margin-top: 18px; max-width: 62ch; }
+  .pg-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; background: var(--green); color: #fff; font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 16px; padding: 16px 28px; border-radius: 14px; text-decoration: none; }
+  .pg-note { margin-top: 12px; font-size: 13px; color: #8c8c87; }
+  .pg-block { padding: 60px 0; border-top: 1px solid #E4E3DC; }
+  .pg h2 { font-family: 'Outfit Variable', sans-serif; font-size: clamp(26px, 3.5vw, 36px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; margin: 0; }
+  .pg-beroepen { list-style: none; padding: 0; margin: 26px 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .pg-beroepen li { border: 1px solid #E4E3DC; border-radius: 14px; background: #FFFFFF; padding: 15px 18px; font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 15px; line-height: 1.3; color: #0a0a09; }
+  .pg-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
+  .pg-cards article { border: 1px solid #E4E3DC; border-radius: 16px; padding: 24px; background: #FFFFFF; }
+  .pg-cards h3 { font-family: 'Outfit Variable', sans-serif; font-size: 17px; font-weight: 700; color: #0a0a09; margin: 0 0 10px; line-height: 1.25; }
+  .pg-cards p { font-size: 14px; line-height: 1.6; color: #64645F; margin: 0; }
+  .pg-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
+  .pg-pnum { font-family: 'Outfit Variable', sans-serif; font-weight: 800; font-size: 14px; color: #1A7A54; }
+  .pg-pillars h3 { font-family: 'Outfit Variable', sans-serif; font-size: 20px; font-weight: 700; color: #0a0a09; margin: 8px 0 8px; }
+  .pg-pillars p { font-size: 14.5px; line-height: 1.6; color: #64645F; margin: 0; }
+  .pg-pillars .pg-pnote { margin-top: 14px; padding-top: 12px; border-top: 1px dashed #E4E3DC; font-size: 13px; color: #8c8c87; }
+  .pg-faq details { border-top: 1px solid #E4E3DC; padding: 18px 0; }
+  .pg-faq summary { font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 17px; color: #0a0a09; cursor: pointer; }
+  .pg-faq p { font-size: 14.5px; line-height: 1.6; color: #64645F; margin: 12px 0 0; }
+  .pg-guides { list-style: none; padding: 0; margin: 26px 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .pg-guides a { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 100%; border: 1px solid #E4E3DC; border-radius: 16px; background: #FFFFFF; padding: 18px 20px; text-decoration: none; }
+  .pg-guides a:hover { border-color: #1A7A54; }
+  .pg-guide-title { font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 15px; line-height: 1.3; color: #0a0a09; }
+  .pg-guide-arrow { color: #1A7A54; font-size: 15px; }
+  .pg-block .pg-links { margin-top: 20px; font-size: 14px; color: #64645F; }
+  .pg-block .pg-links a { color: #1A7A54; text-decoration: none; }
+  .pg-cta-block .pg-lead { margin-top: 16px; }
+  .pg-footer { padding: 40px 0 64px; border-top: 1px solid #E4E3DC; font-size: 13px; color: #8c8c87; }
+  .pg-links { margin-top: 8px; }
+  .pg-footer .pg-links a { color: #64645F; text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 720px) { .pg-cards, .pg-pillars, .pg-guides, .pg-beroepen { grid-template-columns: 1fr; } }
+</style>

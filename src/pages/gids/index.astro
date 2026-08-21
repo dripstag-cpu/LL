@@ -1,74 +1,274 @@
 ---
+// Kennisbank-hub, herschreven 2026-08-17 naar doc 51 sectie D.
+//
+// Opbouw exact als het voorbeeld: bovenregel, kop, één ondertitel die zegt
+// voor wie het is, dan artikelkaarten met categorie, datum, titel, auteur en
+// samenvatting, en onderaan paginering. De staart (slotkaart, proces, reviews,
+// voettekst) komt uit SiteFooter.astro, hier staat dus geen eigen slot meer.
+//
+// Datum per artikel: de dag dat de batch echt live ging. Core stond er vanaf
+// de launch, de pillar-gidsen kwamen op 2026-08-09 en de overige batches zijn
+// op 2026-08-16 vrijgegeven (zie de rollout-schakelaar in data/topics.js en
+// launch-tracking/seo-indexing-log.md). Niet zelf een datum verzinnen.
+//
+// Paginering is een schakelaar op de client: alle kaarten staan in de HTML,
+// zodat elke link vindbaar blijft, en het script verbergt wat niet op de
+// huidige pagina hoort. Zonder JavaScript staan ze gewoon allemaal onder
+// elkaar en blijft de balk verborgen.
 import Layout from '../../layouts/Layout.astro';
-import { groups, topics } from '../../data/topics.js';
+import SiteNav from '../../components/SiteNav.astro';
+import { topics } from '../../data/topics.js';
 
-const total = topics.length;
-const title = 'Kennisbank voor klinieken en behandel-salons | Local Levers';
-const description = `Uitleg over vindbaarheid op Google Maps, je Bedrijfsprofiel, reviews en zoektools als ChatGPT en Perplexity. ${total} gidsen voor eigenaren van klinieken en salons.`;
+// Korte categorienaam en publicatiedatum per groep uit data/topics.js.
+// Let op: dezelfde tabel staat in gids/[topic].astro, want die pagina toont
+// dezelfde regel boven het artikel. Pas ze samen aan.
+const CATEGORIE = {
+  'Marketing en vindbaarheid per vak': { badge: 'Per vak', datum: '2026-08-09' },
+  'Online vindbaarheid en reputatie': { badge: 'Vindbaarheid', datum: '2026-08-16' },
+  'Google Maps en lokale ranking': { badge: 'Google Maps', datum: '2026-08-16' },
+  'Je Google Bedrijfsprofiel': { badge: 'Bedrijfsprofiel', datum: '2026-08-16' },
+  'Reviews en reputatie': { badge: 'Reviews', datum: '2026-08-16' },
+  'ChatGPT, Perplexity en directories': { badge: 'AI-zoekhulpen', datum: '2026-08-16' },
+  'Kiezen en opvolgen': { badge: 'Opvolging', datum: '2026-08-16' },
+  'Veelgestelde vragen': { badge: 'Veelgesteld', datum: '2026-07-06' },
+};
+const STANDAARD = { badge: 'Gids', datum: '2026-07-06' };
+
+const MAANDEN = [
+  'januari', 'februari', 'maart', 'april', 'mei', 'juni',
+  'juli', 'augustus', 'september', 'oktober', 'november', 'december',
+];
+function schrijfDatum(iso) {
+  const [j, m, d] = iso.split('-');
+  return `${Number(d)} ${MAANDEN[Number(m) - 1]} ${j}`;
+}
+
+const PER_PAGINA = 9;
+
+// Nieuwste eerst. Binnen dezelfde datum blijft de volgorde van topics.js staan.
+const artikelen = topics
+  .map((t) => {
+    const c = CATEGORIE[t.group] || STANDAARD;
+    return { ...t, badge: c.badge, datum: c.datum };
+  })
+  .sort((a, b) => (a.datum < b.datum ? 1 : a.datum > b.datum ? -1 : 0));
+
+const paginas = Math.ceil(artikelen.length / PER_PAGINA);
+
+const title = 'Kennisbank voor vakbedrijven | Local Levers';
+const description = `Uitleg over vindbaarheid op Google Maps, je Bedrijfsprofiel, reviews en zoektools als ChatGPT en Perplexity. ${artikelen.length} gidsen voor lokale vakbedrijven.`;
 ---
 
 <Layout title={title} description={description}>
-  <main class="pg">
-    <section class="pg-hero">
-      <div class="pg-inner narrow">
-        <a href="/" class="pg-brand">Local<span>Levers</span></a>
-        <p class="pg-eyebrow">Kennisbank</p>
-        <h1>Alles over vindbaar worden en gekozen worden</h1>
-        <p class="pg-lead">Praktische uitleg voor eigenaren van klinieken en behandel-salons. Hoe je hoger komt op Google Maps, je Bedrijfsprofiel op orde krijgt, meer reviews binnenhaalt, en meetelt in de antwoorden van ChatGPT en Perplexity. Geen theorie, alleen wat werkt.</p>
-        <a href="/sprint/" class="pg-cta">Vraag je gratis reputatie-sprint aan &rarr;</a>
+  <SiteNav />
+
+  <main class="gd">
+    <section class="gd-hero">
+      <div class="gd-inner">
+        <p class="gd-eyebrow">Kennisbank en uitleg</p>
+        <h1>De kennisbank van Local Levers</h1>
+        <p class="gd-sub">
+          Uitleg over gevonden worden en gekozen worden, geschreven voor lokale vakbedrijven.
+        </p>
       </div>
     </section>
 
-    {groups.map((g) => (
-      <section class="pg-block">
-        <div class="pg-inner narrow">
-          <h2>{g.title}</h2>
-          <ul class="hub-list">
-            {g.items.map((t) => (
-              <li><a href={`/gids/${t.slug}/`}>{t.h1}</a></li>
-            ))}
-          </ul>
+    <section class="gd-lijst">
+      <div class="gd-inner">
+        <div class="gd-grid" id="gd-grid">
+          {artikelen.map((t, i) => (
+            <a class="gd-kaart" href={`/gids/${t.slug}/`} data-blz={Math.floor(i / PER_PAGINA) + 1}>
+              <div class="gd-rij">
+                <span class="gd-badge">{t.badge}</span>
+                <span class="gd-datum">{schrijfDatum(t.datum)}</span>
+              </div>
+              <h2 class="gd-titel">{t.h1}</h2>
+              <p class="gd-auteur">Door Bryan Ubink</p>
+              <p class="gd-samenvatting">{t.lead}</p>
+              <span class="gd-lees">Lees het artikel <span aria-hidden="true">&rarr;</span></span>
+            </a>
+          ))}
         </div>
-      </section>
-    ))}
 
-    <section class="pg-block pg-cta-block">
-      <div class="pg-inner narrow">
-        <h2>Zie waar je nu staat</h2>
-        <p class="pg-lead">Vraag de gratis Online Reputatie Sprint aan. Zeven dagen lang zetten we je reviews en je vindbaarheid in gang, uit jouw naam, en je ziet aan het eind zwart op wit waar je staat. Geen kosten, geen verplichting.</p>
-        <a href="/sprint/" class="pg-cta">Vraag je gratis reputatie-sprint aan &rarr;</a>
+        <nav class="gd-pag" id="gd-pag" aria-label="Paginering" hidden>
+          <button type="button" class="gd-pag-knop gd-pag-rand" data-stap="-1">
+            <span aria-hidden="true">&lsaquo;</span> Vorige
+          </button>
+          {Array.from({ length: paginas }, (_, i) => (
+            <button type="button" class="gd-pag-knop gd-pag-nr" data-blz={i + 1}>{i + 1}</button>
+          ))}
+          <button type="button" class="gd-pag-knop gd-pag-rand" data-stap="1">
+            Volgende <span aria-hidden="true">&rsaquo;</span>
+          </button>
+        </nav>
       </div>
     </section>
-
-    <footer class="pg-footer">
-      <div class="pg-inner narrow">
-        <p>Marketing per type bedrijf: <a href="/marketing/">bekijk alle branches &rarr;</a></p>
-        <p class="pg-back">Local Levers &middot; Vindbaarheid en opvolging voor klinieken en behandel-salons</p>
-      </div>
-    </footer>
   </main>
 </Layout>
 
+<script>
+  const grid = document.getElementById('gd-grid');
+  const balk = document.getElementById('gd-pag');
+  if (grid && balk) {
+    const kaarten = Array.from(grid.querySelectorAll('.gd-kaart'));
+    const nummers = Array.from(balk.querySelectorAll('.gd-pag-nr'));
+    const randen = Array.from(balk.querySelectorAll('.gd-pag-rand'));
+    const laatste = nummers.length;
+    let huidig = 1;
+
+    function toon(blz) {
+      huidig = Math.min(Math.max(blz, 1), laatste);
+      kaarten.forEach((k) => {
+        k.hidden = Number(k.dataset.blz) !== huidig;
+      });
+      nummers.forEach((n) => {
+        const actief = Number(n.dataset.blz) === huidig;
+        n.classList.toggle('is-actief', actief);
+        if (actief) n.setAttribute('aria-current', 'page');
+        else n.removeAttribute('aria-current');
+      });
+      randen.forEach((r) => {
+        const doel = huidig + Number(r.dataset.stap);
+        r.disabled = doel < 1 || doel > laatste;
+      });
+    }
+
+    nummers.forEach((n) => n.addEventListener('click', () => {
+      toon(Number(n.dataset.blz));
+      grid.scrollIntoView({ block: 'start' });
+    }));
+    randen.forEach((r) => r.addEventListener('click', () => {
+      toon(huidig + Number(r.dataset.stap));
+      grid.scrollIntoView({ block: 'start' });
+    }));
+
+    balk.hidden = false;
+    toon(1);
+  }
+</script>
+
 <style>
-  .pg { background: #FAFAF8; color: #0a0a09; font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif; }
-  .pg-inner { max-width: 940px; margin: 0 auto; padding: 0 24px; }
-  .pg-inner.narrow { max-width: 760px; }
-  .pg-brand { font-family: 'Outfit Variable', sans-serif; font-weight: 800; font-size: 18px; color: #0a0a09; text-decoration: none; }
-  .pg-brand span { color: #1A7A54; }
-  .pg-hero { padding: 64px 0 48px; background: radial-gradient(700px circle at 80% 0%, rgba(26,122,84,0.08), transparent 55%), #FAFAF8; }
-  .pg-eyebrow { margin-top: 36px; font-family: 'Outfit Variable', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #1A7A54; }
-  .pg h1 { font-family: 'Outfit Variable', sans-serif; font-size: clamp(30px, 4.6vw, 46px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin: 14px 0 0; }
-  .pg-lead { font-size: 17px; line-height: 1.65; color: #64645F; margin-top: 18px; }
-  .pg-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; background: #1A7A54; color: #fff; font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 15.5px; padding: 15px 26px; border-radius: 14px; text-decoration: none; }
-  .pg-block { padding: 40px 0; border-top: 1px solid #E4E3DC; }
-  .pg h2 { font-family: 'Outfit Variable', sans-serif; font-size: clamp(22px, 3vw, 28px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.2; margin: 0 0 18px; }
-  .hub-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
-  .hub-list li { border-top: 1px solid #E4E3DC; }
-  .hub-list li:first-child { border-top: none; }
-  .hub-list a { display: block; padding: 13px 0; font-size: 16px; line-height: 1.4; color: #64645F; text-decoration: none; }
-  .hub-list a:hover { color: #1A7A54; }
-  .pg-cta-block .pg-lead { margin-top: 14px; }
-  .pg-footer { padding: 36px 0 64px; border-top: 1px solid #E4E3DC; font-size: 14px; color: #64645F; }
-  .pg-footer a { color: #64645F; text-decoration: underline; text-underline-offset: 3px; }
-  .pg-back { font-size: 13px; margin-top: 12px; }
+  .gd { background: #FAFAF8; color: #0a0a09; font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif; }
+  .gd-inner { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- kop ---- */
+  .gd-hero { background: #0a0a09; color: #FAFAF8; text-align: center; padding: 64px 0 72px; }
+  .gd-eyebrow {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #4ADE80;
+  }
+  .gd h1 {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: clamp(30px, 4.6vw, 50px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 14px 0 0;
+  }
+  .gd-sub {
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(250, 250, 248, 0.78);
+    margin: 18px auto 0;
+    max-width: 56ch;
+  }
+
+  /* ---- artikelkaarten ---- */
+  .gd-lijst { padding: 48px 0 72px; }
+  .gd-grid { display: grid; gap: 24px; }
+  .gd-kaart {
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 8px 28px rgba(20, 20, 19, 0.1);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .gd-kaart[hidden] { display: none; }
+  .gd-kaart:hover { transform: translateY(-3px); box-shadow: 0 12px 34px rgba(20, 20, 19, 0.14); }
+
+  .gd-rij { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+  .gd-badge {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: #1A7A54;
+    border-radius: 999px;
+    padding: 3px 10px;
+  }
+  .gd-datum { font-size: 13px; color: #8c8c87; }
+
+  .gd-titel {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+    margin: 12px 0 0;
+  }
+  .gd-auteur { font-size: 12px; font-style: italic; font-weight: 500; color: #8c8c87; margin: 8px 0 0; }
+  .gd-samenvatting {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #55554F;
+    /* De onderrand houdt de streep van de laatste regel af. De marge van
+       .gd-lees is auto en kan dus geen ruimte garanderen. */
+    margin: 12px 0 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  /* margin-top:auto duwt de regel naar de onderkant van de kaart, zodat alle
+     kaarten in een rij hun streep op dezelfde hoogte hebben. Zit de kaart vol,
+     dan valt de marge weg en houdt de padding de streep van de tekst af. */
+  .gd-lees {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid #E4E3DC;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1A7A54;
+  }
+
+  /* ---- paginering ---- */
+  .gd-pag { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 40px; }
+  .gd-pag-knop {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #0a0a09;
+    background: #FFFFFF;
+    border: 1px solid #E4E3DC;
+    border-radius: 6px;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    cursor: pointer;
+  }
+  .gd-pag-knop:hover:not(:disabled) { border-color: #1A7A54; color: #1A7A54; }
+  .gd-pag-knop:disabled { color: #b5b4ae; background: #F2F1EC; border-color: #EDECE5; cursor: default; }
+  .gd-pag-knop.is-actief { color: #FAFAF8; background: #0a0a09; border-color: #0a0a09; }
+
+  @media (min-width: 660px) {
+    .gd-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1000px) {
+    .gd-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
 </style>

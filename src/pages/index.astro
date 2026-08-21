@@ -1,10 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SiteNav from '../components/SiteNav.astro';
+import fs from 'node:fs';
 import bodyHtmlRaw from '../home-body.html?raw';
 import schemaJson from '../home-schema.json?raw';
 
 // Strip HTML-comments (o.a. het changelog-blok) uit de output; de bron behoudt ze.
-const bodyHtml = bodyHtmlRaw.replace(/<!--[\s\S]*?-->/g, '');
+let bodyHtml = bodyHtmlRaw.replace(/<!--[\s\S]*?-->/g, '');
+
+// De demo-knoppen staan er altijd, ook zolang de video's nog niet bestaan
+// (Bryan, 2026-08-17: dezelfde inrichting als het voorbeeld, de video's
+// volgen). De popup toont dan de nette lege staat met de productnaam; zodra
+// public/videos/<slug>.mp4 er is, speelt hij de video.
 
 const orgSchema = {
   '@context': 'https://schema.org',
@@ -13,7 +20,7 @@ const orgSchema = {
   url: 'https://locallevers.com',
   image: 'https://locallevers.com/favicon.svg',
   description:
-    'Local Levers maakt klinieken en behandel-salons in Nederland beter vindbaar op Google, Apple Maps, directories en in AI-zoekopdrachten, en zorgt dat geen aanvraag wegloopt.',
+    'Local Levers maakt vakbedrijven in Nederland beter vindbaar op Google, Apple Maps, directories en in AI-zoekopdrachten, en zorgt dat geen aanvraag wegloopt.',
   areaServed: { '@type': 'Country', name: 'Nederland' },
   founder: { '@type': 'Person', name: 'Bryan Ubink' },
   email: 'info@locallevers.com',
@@ -33,6 +40,7 @@ const orgSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} is:inline />
     <script type="application/ld+json" set:html={schemaJson} is:inline />
   </Fragment>
+  <SiteNav sticky />
   <Fragment set:html={bodyHtml} />
   <script>
     import '../scripts/home.js';

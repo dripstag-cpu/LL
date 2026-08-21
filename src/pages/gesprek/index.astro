@@ -1,0 +1,1095 @@
+---
+// Funnel-pagina. Eén taak: de quiz laten invullen en daarna de video laten
+// kijken. Bewust zonder navigatie, zonder footer-links en zonder tweede
+// aanbod: elke uitweg is een lek. Zie doc 49 sectie 5.
+//
+// Volgorde omgedraaid op 2026-08-17: eerst de quiz, dan pas de video. Wie de
+// vragen doorloopt heeft al iets van zichzelf gegeven en kijkt langer.
+import fs from 'node:fs';
+import Bare from '../../layouts/Bare.astro';
+
+const PRIJS = '397';
+const WHATSAPP = 'https://wa.me/31634014177';
+
+// Inbound-webhook van GHL: de quiz-antwoorden gaan hier meteen naartoe zodra
+// iemand de vragen afrondt, los van of hij daarna een gesprek boekt. Zo raak je
+// geen lead kwijt. De agenda-widget is de boeking zelf.
+const WEBHOOK = 'https://services.leadconnectorhq.com/hooks/agbm4h41aVGOzDyuSc16/webhook-trigger/MonSBjbl6pUYVsi78iMw';
+
+// De video bestaat nog niet. Zolang dat zo is wordt het <video>-element niet
+// uitgeschreven, want anders vraagt elke bezoeker twee bestanden op die er niet
+// zijn en staan er twee 404's in de console van de belangrijkste pagina van de
+// site. Zodra /public/gesprek-uitleg.mp4 er staat, zet de eerstvolgende build
+// hem er vanzelf in. (2026-08-17)
+const heeftVideo = fs.existsSync(new URL('../../../public/gesprek-uitleg.mp4', import.meta.url));
+const heeftPoster = fs.existsSync(new URL('../../../public/gesprek-poster.jpg', import.meta.url));
+---
+
+<!--
+  Bewust wél indexeerbaar. Dit is de enige pagina met de prijs erop, en de hele
+  positionering is dat die prijs publiek is. Alle branche- en gids-pagina's
+  sturen hun CTA hier naartoe, dus op noindex zetten zou die interne links
+  waardeloos maken en een pagina uit de index houden die juist hoort te ranken
+  op vragen als "wat kost het".
+-->
+<Bare
+  title="Gevonden, gekozen en geboekt worden voor €397 per maand | Local Levers"
+  description="Eén systeem voor je Google-profiel, je reviews en je aanvragen. €397 ex btw per maand, maandelijks opzegbaar, geen opstartkosten."
+>
+  <main class="funnel">
+    <a class="merk" href="/">Local<span>Levers</span></a>
+
+    <!--
+      Kop zoals de landingspagina van het voorbeeld, nagemeten 2026-08-17
+      avond: een brede zin op 50px over twee tot drie regels, en daaronder de
+      prijs als eigen grote regel met de pijl naar de quiz erachter. De prijs
+      stond eerst in de zin verstopt en de kop was zes smalle regels; dat was
+      het verschil dat Bryan zag. "Voor maar" is er op 2026-08-18 uit gehaald:
+      de kop eindigt op de zin, de prijs staat er los onder.
+    -->
+    <h1>
+      Wij helpen vakbedrijven aan meer klussen met een slimme website, meer reviews en snelle opvolging.
+    </h1>
+    <p class="prijs-groot">
+      &euro;{PRIJS}/mnd<svg class="pijl" viewBox="0 0 24 30" aria-hidden="true" focusable="false">
+        <path d="M12 2 V25" />
+        <path d="M3.5 17 L12 27 L20.5 17" />
+      </svg>
+    </p>
+
+    <!-- ==================== quiz, video en slotknop ==================== -->
+    <!--
+      Volgorde van het voorbeeld, nagemeten 2026-08-17: eerst het videokader
+      (768 breed, 16:9, alleen het afspeelrondje erin), daaronder de volle
+      startknop met het label. Het label zat eerst ín het kader; dat gaf twee
+      keer dezelfde tekst zodra de knop erbij kwam.
+    -->
+    <div class="zone" id="zone">
+      <button class="video-start" id="video-knop" type="button" aria-label="Bekijk hoe het werkt">
+        <span class="video-ph-play" aria-hidden="true"></span>
+      </button>
+      {heeftVideo && (
+        <p class="stap-regel">Eerst een paar korte vragen. Daarna zie je de uitleg en plan je het gesprek.</p>
+      )}
+      <button class="knop-groot" id="start-knop" type="button">Bekijk hoe het werkt</button>
+      <noscript>
+        <style is:inline>#start-knop, #video-knop { display: none; }</style>
+        <p class="toelichting">
+          Regel het gesprek rechtstreeks via WhatsApp.
+          <a href={WHATSAPP}>Stuur een bericht</a>.
+        </p>
+      </noscript>
+
+      <!-- De video en de agenda stonden hier eerst als uitklap onder de quiz.
+           Sinds 2026-08-19 gaat wie de quiz afrondt door naar /gesprek/plannen/,
+           waar de video en de vooringevulde agenda staan. Zie verstuur() in het
+           script hieronder. -->
+      <div class="na-quiz" id="na-quiz" hidden></div>
+    </div>
+
+    <!-- Onder de quiz alleen nog de reviews, zoals het voorbeeld daar zijn
+         klantvideo's heeft. De uitleg-secties zijn weg (2026-08-17 avond,
+         Bryan: te veel tekst op deze pagina): de kop zegt wat we doen en wat
+         het kost, de quiz doet de rest. Video-testimonials vervangen deze
+         kaarten zodra ze er zijn. -->
+    <section class="stemmen">
+      <h2>Wat mensen zeggen die met ons werkten</h2>
+      <div class="stemmen-grid">
+        <figure>
+          <div class="sterren" aria-label="5 van de 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>Als ondernemer heb je geen tijd om je bezig te houden met online marketing. Local Levers heeft dat uit handen genomen, het resultaat: eindelijk gevonden worden door de mensen die onze service zoeken. Bryan denkt mee en belooft niks wat hij niet waarmaakt.</blockquote>
+          <figcaption><b>Nick</b><span>Google-review</span></figcaption>
+        </figure>
+        <figure>
+          <div class="sterren" aria-label="5 van de 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>Heel fijn samengewerkt met Bryan. Vanaf het eerste contact dacht hij goed mee en was hij altijd snel bereikbaar als ik vragen had of iets wilde aanpassen.</blockquote>
+          <figcaption><b>Albert</b><span>Google-review</span></figcaption>
+        </figure>
+        <figure>
+          <div class="sterren" aria-label="5 van de 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>Bryan is een zeer prettig persoon om mee samen te werken en komt zijn afspraken altijd netjes op tijd na.</blockquote>
+          <figcaption><b>Rob</b><span>Google-review</span></figcaption>
+        </figure>
+        <figure>
+          <div class="sterren" aria-label="5 van de 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>Erg behulpzaam en snelle respons.</blockquote>
+          <figcaption><b>Jordan</b><span>Google-review</span></figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <!-- De quiz als popup over de pagina, zoals het voorbeeld (Bryan,
+       2026-08-17, meermaals): het klikbare videoblok hierboven opent hem,
+       de voortgangsbalk met de stap-teller staat erin, sluiten bewaart de
+       antwoorden en verdergaan kan altijd. -->
+  <div class="quiz-overlay" id="quizOverlay" hidden>
+    <div class="quiz-venster" role="dialog" aria-modal="true" aria-label="Een paar korte vragen">
+      <button class="quiz-sluit" id="quizSluit" type="button" aria-label="Sluiten">&times;</button>
+      <!--
+        Kop en prijs staan alleen op de eerste stap, daarna neemt de
+        terug-knop hun plek in. Zo blijft het venster vanaf stap twee even
+        hoog en even hoog in beeld staan, precies als in het voorbeeld.
+      -->
+      <div class="quiz-intro" id="quizIntro">
+        <p class="quiz-kop">Zorg dat er geen aanvraag meer blijft liggen</p>
+        <p class="quiz-prijs">&euro;{PRIJS} per maand</p>
+      </div>
+      <button class="terug" id="terug" type="button" hidden>Terug</button>
+      <div class="voortgang" id="voortgang" hidden>
+        <div class="balk"><span id="balk"><i class="balk-label" id="procent">50%</i></span></div>
+      </div>
+      <div class="kaart" id="kaart">
+        <div id="stappen"></div>
+      </div>
+    </div>
+  </div>
+
+  <style is:global>
+    :root {
+      --groen: #1a7a54;
+      --groen-diep: #166448;
+      --accent: #4ade80;
+      --inkt: #141413;
+      --papier: #fafaf8;
+      --kaart: #ffffff;
+      --rand: #e4e3dc;
+      --grijs: #64645f;
+      /* Getekend pijltje voor de terug-knop, geen emoji. */
+      --pijl-links: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 9'%3E%3Cpath d='M16 4.5H2M6 1L2 4.5 6 8' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--papier);
+      color: var(--inkt);
+      font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .funnel {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 40px 20px 96px;
+      text-align: center;
+      transition: filter 0.2s ease;
+    }
+    /* Zolang de quiz open staat is de pagina erachter onscherp, zoals bij hem.
+       Het is een gewone filter op de pagina en geen backdrop-filter, want die
+       laatste wordt niet overal samengesteld en blijft dan onzichtbaar. */
+    body.quiz-open .funnel { filter: blur(8px); }
+    .merk {
+      display: inline-block;
+      font-family: 'Outfit Variable', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+      color: var(--inkt);
+      text-decoration: none;
+      margin-bottom: 42px;
+    }
+    .merk span { color: var(--groen); }
+
+    /*
+      Zijn kop staat op 50px over twee regels. Onze zin is in het Nederlands
+      bijna twee keer zo lang, dus op 50px worden dat vier regels. Op 46px met
+      een strakke regelafstand zijn het er drie en is het blok kop plus prijs
+      even hoog als het zijne, zodat het videokader op dezelfde hoogte begint.
+      De kleur volgt hem: zijn goud is bij ons het groen van de huisstijl.
+    */
+    h1 {
+      font-family: 'Outfit Variable', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(27px, 3.2vw, 46px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--groen);
+      margin: 0 auto;
+      max-width: 1200px;
+    }
+    /* De prijs als eigen regel, even groot en zwaarder, zoals bij hem. */
+    .prijs-groot {
+      font-family: 'Outfit Variable', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: clamp(30px, 3.2vw, 46px);
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      color: var(--inkt);
+      margin: 6px 0 0;
+    }
+    /* Placeholder-kader voor de uitlegvideo, zelfde vorm als op de
+       onderdeel-pagina's. */
+    .video-ph {
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      background: linear-gradient(150deg, #10241C, #0A1512);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 0 0 22px;
+    }
+    .video-ph-play {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      border: 2px solid rgba(250, 250, 248, 0.85);
+      position: relative;
+    }
+    .video-ph-play::after {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 19px;
+      border-left: 16px solid rgba(250, 250, 248, 0.85);
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+    }
+    .video-ph-tekst {
+      font-family: 'Outfit Variable', system-ui, sans-serif;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: rgba(250, 250, 248, 0.75);
+      padding: 0 18px;
+    }
+    .prijs-groot .pijl {
+      display: inline-block;
+      width: 0.62em;
+      height: 0.78em;
+      margin: 0 0 0 14px;
+      vertical-align: -0.1em;
+      stroke-width: 3.2;
+    }
+    /* Getekende pijl naar de quiz, geen emoji. */
+    .pijl {
+      display: block;
+      margin: 14px auto 0;
+      width: 26px;
+      height: 32px;
+      fill: none;
+      stroke: var(--groen);
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Knopmaat van de site: 60px hoog, 20px/600, radius 4, geen pijl erin. */
+    .knop {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 60px;
+      padding: 0 24px;
+      background: var(--groen);
+      color: #fff;
+      font-family: 'Outfit Variable', system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      line-height: 1.05;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.16s ease;
+    }
+    .knop:hover { background: var(--groen-diep); }
+    .knop[disabled] { background: #c9cdc9; cursor: default; }
+
+    /* Zijn startknop, nagemeten: 464 bij 84, radius 8, tekst 30 op gewicht
+       700, ruim schaduwtje eronder. Bij hem fel groen op zwart, bij ons het
+       groen van de huisstijl met witte tekst. */
+    .knop-groot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 464px;
+      max-width: 100%;
+      min-height: 84px;
+      margin-top: 32px;
+      padding: 24px 48px;
+      background: var(--groen);
+      color: #fff;
+      font-family: 'Outfit Variable', system-ui, sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 6px 12px -3px rgba(26, 122, 84, 0.28), 0 3px 6px -4px rgba(26, 122, 84, 0.2);
+      transition: background 0.16s ease, transform 0.16s ease;
+    }
+    .knop-groot:hover { background: var(--groen-diep); transform: scale(1.02); }
+
+    /* ==================== quiz ==================== */
+    /* Zijn videokader is 768 breed op een pagina van 1440. */
+    .zone { margin: 0 auto; max-width: 768px; }
+    /* Is de quiz af, dan nemen het videokader en de WhatsApp-knop de plek van
+       het startblok in. Anders staan er twee kaders onder elkaar. */
+    .zone.af .video-start, .zone.af .knop-groot { display: none; }
+
+    /* Balk op zijn maat (gemeten 2026-08-17): 24px hoog, pilvorm, lichte
+       baan, vulling in onze kleur met het percentage als wit label erin. */
+    .voortgang { margin: 0 0 32px; }
+    .voortgang[hidden] { display: none; }
+    .balk { height: 24px; background: #e5e4de; border-radius: 999px; overflow: hidden; }
+    .balk span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 0;
+      background-color: var(--groen);
+      /* Schuine banen die lopen, zoals bij hem: een strepen-tegel die met
+         background-position naar links schuift. */
+      background-image: linear-gradient(-45deg,
+        rgba(255,255,255,0.18) 25%, transparent 25%, transparent 50%,
+        rgba(255,255,255,0.18) 50%, rgba(255,255,255,0.18) 75%, transparent 75%);
+      background-size: 28px 28px;
+      animation: balkloop 0.7s linear infinite;
+      border-radius: 999px;
+      overflow: hidden;
+      transition: width 0.32s ease;
+    }
+    @keyframes balkloop { from { background-position: 0 0; } to { background-position: -28px 0; } }
+    @media (prefers-reduced-motion: reduce) { .balk span { animation: none; } }
+    .balk-label { font-style: normal; font-size: 12px; font-weight: 600; color: #fff; white-space: nowrap; }
+    .quiz-intro[hidden] { display: none; }
+    .quiz-kop {
+      font-family: 'Outfit Variable', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(22px, 2.5vw, 36px);
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--groen);
+      margin: 0;
+      text-align: center;
+    }
+    .quiz-prijs {
+      font-family: 'Outfit Variable', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: clamp(22px, 2.5vw, 36px);
+      line-height: 1.5;
+      letter-spacing: -0.015em;
+      color: var(--inkt);
+      margin: 6px 0 12px;
+      text-align: center;
+    }
+
+    .kaart {
+      background: var(--kaart);
+      border: 1px solid var(--rand);
+      border-radius: 8px;
+      padding: 26px 24px;
+      text-align: center;
+    }
+    .kaart[hidden] { display: none; }
+    .start-regel { margin: 0 0 18px; font-size: 16px; line-height: 1.6; color: #3c3c39; }
+    .start .knop, .kaart .verstuur, .kaart .door { width: 100%; }
+
+    .vraag {
+      font-family: 'Outfit Variable', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.375;
+      margin: 0 0 12px;
+    }
+    .vraag.tweede { margin-top: 24px; }
+    /* Terug staat boven de balk, links, met een getekend pijltje ervoor. */
+    .terug {
+      display: block;
+      margin: 0 0 10px;
+      padding: 0;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 16px;
+      color: var(--grijs);
+      cursor: pointer;
+      text-align: left;
+    }
+    .terug[hidden] { display: none; }
+    .terug::before {
+      content: '';
+      display: inline-block;
+      width: 17px;
+      height: 9px;
+      margin-right: 7px;
+      vertical-align: 1px;
+      background: currentColor;
+      -webkit-mask: var(--pijl-links) center / contain no-repeat;
+      mask: var(--pijl-links) center / contain no-repeat;
+    }
+    .terug:hover { color: var(--inkt); }
+
+    /* Zijn keuzeknoppen, nagemeten: 456 breed, 54 hoog, radius 12, rand 2px
+       lichtgrijs, tekst 16 op gewicht 700, 10px ruimte ertussen. */
+    .keuze {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 54px;
+      background: #fff;
+      border: 2px solid var(--rand);
+      border-radius: 12px;
+      padding: 14px 20px;
+      margin-bottom: 10px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.375;
+      color: var(--inkt);
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.14s ease, background 0.14s ease, box-shadow 0.14s ease;
+    }
+    .keuze:hover { border-color: #cfcec6; background: #fafaf8; box-shadow: inset 2px 0 0 var(--accent), 0 2px 8px rgba(0, 0, 0, 0.08); }
+    .keuze.gekozen { border-color: var(--groen); background: #f2f8f5; }
+
+    .veld {
+      width: 100%;
+      border: 2px solid var(--rand);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 10px;
+      font-family: inherit;
+      font-size: 16px;
+      color: var(--inkt);
+      background: #fff;
+    }
+    .veld:focus { outline: none; border-color: var(--groen); }
+    .veld::placeholder { color: #8c8c87; }
+    .fout { margin: 4px 0 10px; font-size: 14px; color: #a3342a; }
+    .fout[hidden] { display: none; }
+    .honeypot { position: absolute; left: -9999px; opacity: 0; }
+    /* Zijn doorgaan-knop in de popup: 56 hoog, radius 12, tekst 18 op 700. */
+    .kaart .verstuur, .kaart .door {
+      height: 56px;
+      margin-top: 16px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    /* ==================== video, na de quiz ==================== */
+    .na-quiz[hidden] { display: none; }
+    .starter-regel {
+      margin: 0 0 16px;
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: #3c3c39;
+    }
+    .starter-regel[hidden] { display: none; }
+    .video-wrap {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid var(--rand);
+      aspect-ratio: 16 / 9;
+      cursor: pointer;
+    }
+    .video-wrap video { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .play {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 76px;
+      height: 76px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.94);
+      cursor: pointer;
+      transition: transform 0.18s ease;
+    }
+    .play::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 54%;
+      transform: translate(-50%, -50%);
+      border-left: 22px solid var(--groen);
+      border-top: 14px solid transparent;
+      border-bottom: 14px solid transparent;
+    }
+    .play:hover { transform: scale(1.06); }
+    .play[hidden] { display: none; }
+    .plan { width: 100%; margin-top: 16px; }
+
+    /* Plan-blok: onder de video staat de agenda-widget als hoofdactie, met de
+       WhatsApp eronder als kleine tweede optie. De video kwalificeert, de
+       agenda boekt. */
+    .plan-blok { max-width: 768px; margin: 26px auto 0; text-align: center; }
+    .plan-kop {
+      font-family: 'Outfit Variable', sans-serif;
+      font-size: clamp(22px, 3.4vw, 30px);
+      font-weight: 800; letter-spacing: -0.02em; line-height: 1.15;
+      color: #141413; margin: 0 0 16px;
+    }
+    .agenda-wrap {
+      background: #fff; border: 1px solid #e4e3dc; border-radius: 14px;
+      overflow: hidden; box-shadow: 0 2px 14px rgba(10, 10, 9, 0.05);
+    }
+    .agenda { width: 100%; min-height: 680px; border: 0; display: block; }
+    .plan-app { font-size: 15px; color: var(--grijs); margin: 18px 0 0; }
+    .plan-app a { color: var(--groen); font-weight: 600; }
+    @media (max-width: 560px) { .agenda { min-height: 760px; } }
+
+    .toelichting { font-size: 13.5px; color: var(--grijs); text-align: center; margin: 12px 0 0; line-height: 1.5; }
+    .toelichting a { color: var(--groen); }
+
+    .drieluik {
+      display: grid;
+      gap: 18px;
+      margin: 74px 0 0;
+      text-align: left;
+    }
+    .drieluik > div {
+      background: var(--kaart);
+      border: 1px solid var(--rand);
+      border-radius: 8px;
+      padding: 24px 22px;
+    }
+    .drieluik h2 {
+      font-family: 'Outfit Variable', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 19px;
+      margin: 0 0 8px;
+      color: var(--groen);
+    }
+    .drieluik p { margin: 0; font-size: 15.5px; line-height: 1.6; color: #3c3c39; }
+
+    .eerlijk {
+      text-align: left;
+      margin: 44px 0 40px;
+      padding: 26px 24px;
+      border-left: 3px solid var(--groen);
+      background: #f2f5f3;
+      border-radius: 0 8px 8px 0;
+    }
+    .eerlijk h2 {
+      font-family: 'Outfit Variable', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      margin: 0 0 10px;
+    }
+    .eerlijk p { margin: 0 0 12px; font-size: 15.5px; line-height: 1.65; color: #3c3c39; }
+    .eerlijk p:last-child { margin-bottom: 0; }
+
+    .klein { font-size: 13.5px; color: var(--grijs); margin: 18px 0 0; }
+
+    @media (min-width: 720px) {
+      .drieluik { grid-template-columns: repeat(3, 1fr); }
+    }
+    /* De knop houdt op 390 dezelfde 60px en 20px als op de desktop, zoals de
+       rest van de site. Alleen de ruimte links en rechts krimpt, anders past de
+       tekst niet in de kaart. */
+    @media (max-width: 460px) {
+      .kaart { padding: 22px 16px; }
+      .knop { padding: 0 12px; }
+    }
+  </style>
+
+  <script is:inline define:vars={{ PRIJS, WHATSAPP, WEBHOOK }}>
+    // ==================== quiz ====================
+    // Negen stappen: vijf keer kwalificeren, dan vier losse contactvelden, elk
+    // op een eigen stap met een eigen doorgaan-knop. Daarna pas de video. De
+    // vragen komen uit doc 49 sectie 5.
+    const STAPPEN = [
+      {
+        procent: 50,
+        vragen: [
+          {
+            naam: 'soort',
+            vraag: 'Voor wie werk je vooral?',
+            opties: [
+              'Vooral particulieren',
+              'Vooral bedrijven',
+              'Allebei',
+              'Ik heb geen vakbedrijf',
+            ],
+          },
+        ],
+      },
+      {
+        procent: 58,
+        vragen: [
+          {
+            naam: 'team',
+            vraag: 'Hoeveel mensen werken er bij je?',
+            opties: ['Alleen ik', '2 tot 3', '4 tot 6', '7 of meer'],
+          },
+        ],
+      },
+      {
+        procent: 66,
+        vragen: [
+          {
+            naam: 'timing',
+            vraag: 'Hoe snel wil je meer klussen?',
+            opties: ['Zo snel mogelijk', 'Komende drie maanden', 'Ik kijk alleen rond'],
+          },
+        ],
+      },
+      {
+        procent: 74,
+        vragen: [
+          {
+            naam: 'budget',
+            vraag: 'Wat geef je per maand uit aan marketing?',
+            opties: ['Niets', 'Tot 1.000 euro', '1.000 tot 3.000 euro', '3.000 tot 6.000 euro', '6.000 euro of meer'],
+          },
+        ],
+      },
+      {
+        procent: 82,
+        vragen: [
+          {
+            naam: 'omzet',
+            vraag: 'Wat is je omzet ongeveer per maand?',
+            opties: ['Tot 10.000 euro', '10.000 tot 30.000 euro', '30.000 tot 75.000 euro', 'Meer dan 75.000 euro'],
+          },
+        ],
+      },
+      {
+        procent: 86,
+        gegeven: {
+          id: 'f-bedrijf',
+          sleutel: 'bedrijf',
+          vraag: 'Wat is de naam van je bedrijf?',
+          placeholder: 'Bedrijfsnaam',
+          type: 'text',
+          autocomplete: 'organization',
+          knop: 'Doorgaan',
+        },
+      },
+      {
+        procent: 90,
+        gegeven: {
+          id: 'f-naam',
+          sleutel: 'naam',
+          vraag: 'En hoe heet je?',
+          placeholder: 'Naam',
+          type: 'text',
+          autocomplete: 'name',
+          knop: 'Doorgaan',
+        },
+      },
+      {
+        procent: 94,
+        gegeven: {
+          id: 'f-tel',
+          sleutel: 'telefoon',
+          vraag: 'Op welk nummer kunnen we je bereiken?',
+          placeholder: 'Telefoonnummer',
+          type: 'tel',
+          autocomplete: 'tel',
+          knop: 'Doorgaan',
+        },
+      },
+      {
+        procent: 98,
+        gegeven: {
+          id: 'f-mail',
+          sleutel: 'email',
+          vraag: 'En op welk e-mailadres?',
+          placeholder: 'Bedrijfsemail',
+          type: 'email',
+          autocomplete: 'email',
+          knop: 'Ja, ik wil meer afspraken',
+          verstuur: true,
+        },
+      },
+    ];
+
+    // Welke knop op de site iemand hierheen stuurde. Wordt door Analytics.astro
+    // als ?van= aan de link gehangen, en gaat mee in de aanvraag zodat je
+    // achteraf weet welke plek op de site de klant opleverde.
+    const bron = new URLSearchParams(location.search).get('van') || 'direct';
+
+    const antwoorden = { bron };
+    let stap = 0;
+    let hoogste = -1; // voor de meting: elke stap telt één keer
+    let klaar = false;
+    let quizOpen = false;
+
+    const zone = document.getElementById('zone');
+    const kaart = document.getElementById('kaart');
+    const stappen = document.getElementById('stappen');
+    const voortgang = document.getElementById('voortgang');
+    const balk = document.getElementById('balk');
+    const procent = document.getElementById('procent');
+    const naQuiz = document.getElementById('na-quiz');
+    const intro = document.getElementById('quizIntro');
+    const terug = document.getElementById('terug');
+
+    function zetVoortgang(waarde) {
+      voortgang.hidden = false;
+      balk.style.width = waarde + '%';
+      // Het percentage staat als wit label in de vulling, zoals het voorbeeld.
+      procent.textContent = waarde + '%';
+    }
+
+    // De kaart wordt per stap hoger en lager. Staat hij nog netjes in beeld, dan
+    // blijft de pagina staan, want de kop met de prijs hoort zichtbaar te
+    // blijven. Is hij weggescrold of staat hij ver naar onderen, dan halen we
+    // hem naar boven.
+    function houdInBeeld() {
+      const boven = zone.getBoundingClientRect().top;
+      if (boven < 0 || boven > window.innerHeight * 0.5) {
+        zone.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    const overlay = document.getElementById('quizOverlay');
+
+    function begin() {
+      // Is de quiz klaar, dan alleen nog naar de video-zone scrollen.
+      if (klaar) return houdInBeeld();
+      overlay.hidden = false;
+      document.body.style.overflow = 'hidden';
+      document.body.classList.add('quiz-open');
+      if (!quizOpen) {
+        quizOpen = true;
+        stap = 0;
+        if (window.llTrack) window.llTrack('quiz_open', { bron });
+        teken();
+      }
+    }
+    // Sluiten bewaart de antwoorden; de volgende klik op het videoblok gaat
+    // verder waar hij was.
+    function sluitQuiz() {
+      overlay.hidden = true;
+      document.body.style.overflow = '';
+      document.body.classList.remove('quiz-open');
+    }
+    document.getElementById('start-knop').addEventListener('click', begin);
+    document.getElementById('video-knop').addEventListener('click', begin);
+    document.getElementById('quizSluit').addEventListener('click', sluitQuiz);
+    terug.addEventListener('click', () => {
+      stap -= 1;
+      teken();
+    });
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) sluitQuiz(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !overlay.hidden) sluitQuiz(); });
+
+    function teken() {
+      const s = STAPPEN[stap];
+      zetVoortgang(s.procent);
+      // Vanaf stap twee ruimen kop en prijs het veld voor de terug-knop,
+      // zoals bij hem.
+      intro.hidden = stap > 0;
+      terug.hidden = stap === 0;
+      stappen.innerHTML = '';
+      if (window.llTrack && stap > hoogste) {
+        hoogste = stap;
+        window.llTrack('quiz_stap', { value: stap + 1, bron });
+      }
+      if (s.gegeven) tekenGegeven(s);
+      else tekenVragen(s);
+    }
+
+    function tekenVragen(s) {
+      s.vragen.forEach((v, index) => {
+        const kop = document.createElement('p');
+        kop.className = index === 0 ? 'vraag' : 'vraag tweede';
+        kop.textContent = v.vraag;
+        stappen.appendChild(kop);
+
+        v.opties.forEach((tekst) => {
+          const knop = document.createElement('button');
+          knop.className = antwoorden[v.naam] === tekst ? 'keuze gekozen' : 'keuze';
+          knop.type = 'button';
+          knop.dataset.veld = v.naam;
+          knop.textContent = tekst;
+          knop.addEventListener('click', () => kies(s, v, tekst));
+          stappen.appendChild(knop);
+        });
+      });
+
+      // Eén vraag per stap loopt vanzelf door. Staan er twee vragen in dezelfde
+      // stap, dan kan dat niet en komt er een doorgaan-knop onder.
+      if (s.vragen.length > 1) {
+        const door = document.createElement('button');
+        door.className = 'knop door';
+        door.type = 'button';
+        door.textContent = 'Doorgaan';
+        door.disabled = !compleet(s);
+        door.addEventListener('click', volgende);
+        stappen.appendChild(door);
+      }
+    }
+
+    function compleet(s) {
+      return s.vragen.every((v) => antwoorden[v.naam]);
+    }
+
+    function kies(s, v, tekst) {
+      antwoorden[v.naam] = tekst;
+      // Alleen de knoppen van déze vraag verkleuren, niet die van de andere
+      // vraag in dezelfde stap. Vandaar data-veld op elke knop.
+      stappen.querySelectorAll('.keuze[data-veld="' + v.naam + '"]').forEach((k) => {
+        k.classList.toggle('gekozen', k.textContent === tekst);
+      });
+      if (s.vragen.length === 1) return volgende();
+      const door = stappen.querySelector('.door');
+      if (door) door.disabled = !compleet(s);
+    }
+
+    function volgende() {
+      stap += 1;
+      teken();
+    }
+
+    // Eén contactveld per stap, met een eigen doorgaan-knop. De knop blijft
+    // uit tot er iets in het veld staat, zoals bij het voorbeeld. De laatste
+    // stap (e-mail) draagt de spamval en de verstuur-knop.
+    function tekenGegeven(s) {
+      const g = s.gegeven;
+
+      const kop = document.createElement('p');
+      kop.className = 'vraag';
+      kop.textContent = g.vraag;
+      stappen.appendChild(kop);
+
+      const veld = document.createElement('input');
+      veld.className = 'veld';
+      veld.id = g.id;
+      veld.type = g.type;
+      veld.placeholder = g.placeholder;
+      veld.setAttribute('aria-label', g.placeholder);
+      veld.autocomplete = g.autocomplete;
+      veld.value = antwoorden[g.sleutel] || '';
+      stappen.appendChild(veld);
+
+      if (g.verstuur) {
+        const fax = document.createElement('input');
+        fax.className = 'veld honeypot';
+        fax.id = 'f-fax';
+        fax.tabIndex = -1;
+        fax.autocomplete = 'off';
+        fax.setAttribute('aria-hidden', 'true');
+        stappen.appendChild(fax);
+      }
+
+      const knop = document.createElement('button');
+      knop.type = 'button';
+      knop.textContent = g.knop;
+      knop.disabled = !veld.value.trim();
+      if (g.verstuur) {
+        knop.className = 'knop verstuur';
+        knop.id = 'f-ok';
+        knop.addEventListener('click', verstuur);
+      } else {
+        knop.className = 'knop door';
+        knop.addEventListener('click', volgende);
+      }
+      stappen.appendChild(knop);
+
+      // Waarde meteen bewaren, zodat terug hem vasthoudt, en de knop pas
+      // vrijgeven zodra er iets ingevuld staat.
+      veld.addEventListener('input', () => {
+        antwoorden[g.sleutel] = veld.value;
+        knop.disabled = !veld.value.trim();
+      });
+      veld.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !knop.disabled) knop.click();
+      });
+    }
+
+    function verstuur() {
+      const fax = document.getElementById('f-fax');
+      if (fax && fax.value) return; // spamval
+      // De eerste drie velden staan al in antwoorden, opgeslagen op hun eigen
+      // stap. Het e-mailveld staat nog in beeld, dus dat lezen we hier vers.
+      const mail = document.getElementById('f-mail').value.trim();
+      const naam = (antwoorden.naam || '').trim();
+      const tel = (antwoorden.telefoon || '').trim();
+      const bedrijf = (antwoorden.bedrijf || '').trim();
+      if (!naam || !tel || !mail || !bedrijf) return;
+      Object.assign(antwoorden, { naam, telefoon: tel, email: mail, bedrijf, prijs: PRIJS });
+
+      // De lead gaat meteen naar GHL via de inbound-webhook, ook als iemand
+      // daarna niet boekt. Fire-and-forget met keepalive, zodat de post
+      // doorloopt als de bezoeker direct wegklikt. Faalt hij, dan blokkeren we
+      // de funnel niet: de video en de agenda verschijnen hoe dan ook.
+      try {
+        fetch(WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          keepalive: true,
+          body: JSON.stringify(Object.assign({}, antwoorden, {
+            full_name: naam,
+            phone: tel,
+            email: mail,
+            company_name: bedrijf,
+            bron_url: location.href,
+          })),
+        }).catch(function () {});
+      } catch (e) {}
+      if (window.llTrack) window.llTrack('quiz_klaar', antwoorden);
+
+      // De antwoorden bewaren voor de boekpagina, die de agenda ermee voorvult,
+      // en doorsturen. De keepalive op de webhook hierboven zorgt dat die post
+      // ook tijdens de navigatie doorloopt.
+      try {
+        sessionStorage.setItem('ll_lead', JSON.stringify({
+          naam: naam, bedrijf: bedrijf, telefoon: tel, email: mail,
+          soort: antwoorden.soort || '', bron: antwoorden.bron || '',
+        }));
+      } catch (e) {}
+      window.location.href = '/gesprek/plannen/';
+    }
+
+    function toonVideo() {
+      klaar = true;
+      sluitQuiz();
+      naQuiz.hidden = false;
+      zone.classList.add('af');
+      zetVoortgang(100);
+      if (antwoorden.soort === 'Ik heb geen vakbedrijf') {
+        document.getElementById('starter-regel').hidden = false;
+      }
+      // Zij starten het WhatsApp-gesprek, niet wij. Daarmee staat het venster van
+      // 24 uur open en kan er vrij teruggeschreven worden zonder goedgekeurd sjabloon.
+      const tekst = encodeURIComponent(
+        `Hoi Bryan, ik ben ${antwoorden.naam} van ${antwoorden.bedrijf}. Ik wil een gesprek inplannen over het systeem van €${PRIJS} per maand.`
+      );
+      document.getElementById('plan').href = `${WHATSAPP}?text=${tekst}`;
+      houdInBeeld();
+    }
+
+    // ==================== video ====================
+    // Klik waar dan ook op het kader speelt af. Alleen het kleine play-icoontje
+    // aanklikbaar maken kostte eerder conversie.
+    const video = document.getElementById('uitleg');
+    const play = document.getElementById('play');
+    const wrap = document.querySelector('.video-wrap');
+    let gestart = false;
+    // Zolang de video nog niet bestaat wordt het element niet uitgeschreven.
+    // Zonder deze controle gooit een klik op het kader een fout, en die zet de
+    // rest van dit script stil, inclusief de quiz. (2026-08-17)
+    if (video) {
+      wrap.addEventListener('click', () => {
+        if (gestart) return;
+        gestart = true;
+        play.hidden = true;
+        video.controls = true;
+        video.play();
+        if (window.llTrack) window.llTrack('video_start', { bron });
+      });
+    }
+  </script>
+</Bare>
+
+<style>
+  /* Reviews onder de quiz, de plek waar het voorbeeld zijn klantvideo's
+     heeft. Compact en zonder schaduw, zoals de kaart-regel site-breed. */
+  .stemmen { max-width: 880px; margin: 64px auto 72px; padding: 0 24px; }
+  .stemmen h2 {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: clamp(24px, 3.4vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    text-align: center;
+    margin: 0 0 24px;
+  }
+  .stemmen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .stemmen figure {
+    margin: 0;
+    background: #fff;
+    border: 1px solid #E4E3DC;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .stemmen .sterren { color: #E8B93F; letter-spacing: 2px; font-size: 15px; margin-bottom: 10px; }
+  .stemmen blockquote { margin: 0 0 12px; font-size: 15px; line-height: 1.6; color: #3C3C39; }
+  .stemmen figcaption { display: flex; gap: 10px; align-items: baseline; }
+  .stemmen figcaption b { font-family: 'Outfit Variable', sans-serif; font-size: 14.5px; }
+  .stemmen figcaption span { font-size: 13px; color: #8C8C87; }
+  @media (max-width: 700px) {
+    .stemmen { margin: 48px auto 56px; }
+    .stemmen-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<style is:global>
+  /* Het klikbare videoblok dat de quiz opent, en de quiz-popup zelf. */
+  .video-start {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-top: 32px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(150deg, #10241C, #0A1512);
+    cursor: pointer;
+    transition: transform 0.16s ease;
+  }
+  .video-start:hover { transform: translateY(-2px); }
+  .video-start:hover .video-ph-play { border-color: #fff; }
+  .quiz-overlay {
+    position: fixed;
+    inset: 0;
+    /* Boven de cookiebalk (die staat op 9999), anders vangt die de klikken
+       op de onderste knoppen van de popup af. */
+    z-index: 10000;
+    background: rgba(10, 10, 9, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .quiz-overlay[hidden] { display: none; }
+  .quiz-venster {
+    position: relative;
+    width: 100%;
+    max-width: 512px;
+    max-height: calc(100dvh - 32px);
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 20px 40px -12px rgba(10, 10, 9, 0.35);
+  }
+  .quiz-venster .kaart {
+    border: none;
+    padding: 0 8px;
+    /* Zijn venster houdt vanaf stap twee dezelfde hoogte, ook als er minder
+       antwoorden onder een vraag staan. Nagemeten op de langste stap. */
+    min-height: 340px;
+    max-height: calc(100dvh - 260px);
+    overflow-y: auto;
+  }
+  /* Zijn sluitknop hangt over de hoek van het venster, 40 bij 40. */
+  .quiz-sluit {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    background: #fff;
+    color: #404040;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  }
+  .quiz-sluit:hover { background: #fafaf8; color: #000; }
+  @media (max-width: 480px) {
+    .quiz-venster { padding: 16px; }
+    .quiz-venster .kaart { padding: 0; min-height: 300px; max-height: calc(100dvh - 230px); }
+    .quiz-sluit { top: -14px; right: -6px; width: 36px; height: 36px; }
+  }
+</style>
+
+<style>
+  .stap-regel { font-size: 16.5px; font-weight: 600; color: #3C3C39; margin: 18px 0 14px; text-align: center; }
+</style>

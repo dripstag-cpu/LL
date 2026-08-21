@@ -28,6 +28,7 @@
     var ALLOWED = [
       'category', 'value', 'winstdienst', 'timing', 'prioriteit',
       'target', 'position', 'positie', 'source', 'score', 'vraag', 'question',
+      'bron',
     ];
     var queue = [];
 
@@ -64,5 +65,30 @@
       if (flush() || ++tries > 40) clearInterval(timer);
     }, 250);
     window.addEventListener('load', flush);
+
+    // Welke knop bracht iemand naar de funnel-pagina.
+    //
+    // Bewust GEEN utm-parameters op interne links. Die overschrijven de
+    // oorspronkelijke bron: iemand die via een advertentie binnenkwam staat
+    // daarna geregistreerd als afkomstig van de eigen site, en dan weet je
+    // niet meer welke advertentie hem bracht. In plaats daarvan hangen we de
+    // sectienaam uit data-cta aan de link, zodat we bij de aanvraag nog weten
+    // waar hij vandaan geklikt heeft zonder de attributie aan te tasten.
+    document.addEventListener(
+      'click',
+      function (e) {
+        try {
+          var a = e.target && e.target.closest ? e.target.closest('a[data-cta]') : null;
+          if (!a) return;
+          var href = a.getAttribute('href') || '';
+          if (href.indexOf('/gesprek/') !== 0) return;
+          if (href.indexOf('van=') !== -1) return;
+          var bron = (a.getAttribute('data-cta') || '').slice(0, 40);
+          if (!bron) return;
+          a.setAttribute('href', href + (href.indexOf('?') === -1 ? '?' : '&') + 'van=' + encodeURIComponent(bron));
+        } catch (err) {}
+      },
+      true
+    );
   })();
 </script>

@@ -1,12 +1,25 @@
 ---
-import Bare from '../../layouts/Bare.astro';
-import '../../styles/checklist.css';
-import bodyHtml from '../../checklist-body.html?raw';
+// De GBP-checklist is vervallen als tweede weggever (doc 49). De URL stond
+// live en is geindexeerd, dus hij stuurt door naar de aanbod-pagina in plaats
+// van op een 404 uit te komen.
 ---
-<Bare
-  title="Gratis GBP-checklist 2026 | Local Levers"
-  description="13-punts Google Bedrijfsprofiel-checklist 2026, inclusief nieuwe punten voor AI-vindbaarheid. Gratis, direct in je inbox."
->
-  <Fragment set:html={bodyHtml} />
-  <script>import '../../scripts/checklist.js';</script>
-</Bare>
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Doorverwijzing | Local Levers</title>
+    <meta http-equiv="refresh" content="0; url=/gesprek/" />
+    <link rel="canonical" href="https://locallevers.com/gesprek/" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <style>
+      body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; background: #FAFAF8; color: #141413; font-family: system-ui, sans-serif; text-align: center; line-height: 1.6; }
+      a { color: #1A7A54; }
+    </style>
+  </head>
+  <body>
+    <p>Deze pagina is verhuisd. <a href="/gesprek/">Bekijk het aanbod &rarr;</a></p>
+    <script is:inline>window.location.replace('/gesprek/');</script>
+  </body>
+</html>

@@ -1,9 +1,12 @@
 ---
+import SiteNav from '../../components/SiteNav.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
 import Bare from '../../layouts/Bare.astro';
 import '../../styles/legal.css';
 const updated = '6 juli 2026';
 ---
 <Bare title="Cookiebeleid | Local Levers" description="Welke cookies Local Levers gebruikt, waarvoor, en hoe je je toestemming beheert.">
+  <SiteNav />
   <header class="legal-head">
     <div class="legal-wrap">
       <a href="/" class="legal-brand">Local<span>Levers</span></a>
@@ -39,9 +42,5 @@ const updated = '6 juli 2026';
     </div>
   </main>
 
-  <footer class="legal-foot">
-    <div class="legal-wrap">
-      Local Levers &middot; KvK 72087986 &middot; <a href="/privacy/">Privacyverklaring</a> &middot; <a href="/voorwaarden/">Algemene voorwaarden</a>
-    </div>
-  </footer>
+  <SiteFooter kaart={false} />
 </Bare>

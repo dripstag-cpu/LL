@@ -1,20 +1,22 @@
 // Brede pillar-gidsen die de grote commerciele zoekvragen beantwoorden en naar
 // de specifieke gidsen linken (hub-and-spoke). Doelgroep: eigenaren van lokale
-// klinieken en behandel-salons in NL. Geen CTA in de content: de template voegt
+// cosmetische klinieken en lokale dienstverleners in NL. Geen CTA in de content: de template voegt
 // die toe. Geen resultaat-claims of tijdspaden zonder bron: eerlijk kader.
 
 export const topics = [
   {
     slug: 'marketing-voor-klinieken',
+    metaTitle: 'Marketing voor klinieken: wat werkt echt? | Local Levers',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'marketing voor klinieken',
     h1: 'Marketing voor klinieken: wat werkt en wat is weggegooid geld?',
     lead:
-      'Je hebt waarschijnlijk al eens geld in een advertentie of een socialbureau gestoken en je achteraf afgevraagd wat het nu echt opleverde. Bij een kliniek zit het probleem zelden in het budget, maar in de volgorde. Een patient kiest je niet omdat hij de mooiste post zag, maar omdat hij je vond op het moment dat hij zocht en omdat je er betrouwbaar uitzag. Daar gaat marketing voor een kliniek in de kern over.',
+      'Je hebt waarschijnlijk al eens geld in een advertentie of een socialbureau gestoken en je achteraf afgevraagd wat het nu echt opleverde. Bij een kliniek zit het probleem zelden in het budget, maar in de volgorde. Een patiënt kiest je niet omdat hij de mooiste post zag, maar omdat hij je vond op het moment dat hij zocht en omdat je er betrouwbaar uitzag. Daar gaat marketing voor een kliniek in de kern over.',
     sections: [
       {
         h: 'Waarom generieke marketing tegenvalt voor een kliniek',
-        p: 'Advertenties en social spreiden je budget over mensen die op dat moment nog niet zoeken. Het beslismoment van een patient ziet er anders uit: hij typt zijn behandeling en zijn stad in, ziet een handvol klinieken naast elkaar en vergelijkt ze op beoordeling en op hoe compleet ze overkomen. Wie daar niet tussen staat of er zwak uitziet, valt af voordat de advertentie ook maar iets kon doen. De groei van een kliniek is lokaal en vertrouwens-gedreven, en generieke marketing raakt precies dat deel niet.',
+        p: 'Advertenties en social spreiden je budget over mensen die op dat moment nog niet zoeken. Het beslismoment van een patiënt ziet er anders uit: hij typt zijn behandeling en zijn stad in, ziet een handvol klinieken onder elkaar en vergelijkt ze op beoordeling en op hoe compleet ze overkomen. Wie daar niet tussen staat of er zwak uitziet, valt af voordat de advertentie ook maar iets kon doen. De groei van een kliniek is lokaal en vertrouwens-gedreven, en generieke marketing raakt precies dat deel niet.',
       },
       {
         h: 'De drie dingen die bepalen wie de klant boekt',
@@ -38,6 +40,8 @@ export const topics = [
   },
   {
     slug: 'marketing-voor-schoonheidssalons',
+    metaTitle: 'Marketing voor schoonheidssalons: wat levert klanten op?',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'marketing voor schoonheidssalons',
     h1: 'Marketing voor schoonheidssalons: wat levert echt klanten op?',
@@ -70,6 +74,8 @@ export const topics = [
   },
   {
     slug: 'seo-voor-klinieken',
+    metaTitle: 'SEO voor klinieken: zo word je gevonden | Local Levers',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'seo voor klinieken',
     h1: 'SEO voor klinieken: hoe word je gevonden op Google?',
@@ -102,6 +108,8 @@ export const topics = [
   },
   {
     slug: 'seo-voor-schoonheidssalons',
+    metaTitle: 'SEO voor schoonheidssalons | Local Levers',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'seo voor schoonheidssalons',
     h1: 'SEO voor schoonheidssalons: gevonden worden in je stad',
@@ -133,34 +141,51 @@ export const topics = [
     ],
   },
   {
+    // Hoofdpagina voor AI-vindbaarheid (2026-08-16). Absorbeert de oude
+    // core.js-pagina 'vindbaar-in-chatgpt-als-kliniek', die bijna hetzelfde
+    // onderwerp dekte en nu via astro.config.mjs hierheen redirect.
     slug: 'ai-vindbaarheid-voor-klinieken',
+    metaTitle: 'AI-vindbaarheid voor klinieken | Local Levers',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'ai vindbaarheid klinieken',
     h1: 'AI-vindbaarheid voor klinieken: kom je voor in ChatGPT en Perplexity?',
     lead:
-      'Steeds meer mensen vragen niet Google maar ChatGPT, Perplexity of Google Gemini om een aanrader. Die tools geven geen lijst met tien links, maar een antwoord met een paar namen erin. Voor een kliniek verschuift de vraag daarmee van hoger komen in de lijst naar genoemd worden in het antwoord. Dat is AI-vindbaarheid, en je hebt er meer invloed op dan het lijkt.',
+      'Steeds meer mensen vragen niet Google maar ChatGPT, Perplexity of Google Gemini om een aanbeveling in hun buurt. Die tools noemen een paar namen in plaats van een lijst met tien links, dus verandert de vraag voor een kliniek van hoger komen in de lijst naar genoemd worden in het antwoord. Dat heet AI-vindbaarheid, en je hebt er meer invloed op dan het lijkt.',
     sections: [
       {
         h: 'Wat AI-vindbaarheid betekent voor een lokale kliniek',
-        p: 'Als iemand aan een AI-zoekhulp vraagt naar de beste kliniek voor een behandeling in zijn stad, krijgt hij een kort antwoord met een handvol namen. Buiten die selectie vallen betekent onzichtbaar zijn, want er is geen tweede pagina om alsnog op te duiken. Er is dus minder ruimte dan bij Google, en juist daarom is het waardevol om er wel in te staan.',
+        p: 'Als iemand aan een AI-zoekhulp vraagt naar de beste kliniek voor een behandeling in zijn stad, krijgt hij een kort antwoord met een handvol namen. Buiten die selectie vallen betekent onzichtbaar zijn, want er is geen tweede pagina om alsnog op te duiken. Er is dus minder ruimte dan bij Google, en juist daarom is het de moeite waard om er wel in te staan.',
       },
       {
-        h: 'Waar ChatGPT en Perplexity hun antwoord vandaan halen',
-        p: 'Een answer engine verzint geen aanbevelingen, hij vat samen wat hij op het web over jouw type behandeling in jouw stad vindt. De bronnen zijn grotendeels dezelfde als voor lokale vindbaarheid: je Google Bedrijfsprofiel, je reviews, je vermelding op Bing Places en Apple Maps en de directories, plus duidelijke informatie op je site. Hoe consistenter en completer die zijn, hoe makkelijker een AI-zoekhulp jou met vertrouwen noemt. Tegenstrijdige of ontbrekende gegevens laten hem twijfelen, en bij twijfel valt hij terug op de duidelijkste naam.',
+        h: 'Waar ChatGPT, Perplexity en Gemini hun antwoord vandaan halen',
+        p: 'Een AI-zoekhulp verzint geen aanbevelingen, hij vat samen wat hij op het web over jouw type behandeling in jouw stad vindt. De bronnen zijn grotendeels dezelfde als voor gewone lokale vindbaarheid: je Google Bedrijfsprofiel, je reviews, je vermeldingen op Bing Places en Apple Maps, en duidelijke informatie op je site. Hoe consistenter en completer die zijn, hoe makkelijker een AI-zoekhulp jou met vertrouwen noemt. Tegenstrijdige of ontbrekende gegevens laten hem twijfelen, en bij twijfel valt hij terug op de duidelijkste naam.',
+      },
+      {
+        h: 'Bing eerst, want dat voedt ChatGPT',
+        p: 'Veel eigenaren staan wel op Google maar niet op Bing. ChatGPT leunt voor een deel op Bing-data, dus een compleet Bing Places-profiel is een van de directste manieren om in ChatGPT-antwoorden op te duiken. Dit wordt bijna nergens gedaan, wat het een makkelijke voorsprong maakt.',
+      },
+      {
+        h: 'Beschrijf je behandelingen zoals mensen ze omschrijven',
+        p: 'Een AI-zoekhulp matcht op taal. Benoemen je profiel en je site je behandelingen expliciet en in gewone woorden, dan is de kans groter dat je wordt genoemd bij een vraag over die behandeling. Vage of vakjargon-achtige omschrijvingen laten de AI-zoekhulp raden, en dan kiest hij de duidelijkste optie, meestal je concurrent.',
       },
       {
         h: 'Nu een voorsprong opbouwen, voordat de rest wakker wordt',
-        p: 'In Nederland is Google Maps voor lokale keuzes nog leidend, maar het aandeel mensen dat een AI-zoekhulp gebruikt groeit. De meeste klinieken doen er nog niets mee, dus wie er nu op stuurt bouwt een voorsprong op die waardevoller wordt naarmate meer mensen zo zoeken. Eerlijk blijft eerlijk: niemand kan een plek in zo\'n antwoord garanderen, want de aanbieders bepalen zelf hoe ze bronnen wegen. Wat je wel kunt, is de bronnen waaruit ze putten zo compleet en consistent maken dat je een logische keuze bent.',
+        p: 'In Nederland is Google Maps voor lokale keuzes nog leidend, maar het aandeel mensen dat een AI-zoekhulp gebruikt groeit. De meeste klinieken doen er nog niets mee, dus wie er nu op stuurt bouwt een voorsprong op die waardevoller wordt naarmate meer mensen zo zoeken. Eerlijk blijft eerlijk: niemand kan een plek in zo\'n antwoord garanderen, want de aanbieders bepalen zelf hoe ze bronnen wegen. Wat je wel kunt doen, is de bronnen waaruit ze putten zo compleet en consistent maken dat je een logische keuze bent.',
       },
     ],
     faq: [
       {
         q: 'Is AI-vindbaarheid nu al belangrijk voor een kliniek in Nederland?',
-        a: 'Voor de meeste lokale keuzes is Google Maps voorlopig nog het belangrijkst. Het gebruik van ChatGPT, Perplexity en Gemini om een aanbieder te vinden groeit wel gestaag. Zie het daarom als voorsprong opbouwen: er is nu weinig concurrentie op dit vlak, en dezelfde basis die je vindbaarheid sterk maakt, werkt hier meteen in mee.',
+        a: 'Voor de meeste lokale keuzes is Google Maps nog leidend. Het gebruik van ChatGPT, Perplexity en Gemini om een aanbieder te vinden groeit wel gestaag. Zie het daarom als voorsprong opbouwen: er is nu weinig concurrentie op dit vlak, en dezelfde basis die je gewone vindbaarheid sterk maakt, werkt hier meteen in mee.',
       },
       {
         q: 'Kun je garanderen dat mijn kliniek in ChatGPT genoemd wordt?',
-        a: 'Nee, en wees kritisch op wie dat wel belooft. De aanbieders van deze tools bepalen zelf hoe ze bronnen kiezen en dat verandert. Je vergroot je kans door je profiel, je reviews en je vermeldingen compleet en consistent te maken, maar je koopt geen vaste plek. Het eerlijke kader is een grotere kans en een voorsprong, geen garantie.',
+        a: 'Nee, en wees kritisch op wie dat wel belooft. De aanbieders van deze tools bepalen zelf hoe ze bronnen wegen en dat verandert. Je vergroot je kans door je profiel, je reviews en je vermeldingen compleet en consistent te maken, maar je koopt geen vaste plek.',
+      },
+      {
+        q: 'Kan ik zelf checken of mijn kliniek al genoemd wordt?',
+        a: 'Ja, door zelf een neutrale vraag aan ChatGPT, Perplexity of Gemini te stellen, zonder je eigen naam te noemen, en te kijken of je in het antwoord voorkomt. De uitkomst wisselt per keer, dus één test zegt niet alles. Wij meten die zichtbaarheid elke maand gestructureerd en zetten het in je rapport.',
       },
     ],
   },

@@ -1,0 +1,72 @@
+---
+// Ons werk, herschreven 2026-08-17 (avond) naar doc 51 sectie C.
+//
+// De pagina is een kop en een galerij, verder niets. Geen uitleg, geen
+// voorbehoud, geen blok over wat er nog komt. De staart (slotkaart, proces,
+// reviews, voettekst) komt uit SiteFooter.astro via Layout.astro.
+//
+// Sinds vanavond staan er echte sites in de galerij, aangeleverd door Bryan:
+// elke kaart is een apparaat-mockup (laptop plus telefoon, echt scherm erin)
+// op een vlakke kleur, zoals het voorbeeld dat op zijn werk-pagina ook doet.
+// De vorige versie met verzonnen ontwerpen staat in git (commit-historie),
+// de regels voor de beelden staan in src/data/ons-werk.js.
+import Layout from '../../layouts/Layout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import { galerij } from '../../data/ons-werk.js';
+
+const title = 'Ons werk: sites die wij gebouwd hebben | Local Levers';
+const description =
+  'Kijk wat we voor andere bedrijven gemaakt hebben: echte websites op laptop en telefoon, van restaurant en cafe tot sportmerk en detacheerder.';
+---
+
+<Layout title={title} description={description}>
+  <SiteNav />
+
+  <main class="ow">
+    <section class="ow-galerij">
+      <div class="ow-inner">
+        <h1>Kijk wat we voor andere bedrijven gemaakt hebben</h1>
+
+        <div class="ow-grid">
+          {galerij.map((g, i) => (
+            <img
+              class="ow-kaart"
+              src={g.beeld}
+              alt={g.alt}
+              width="1600"
+              height="1000"
+              loading={i < 2 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .ow { background: #FAFAF8; color: #0a0a09; font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif; }
+  .ow-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .ow-galerij { padding: 56px 0 72px; }
+  .ow h1 {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: clamp(30px, 4.4vw, 50px);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 20ch;
+  }
+
+  /* Twee kaarten naast elkaar, zoals in het voorbeeld. Radius 8 en geen
+     schaduw, de kaart-regel die site-breed geldt sinds 2026-08-17. */
+  .ow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+  .ow-kaart { width: 100%; height: auto; border-radius: 8px; display: block; }
+
+  @media (max-width: 760px) {
+    .ow-galerij { padding: 40px 0 56px; }
+    .ow-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
+  }
+</style>

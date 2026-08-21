@@ -1,0 +1,139 @@
+---
+// Reviewpagina, toegevoegd 2026-08-17.
+//
+// Waarom deze pagina bestaat: de vier Google-reviews stonden alleen in een blok
+// op de homepage. Wie ze zoekt (via het menu, of via een naam in Google) hoort
+// een eigen pagina te vinden waar ze compleet staan.
+//
+// OPBOUW, herzien 2026-08-17 naar zijn /testimonials: kop, raster met kaarten,
+// klaar. Bij hem staan er klantvideo's in het raster, bij ons de tekst van de
+// reviews. Verder niets op de pagina, en de vaste staart komt uit
+// SiteFooter.astro.
+//
+// Wat er in die herziening uit ging (Bryan, 2026-08-17): het blok "Waar deze
+// reviews over gaan", het blok "Zo komen ze bij jou binnen" en de donkere
+// slotkaart. Het eerste legde naast vier echte vijfsterrenreviews uit wat ze
+// níét bewijzen, en daarmee ondergroef het het eigen bewijs. De slotkaart stond
+// direct boven diezelfde kaart uit SiteFooter.astro.
+//
+// REGELS DIE HIER GELDEN
+// - De reviews zijn LETTERLIJK overgenomen van het Google-bedrijfsprofiel.
+//   Niets herformuleren, niets inkorten, niets bijschrijven. Komt er een review
+//   bij, dan hier toevoegen en ook in het blok in SiteFooter.astro.
+// - Geen gemiddeld cijfer en geen aantal-claims verzinnen. Elke review hier
+//   staat op vijf sterren, dat is wat er getoond wordt.
+// - Geen Review- of AggregateRating-schema. Google staat reviews over je eigen
+//   bedrijf op je eigen site niet toe als bron voor sterren in de resultaten,
+//   dus dat levert alleen risico op en geen winst.
+// - Geen prijs op deze pagina. Die staat op /prijs/ en /gesprek/.
+import Layout from '../../layouts/Layout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+
+const title = 'Reviews over Local Levers | Local Levers';
+const description =
+  'De reviews die mensen achterlieten op het Google-bedrijfsprofiel van Local Levers, woord voor woord overgenomen.';
+
+const reviews = [
+  {
+    naam: 'Nick',
+    tekst:
+      'Als ondernemer heb je geen tijd om je bezig te houden met online marketing. Local Levers heeft dat uit handen genomen, het resultaat: eindelijk gevonden worden door de mensen die onze service zoeken. Bryan denkt mee en belooft niks wat hij niet waarmaakt.',
+  },
+  {
+    naam: 'Albert',
+    tekst:
+      'Heel fijn samengewerkt met Bryan. Vanaf het eerste contact dacht hij goed mee en was hij altijd snel bereikbaar als ik vragen had of iets wilde aanpassen.',
+  },
+  {
+    naam: 'Rob',
+    tekst:
+      'Bryan is een zeer prettig persoon om mee samen te werken en komt zijn afspraken altijd netjes op tijd na.',
+  },
+  {
+    naam: 'Jordan',
+    tekst: 'Erg behulpzaam en snelle respons.',
+  },
+];
+---
+
+<Layout title={title} description={description} reviews={false}>
+  <SiteNav />
+
+  <main class="rw">
+    <section class="rw-hero">
+      <div class="rw-inner">
+        <h1>Wat mensen zeggen die met ons werkten</h1>
+        <p class="rw-regel">
+          Woord voor woord overgenomen van het Google-bedrijfsprofiel van Local Levers.
+        </p>
+      </div>
+    </section>
+
+    <section class="rw-blok">
+      <div class="rw-inner">
+        <div class="rw-grid">
+          {reviews.map((r) => (
+            <figure class="rw-kaart">
+              <div class="rw-sterren" aria-label="5 van de 5 sterren">
+                <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              </div>
+              <blockquote>{r.tekst}</blockquote>
+              <figcaption>
+                <span class="rw-naam">{r.naam}</span>
+                <span class="rw-bron">Google-review</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .rw { background: #fafaf8; color: #141413; font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif; }
+  .rw-inner { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  .rw-hero { padding: 72px 0 40px; text-align: center; }
+  .rw h1 {
+    font-family: 'Outfit Variable', sans-serif; font-size: clamp(34px, 5.4vw, 50px);
+    font-weight: 800; line-height: 1.08; letter-spacing: -.03em; margin: 0;
+  }
+  .rw-regel {
+    font-style: italic; font-size: clamp(17px, 2vw, 20px); line-height: 1.55;
+    color: #3c3c39; margin: 20px auto 0; max-width: 58ch;
+  }
+
+  .rw-blok { padding: 0 0 24px; }
+  .rw-grid { display: grid; gap: 20px; }
+  .rw-kaart {
+    margin: 0; background: #fff; border: 1px solid #e4e3dc; border-radius: 8px;
+    padding: 34px 32px; display: flex; flex-direction: column;
+  }
+  .rw-sterren { color: var(--green); font-size: 17px; letter-spacing: 3px; line-height: 1; }
+  /* margin-top: auto op de naam duwt hem naar de onderkant, zodat de namen in
+     een rij op één lijn staan ook als de ene review vier regels langer is. */
+  .rw-kaart blockquote { margin: 18px 0 20px; font-size: 16.5px; line-height: 1.62; color: #3c3c39; }
+  .rw-kaart figcaption {
+    margin-top: auto; padding-top: 18px; border-top: 1px solid #eeede6;
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px;
+  }
+  .rw-naam { font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 15.5px; color: #141413; }
+  .rw-bron { font-size: 13px; color: #8c8c87; }
+
+  @media (min-width: 760px) {
+    .rw-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .rw-kaart { padding: 24px 20px; }
+  }
+</style>
+
+<style is:global>
+  /* SiteFooter.astro sluit elke pagina af met het proces én het reviewblok. Op
+     déze pagina zou dat dezelfde vier reviews een tweede keer tonen, twintig
+     centimeter onder de eerste. Hij doet dat op zijn /testimonials ook niet.
+     De voettekst kan het blok zelf nog niet uitzetten (er komt geen prop
+     doorheen vanuit Layout.astro), dus het gebeurt hier, en alleen hier: de
+     regel bijt uitsluitend op een pagina met <main class="rw">. */
+</style>

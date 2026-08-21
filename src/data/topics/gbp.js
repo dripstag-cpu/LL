@@ -1,15 +1,17 @@
-// Gids-pagina's rond het Google Bedrijfsprofiel voor klinieken en behandel-salons.
+// Gids-pagina's rond het Google Bedrijfsprofiel voor cosmetische klinieken en lokale dienstverleners.
 // Elke eigenaar-vraag = een unieke, substantiele pagina. De CTA wordt door de template toegevoegd.
 // Google Bedrijfsprofiel is het fundament, maar staat nooit los van reviews, directories en AI-vindbaarheid.
 
 export const topics = [
   {
     slug: 'google-bedrijfsprofiel-optimaliseren-kliniek',
+    metaTitle: 'Google Bedrijfsprofiel optimaliseren voor je kliniek',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'google bedrijfsprofiel optimaliseren kliniek',
     h1: 'Je Google Bedrijfsprofiel optimaliseren voor je kliniek of salon',
     lead:
-      'Je Google Bedrijfsprofiel is voor de meeste klinieken en salons het eerste wat een nieuwe klant ziet, nog voor je website. Een compleet en kloppend profiel bepaalt of je opduikt in Google Maps en of iemand op jou klikt in plaats van op de zaak verderop. Optimaliseren is geen eenmalige klus maar het consequent goed neerzetten van een handvol onderdelen. Hier lopen we ze langs.',
+      'Je Google Bedrijfsprofiel is voor de meeste klinieken en salons het eerste wat een nieuwe klant ziet, nog voor je website. Een compleet en kloppend profiel bepaalt of je opduikt in Google Maps en of iemand op jou klikt in plaats van op het bedrijf verderop. Optimaliseren is geen eenmalige klus maar het consequent goed neerzetten van een handvol onderdelen. Hier lopen we ze langs.',
     sections: [
       {
         h: 'Vul elk veld in dat Google je geeft',
@@ -21,13 +23,13 @@ export const topics = [
       },
       {
         h: 'Houd het profiel levend',
-        p: 'Een profiel dat je een keer invult en daarna vergeet, zakt langzaam weg. Nieuwe reviews die blijven binnenkomen, actuele foto\'s en kloppende openingstijden rond feestdagen vertellen Google dat je een actieve zaak bent. Verouderde informatie werkt juist tegen je: een klant die voor een dichte deur staat omdat je openingstijden niet klopten, laat dat vaak in een review weten. Onderhoud is minstens zo belangrijk als de eerste optimalisatie.',
+        p: 'Een profiel dat je een keer invult en daarna vergeet, zakt langzaam weg. Nieuwe reviews die blijven binnenkomen, actuele foto\'s en kloppende openingstijden rond feestdagen vertellen Google dat je een actief bedrijf bent. Verouderde informatie werkt juist tegen je: een klant die voor een dichte deur staat omdat je openingstijden niet klopten, laat dat vaak in een review weten. Onderhoud is minstens zo belangrijk als de eerste optimalisatie.',
       },
     ],
     faq: [
       {
         q: 'Wat is het belangrijkste onderdeel om als eerste aan te pakken?',
-        a: 'Begin bij je hoofdcategorie en je diensten, want die bepalen op welke zoektermen je uberhaupt in beeld komt. Daarna je reviews en je consistentie over de andere platforms. De gratis Online Reputatie Sprint laat zien welk onderdeel bij jou het meeste laat liggen.',
+        a: 'Begin bij je hoofdcategorie en je diensten, want die bepalen op welke zoektermen je überhaupt in beeld komt. Daarna je reviews en je consistentie over de andere platforms. In de eerste maand lopen we die onderdelen op volgorde na, zodat je ziet welk deel bij jou het meeste laat liggen.',
       },
       {
         q: 'Kan ik mijn profiel zelf optimaliseren?',
@@ -37,23 +39,25 @@ export const topics = [
   },
   {
     slug: 'juiste-google-categorie-kiezen',
+    metaTitle: 'Google-categorie kiezen voor je salon of kliniek',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'google categorie schoonheidssalon kliniek',
     h1: 'Welke Google-categorie kies je voor je salon of kliniek?',
     lead:
-      'Je categorie is misschien de meest onderschatte instelling van je hele profiel. Google gebruikt hem om te bepalen op welke zoektermen je uberhaupt kunt verschijnen. Kies je te breed of gewoon verkeerd, dan mis je precies de zoekers die naar jouw behandeling zoeken. Zo kies je een categorie die klopt met wat je echt doet.',
+      'Je categorie is misschien de meest onderschatte instelling van je hele profiel. Google gebruikt hem om te bepalen op welke zoektermen je überhaupt kunt verschijnen. Kies je te breed of gewoon verkeerd, dan mis je precies de zoekers die naar jouw behandeling zoeken. Zo kies je een categorie die klopt met wat je echt doet.',
     sections: [
       {
         h: 'Je hoofdcategorie beschrijft je kernbehandeling',
         p: 'De hoofdcategorie moet zo dicht mogelijk aansluiten bij waar je het grootste deel van je omzet mee maakt. Een huidtherapiepraktijk kiest iets anders dan een laserkliniek of een nagelsalon, ook als er overlap is in wat je aanbiedt. Google weegt de hoofdcategorie zwaarder dan de rest, dus een generieke keuze als schoonheidssalon terwijl je eigenlijk een gespecialiseerde kliniek bent, kost je zichtbaarheid op je winstgevende termen. Kies wat een zoeker zou intikken als hij precies jouw behandeling wil.',
       },
       {
-        h: 'Voeg subcategorieen toe voor je andere behandelingen',
-        p: 'Naast je hoofdcategorie kun je meerdere subcategorieen toevoegen voor de andere dingen die je doet. Bied je naast laserontharing ook huidverbetering of injectables aan, benoem die dan apart. Zo vergroot je het aantal zoektermen waarop je in beeld komt, zonder je hoofdfocus te verwateren. Overdrijf niet met categorieen die je niet echt levert, want dat verwart Google en trekt de verkeerde bezoekers.',
+        h: 'Voeg subcategorieën toe voor je andere behandelingen',
+        p: 'Naast je hoofdcategorie kun je meerdere subcategorieën toevoegen voor de andere dingen die je doet. Bied je naast laserontharing ook huidverbetering of injectables aan, benoem die dan apart. Zo vergroot je het aantal zoektermen waarop je in beeld komt, zonder je hoofdfocus te verwateren. Overdrijf niet met categorieën die je niet echt levert, want dat verwart Google en trekt de verkeerde bezoekers.',
       },
       {
         h: 'Controleer wat je concurrenten hebben gekozen',
-        p: 'Kijk bij de klinieken die boven je staan op jouw zoekterm welke categorieen zij gebruiken. Dat geeft je een reeel beeld van wat Google in jouw stad koppelt aan die term. Het is geen kwestie van klakkeloos kopieren, maar het laat zien of jij misschien op een te brede of net verkeerde categorie zit. Soms verklaart een verkeerd gekozen categorie in een keer waarom je onder een mindere concurrent staat.',
+        p: 'Kijk bij de klinieken die boven je staan op jouw zoekterm welke categorieën zij gebruiken. Dat geeft je een reëel beeld van wat Google in jouw stad koppelt aan die term. Het is geen kwestie van klakkeloos kopiëren, maar het laat zien of jij misschien op een te brede of net verkeerde categorie zit. Soms verklaart een verkeerd gekozen categorie in een keer waarom je onder een mindere concurrent staat.',
       },
     ],
     faq: [
@@ -65,23 +69,25 @@ export const topics = [
   },
   {
     slug: 'google-bedrijfsprofiel-fotos',
+    metaTitle: "Foto's op je Google Bedrijfsprofiel: wat werkt?",
+    niches: ['schildersbedrijven', 'hoveniers', 'tegelzetters', 'stukadoors', 'timmerbedrijven', 'verbouw-en-renovatie'],
     published: true,
     keyword: 'google bedrijfsprofiel foto\'s',
     h1: 'Welke foto\'s zet je op je Google Bedrijfsprofiel?',
     lead:
-      'Foto\'s zijn vaak het eerste wat een potentiele klant van je zaak ziet en ze bepalen mee of iemand op je klikt of doorscrolt. Voor een kliniek of salon, waar vertrouwen en hygiene zwaar wegen, doen goede foto\'s meer dan welke tekst ook. Dit is welke foto\'s je nodig hebt en waarom.',
+      'Foto\'s zijn vaak het eerste wat een potentiële klant van je bedrijf ziet en ze bepalen mee of iemand op je klikt of doorscrolt. Voor een kliniek of salon, waar vertrouwen en hygiëne zwaar wegen, doen goede foto\'s meer dan welke tekst ook. Dit is welke foto\'s je nodig hebt en waarom.',
     sections: [
       {
         h: 'Laat de ruimte zien waar de klant komt',
-        p: 'Mensen willen weten waar ze binnenstappen voor ze boeken. Duidelijke, goed belichte foto\'s van je gevel, je wachtruimte en je behandelkamers halen de onzekerheid weg. Voor een behandelsalon telt de uitstraling van de ruimte extra zwaar, want die vertaalt zich direct naar het gevoel van professionaliteit en hygiene. Een frisse, opgeruimde behandelkamer op de foto zegt meer dan tien beloftes in je omschrijving.',
+        p: 'Mensen willen weten waar ze binnenstappen voor ze boeken. Duidelijke, goed belichte foto\'s van je gevel, je wachtruimte en je behandelkamers halen de onzekerheid weg. Voor een behandelsalon telt de uitstraling van de ruimte extra zwaar, want die vertaalt zich direct naar het gevoel van professionaliteit en hygiëne. Een frisse, opgeruimde behandelkamer op de foto zegt meer dan tien beloftes in je omschrijving.',
       },
       {
         h: 'Toon je team en je werk, met respect voor privacy',
-        p: 'Een foto van jou en je team maakt je zaak menselijk en herkenbaar, en dat verlaagt de drempel om binnen te stappen. Voor behandelfoto\'s geldt: laat resultaat of de behandeling in uitvoering zien alleen met uitdrukkelijke toestemming van de klant, en houd je aan de regels rond medische of cosmetische beeldclaims. Overdreven bewerkte voor-en-na-beelden werken averechts en kunnen tegen de richtlijnen ingaan. Echt en netjes wint van geretoucheerd.',
+        p: 'Een foto van jou en je team maakt je bedrijf menselijk en herkenbaar, en dat verlaagt de drempel om binnen te stappen. Voor behandelfoto\'s geldt: laat resultaat of de behandeling in uitvoering zien alleen met uitdrukkelijke toestemming van de klant, en houd je aan de regels rond medische of cosmetische beeldclaims. Overdreven bewerkte voor-en-na-beelden werken averechts en kunnen tegen de richtlijnen ingaan. Echt en netjes wint van geretoucheerd.',
       },
       {
         h: 'Ververs je foto\'s en houd de kwaliteit hoog',
-        p: 'Een profiel met alleen oude of donkere kiekjes oogt verwaarloosd. Voeg met enige regelmaat nieuwe, scherpe foto\'s toe, zodat het profiel actueel oogt en Google ziet dat je zaak leeft. Kwaliteit gaat boven aantal: liever tien scherpe, goed belichte foto\'s dan dertig wazige. Vermijd stockfoto\'s, want mensen prikken daar doorheen en het ondermijnt juist het vertrouwen dat je wil opbouwen.',
+        p: 'Een profiel met alleen oude of donkere kiekjes oogt verwaarloosd. Voeg met enige regelmaat nieuwe, scherpe foto\'s toe, zodat het profiel actueel oogt en Google ziet dat je bedrijf leeft. Kwaliteit gaat boven aantal: liever tien scherpe, goed belichte foto\'s dan dertig wazige. Vermijd stockfoto\'s, want mensen prikken daar doorheen en het ondermijnt juist het vertrouwen dat je wil opbouwen.',
       },
     ],
     faq: [
@@ -97,11 +103,13 @@ export const topics = [
   },
   {
     slug: 'google-posts-voor-klinieken',
+    metaTitle: 'Google-posts voor klinieken: zijn ze de moeite waard?',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'google posts nut kliniek',
     h1: 'Zijn Google-posts de moeite waard voor je kliniek?',
     lead:
-      'Google laat je korte berichten plaatsen op je Bedrijfsprofiel, de zogenoemde posts. Veel eigenaren vragen zich af of dat de moeite loont of dat het tijd is die je beter aan iets anders besteedt. Het eerlijke antwoord: het helpt marginaal, en er zijn bijna altijd zaken die eerst meer opleveren. Hier is hoe wij ernaar kijken.',
+      'Google laat je korte berichten plaatsen op je Bedrijfsprofiel, de zogenoemde posts. Veel eigenaren vragen zich af of dat de moeite loont of dat het tijd is die je beter aan iets anders besteedt. Het eerlijke antwoord: het helpt marginaal, en er is bijna altijd iets anders dat eerst meer oplevert. Hier is hoe wij ernaar kijken.',
     sections: [
       {
         h: 'Wat posts wel en niet doen',
@@ -125,6 +133,8 @@ export const topics = [
   },
   {
     slug: 'google-bedrijfsprofiel-verifieren',
+    metaTitle: 'Google Bedrijfsprofiel geverifieerd krijgen | Local Levers',
+    niches: ['klusbedrijven', 'straatmakers', 'gevelreiniging', 'boomverzorging', 'ongediertebestrijding'],
     published: true,
     keyword: 'google bedrijfsprofiel verifieren',
     h1: 'Je Google Bedrijfsprofiel geverifieerd krijgen',
@@ -137,7 +147,7 @@ export const topics = [
       },
       {
         h: 'De manieren waarop Google verifieert',
-        p: 'Google biedt afhankelijk van je situatie verschillende routes: een code per post, per telefoon, per e-mail, of via een video die je ruimte en bedrijf laat zien. Welke opties je krijgt, hangt af van je type zaak en categorie. Volg de aangeboden route precies en zorg dat je gegevens overal kloppen, want een verschil tussen je aanvraag en je echte situatie kan de verificatie vertragen. Bewaar je inloggegevens goed, want dit is het account dat je hele online vindbaarheid aanstuurt.',
+        p: 'Google biedt afhankelijk van je situatie verschillende routes: een code per post, per telefoon, per e-mail, of via een video die je ruimte en bedrijf laat zien. Welke opties je krijgt, hangt af van je type bedrijf en categorie. Volg de aangeboden route precies en zorg dat je gegevens overal kloppen, want een verschil tussen je aanvraag en je echte situatie kan de verificatie vertragen. Bewaar je inloggegevens goed, want dit is het account dat je hele online vindbaarheid aanstuurt.',
       },
       {
         h: 'Als de verificatie wordt afgewezen of blijft hangen',
@@ -147,7 +157,7 @@ export const topics = [
     faq: [
       {
         q: 'Wat als iemand anders mijn profiel al heeft geclaimd?',
-        a: 'Dan kun je via Google een aanvraag doen om de toegang op te eisen. Google neemt dan contact op met de huidige beheerder en beoordeelt wie de rechtmatige eigenaar is. Zorg dat je kunt aantonen dat de zaak van jou is.',
+        a: 'Dan kun je via Google een aanvraag doen om de toegang op te eisen. Google neemt dan contact op met de huidige beheerder en beoordeelt wie de rechtmatige eigenaar is. Zorg dat je kunt aantonen dat het bedrijf van jou is.',
       },
       {
         q: 'Blijft mijn profiel geverifieerd als ik iets wijzig?',
@@ -157,6 +167,8 @@ export const topics = [
   },
   {
     slug: 'diensten-toevoegen-google-bedrijfsprofiel',
+    metaTitle: 'Diensten toevoegen aan je Google Bedrijfsprofiel',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'diensten toevoegen google bedrijfsprofiel',
     h1: 'Behandelingen als diensten toevoegen aan je Google Bedrijfsprofiel',
@@ -179,21 +191,22 @@ export const topics = [
     faq: [
       {
         q: 'Moet ik bij elke dienst een prijs zetten?',
-        a: 'Dat mag, maar het hoeft niet. Een prijs of prijsindicatie kan bezoekers helpen kiezen, terwijl je hem ook kunt weglaten als je prijzen sterk varieren. Belangrijker is dat de behandeling zelf duidelijk benoemd en omschreven staat.',
+        a: 'Dat mag, maar het hoeft niet. Een prijs of prijsindicatie kan bezoekers helpen kiezen, terwijl je hem ook kunt weglaten als je prijzen sterk variëren. Belangrijker is dat de behandeling zelf duidelijk benoemd en omschreven staat.',
       },
       {
         q: 'Wat is het verschil tussen een categorie en een dienst?',
-        a: 'Je categorie beschrijft in het groot wat voor zaak je bent en bepaalt je bredere vindbaarheid. Diensten zijn de losse behandelingen binnen die categorie en maken je vindbaar op specifiekere zoektermen. Je hebt beide nodig.',
+        a: 'Je categorie beschrijft in het groot wat voor bedrijf je bent en bepaalt je bredere vindbaarheid. Diensten zijn de losse behandelingen binnen die categorie en maken je vindbaar op specifiekere zoektermen. Je hebt beide nodig.',
       },
     ],
   },
   {
     slug: 'dubbele-google-vermelding-samenvoegen',
+    niches: ['installatiebedrijven', 'aannemers', 'verbouw-en-renovatie', 'elektriciens'],
     published: true,
     keyword: 'dubbele google vermelding samenvoegen',
     h1: 'Dubbele Google-vermelding? Zo los je het op',
     lead:
-      'Soms bestaat je zaak twee keer in Google Maps: een profiel dat jij beheert en een tweede dat ooit automatisch is aangemaakt of door een klant is toegevoegd. Dat verdeelt je reviews en je vindbaarheid over twee vermeldingen en verwart zowel Google als klanten. Een dubbele vermelding hoort samengevoegd of verwijderd te worden. Zo pak je dat aan.',
+      'Soms bestaat je bedrijf twee keer in Google Maps: een profiel dat jij beheert en een tweede dat ooit automatisch is aangemaakt of door een klant is toegevoegd. Dat verdeelt je reviews en je vindbaarheid over twee vermeldingen en verwart zowel Google als klanten. Een dubbele vermelding hoort samengevoegd of verwijderd te worden. Zo pak je dat aan.',
     sections: [
       {
         h: 'Waarom een duplicaat je schaadt',
@@ -201,7 +214,7 @@ export const topics = [
       },
       {
         h: 'Zoek het dubbele profiel op en claim het',
-        p: 'Zoek eerst je zaak op in Google Maps en kijk of je jezelf meer dan een keer tegenkomt, ook op net andere schrijfwijzen van je naam of adres. Als je een tweede vermelding vindt, probeer die te claimen zodat je hem in beheer krijgt. Pas als beide profielen onder jouw beheer vallen, kun je het duplicaat netjes afhandelen. Noteer de exacte gegevens van beide, want de verschillen ertussen vertellen je vaak hoe het duplicaat is ontstaan.',
+        p: 'Zoek eerst je bedrijf op in Google Maps en kijk of je jezelf meer dan een keer tegenkomt, ook op net andere schrijfwijzen van je naam of adres. Als je een tweede vermelding vindt, probeer die te claimen zodat je hem in beheer krijgt. Pas als beide profielen onder jouw beheer vallen, kun je het duplicaat netjes afhandelen. Noteer de exacte gegevens van beide, want de verschillen ertussen vertellen je vaak hoe het duplicaat is ontstaan.',
       },
       {
         h: 'Samenvoegen of laten verwijderen',
@@ -221,6 +234,8 @@ export const topics = [
   },
   {
     slug: 'google-bedrijfsprofiel-omschrijving-schrijven',
+    metaTitle: 'Google Bedrijfsprofiel: een sterke omschrijving schrijven',
+    niches: ['kozijnenbedrijven', 'isolatiebedrijven', 'zonnepanelen', 'schildersbedrijven', 'stukadoors'],
     published: true,
     keyword: 'google bedrijfsprofiel omschrijving',
     h1: 'Een sterke omschrijving schrijven voor je Google Bedrijfsprofiel',
@@ -237,7 +252,7 @@ export const topics = [
       },
       {
         h: 'Sluit af met wat je onderscheidt en houd het net',
-        p: 'Vertel kort wat jouw zaak anders maakt: je specialisatie, je aanpak of iets in je service dat er echt toe doet. Blijf eerlijk en concreet, zonder beloftes over resultaten die je niet kunt waarmaken. Let op de regels van Google: geen contactgegevens of links in de omschrijving en geen misleidende claims. Lees de tekst na op spelling en toon, want dit is vaak het eerste stukje echte woorden dat een klant van je leest.',
+        p: 'Vertel kort wat jouw bedrijf anders maakt: je specialisatie, je aanpak of iets in je service dat er echt toe doet. Blijf eerlijk en concreet, zonder beloftes over resultaten die je niet kunt waarmaken. Let op de regels van Google: geen contactgegevens of links in de omschrijving en geen misleidende claims. Lees de tekst na op spelling en toon, want dit is vaak het eerste stukje echte woorden dat een klant van je leest.',
       },
     ],
     faq: [

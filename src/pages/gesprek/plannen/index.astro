@@ -1,0 +1,252 @@
+---
+// Boekpagina, toegevoegd 2026-08-19.
+//
+// Waarom deze pagina bestaat: wie de quiz op /gesprek/ afrondt, gaat sinds
+// 2026-08-19 door naar een eigen pagina in plaats van dat de video en agenda
+// onder de quiz uitklappen (besluit Bryan). Voordeel: een schone boekpagina met
+// een eigen URL die als conversiepunt telt, en de agenda is vooringevuld met de
+// gegevens uit de quiz.
+//
+// De gegevens komen via sessionStorage ('ll_lead'), gezet door /gesprek/ vlak
+// voor de doorverwijzing. Zo staat er geen persoonlijke data in de URL van deze
+// pagina; alleen de agenda-iframe krijgt de velden mee (dat is de GHL-widget
+// zelf, daar horen ze thuis). Landt iemand hier zonder die data, dan werkt de
+// agenda gewoon zonder voorinvulling.
+//
+// De video bestaat nog niet. Zolang /public/gesprek-uitleg.mp4 er niet staat
+// wordt het <video>-element niet uitgeschreven en toont de placeholder, net als
+// op /gesprek/.
+import fs from 'node:fs';
+import Bare from '../../../layouts/Bare.astro';
+
+const PRIJS = '397';
+const WHATSAPP = 'https://wa.me/31634014177';
+const AGENDA = 'https://links.locallevers.com/widget/booking/QzCITDWEPnRz1TfPeXbJ';
+
+const heeftVideo = fs.existsSync(new URL('../../../../public/gesprek-uitleg.mp4', import.meta.url));
+const heeftPoster = fs.existsSync(new URL('../../../../public/gesprek-poster.jpg', import.meta.url));
+---
+
+<Bare
+  title="Plan je gesprek | Local Levers"
+  description="Kijk de video en plan een gesprek dat jou uitkomt. Eén systeem voor je website, je reviews en je aanvragen, €397 per maand."
+  noindex={true}
+>
+  <main class="pl">
+    <a class="merk" href="/">Local<span>Levers</span></a>
+
+    <h1>Nog één stap: plan je gesprek</h1>
+    <p class="pl-intro">
+      Kijk de video, dan weet je precies wat we doen en wat het kost. Past het? Kies hieronder een
+      moment dat jou uitkomt.
+    </p>
+
+    <p class="starter-regel" id="starter-regel" hidden>
+      Het systeem is gebouwd voor bedrijven met klussen, offertes en een klantenlijst om opnieuw te
+      benaderen. Herken je dat niet meteen in je eigen bedrijf: vraag het gerust in het gesprek, dan
+      hoor je het eerlijk.
+    </p>
+
+    {heeftVideo ? (
+      <div class="video-wrap">
+        <video id="uitleg" playsinline preload="metadata" poster={heeftPoster ? '/gesprek-poster.jpg' : undefined}>
+          <source src="/gesprek-uitleg.mp4" type="video/mp4" />
+        </video>
+        <button class="play" id="play" aria-label="Video afspelen"></button>
+      </div>
+    ) : (
+      <div class="video-ph" aria-hidden="true">
+        <span class="video-ph-play"></span>
+        <span class="video-ph-tekst">Wat we doen, hoe het werkt en wat het kost</span>
+      </div>
+    )}
+
+    <div class="plan-blok">
+      <h2 class="plan-kop">Plan je gesprek</h2>
+      <div class="agenda-wrap">
+        <iframe class="agenda" id="agenda" title="Plan een gesprek" scrolling="no"></iframe>
+      </div>
+      <p class="plan-app">Liever direct appen? <a id="plan" href={WHATSAPP}>Stuur een WhatsApp</a>.</p>
+      <noscript>
+        <p class="plan-app">Zet JavaScript aan om te plannen, of <a href={WHATSAPP}>stuur een WhatsApp</a>.</p>
+      </noscript>
+    </div>
+  </main>
+
+  <script is:inline define:vars={{ AGENDA, WHATSAPP, PRIJS }}>
+    // Gegevens uit de quiz ophalen en de agenda ermee voorvullen. De GHL-widget
+    // leest first_name, last_name, email en phone uit de query van de iframe-src.
+    (function () {
+      var lead = {};
+      try { lead = JSON.parse(sessionStorage.getItem('ll_lead') || '{}'); } catch (e) {}
+
+      var naam = (lead.naam || '').trim();
+      var spatie = naam.indexOf(' ');
+      var voor = spatie === -1 ? naam : naam.slice(0, spatie);
+      var achter = spatie === -1 ? '' : naam.slice(spatie + 1);
+
+      var q = new URLSearchParams();
+      if (voor) q.set('first_name', voor);
+      if (achter) q.set('last_name', achter);
+      if (lead.email) q.set('email', lead.email);
+      if (lead.telefoon) q.set('phone', lead.telefoon);
+
+      var iframe = document.getElementById('agenda');
+      if (iframe) iframe.src = AGENDA + (q.toString() ? '?' + q.toString() : '');
+
+      // WhatsApp met het bericht al ingevuld, net als op /gesprek/.
+      var plan = document.getElementById('plan');
+      if (plan) {
+        // Naam en bedrijf komen uit de quiz, maar hoeven er niet te zijn. Ontbreken
+        // ze allebei, dan noemt het bericht geen naam in plaats van een verzonnen.
+        var wie = naam;
+        if (lead.bedrijf) wie = wie ? wie + ' van ' + lead.bedrijf : 'van ' + lead.bedrijf;
+        var tekst = encodeURIComponent(
+          'Hoi Bryan' + (wie ? ', ik ben ' + wie : '') +
+          '. Ik wil een gesprek inplannen over het systeem van €' + PRIJS + ' per maand.'
+        );
+        plan.href = WHATSAPP + '?text=' + tekst;
+      }
+
+      // Dezelfde zachte regel als op de quiz voor wie geen vakbedrijf heeft.
+      if (lead.soort === 'Ik heb geen vakbedrijf') {
+        var sr = document.getElementById('starter-regel');
+        if (sr) sr.hidden = false;
+      }
+
+      // Video afspelen bij klik op het kader (alleen als de video bestaat).
+      var video = document.getElementById('uitleg');
+      if (video) {
+        var play = document.getElementById('play');
+        var wrap = document.querySelector('.video-wrap');
+        var gestart = false;
+        wrap.addEventListener('click', function () {
+          if (gestart) return;
+          gestart = true;
+          if (play) play.hidden = true;
+          video.controls = true;
+          video.play();
+          if (window.llTrack) window.llTrack('video_start', { pagina: 'plannen' });
+        });
+      }
+    })();
+  </script>
+  <script is:inline src="https://links.locallevers.com/js/form_embed.js" async></script>
+</Bare>
+
+<style>
+  .pl {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+    background: #fafaf8;
+    color: #141413;
+    font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
+    text-align: center;
+    min-height: 100vh;
+  }
+  :global(body) { background: #fafaf8; }
+
+  .merk {
+    display: inline-block;
+    font-family: 'Outfit Variable', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: #141413;
+    text-decoration: none;
+    margin-bottom: 28px;
+  }
+  .merk span { color: #1a7a54; }
+
+  .pl h1 {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .pl-intro {
+    font-size: clamp(16px, 2vw, 18px);
+    line-height: 1.6;
+    color: #3c3c39;
+    margin: 16px auto 0;
+    max-width: 52ch;
+  }
+  .starter-regel {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #64645f;
+    background: #f2f5f3;
+    border: 1px solid #dce6e0;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 22px auto 0;
+    max-width: 60ch;
+  }
+
+  /* Videokader en placeholder, gelijk aan /gesprek/. */
+  .video-wrap, .video-ph {
+    position: relative;
+    width: 100%;
+    max-width: 768px;
+    margin: 28px auto 0;
+    aspect-ratio: 16 / 9;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #000;
+  }
+  .video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .play {
+    position: absolute; inset: 0; margin: auto;
+    width: 74px; height: 74px; border: 0; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.94); cursor: pointer;
+  }
+  .play::after {
+    content: ''; position: absolute; inset: 0; margin: auto;
+    width: 0; height: 0; border-left: 22px solid #141413;
+    border-top: 14px solid transparent; border-bottom: 14px solid transparent;
+    transform: translateX(2px);
+  }
+  .play[hidden] { display: none; }
+  .video-ph {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+    background: linear-gradient(150deg, #10241c, #0a1512);
+  }
+  .video-ph-play {
+    width: 66px; height: 66px; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92); position: relative;
+  }
+  .video-ph-play::after {
+    content: ''; position: absolute; inset: 0; margin: auto;
+    width: 0; height: 0; border-left: 20px solid #10241c;
+    border-top: 12px solid transparent; border-bottom: 12px solid transparent;
+    transform: translateX(2px);
+  }
+  .video-ph-tekst {
+    color: rgba(255, 255, 255, 0.82); font-size: 15px; font-weight: 600;
+    font-family: 'Outfit Variable', sans-serif; letter-spacing: -0.005em; padding: 0 20px;
+  }
+
+  /* Agenda: hoofdactie onder de video, WhatsApp eronder als kleine tweede optie. */
+  .plan-blok { max-width: 768px; margin: 30px auto 0; }
+  .plan-kop {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: clamp(22px, 3.4vw, 30px);
+    font-weight: 800; letter-spacing: -0.02em; line-height: 1.15;
+    margin: 0 0 16px;
+  }
+  .agenda-wrap {
+    background: #fff; border: 1px solid #e4e3dc; border-radius: 14px;
+    overflow: hidden; box-shadow: 0 2px 14px rgba(10, 10, 9, 0.05);
+  }
+  .agenda { width: 100%; min-height: 680px; border: 0; display: block; }
+  .plan-app { font-size: 15px; color: #64645f; margin: 18px 0 0; }
+  .plan-app a { color: #1a7a54; font-weight: 600; }
+
+  @media (max-width: 560px) {
+    .pl { padding-top: 24px; }
+    .agenda { min-height: 760px; }
+  }
+</style>

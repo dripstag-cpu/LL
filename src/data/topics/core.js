@@ -5,6 +5,8 @@
 export const topics = [
   {
     slug: 'waarom-staat-mijn-concurrent-hoger-in-google-maps',
+    metaTitle: 'Waarom staat je concurrent hoger in Google Maps?',
+    niches: ['dakdekkers', 'loodgieters', 'zonnepanelen', 'tegelzetters', 'ongediertebestrijding'],
     published: true,
     keyword: 'waarom staat mijn concurrent hoger in google maps',
     h1: 'Waarom staat je concurrent hoger in Google Maps dan jij?',
@@ -13,7 +15,7 @@ export const topics = [
     sections: [
       {
         h: '1. Je profiel is minder compleet dan dat van de concurrent',
-        p: 'Google beloont een compleet en actueel Google Bedrijfsprofiel: de juiste hoofd- en subcategorieen, je behandelingen als diensten, foto\'s, openingstijden en een uitgebreide omschrijving. Ontbreekt daar iets, dan heeft Google minder reden om jou hoog te zetten. Een concurrent met een volledig ingevuld profiel op precies de zoekterm die jij ook wil, wint dat.',
+        p: 'Google beloont een compleet en actueel Google Bedrijfsprofiel: de juiste hoofd- en subcategorieën, je behandelingen als diensten, foto\'s, openingstijden en een uitgebreide omschrijving. Ontbreekt daar iets, dan heeft Google minder reden om jou hoog te zetten. Een concurrent met een volledig ingevuld profiel op precies de zoekterm die jij ook wil, wint dat.',
       },
       {
         h: '2. De concurrent heeft meer of recentere reviews',
@@ -27,7 +29,7 @@ export const topics = [
     faq: [
       {
         q: 'Kan ik zelf zien waarom mijn concurrent hoger staat?',
-        a: 'Deels. Je kunt je eigen positie op verschillende plekken in je stad meten en die naast de concurrent leggen. Wij doen dat gestructureerd: op een raster zie je waar jij en je concurrenten staan op jouw winstgevende zoekterm, en dat zie je terug in de gratis sprint.',
+        a: 'Deels. Je kunt je eigen positie op verschillende plekken in je stad meten en die naast de concurrent leggen. Wij doen dat gestructureerd: op een raster zie je waar jij en je concurrenten staan op jouw winstgevende zoekterm, en dat raster krijg je elke maand terug in je rapport.',
       },
       {
         q: 'Hoe snel kan ik stijgen?',
@@ -36,39 +38,9 @@ export const topics = [
     ],
   },
   {
-    slug: 'vindbaar-in-chatgpt-als-kliniek',
-    published: true,
-    keyword: 'vindbaar in chatgpt als lokaal bedrijf kliniek',
-    h1: 'Hoe word je als kliniek genoemd door ChatGPT en Perplexity?',
-    lead:
-      'Steeds meer mensen vragen niet Google maar ChatGPT, Perplexity of Google AI Overviews om een aanbeveling in hun buurt. Die assistenten halen hun antwoord uit je Google Bedrijfsprofiel, reviews, directory-vermeldingen en gestructureerde website-data. Is die informatie incompleet, dan slaan ze je over en noemen ze je concurrent. Zo zorg je dat je wel genoemd wordt.',
-    sections: [
-      {
-        h: 'ChatGPT put uit dezelfde signalen als lokale zoekresultaten, plus structuur',
-        p: 'Een compleet Google Bedrijfsprofiel, een hoog en recent review-aantal, consistente vermeldingen op Bing Places (een databron van ChatGPT), Apple Maps en Foursquare, en schema-markup op je website. Hoe duidelijker en consistenter je online staat, hoe makkelijker ChatGPT je herkent als betrouwbare lokale aanbeveling.',
-      },
-      {
-        h: 'Bing eerst, want dat voedt ChatGPT',
-        p: 'Veel eigenaren staan wel op Google maar niet op Bing. ChatGPT leunt op Bing-data, dus een compleet Bing Places-profiel is een van de directste manieren om in ChatGPT-antwoorden op te duiken. Dit wordt bijna nergens gedaan, wat het een makkelijke voorsprong maakt.',
-      },
-      {
-        h: 'Beschrijf je behandelingen zoals mensen ze omschrijven',
-        p: 'ChatGPT matcht op taal. Als je profiel en site je behandelingen expliciet en in gewone woorden benoemen, is de kans groter dat je wordt genoemd bij een vraag over die behandeling. Vage of onvolledige omschrijvingen laten ChatGPT raden, en dan kiest hij de duidelijkste optie, meestal je concurrent.',
-      },
-    ],
-    faq: [
-      {
-        q: 'Is vindbaarheid in ChatGPT en Perplexity nu al belangrijk in Nederland?',
-        a: 'Het groeit snel, maar voor de meeste lokale keuzes is Google Maps nog leidend. Zie vindbaarheid in ChatGPT en Perplexity als een voorsprong opbouwen: laag-concurrentie nu, waardevoller naarmate meer mensen het gebruiken. Wij leiden met Maps en reviews, en nemen ChatGPT en Perplexity mee.',
-      },
-      {
-        q: 'Kan ik zien of ik nu voorkom in de antwoorden van ChatGPT en Perplexity?',
-        a: 'Ja. We kunnen scannen wat ChatGPT, Gemini en Google AI Overviews antwoorden op vragen over jouw type behandeling in jouw stad, en of jij daar tussen staat. Dat brengen we in de gratis Online Reputatie Sprint voor je in kaart.',
-      },
-    ],
-  },
-  {
     slug: 'meer-google-reviews-krijgen-als-kliniek',
+    metaTitle: 'Meer Google-reviews krijgen als kliniek | Local Levers',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'meer google reviews krijgen als kliniek salon',
     h1: 'Hoe krijg je structureel meer Google-reviews als kliniek?',
@@ -101,6 +73,8 @@ export const topics = [
   },
   {
     slug: 'hoe-kom-ik-hoger-in-google-maps-als-kliniek',
+    metaTitle: 'Hoger in Google Maps komen als kliniek of salon',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'hoe kom ik hoger in google maps als kliniek salon',
     h1: 'Hoe kom je hoger in Google Maps als kliniek of salon?',
@@ -133,34 +107,58 @@ export const topics = [
   },
   {
     slug: 'wat-kost-marketing-voor-een-kliniek',
+    metaTitle: 'Wat kost marketing voor een kliniek of salon?',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'wat kost marketing voor een kliniek salon',
     h1: 'Wat kost lokale marketing voor een kliniek of salon?',
     lead:
-      'Een eerlijk antwoord: het hangt af van waar je nu staat en wat je nodig hebt. Maar je verdient een helder beeld voordat je met iemand in gesprek gaat. Hier is hoe wij ernaar kijken, en waarom we met een lage, vaste instap werken in plaats van een verborgen prijs.',
+      'Eén pakket, €397 ex btw per maand, geen opstartkosten en maandelijks opzegbaar. Hieronder lees je precies wat daarin zit, wat er los bij komt, waar je dat bedrag tegen afzet en waarom wij het gewoon opschrijven in plaats van het te bewaren voor het gesprek.',
     sections: [
       {
-        h: 'De meeste bureaus verkopen ads met een verborgen prijs',
-        p: 'Veel bureaus rekenen een fee plus je advertentiebudget, en de echte kosten worden pas in het gesprek duidelijk. Wij werken andersom: eerst een gratis diagnose zodat je weet waar je staat, dan een lage instap, en pas daarna praten we over een traject als je dat wil.',
+        h: 'De meeste bureaus houden de prijs achter tot het gesprek',
+        p: 'Veel bureaus rekenen een maandbedrag plus opstartkosten plus je advertentiebudget, en wat het echt wordt hoor je pas als je aan tafel zit. Wij werken andersom. Er is één pakket met één prijs, en die staat op de site. Zo weet je vooraf of het past bij wat je kunt uitgeven, en gaat het gesprek over de vraag of het bij jouw bedrijf past, niet over wat het kost.',
       },
       {
-        h: 'Wat een klant kost vs. wat je nu al kwijt bent',
-        p: 'Zet het af tegen wat je nu betaalt. Een nieuwe klant via een boekingsplatform kost al snel een fors deel van de eerste behandeling aan commissie. Zichtbaarheid die je zelf bezit, kost dat niet, en blijft werken ook als je stopt met betalen.',
+        h: 'Wat het bij ons kost: €397 ex btw per maand',
+        p: 'Voor €397 ex btw per maand krijg je één systeem dat op drie punten ingrijpt. Gevonden worden: je Google Bedrijfsprofiel ingericht en onderhouden op je winstgevende behandeling, Bing Places en Apple Business Connect ingericht en gelijk gehouden, je zichtbaarheid in AI-zoekhulpen als ChatGPT en Perplexity gemeten, en elke maand een raster-rapport met een ingesproken toelichting waarin je ziet waar je staat en wat er is gebeurd. Gekozen worden: een review-systeem op je bestaande klantenlijst waarin eerst naar de ervaring wordt gevraagd, zodat een tevreden klant meteen doorgaat naar je profiel en een ontevreden klant eerst bij jou uitkomt, met de link naar je profiel er nog steeds bij, en elke binnenkomende review beantwoord. Geboekt worden: een website met hosting, een chat die de meeste vragen meteen beantwoordt en de juiste boekingslink geeft, een terugbelbericht zodra een oproep gemist wordt, en automatisch antwoord op berichten via Facebook en Instagram.',
       },
       {
-        h: 'Begin met wat gratis is',
-        p: 'Voordat je iets uitgeeft, laten we in de gratis Online Reputatie Sprint zien waar je staat en wat er te winnen is. Geen verplichting. Pas als dat de moeite waard blijkt, bespreken we wat een vervolg kost.',
+        h: 'Geen opstartkosten, geen looptijd, en de website hoort erbij',
+        p: 'Er zijn geen opstartkosten en er is geen looptijd die je vooraf vastlegt. Je zegt per maand op als je wil stoppen. De website die we bouwen krijg je in bruikleen zolang je klant bent, dus die zit in het maandbedrag en er komt geen aparte bouwfactuur bij. Stop je en wil je de site houden, dan koop je hem eenmalig af voor €1.000 ex btw. Wil je hem niet houden, dan gaat hij offline en houd je je domein. Heb je al een website waar je tevreden mee bent, dan blijft die staan en bouwen we het systeem daarin. De prijs is dan hetzelfde, want het maandelijkse werk verandert niet.',
+      },
+      {
+        h: 'Wat er los bij komt',
+        p: 'Niet alles zit erin, en dat schrijven we er liever bij dan dat je er later achter komt. Google Ads-beheer kost €250 per maand, exclusief het advertentiebudget dat je zelf aan Google betaalt. Het terughalen van oude klanten uit je database is een apart traject met een eigen afspraak. Zwaardere SEO, dus de lange staart aan branche-directory\'s, het opschonen van je gegevens over tientallen vindplaatsen en het werk aan inkomende links, valt buiten het pakket. Google, Bing en Apple horen daar uitdrukkelijk niet bij, die zitten gewoon in de €397. Wat je nodig hebt en wat niet, hangt af van waar je nu staat, en dat rekenen we in het gesprek uit.',
+      },
+      {
+        h: 'Waar je dat bedrag tegen afzet',
+        p: 'Zet het af tegen wat je nu al betaalt om aan klanten te komen. Een nieuwe klant via een boekingsplatform kost al snel een fors deel van de eerste behandeling aan commissie, elke keer opnieuw. Zichtbaarheid die je zelf bezit, kost dat niet. Je Google Bedrijfsprofiel, je reviews en je website blijven van jou. De website zit erbij in en blijft in gebruik zolang je klant bent. Stop je, dan kun je hem overnemen voor €1.000, en dat is meteen wat wij hem waard vinden. Daar bovenop zitten het review-systeem, de chat en de maandelijkse meting.',
+      },
+      {
+        h: 'Wat als het je niet bevalt',
+        p: 'Bevalt de eerste maand je niet, dan krijg je hem terug. Dat is geen belofte over posities of over aantallen reviews, want die kan niemand hard maken en wij dus ook niet. Het is een afspraak over het risico van de eerste stap: de opbouwmaand is het meeste werk, en vind je aan het eind daarvan dat het niet is wat je zocht, dan betaal je er niet voor. Daarna beslis je elke maand opnieuw of het blijft draaien.',
       },
     ],
     faq: [
       {
+        q: 'Wat kost het per maand?',
+        a: '€397 ex btw per maand. Geen opstartkosten en maandelijks opzegbaar. De website met hosting zit erbij, in bruikleen zolang je klant bent. De enige losse dienst met een vaste prijs is Google Ads-beheer, dat kost €250 per maand exclusief je advertentiebudget.',
+      },
+      {
         q: 'Zit ik meteen vast aan een contract?',
-        a: 'Nee. Wat gratis is, blijft gratis en verplicht tot niets. Kies je daarna voor de doorlopende Reputatie Motor, dan spreken we de looptijd vooraf helder af, zonder setup-kosten en zonder kleine lettertjes.',
+        a: 'Nee. Er is geen looptijd en er zijn geen opstartkosten, je zegt per maand op. Bevalt de eerste maand je niet, dan krijg je hem terug. Stop je later en wil je de website houden, dan koop je die eenmalig af voor €1.000 ex btw. Wil je hem niet houden, dan gaat de site offline en houd je je domein.',
+      },
+      {
+        q: 'Ik heb al een website, wordt het dan goedkoper?',
+        a: 'Nee, de prijs blijft €397 ex btw per maand. Je betaalt voor het systeem dat er elke maand op draait, en dat werk verandert niet. Heb je al een site waar je tevreden over bent, dan bouwen we die na met hetzelfde ontwerp. We werken alleen met sites die we zelf gemaakt hebben, want in een site van iemand anders weet je nooit wat eronder zit.',
       },
     ],
   },
   {
     slug: 'review-vragen-via-whatsapp',
+    metaTitle: 'Reviews vragen via WhatsApp | Local Levers',
+    niches: ['loodgieters', 'elektriciens', 'installatiebedrijven', 'klusbedrijven', 'hoveniers'],
     published: true,
     keyword: 'review vragen via whatsapp',
     h1: 'Reviews vragen via WhatsApp: waarom het beter werkt',

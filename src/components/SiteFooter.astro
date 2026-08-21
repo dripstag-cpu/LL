@@ -1,0 +1,158 @@
+---
+// Gedeelde voettekst, toegevoegd 2026-08-17.
+//
+// Waarom deze component bestaat: de voettekst stond alleen in home-body.html.
+// Alle 95 andere pagina's eindigden dus zonder uitweg, zonder juridische
+// links en zonder een laatste CTA. Wie op een gids- of branchepagina onderaan
+// kwam, kwam nergens.
+//
+// Opbouw volgt het voorbeeld dat we aanhouden: een slotkaart met één knop,
+// daarboven in de voettekst het merk met dezelfde knop, dan kolommen met alle
+// producten en pagina's, en onderaan de juridische regel.
+//
+// Wat hij wél heeft en wij niet: Press, Partners, Careers, Printing Services
+// en Log in. Daar zit bij ons niets achter, dus die staan er niet. Een lege
+// pagina in de voettekst is slechter dan geen pagina.
+import { onderdelen } from '../data/onderdelen.js';
+
+// `reviews` staat standaard aan. Alleen /reviews/ zet hem uit, want daar staan
+// dezelfde vier reviews al als pagina-inhoud en dan zouden ze dubbel staan.
+// LET OP: deze prop heette eerst `slot`. Dat is een gereserveerd attribuut in
+// Astro: `slot={false}` zet de component in een slot met die naam in plaats van
+// de prop door te geven, en dan valt hij stilzwijgend weg. Vandaar `kaart`.
+const { kaart: metKaart = true, reviews: metReviews = true } = Astro.props;
+
+const bedrijf = [
+  { href: '/over/', label: 'Over ons' },
+  { href: '/ons-werk/', label: 'Ons werk' },
+  { href: '/reviews/', label: 'Reviews' },
+  { href: '/contact/', label: 'Contact' },
+];
+const meer = [
+  { href: '/prijs/', label: 'Prijs' },
+  { href: '/wat-we-doen/', label: 'Alle onderdelen' },
+  { href: '/gids/', label: 'Kennisbank' },
+  { href: '/marketing/', label: 'Marketing per branche' },
+];
+const helft = Math.ceil(onderdelen.length / 2);
+---
+
+{metKaart && (
+<Fragment set:html={`<section class="section-proces">
+  <div class="pr-proces-inner">
+    <h2 class="pr-proces-h2">Zo gaat het als je met ons werkt</h2>
+    <div class="pr-stappen">
+      <div class="pr-lijn" aria-hidden="true"></div>
+      <div class="pr-stap">
+        <div class="pr-bol">1</div>
+        <h3 class="pr-stap-kop">Een gesprek<br /><span>(20 minuten)</span></h3>
+        <p class="pr-stap-body">Het is eigenlijk een verkoopgesprek, we willen je alleen niet afschrikken. Maar echt: we beantwoorden al je vragen en laten precies zien hoe de onderdelen werken waar je meer over wilt weten. Twintig minuten, over jouw bedrijf.</p>
+      </div><div class="pr-stap">
+        <div class="pr-bol">2</div>
+        <h3 class="pr-stap-kop">Wij bouwen het<br /><span>(7 tot 10 dagen)</span></h3>
+        <p class="pr-stap-body">Je vult één formulier in met je bedrijfsgegevens en je klantenlijst. Zodra we de juiste informatie hebben, gaan wij aan de slag met je nieuwe website en je hele marketingsysteem. Jij hoeft niets te installeren en niets te leren.</p>
+      </div><div class="pr-stap">
+        <div class="pr-bol">3</div>
+        <h3 class="pr-stap-kop">We zetten het aan<br /><span>(25 minuten)</span></h3>
+        <p class="pr-stap-body">We lopen samen je nieuwe website en het hele systeem door, beantwoorden je laatste vragen en laten zien hoe alles werkt. En met alles bedoelen we: eigenlijk hoef je maar op twee knoppen te drukken.</p>
+      </div>
+    </div>
+  </div>
+</section>
+`} />
+)}
+
+{metKaart && (
+  <section class="ft-slot">
+    <div class="ft-slot-kaart">
+      <div class="ft-slot-tekst">
+        <h2>Wil je een keer rustig praten?</h2>
+        <p>
+          Bekijk eerst de video van anderhalve minuut. Daarna weet je wat je krijgt en wat het
+          kost, en pas dan beslis je of een gesprek zin heeft.
+        </p>
+        <a class="ft-slot-knop" data-cta="footer-slot" href="/gesprek/">
+          Plan een gesprek
+        </a>
+      </div>
+    </div>
+  </section>
+)}
+
+{metKaart && metReviews && (
+<Fragment set:html={`<section class="section-reviews">
+  <div class="rv-inner">
+    <h2 class="rv-h2">Wat mensen zeggen die met ons werkten</h2>
+    <div class="rv-grid"><figure class="rv-kaart">
+        <div class="rv-sterren" aria-label="5 van de 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>Als ondernemer heb je geen tijd om je bezig te houden met online marketing. Local Levers heeft dat uit handen genomen, het resultaat: eindelijk gevonden worden door de mensen die onze service zoeken. Bryan denkt mee en belooft niks wat hij niet waarmaakt.</blockquote>
+        <figcaption><span class="rv-naam">Nick</span><span class="rv-bron">Google-review</span></figcaption>
+      </figure><figure class="rv-kaart">
+        <div class="rv-sterren" aria-label="5 van de 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>Heel fijn samengewerkt met Bryan. Vanaf het eerste contact dacht hij goed mee en was hij altijd snel bereikbaar als ik vragen had of iets wilde aanpassen.</blockquote>
+        <figcaption><span class="rv-naam">Albert</span><span class="rv-bron">Google-review</span></figcaption>
+      </figure><figure class="rv-kaart">
+        <div class="rv-sterren" aria-label="5 van de 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>Bryan is een zeer prettig persoon om mee samen te werken en komt zijn afspraken altijd netjes op tijd na.</blockquote>
+        <figcaption><span class="rv-naam">Rob</span><span class="rv-bron">Google-review</span></figcaption>
+      </figure><figure class="rv-kaart">
+        <div class="rv-sterren" aria-label="5 van de 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>Erg behulpzaam en snelle respons.</blockquote>
+        <figcaption><span class="rv-naam">Jordan</span><span class="rv-bron">Google-review</span></figcaption>
+      </figure></div>
+  </div>
+</section>`} />
+)}
+
+<footer class="ft">
+  <div class="ft-inner">
+    <div class="ft-top">
+      <a class="ft-logo" href="/">Local<span>Levers</span></a>
+      <div class="ft-top-cta">
+        <span>Klaar om te beginnen?</span>
+        <a class="ft-knop" data-cta="footer" href="/gesprek/">
+          Plan een gesprek
+        </a>
+      </div>
+    </div>
+
+    <div class="ft-kolommen">
+      <div class="ft-kolom">
+        <h3>Wat we doen</h3>
+        <ul>
+          {onderdelen.slice(0, helft).map((o) => (
+            <li><a href={`/wat-we-doen/${o.slug}/`}>{o.naam}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div class="ft-kolom">
+        <h3><span class="ft-verborgen">Wat we doen, vervolg</span></h3>
+        <ul>
+          {onderdelen.slice(helft).map((o) => (
+            <li><a href={`/wat-we-doen/${o.slug}/`}>{o.naam}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div class="ft-kolom">
+        <h3>Bedrijf</h3>
+        <ul>{bedrijf.map((i) => <li><a href={i.href}>{i.label}</a></li>)}</ul>
+      </div>
+      <div class="ft-kolom">
+        <h3>Meer</h3>
+        <ul>{meer.map((i) => <li><a href={i.href}>{i.label}</a></li>)}</ul>
+      </div>
+    </div>
+
+    <div class="ft-onder">
+      <div class="ft-onder-links">
+        <span>&copy; 2026 Local Levers &middot; Bryan Ubink &middot; Nederland</span>
+        <span>KvK 72087986 &middot; BTW NL002405113B91</span>
+      </div>
+      <nav class="ft-juridisch" aria-label="Juridisch">
+        <a href="/voorwaarden/">Voorwaarden</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/cookies/">Cookies</a>
+      </nav>
+    </div>
+  </div>
+</footer>

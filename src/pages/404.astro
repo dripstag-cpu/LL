@@ -1,7 +1,10 @@
 ---
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import Bare from '../layouts/Bare.astro';
 ---
 <Bare title="Pagina niet gevonden | Local Levers" description="Deze pagina bestaat niet of is verplaatst." noindex>
+  <SiteNav />
   <main class="nf">
     <div class="nf-inner">
       <a href="/" class="nf-brand">Local<span>Levers</span></a>
@@ -9,9 +12,11 @@ import Bare from '../layouts/Bare.astro';
       <h1>Deze pagina bestaat niet meer</h1>
       <p class="nf-lead">De link is verouderd of er staat een typefout in het adres. Geen zorgen, hieronder kom je snel weer op weg.</p>
 
+      <p class="nf-aanbod">Local Levers is één pakket voor vakbedrijven: gevonden worden, gekozen worden en geboekt worden. €397 ex btw per maand, maandelijks opzegbaar, geen opstartkosten.</p>
+
       <div class="nf-links">
-        <a href="/" class="nf-btn primary">Naar de homepage &rarr;</a>
-        <a href="/sprint/" class="nf-btn">Gratis reputatie-sprint</a>
+        <a data-cta="404" href="/gesprek/" class="nf-btn primary">Plan een gesprek</a>
+        <a href="/" class="nf-btn">Naar de homepage</a>
       </div>
 
       <div class="nf-more">
@@ -19,11 +24,11 @@ import Bare from '../layouts/Bare.astro';
         <ul>
           <li><a href="/marketing/">Marketing per type bedrijf</a></li>
           <li><a href="/gids/">De kennisbank</a></li>
-          <li><a href="/checklist/">Gratis GBP-checklist</a></li>
         </ul>
       </div>
     </div>
   </main>
+  <SiteFooter kaart={false} />
 </Bare>
 
 <style>
@@ -44,6 +49,7 @@ import Bare from '../layouts/Bare.astro';
   .nf-code { font-family: 'Outfit Variable', sans-serif; font-weight: 800; font-size: clamp(64px, 16vw, 120px); line-height: 1; letter-spacing: -0.03em; color: #22A96B; margin: 28px 0 4px; }
   .nf h1 { font-family: 'Outfit Variable', sans-serif; font-size: clamp(26px, 4.5vw, 36px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin: 0; }
   .nf-lead { color: #C4D3CB; font-size: 17px; line-height: 1.6; margin: 16px auto 0; max-width: 42ch; }
+  .nf-aanbod { color: #8FA79A; font-size: 15px; line-height: 1.6; margin: 18px auto 0; max-width: 46ch; }
   .nf-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 30px; }
   .nf-btn { font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 15px; padding: 14px 24px; border-radius: 14px; text-decoration: none; border: 1px solid rgba(255,255,255,0.16); color: #F3F7F4; }
   .nf-btn.primary { background: #1A7A54; color: #fff; border-color: #1A7A54; }

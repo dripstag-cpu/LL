@@ -1,24 +1,25 @@
 // Gids-pagina's rond AI-search, answer engines en directory-/platform-vindbaarheid.
-// Doelgroep: eigenaren van lokale klinieken en behandel-salons in Nederland.
+// Doelgroep: eigenaren van lokale cosmetische klinieken en lokale dienstverleners in Nederland.
 // AI-search is in NL nog niet leidend voor lokale keuze, maar groeit: framen als voorsprong opbouwen.
 // `published: true` = live in sitemap/nav. Geen CTA in de content: de template voegt die toe.
+// Een `p` in `sections` mag HTML bevatten (de template rendert hem met set:html),
+// dus interne links horen daar en niet in de `lead`: die wordt platte tekst en
+// levert de meta description.
 
 export const topics = [
   {
     slug: 'genoemd-worden-door-perplexity-gemini',
+    metaTitle: 'Genoemd worden door Perplexity en Google Gemini',
+    niches: ['installatiebedrijven', 'zonnepanelen', 'isolatiebedrijven', 'elektriciens', 'aannemers'],
     published: true,
     keyword: 'genoemd worden perplexity gemini',
     h1: 'Hoe word je genoemd door Perplexity en Google Gemini?',
     lead:
-      'Perplexity en Google Gemini geven geen lijst met blauwe links, ze geven een antwoord met een paar aanbevelingen erin. Voor een lokale vraag putten ze uit je Google Bedrijfsprofiel, je reviews, je vermeldingen in directories en de gestructureerde data op je site. Sta je daar incompleet of onduidelijk, dan noemen ze de kliniek die wel helder staat. Dit is waar je op stuurt.',
+      'Perplexity en Google Gemini geven allebei een antwoord met een paar aanbevelingen in plaats van een lijst met blauwe links, maar ze kijken niet naar dezelfde bronnen. Wie alleen op Google zit, valt bij Perplexity eerder buiten beeld. Dit is het verschil tussen die twee en wat het betekent voor waar jij moet staan.',
     sections: [
       {
-        h: 'Ze halen hun antwoord uit bronnen die jij deels zelf beheert',
-        p: 'Een answer engine verzint geen aanbevelingen, hij vat samen wat hij op het web vindt over jouw type behandeling in jouw stad. Je Google Bedrijfsprofiel, je reviews en je vermeldingen op andere platforms zijn de bronnen waar hij op leunt. Hoe consistenter en completer die zijn, hoe makkelijker de answer engine jou als betrouwbare optie herkent. Ontbrekende of tegenstrijdige gegevens laten hem twijfelen, en bij twijfel valt hij terug op de duidelijkste naam.',
-      },
-      {
         h: 'Gemini leunt op Google, Perplexity op een bredere mix',
-        p: 'Google Gemini put sterk uit het Google-ecosysteem, dus je Bedrijfsprofiel, je Maps-gegevens en je reviews wegen daar zwaar. Perplexity trekt breder uit het open web en verschillende bronnen door elkaar, waardoor consistente vermeldingen op meerdere plekken meer gewicht krijgen. Voor allebei geldt: staan je naam, adres en behandelingen overal gelijk, dan kunnen ze je met vertrouwen citeren. Verschilt het per platform, dan wordt je onduidelijker en dus makkelijker overgeslagen.',
+        p: 'Google Gemini put sterk uit het Google-ecosysteem, dus je Bedrijfsprofiel, je Maps-gegevens en je reviews wegen daar zwaar. Perplexity trekt breder uit het open web en verschillende bronnen door elkaar, waardoor consistente vermeldingen op meerdere plekken meer gewicht krijgen. Voor allebei geldt: staan je naam, adres en behandelingen overal gelijk, dan kunnen ze je met vertrouwen citeren. Verschilt het per platform, dan wordt je onduidelijker en dus makkelijker overgeslagen. Hoe deze zoekhulpen in het algemeen aan hun aanbevelingen komen, staat in de gids <a href="/gids/ai-vindbaarheid-voor-klinieken/">AI-vindbaarheid voor klinieken</a>.',
       },
       {
         h: 'Beschrijf je behandelingen in de woorden die mensen echt gebruiken',
@@ -27,13 +28,14 @@ export const topics = [
     ],
     faq: [
       {
-        q: 'Is dit nu al belangrijk voor een lokale kliniek in Nederland?',
-        a: 'Voor de meeste lokale keuzes is Google Maps nog leidend. Het aandeel mensen dat via Perplexity of Gemini een aanbieder zoekt, groeit wel. Zie het daarom als voorsprong opbouwen: er is nu weinig concurrentie op dit vlak, en het wordt waardevoller naarmate meer mensen het gebruiken. Wij leiden met Maps en reviews en nemen deze kanalen mee.',
+        q: 'Moet ik voor Perplexity en Gemini verschillende dingen doen?',
+        a: 'Grotendeels niet, maar het accent verschilt. Gemini leunt zwaar op je Google Bedrijfsprofiel en je Maps-gegevens, dus daar zit voor hem het meeste gewicht. Perplexity trekt breder uit het open web, waardoor je vermeldingen op Bing Places, Apple Maps en de directories zwaarder meetellen. Je doet dus hetzelfde werk, alleen wie zich tot Google beperkt, mist bij Perplexity de helft van zijn kans.',
       },
     ],
   },
   {
     slug: 'wat-is-aeo',
+    niches: ['aannemers', 'verbouw-en-renovatie', 'installatiebedrijven', 'kozijnenbedrijven', 'dakdekkers'],
     published: true,
     keyword: 'wat is aeo answer engine optimization',
     h1: 'Wat is AEO (Answer Engine Optimization)?',
@@ -66,11 +68,13 @@ export const topics = [
   },
   {
     slug: 'kom-ik-voor-in-ai-zoekresultaten',
+    metaTitle: 'Kom je voor in ChatGPT en Perplexity? Zo check je het',
+    niches: ['loodgieters', 'elektriciens', 'dakdekkers', 'ongediertebestrijding', 'zonnepanelen'],
     published: true,
     keyword: 'voorkomen in ai zoekresultaten',
     h1: 'Kom je voor in ChatGPT en Perplexity? Zo check je het',
     lead:
-      'Je kunt zelf vrij snel testen of ChatGPT, Perplexity en Google Gemini jou noemen bij een lokale vraag. Het is geen exacte wetenschap, want de antwoorden wisselen per keer en per gebruiker, maar het geeft een eerlijk beeld van waar je staat. Zo pak je die check gestructureerd aan.',
+      'Je kunt zelf vrij snel testen of ChatGPT, Perplexity en Google Gemini jou noemen bij een lokale vraag. Hieronder staan de stappen en hoe je de uitkomst leest. Het is geen exacte wetenschap, want de antwoorden wisselen per keer en per gebruiker, maar het geeft een eerlijk beeld van waar je staat.',
     sections: [
       {
         h: 'Stel de vraag zoals een klant hem zou stellen',
@@ -82,7 +86,7 @@ export const topics = [
       },
       {
         h: 'Waarom de uitkomst per keer verschilt',
-        p: 'De antwoorden van ChatGPT en Perplexity zijn niet zo stabiel als een zoekresultaat. Dezelfde vraag kan vandaag jou noemen en morgen niet, afhankelijk van hoe het model bronnen weegt en welke gegevens het op dat moment ophaalt. Trek dus geen harde conclusies uit een enkele test. Doe de check een paar keer, verspreid over een aantal dagen, en let op het patroon in plaats van op een losse uitkomst.',
+        p: 'De antwoorden van ChatGPT en Perplexity zijn niet zo stabiel als een zoekresultaat. Dezelfde vraag kan vandaag jou noemen en morgen niet, afhankelijk van hoe het model bronnen weegt en welke gegevens het op dat moment ophaalt. Trek dus geen harde conclusies uit een enkele test. Doe de check een paar keer, verspreid over een aantal dagen, en let op het patroon in plaats van op een losse uitkomst. Wil je weten waar die antwoorden vandaan komen en wat je eraan kunt veranderen, lees dan de gids <a href="/gids/ai-vindbaarheid-voor-klinieken/">AI-vindbaarheid voor klinieken</a>.',
       },
     ],
     faq: [
@@ -94,6 +98,8 @@ export const topics = [
   },
   {
     slug: 'waarom-bing-belangrijk-voor-chatgpt',
+    metaTitle: 'Bing en ChatGPT: waarom je Bing-vermelding telt',
+    niches: ['schildersbedrijven', 'hoveniers', 'stukadoors', 'tegelzetters', 'gevelreiniging'],
     published: true,
     keyword: 'bing belangrijk voor chatgpt',
     h1: 'Waarom Bing belangrijk is als je in ChatGPT wil staan',
@@ -106,7 +112,7 @@ export const topics = [
       },
       {
         h: 'Bijna niemand staat compleet op Bing, en dat is je kans',
-        p: 'Omdat Nederlandse ondernemers Bing negeren, staan de meeste bedrijven daar niet of half. Dat lage niveau van concurrentie maakt het juist aantrekkelijk: een compleet Bing Places-profiel invullen kost eenmalig moeite en zet je meteen voor op de rest. Waar je op Google tegen volle, goed onderhouden profielen aankijkt, is het speelveld op Bing veel leger. Dit is een klassieke voorsprong: laag-hangend fruit dat weinig mensen plukken.',
+        p: 'De meeste Nederlandse bedrijven staan op Bing niet of half. Dat maakt het aantrekkelijk: een compleet Bing Places-profiel invullen is eenmalig werk op een plek waar veel concurrenten niets hebben staan. Waar je op Google tegen volle, goed onderhouden profielen aankijkt, is het speelveld op Bing leger. Weinig moeite, en het telt mee als databron voor de zoekhulpen.',
       },
       {
         h: 'Zorg dat je Bing- en Google-gegevens gelijk zijn',
@@ -122,11 +128,12 @@ export const topics = [
   },
   {
     slug: 'bing-places-aanmelden',
+    niches: ['klusbedrijven', 'timmerbedrijven', 'straatmakers', 'boomverzorging', 'isolatiebedrijven'],
     published: true,
     keyword: 'bing places aanmelden',
     h1: 'Je bedrijf aanmelden bij Bing Places',
     lead:
-      'Bing Places for Business is de tegenhanger van je Google Bedrijfsprofiel, maar dan voor Bing. Aanmelden is gratis en kost eenmalig wat tijd. Omdat weinig Nederlandse ondernemers het doen, staat een compleet profiel je meteen voor op de concurrentie, en het telt mee als databron voor zoektools als ChatGPT.',
+      'Bing Places for Business is de tegenhanger van je Google Bedrijfsprofiel, maar dan voor Bing. Aanmelden is gratis en kost eenmalig wat tijd. Omdat weinig Nederlandse ondernemers het doen, valt een compleet profiel daar op, en het telt mee als databron voor zoektools als ChatGPT.',
     sections: [
       {
         h: 'Importeren vanuit Google of van nul opbouwen',
@@ -150,6 +157,8 @@ export const topics = [
   },
   {
     slug: 'apple-business-connect-aanmelden',
+    metaTitle: 'Apple Business Connect: je bedrijf op Apple Maps',
+    niches: ['loodgieters', 'installatiebedrijven', 'elektriciens', 'kozijnenbedrijven', 'schildersbedrijven'],
     published: true,
     keyword: 'apple business connect aanmelden',
     h1: 'Je bedrijf op Apple Maps zetten via Apple Business Connect',
@@ -178,6 +187,8 @@ export const topics = [
   },
   {
     slug: 'nap-consistentie-uitgelegd',
+    metaTitle: 'NAP-consistentie: overal dezelfde gegevens',
+    niches: ['aannemers', 'verbouw-en-renovatie', 'hoveniers', 'gevelreiniging', 'straatmakers'],
     published: true,
     keyword: 'nap consistentie',
     h1: 'NAP-consistentie: waarom je gegevens overal gelijk moeten zijn',
@@ -210,6 +221,8 @@ export const topics = [
   },
   {
     slug: 'waar-moet-mijn-kliniek-online-staan',
+    metaTitle: 'Waar moet je kliniek of salon online staan?',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'waar bedrijf online vermelden',
     h1: 'Op welke platforms moet je kliniek of salon online staan?',

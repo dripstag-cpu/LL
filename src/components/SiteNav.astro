@@ -1,0 +1,525 @@
+---
+// Gedeelde navigatie, toegevoegd 2026-08-17.
+//
+// Waarom deze component bestaat: elke paginasoort had zijn eigen kop. De
+// homepage een sticky balk die na de hero verschijnt, de branche-, gids-,
+// prijs- en onderdeel-pagina's alleen een merknaam linksboven. Wie op een
+// gids-pagina binnenkwam via Google kon nergens heen behalve terug naar de
+// homepage. Dit is één balk die overal hetzelfde is.
+//
+// Waar hij NIET staat: /gesprek/. Dat is de funnel-pagina en die heeft bewust
+// geen uitweg, zie doc 49 sectie 5.
+//
+// "Wat we doen" is een uitklapmenu (2026-08-17). Reden: er zijn acht
+// onderdeel-pagina's en die waren alleen bereikbaar via de overzichtspagina,
+// dus twee klikken diep. De overzichtspagina zelf staat onderaan het paneel,
+// zodat hij niet verdwijnt nu de bovenste laag een knop is en geen link.
+//
+// De homepage had een eigen kopie van deze balk in home-body.html, met vijf
+// vaste items en zonder uitklapmenu. Die kopie liep meteen achter: hier stonden
+// acht onderdelen plus Reviews en Contact, daar vijf oude links. Er is er nu
+// nog één. Met `sticky` schuift hij pas na de hero naar binnen, wat de reden
+// was dat die kopie ooit bestond. (2026-08-17)
+//
+// "Over ons" is sinds 2026-08-17 ook een uitklapmenu, zie doc 51 sectie A.
+// Contact stond daarvoor als los item in de balk en zit nu in dat paneel, zodat
+// de balk zes items houdt in plaats van acht.
+import { onderdelen } from '../data/onderdelen.js';
+
+const { sticky = false } = Astro.props;
+
+// Lijn-iconen voor het uitklapmenu, één per onderdeel, op slug. Het voorbeeld
+// heeft per productnaam een icoon met een subregel eronder; de subregel komt
+// uit onderdelen.js (veld `sub`), de iconen zijn presentatie en horen hier.
+// Simpele strokes op currentColor, zodat ze de tekstkleur volgen.
+const iconen = {
+  website:
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3.5" width="16" height="13" rx="2"/><path d="M2 7h16M5 5.2h.01M7.2 5.2h.01"/></svg>',
+  reviews:
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.8l2.2 4.5 4.9.7-3.6 3.5.9 4.9L10 14.1l-4.4 2.3.9-4.9L2.9 8l4.9-.7z"/></svg>',
+  terugbelbericht:
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h7A2.5 2.5 0 0 1 16 6v5a2.5 2.5 0 0 1-2.5 2.5H9l-3.5 3v-3A2.5 2.5 0 0 1 4 11V6a2.5 2.5 0 0 1 2.5-2.5z"/><path d="M8 8.5h4"/></svg>',
+  campagnes:
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5v3l2.5.5 1 4h2l-.8-3.6L16 15V5L5.5 8z"/></svg>',
+  vindbaarheid:
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17.5s-5.5-5.2-5.5-9a5.5 5.5 0 0 1 11 0c0 3.8-5.5 9-5.5 9z"/><circle cx="10" cy="8.2" r="2"/></svg>',
+  chat:
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5c4.1 0 7 2.6 7 5.8s-2.9 5.8-7 5.8c-.8 0-1.6-.1-2.3-.3L4 16.5l.9-2.8c-1.2-1-1.9-2.4-1.9-4.4 0-3.2 2.9-5.8 7-5.8z"/></svg>',
+  opvolging:
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10.5" r="6.5"/><path d="M10 7v3.5l2.5 1.5M10 2V1M8 1h4"/></svg>',
+  inbox:
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l1.8-6h10.4L17 11v4.5H3z"/><path d="M3 11h4.2a2.8 2.8 0 0 0 5.6 0H17"/></svg>',
+  nummer:
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3.5h3l1.2 3.4-1.7 1.3a10.5 10.5 0 0 0 4.8 4.8l1.3-1.7 3.4 1.2v3a1.5 1.5 0 0 1-1.6 1.5C8.4 16.5 3.5 11.6 3 5.1a1.5 1.5 0 0 1 1.5-1.6z"/></svg>',
+};
+
+const items = [
+  { href: '/prijs/', label: 'Prijs' },
+  { href: '/ons-werk/', label: 'Ons werk' },
+  { href: '/reviews/', label: 'Reviews' },
+  { href: '/gids/', label: 'Gids' },
+];
+
+// LET OP: "Ons proces" wijst naar /over/, want daar staat "Hoe er gewerkt
+// wordt". Een eigen /ons-proces/ bestaat nog niet. Komt die er, dan is dit één
+// href die verandert.
+// Contact wijst naar de funnel, niet naar /contact/ (Bryan, 2026-08-17):
+// in het voorbeeld is Contact de landingspagina zelf. De pagina /contact/
+// blijft bestaan voor wie hem direct opzoekt, maar het menu stuurt naar
+// het gesprek.
+const over = [
+  { href: '/over/', label: 'Ons proces' },
+  { href: '/marketing/', label: 'Branches' },
+  { href: '/gesprek/', label: 'Contact' },
+];
+
+// Actief item op basis van het pad, zodat /gids/hoger-in-google-maps/ ook
+// "Gids" markeert en niet alleen /gids/ zelf.
+const pad = Astro.url.pathname;
+const actief = (href) => pad === href || pad.startsWith(href);
+---
+
+<header class:list={['ll-nav', { 'll-nav--sticky': sticky }]} id={sticky ? 'siteNav' : undefined}>
+  <div class="ll-nav-inner">
+    <a class="ll-nav-logo" href="/">Local<span>Levers</span></a>
+
+    <nav class="ll-nav-menu" id="llNavMenu" aria-label="Hoofdmenu">
+      <ul>
+        <li class="ll-nav-groep" data-groep>
+          <button
+            class:list={['ll-nav-groep-knop', { 'is-actief': actief('/wat-we-doen/') }]}
+            type="button"
+            aria-expanded="false"
+            aria-controls="llNavOnderdelen"
+          >
+            Wat we doen
+            <span class="ll-nav-pijl" aria-hidden="true"></span>
+          </button>
+
+          <div class="ll-nav-paneel" id="llNavOnderdelen">
+            <div class="ll-nav-paneel-kaart">
+              <ul class="ll-nav-paneel-lijst">
+                {onderdelen.map((o) => (
+                  <li>
+                    <a
+                      href={`/wat-we-doen/${o.slug}/`}
+                      aria-current={pad === `/wat-we-doen/${o.slug}/` ? 'page' : undefined}
+                    >
+                      <span class="ll-nav-ico" aria-hidden="true" set:html={iconen[o.slug] ?? ''} />
+                      <span class="ll-nav-item">
+                        <b>{o.naam}</b>
+                        <i>{o.sub}</i>
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <a class="ll-nav-paneel-alles" href="/wat-we-doen/">
+                Alle onderdelen op een rij <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </div>
+        </li>
+
+        {items.map((i) => (
+          <li>
+            <a href={i.href} aria-current={actief(i.href) ? 'page' : undefined}>{i.label}</a>
+          </li>
+        ))}
+
+        <li class="ll-nav-groep" data-groep>
+          <button
+            class:list={[
+              'll-nav-groep-knop',
+              { 'is-actief': over.some((o) => actief(o.href)) },
+            ]}
+            type="button"
+            aria-expanded="false"
+            aria-controls="llNavOver"
+          >
+            Over ons
+            <span class="ll-nav-pijl" aria-hidden="true"></span>
+          </button>
+
+          <div class="ll-nav-paneel ll-nav-paneel--kort" id="llNavOver">
+            <div class="ll-nav-paneel-kaart">
+              <ul class="ll-nav-paneel-lijst">
+                {over.map((o) => (
+                  <li>
+                    <a href={o.href} aria-current={pad === o.href ? 'page' : undefined}>{o.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="ll-nav-rechts">
+      <a class="ll-nav-cta" data-cta="nav" href="/gesprek/">Plan een gesprek</a>
+      <button class="ll-nav-knop" type="button" aria-expanded="false" aria-controls="llNavMenu">
+        <span class="ll-nav-knop-tekst">Menu</span>
+        <span class="ll-nav-streepjes" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Uitklapmenu voor smalle schermen. Op breed scherm staat het menu gewoon in
+  // de balk en doet deze knop niets, want hij is dan verborgen.
+  const knop = document.querySelector('.ll-nav-knop');
+  const balk = document.querySelector('.ll-nav');
+  // Twee groepen sinds 2026-08-17: "Wat we doen" en "Over ons". Ze krijgen
+  // allebei hetzelfde gedrag uit dezelfde lus, zodat er geen tweede variant kan
+  // ontstaan die net iets anders werkt.
+  const groepen = [...document.querySelectorAll('[data-groep]')];
+  const breed = window.matchMedia('(min-width: 901px)');
+
+  // Eén functie zet de klasse en aria-expanded tegelijk, zodat wat een muis
+  // ziet en wat een schermlezer hoort niet uit elkaar kan lopen.
+  function zetGroep(groep, uit) {
+    const groepKnop = groep.querySelector('.ll-nav-groep-knop');
+    if (!groepKnop) return;
+    groep.classList.toggle('is-uit', uit);
+    groepKnop.setAttribute('aria-expanded', uit ? 'true' : 'false');
+  }
+
+  if (knop && balk) {
+    knop.addEventListener('click', () => {
+      const open = balk.classList.toggle('is-open');
+      knop.setAttribute('aria-expanded', open ? 'true' : 'false');
+      // Menu dicht betekent ook de panelen dicht, anders staan ze bij de
+      // volgende keer openen al uitgeklapt.
+      if (!open) groepen.forEach((g) => zetGroep(g, false));
+    });
+  }
+
+  groepen.forEach((groep) => {
+    const groepKnop = groep.querySelector('.ll-nav-groep-knop');
+    if (!groepKnop) return;
+
+    // viaHover onthoudt of het paneel al openstond door de muis. Zonder die
+    // vlag klapt hij weer dicht bij de klik die erop volgt: de muis opent hem
+    // en de klik zet hem meteen terug.
+    let viaHover = false;
+
+    groepKnop.addEventListener('click', () => {
+      if (viaHover) { viaHover = false; return; }
+      zetGroep(groep, !groep.classList.contains('is-uit'));
+    });
+
+    // Op breed scherm ook op hover open, zoals je van een balk verwacht. Op
+    // smal scherm niet, daar is de knop de enige manier.
+    groep.addEventListener('mouseenter', () => {
+      if (!breed.matches || groep.classList.contains('is-uit')) return;
+      viaHover = true;
+      zetGroep(groep, true);
+    });
+    groep.addEventListener('mouseleave', () => {
+      if (!breed.matches) return;
+      viaHover = false;
+      zetGroep(groep, false);
+    });
+
+    // Toetsenbord: tabben uit het paneel sluit het, Escape sluit het en zet de
+    // focus terug op de knop.
+    //
+    // Alleen op breed scherm. Op smal scherm staat het paneel in de lijst zelf,
+    // dus dichtklappen verschuift alles eronder. Doe je dat bij het indrukken
+    // van een menu-item (dan verspringt de focus), dan ligt dat item bij het
+    // loslaten ergens anders en telt de tik niet als klik. Op breed scherm
+    // hangt het paneel erboven en schuift er niets.
+    groep.addEventListener('focusout', (e) => {
+      if (breed.matches && !groep.contains(e.relatedTarget)) zetGroep(groep, false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && groep.classList.contains('is-uit')) {
+        zetGroep(groep, false);
+        groepKnop.focus();
+      }
+    });
+
+    // Klikken buiten de groep sluit het paneel, ook op een touchscreen waar
+    // mouseleave niet komt. Dit regelt meteen dat er nooit twee panelen tegelijk
+    // openstaan: de klik op de ene knop valt buiten de andere groep.
+    document.addEventListener('click', (e) => {
+      if (!groep.contains(e.target)) zetGroep(groep, false);
+    });
+  });
+</script>
+
+<style>
+  .ll-nav {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: #0a0a09;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  /* Balkmaat gemeten op zijn site (2026-08-17): balk 100px hoog, menu-items
+     17px op gewicht 500, knop 60px hoog. 20px padding boven en onder de knop
+     maakt precies zijn 100. */
+  .ll-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 20px 24px;
+  }
+  .ll-nav-logo {
+    font-family: 'Outfit Variable', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    color: #fafaf8;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .ll-nav-logo span { color: #4ade80; }
+
+  .ll-nav-menu ul {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .ll-nav-menu a {
+    color: #a0a09a;
+    font-size: 17px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 200ms;
+    white-space: nowrap;
+  }
+  .ll-nav-menu a:hover { color: #fafaf8; }
+  .ll-nav-menu a[aria-current='page'] { color: #fafaf8; }
+
+  /* ---- uitklapmenu "Wat we doen" ---- */
+  .ll-nav-groep { position: relative; }
+  .ll-nav-groep-knop {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #a0a09a;
+    font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 200ms;
+  }
+  .ll-nav-groep-knop:hover,
+  .ll-nav-groep-knop.is-actief,
+  .ll-nav-groep.is-uit .ll-nav-groep-knop { color: #fafaf8; }
+  .ll-nav-pijl {
+    width: 7px;
+    height: 7px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 200ms;
+  }
+  .ll-nav-groep.is-uit .ll-nav-pijl { transform: translateY(1px) rotate(-135deg); }
+
+  .ll-nav-paneel { display: none; }
+  .ll-nav-groep.is-uit .ll-nav-paneel { display: block; }
+
+  /* Met .ll-nav-menu ervoor, anders wint de flex-rij van `.ll-nav-menu ul`
+     hierboven en komen de acht onderdelen op één regel naast elkaar te staan. */
+  .ll-nav-menu .ll-nav-paneel-lijst { display: block; list-style: none; margin: 0; padding: 0; }
+
+  @media (min-width: 901px) {
+    .ll-nav-paneel {
+      position: absolute;
+      top: 100%;
+      left: -16px;
+      /* Transparante bovenrand, zodat de muis van de knop naar het paneel kan
+         zonder door een gat te gaan waar hij weer dichtklapt. */
+      padding-top: 18px;
+    }
+    .ll-nav-paneel-kaart {
+      background: #141413;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 12px;
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45);
+    }
+    /* Drie kolommen met per item een icoon, de naam en een subregel, de vorm
+       van het Products-paneel in het voorbeeld (gemeten 2026-08-17: item 322
+       breed, padding 16, naam op 500, subregel grijs eronder). Regels breken
+       gewoon af; de vorige versie erfde white-space: nowrap van de balk en
+       liet lange namen over de buurkolom lopen. */
+    .ll-nav-menu .ll-nav-paneel-lijst {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(250px, 285px));
+      align-items: stretch;
+      gap: 4px 8px;
+    }
+    /* "Over ons" heeft drie items zonder subregel, dat blijft één kolom. */
+    .ll-nav-menu .ll-nav-paneel--kort .ll-nav-paneel-lijst {
+      grid-template-columns: minmax(190px, 1fr);
+    }
+    .ll-nav-paneel-lijst a {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 12px 14px;
+      border-radius: 9px;
+      font-size: 14px;
+      white-space: normal;
+    }
+    .ll-nav-paneel--kort .ll-nav-paneel-lijst a { display: block; }
+    .ll-nav-paneel-lijst a:hover { background: rgba(255, 255, 255, 0.06); }
+    .ll-nav-ico { flex: none; width: 20px; height: 20px; margin-top: 1px; color: #4ade80; }
+    .ll-nav-ico :global(svg) { width: 100%; height: 100%; display: block; }
+    .ll-nav-item { display: block; min-width: 0; }
+    .ll-nav-item b {
+      display: block;
+      font-family: 'Outfit Variable', sans-serif;
+      font-size: 15.5px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      color: #fafaf8;
+      line-height: 1.25;
+    }
+    .ll-nav-item i {
+      display: block;
+      font-style: normal;
+      font-size: 13.5px;
+      line-height: 1.4;
+      color: #a0a09a;
+      margin-top: 3px;
+    }
+    /* Onder de 1180 passen er geen drie kolommen meer naast de balkbreedte. */
+    @media (max-width: 1180px) {
+      .ll-nav-menu .ll-nav-paneel-lijst { grid-template-columns: repeat(2, minmax(250px, 285px)); }
+    }
+    .ll-nav-menu .ll-nav-paneel-alles,
+    .ll-nav-menu .ll-nav-paneel-alles:hover {
+      display: block;
+      margin-top: 10px;
+      padding: 11px 12px 3px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: 'Outfit Variable', sans-serif;
+      font-weight: 700;
+      font-size: 13.5px;
+      color: #4ade80;
+    }
+  }
+
+  .ll-nav-rechts { display: flex; align-items: center; gap: 12px; }
+  /* Knopmaat op de waarden van het voorbeeld (2026-08-17 opnieuw gemeten met
+     Playwright): zijn balk-knop is 60px hoog met padding 0 32px en 17px op
+     gewicht 600, radius 4px, zonder pijl. Deze waarden zijn scoped en winnen
+     daarom van de site-brede regel in global.css; die regel slaat .ll-nav-cta
+     dan ook expliciet over. */
+  .ll-nav-cta {
+    background: #1a7a54;
+    color: #fff;
+    font-family: 'Outfit Variable', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.005em;
+    padding: 0 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    height: 60px;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    transition: background 200ms, transform 200ms;
+  }
+  .ll-nav-cta:hover { background: #1f9067; transform: translateY(-1px); }
+
+  .ll-nav-knop {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    min-height: 40px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 4px;
+    background: transparent;
+    color: #fafaf8;
+    font-family: 'Outfit Variable', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .ll-nav-streepjes { display: grid; gap: 3px; }
+  .ll-nav-streepjes i { display: block; width: 16px; height: 2px; background: #fafaf8; border-radius: 2px; }
+
+  @media (max-width: 1080px) {
+    .ll-nav-menu ul { gap: 18px; }
+  }
+
+  @media (max-width: 900px) {
+    .ll-nav-inner { padding: 12px 16px; gap: 12px; }
+    .ll-nav-knop { display: inline-flex; }
+    .ll-nav-cta { font-size: 15px; padding: 0 18px; height: 48px; }
+    .ll-nav-menu {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      background: #0a0a09;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 6px 16px 14px;
+      /* Het menu is langer dan een telefoonscherm zodra het paneel openstaat,
+         dus het scrollt in zichzelf in plaats van onder de vouw te verdwijnen. */
+      max-height: calc(100vh - 64px);
+      max-height: calc(100dvh - 64px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    /* Staat het paneel open, dan loopt het menu tot onderaan het scherm en
+       valt het laatste item achter de cookiebalk. Die is op een telefoon
+       ongeveer 165px hoog, dus deze ruimte laat je het laatste item daar
+       bovenuit scrollen. Alleen als het paneel openstaat, want anders staat er
+       in het gewone menu een lap donker onder Contact. */
+    .ll-nav-menu:has(.ll-nav-groep.is-uit) { padding-bottom: 180px; }
+    .ll-nav.is-open .ll-nav-menu { display: block; }
+    .ll-nav-menu ul { display: block; }
+    .ll-nav-menu li + li { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+    .ll-nav-menu a { display: block; padding: 14px 0; font-size: 16px; }
+
+    .ll-nav-groep-knop {
+      width: 100%;
+      justify-content: space-between;
+      padding: 14px 0;
+      font-size: 16px;
+    }
+    .ll-nav-paneel-kaart { padding: 0 0 10px 14px; }
+    .ll-nav-paneel-lijst li + li { border-top: 1px solid rgba(255, 255, 255, 0.06); }
+    .ll-nav-paneel-lijst a { padding: 12px 0; font-size: 15px; display: block; }
+    /* In de smalle lijst geen iconen en subregels: naam is genoeg. */
+    .ll-nav-ico { display: none; }
+    .ll-nav-item b { font-family: inherit; font-size: 15px; font-weight: 500; color: inherit; }
+    .ll-nav-item i { display: none; }
+    .ll-nav-menu .ll-nav-paneel-alles,
+    .ll-nav-menu .ll-nav-paneel-alles:hover {
+      display: block;
+      margin-top: 4px;
+      font-family: 'Outfit Variable', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #4ade80;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .ll-nav-cta { font-size: 13.5px; padding: 0 14px; height: 44px; }
+    .ll-nav-knop { padding: 10px; }
+    .ll-nav-knop-tekst { display: none; }
+  }
+</style>

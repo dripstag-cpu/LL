@@ -5,6 +5,7 @@
 // maar gaat NIET live. Zo klopt de sitemap altijd met wat echt online staat.
 import { topics as core } from './topics/core.js';
 import { topics as pillars } from './topics/pillars.js';
+import { topics as vindbaarheid } from './topics/vindbaarheid.js';
 import { topics as maps } from './topics/maps.js';
 import { topics as gbp } from './topics/gbp.js';
 import { topics as reviews } from './topics/reviews.js';
@@ -14,6 +15,7 @@ import { topics as decision } from './topics/decision.js';
 // Elke batch met zijn weergavegroep in de kennisbank. Volgorde = volgorde op de hub.
 const BATCHES = [
   { key: 'pillars', group: 'Marketing en vindbaarheid per vak', items: pillars },
+  { key: 'vindbaarheid', group: 'Online vindbaarheid en reputatie', items: vindbaarheid },
   { key: 'maps', group: 'Google Maps en lokale ranking', items: maps },
   { key: 'gbp', group: 'Je Google Bedrijfsprofiel', items: gbp },
   { key: 'reviews', group: 'Reviews en reputatie', items: reviews },
@@ -24,9 +26,19 @@ const BATCHES = [
 
 // ====== ROLLOUT-SCHAKELAAR ======
 // Voeg per publicatie-ronde een batch-key toe om die live te zetten.
-// Mogelijke keys: 'core', 'maps', 'gbp', 'reviews', 'ai-directories', 'decision'.
-// Bij launch staat alleen 'core' live (de 6 sterkste gidsen). Rebuild + redeploy na elke wijziging.
-export const RELEASED_BATCHES = ['core', 'pillars'];
+// Mogelijke keys: 'core', 'pillars', 'vindbaarheid', 'maps', 'gbp', 'reviews',
+// 'ai-directories', 'decision'.
+// Sinds 2026-08-16 staan alle batches live. Rebuild + redeploy na elke wijziging.
+export const RELEASED_BATCHES = [
+  'core',
+  'pillars',
+  'vindbaarheid',
+  'maps',
+  'gbp',
+  'reviews',
+  'ai-directories',
+  'decision',
+];
 // ================================
 
 const seen = new Set();

@@ -1,9 +1,12 @@
 ---
+import SiteNav from '../../components/SiteNav.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
 import Bare from '../../layouts/Bare.astro';
 import '../../styles/legal.css';
 const updated = '6 juli 2026';
 ---
 <Bare title="Privacyverklaring | Local Levers" description="Hoe Local Levers omgaat met je persoonsgegevens: welke gegevens we verwerken, waarom, met wie we ze delen en welke rechten je hebt.">
+  <SiteNav />
   <header class="legal-head">
     <div class="legal-wrap">
       <a href="/" class="legal-brand">Local<span>Levers</span></a>
@@ -39,7 +42,7 @@ const updated = '6 juli 2026';
       <h2>3. Doeleinden en grondslagen</h2>
       <ul>
         <li><strong>Uitvoeren van onze dienst en de vindbaarheids-check</strong> (grondslag: uitvoering van de overeenkomst of het nemen van precontractuele stappen op jouw verzoek).</li>
-        <li><strong>Versturen van het gratis rapport, de checklist en relevante e-mails</strong> (grondslag: jouw toestemming, die je op elk moment kunt intrekken).</li>
+        <li><strong>Versturen van de uitlegvideo en relevante e-mails</strong> (grondslag: jouw toestemming, die je op elk moment kunt intrekken).</li>
         <li><strong>Facturatie en administratie</strong> (grondslag: wettelijke verplichting).</li>
         <li><strong>Verbeteren en beveiligen van onze website en dienst</strong> (grondslag: gerechtvaardigd belang).</li>
       </ul>
@@ -83,9 +86,5 @@ const updated = '6 juli 2026';
     </div>
   </main>
 
-  <footer class="legal-foot">
-    <div class="legal-wrap">
-      Local Levers &middot; KvK 72087986 &middot; <a href="/voorwaarden/">Algemene voorwaarden</a>
-    </div>
-  </footer>
+  <SiteFooter kaart={false} />
 </Bare>

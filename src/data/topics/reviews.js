@@ -1,20 +1,22 @@
 // Reviews- en reputatie-cluster: gids-pagina's rond Google-reviews voor eigenaren
-// van klinieken en behandel-salons. Elke pagina is een unieke eigenaar-vraag.
+// van cosmetische klinieken en lokale dienstverleners. Elke pagina is een unieke eigenaar-vraag.
 // Harde lijn: reviews mogen niet beloond worden, verwijderen kan alleen bij een
 // richtlijn-schending, en reviews wegen ook mee voor AI-antwoorden, niet enkel Google.
 
 export const topics = [
   {
     slug: 'negatieve-google-review-verwijderen',
+    metaTitle: 'Negatieve Google-review laten verwijderen: kan dat?',
+    niches: ['aannemers', 'klusbedrijven', 'verbouw-en-renovatie', 'schildersbedrijven', 'loodgieters'],
     published: true,
     keyword: 'negatieve google review verwijderen',
     h1: 'Kun je een negatieve Google-review laten verwijderen?',
     lead:
-      'Soms wel, meestal niet. Google verwijdert een review alleen als die de eigen richtlijnen schendt, niet omdat je het er oneens mee bent of omdat hij je pijn doet. Een terechte, kritische ervaring blijft dus staan. Het is belangrijk dat je vooraf weet welk verschil dat maakt, zodat je energie steekt in de zaken die wel kans maken.',
+      'Soms wel, meestal niet. Google verwijdert een review alleen als die de eigen richtlijnen schendt, niet omdat je het er oneens mee bent of omdat hij je pijn doet. Een terechte, kritische ervaring blijft dus staan. Het is belangrijk dat je vooraf weet welk verschil dat maakt, zodat je energie steekt in de gevallen die wel kans maken.',
     sections: [
       {
         h: 'Wanneer een review daadwerkelijk in aanmerking komt',
-        p: 'Google haalt reviews weg die duidelijk tegen de richtlijnen ingaan. Denk aan spam of nep-accounts, een review van iemand die nooit klant is geweest, beledigende of haatdragende taal, of een verwarring waarbij iemand een andere zaak beoordeelt. Ook een concurrent die een valse review plaatst, of een review vol persoonsgegevens, valt hieronder. Een ontevreden klant die zijn echte ervaring beschrijft, hoe scherp ook, valt er niet onder. Daar helpt melden niet, en een goede publieke reactie wel.',
+        p: 'Google haalt reviews weg die duidelijk tegen de richtlijnen ingaan. Denk aan spam of nep-accounts, een review van iemand die nooit klant is geweest, beledigende of haatdragende taal, of een verwarring waarbij iemand een ander bedrijf beoordeelt. Ook een concurrent die een valse review plaatst, of een review vol persoonsgegevens, valt hieronder. Een ontevreden klant die zijn echte ervaring beschrijft, hoe scherp ook, valt er niet onder. Daar helpt melden niet, en een goede publieke reactie wel.',
       },
       {
         h: 'Zo meld je een review aan Google',
@@ -38,6 +40,7 @@ export const topics = [
   },
   {
     slug: 'reageren-op-een-negatieve-review',
+    niches: ['dakdekkers', 'installatiebedrijven', 'stukadoors', 'tegelzetters', 'hoveniers'],
     published: true,
     keyword: 'reageren op negatieve review',
     h1: 'Hoe reageer je op een negatieve review?',
@@ -70,6 +73,7 @@ export const topics = [
   },
   {
     slug: 'reviews-vragen-zonder-opdringerig',
+    niches: ['loodgieters', 'elektriciens', 'schildersbedrijven', 'hoveniers', 'timmerbedrijven'],
     published: true,
     keyword: 'reviews vragen zonder opdringerig',
     h1: 'Reviews vragen zonder opdringerig te zijn',
@@ -98,6 +102,8 @@ export const topics = [
   },
   {
     slug: 'hoeveel-google-reviews-heb-ik-nodig',
+    metaTitle: 'Hoeveel Google-reviews heb je nodig? | Local Levers',
+    niches: ['zonnepanelen', 'isolatiebedrijven', 'kozijnenbedrijven', 'aannemers', 'dakdekkers'],
     published: true,
     keyword: 'hoeveel google reviews nodig',
     h1: 'Hoeveel Google-reviews heb je eigenlijk nodig?',
@@ -126,6 +132,8 @@ export const topics = [
   },
   {
     slug: 'review-velocity-versheid',
+    metaTitle: 'Review-velocity: versheid telt zwaarder dan aantal',
+    niches: ['loodgieters', 'ongediertebestrijding', 'klusbedrijven', 'gevelreiniging', 'elektriciens'],
     published: true,
     keyword: 'review velocity',
     h1: 'Waarom de versheid van je reviews zwaarder telt dan het aantal',
@@ -134,7 +142,7 @@ export const topics = [
     sections: [
       {
         h: 'Wat review-velocity is en waarom het meeweegt',
-        p: 'Velocity gaat over de instroom door de tijd: krijg je elke week een paar reviews, of stond het aantal al maanden stil? Een gestage stroom leest als een teken dat je zaak nu draait en klanten bedient. Een hoog totaal zonder recente aanwas kan juist de indruk wekken dat je beste tijd achter je ligt. De systemen die op recentheid letten, geven een levendig profiel daarom eerder de voorkeur dan een dat op zijn verleden teert.',
+        p: 'Velocity gaat over de instroom door de tijd: krijg je elke week een paar reviews, of stond het aantal al maanden stil? Een gestage stroom leest als een teken dat je bedrijf nu draait en klanten bedient. Een hoog totaal zonder recente aanwas kan juist de indruk wekken dat je beste tijd achter je ligt. De systemen die op recentheid letten, geven een levendig profiel daarom eerder de voorkeur dan een dat op zijn verleden teert.',
       },
       {
         h: 'Waarom een piek averechts kan werken',
@@ -154,19 +162,21 @@ export const topics = [
   },
   {
     slug: 'google-review-link-maken',
+    metaTitle: 'Google-review-link maken en delen | Local Levers',
+    niches: ['tegelzetters', 'stukadoors', 'timmerbedrijven', 'straatmakers', 'boomverzorging'],
     published: true,
     keyword: 'google review link maken',
     h1: 'Een directe Google-review-link maken en delen',
     lead:
-      'Een directe review-link brengt de klant in een tik bij het scherm waar hij meteen sterren en tekst kan achterlaten, zonder eerst je zaak te hoeven opzoeken. Elke extra stap kost je reviews, dus die korte weg is het verschil tussen willen helpen en het opgeven. Je maakt zo een link gratis aan via je eigen Google Bedrijfsprofiel.',
+      'Een directe review-link brengt de klant in een tik bij het scherm waar hij meteen sterren en tekst kan achterlaten, zonder eerst je bedrijf te hoeven opzoeken. Elke extra stap kost je reviews, dus die korte weg is het verschil tussen willen helpen en het opgeven. Je maakt zo\'n link gratis aan via je eigen Google Bedrijfsprofiel.',
     sections: [
       {
         h: 'Waar je de link vandaan haalt',
-        p: 'Log in op het Google Bedrijfsprofiel van je zaak en zoek de optie om een review te vragen; daar staat een deelbare link klaar die rechtstreeks naar het beoordelingsscherm leidt. Je vindt vergelijkbare deel-links ook via je bedrijf op Google Maps. Die link opent bij de klant meteen het venster met sterren en tekstveld, in plaats van je algemene profiel waar hij nog moet zoeken. Bewaar de link ergens vast, zodat je hem steeds opnieuw kunt gebruiken.',
+        p: 'Log in op je Google Bedrijfsprofiel en zoek de optie om een review te vragen; daar staat een deelbare link klaar die rechtstreeks naar het beoordelingsscherm leidt. Je vindt vergelijkbare deel-links ook via je bedrijf op Google Maps. Die link opent bij de klant meteen het venster met sterren en tekstveld, in plaats van je algemene profiel waar hij nog moet zoeken. Bewaar de link ergens vast, zodat je hem steeds opnieuw kunt gebruiken.',
       },
       {
         h: 'Maak hem kort en herkenbaar voordat je hem deelt',
-        p: 'De standaardlink is lang en rommelig. Met een gratis verkorter maak je er een nette, korte variant van die betrouwbaarder oogt in een bericht. Voor een bordje in je zaak of op een kaartje werkt een QR-code die naar dezelfde link wijst prettig, zodat mensen hem met hun telefoon kunnen scannen. Zo pas je hetzelfde adres aan aan het kanaal, zonder de klant ooit te laten zoeken.',
+        p: 'De standaardlink is lang en rommelig. Met een gratis verkorter maak je er een nette, korte variant van die betrouwbaarder oogt in een bericht. Voor een bordje bij de balie of op een kaartje werkt een QR-code die naar dezelfde link wijst prettig, zodat mensen hem met hun telefoon kunnen scannen. Zo pas je hetzelfde adres aan aan het kanaal, zonder de klant ooit te laten zoeken.',
       },
       {
         h: 'Deel de link op het moment dat het telt',
@@ -175,12 +185,12 @@ export const topics = [
     ],
     faq: [
       {
-        q: 'Is zo een review-link gratis en veilig om te gebruiken?',
+        q: 'Is zo\'n review-link gratis en veilig om te gebruiken?',
         a: 'Ja, de link komt uit je eigen Google Bedrijfsprofiel en kost niets. Er is niets mis mee om hem te delen, zolang je klanten vrijblijvend vraagt en er geen beloning aan hangt. Het is simpelweg de kortste route naar het beoordelingsscherm.',
       },
       {
         q: 'Kan ik een QR-code van mijn review-link maken?',
-        a: 'Dat kan met een gratis QR-generator die je de review-link laat invoeren. De code print je op een kaartje, bordje of bon, zodat klanten hem in je zaak kunnen scannen. Hij verwijst naar hetzelfde beoordelingsscherm als de gedeelde link.',
+        a: 'Dat kan met een gratis QR-generator die je de review-link laat invoeren. De code print je op een kaartje, bordje of bon, zodat klanten hem bij de balie kunnen scannen. Hij verwijst naar hetzelfde beoordelingsscherm als de gedeelde link.',
       },
     ],
   },

@@ -1,0 +1,20 @@
+---
+// Doorverwijspagina. Astro's eigen redirect-stub toont Engelse tekst
+// ("Redirecting from ... to ..."), en dat botst met de regel dat er nooit
+// Nederlands en Engels door elkaar staan. Vandaar een eigen pagina.
+---
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Verhuisd | Local Levers</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="https://locallevers.com/marketing/" />
+    <meta http-equiv="refresh" content="0; url=/marketing/" />
+    <script is:inline>location.replace('/marketing/');</script>
+  </head>
+  <body style="font-family:system-ui,sans-serif;padding:56px 24px;background:#FAFAF8;color:#141413;">
+    <p>Deze pagina is verhuisd. Je wordt doorgestuurd.</p>
+    <p><a href="/marketing/" style="color:#1A7A54;">Klik hier als er niets gebeurt</a></p>
+  </body>
+</html>

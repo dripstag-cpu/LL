@@ -1,0 +1,261 @@
+---
+// Prijspagina, toegevoegd 2026-08-16, herbouwd 2026-08-17.
+//
+// Waarom deze pagina bestaat: er waren twee paginasoorten (homepage en funnel)
+// en de prijs paste in geen van beide. Op de homepage hoort hij niet, want die
+// legt uit wat we doen. Op de funnel staat hij in de kop, maar die pagina is
+// voor bezoekers die al doorklikten. Wie in het menu op Prijs klikt of zoekt op
+// "wat kost het", hoort hier te landen.
+//
+// HERBOUW 2026-08-17, zie doc 51 sectie B. De opbouw is nu die van het
+// voorbeeld dat we aanhouden: kop, één kaart, "Overige diensten", klaar. Wat
+// eruit ging: de hero met drie kolommen opsommingen, de eigen FAQ (die staat op
+// de homepage) en de eigen slotsectie (die komt uit SiteFooter.astro).
+//
+// De acht regels op de kaart komen uit onderdelen.js, net als in het menu en de
+// voettekst. Eén bron, dus ze kunnen niet uit elkaar lopen zodra er een
+// onderdeel bij komt of afvalt.
+//
+// De schakelaar maandelijks/jaarlijks staat er sinds 2026-08-17, besloten door
+// Bryan. Let op wat de jaardeal wél en niet is: de maandprijs blijft €397. Je
+// betaalt twaalf maanden en krijgt er vijftien. Dus geen korting op de maand,
+// maar drie maanden extra. Over vijftien maanden komt dat neer op €318.
+//
+// Bedragen komen uit doc 49. Wijzigt de prijs, dan wijzigt hij hier en op
+// /gesprek/, nergens anders op de site.
+import Layout from '../../layouts/Layout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import { onderdelen } from '../../data/onderdelen.js';
+
+const PRIJS = '397';
+const ADS = '250';
+const JAAR_TOTAAL = '4.764';   // 12 x 397
+const JAAR_PER_MAAND = '318';  // 4764 / 15
+
+const title = `Wat het kost: €${PRIJS} per maand | Local Levers`;
+const description = `Eén pakket voor vakbedrijven. €${PRIJS} ex btw per maand, geen opstartkosten, maandelijks opzegbaar. Dit zit erin en dit komt er los bij.`;
+
+const los = [
+  { d: 'Google Ads, beheer', p: `€${ADS} per maand, ex advertentiebudget` },
+  { d: "Zwaardere SEO: directory's, citations en linkwerk", p: 'op aanvraag' },
+  { d: 'Een tweede vestiging op hetzelfde systeem', p: 'op aanvraag' },
+];
+---
+
+<Layout title={title} description={description}>
+  <SiteNav />
+
+  <main class="pp">
+    <section class="pp-top">
+      <div class="pp-inner">
+        <h1>Onze prijs</h1>
+        <p class="pp-lead">
+          Eén pakket, één prijs. Geen staffels, en geen offerte waar je twee weken op zit te wachten.
+        </p>
+
+        <div class="pp-schakel" role="group" aria-label="Betaaltermijn">
+          <button type="button" class="pp-s is-aan" data-termijn="maand" aria-pressed="true">Maandelijks</button>
+          <button type="button" class="pp-s" data-termijn="jaar" aria-pressed="false">Per jaar
+            <em>3 maanden gratis</em></button>
+        </div>
+
+        <div class="pp-kaart">
+          <p class="pp-badge">MEEST GEKOZEN</p>
+          <p class="pp-naam">Het hele systeem</p>
+          <p class="pp-prijs">&euro;{PRIJS}<span>/mnd</span></p>
+          <p class="pp-sub" data-sub="maand">Ex btw. Geen opstartkosten, maandelijks opzegbaar.</p>
+          <p class="pp-sub pp-verborgen" data-sub="jaar">Ex btw. Je betaalt twaalf maanden en krijgt er vijftien.
+            Dat is &euro;{JAAR_TOTAAL} voor vijftien maanden, oftewel &euro;{JAAR_PER_MAAND} per maand.</p>
+
+          <ul class="pp-regels">
+            {onderdelen.map((o) => <li>{o.naam}</li>)}
+          </ul>
+
+          <a class="pp-knop" data-cta="prijs-kaart" href="/gesprek/">Plan een gesprek</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pp-los">
+      <div class="pp-inner pp-inner--smal">
+        <h2 class="pp-balk">Overige diensten</h2>
+        <ul class="pp-lijst">
+          {los.map((r) => (
+            <li>
+              <span class="pp-lijst-d">{r.d}</span>
+              <span class="pp-lijst-p">{r.p}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  </main>
+  <script is:inline>
+    // Schakelaar tussen maandelijks en per jaar. De prijs verandert niet, alleen
+    // de regel eronder: bij een jaar betaal je twaalf maanden en krijg je er
+    // vijftien. Zonder JavaScript staat de maandregel er gewoon.
+    (function () {
+      var knoppen = document.querySelectorAll('.pp-s');
+      if (!knoppen.length) return;
+      knoppen.forEach(function (k) {
+        k.addEventListener('click', function () {
+          var t = k.dataset.termijn;
+          knoppen.forEach(function (a) {
+            var aan = a === k;
+            a.classList.toggle('is-aan', aan);
+            a.setAttribute('aria-pressed', aan ? 'true' : 'false');
+          });
+          document.querySelectorAll('[data-sub]').forEach(function (s) {
+            s.classList.toggle('pp-verborgen', s.dataset.sub !== t);
+          });
+        });
+      });
+    })();
+  </script>
+</Layout>
+
+<style>
+  .pp {
+    background: #fafaf8;
+    color: #141413;
+    font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
+  }
+  .pp-inner { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .pp-inner--smal { max-width: 684px; }
+
+  .pp-top { padding: 72px 0 8px; text-align: center; }
+  .pp h1 {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: clamp(34px, 5.2vw, 50px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .pp-lead { font-size: 17px; line-height: 1.6; color: #64645f; margin: 14px auto 0; max-width: 46ch; }
+
+  /* De kaart. Radius 8, geen schaduw, zoals alle kaarten op de site sinds
+     2026-08-17. Groen met wit erop, dezelfde rol als de oranje kaart in het
+     voorbeeld: hij is het enige wat je op deze pagina kunt aanklikken. */
+  .pp-kaart {
+    max-width: 512px;
+    margin: 40px auto 0;
+    background: #1a7a54;
+    border-radius: 8px;
+    padding: 34px 32px 36px;
+    color: #fff;
+  }
+  .pp-schakel { display: inline-flex; gap: 4px; background: #EFEFEA; border-radius: 4px;
+    padding: 4px; margin: 0 auto 28px; }
+  .pp-s { border: 0; background: none; cursor: pointer; font-family: 'Outfit Variable', sans-serif;
+    font-weight: 600; font-size: 15px; color: #64645F; padding: 11px 20px; border-radius: 3px;
+    display: inline-flex; align-items: center; gap: 8px; }
+  .pp-s.is-aan { background: #fff; color: #0a0a09; box-shadow: 0 1px 3px rgba(10,10,9,.12); }
+  .pp-s em { font-style: normal; font-size: 12px; font-weight: 700; color: #1A7A54;
+    background: #E4F5EC; padding: 3px 8px; border-radius: 3px; }
+  .pp-verborgen { display: none; }
+  /* Zijn MOST POPULAR-vorm, gemeten 2026-08-17: kale vette tekst van 24px op
+     gewicht 900 in de accentkleur, gecentreerd, zonder streep eronder. De
+     tekst is MEEST GEKOZEN op besluit van Bryan (2026-08-17, herbevestigd na
+     tegenwerping dat het met een enkel pakket geen hard te maken claim is). */
+  .pp-badge {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: clamp(20px, 4.2vw, 24px);
+    font-weight: 900;
+    letter-spacing: 0.01em;
+    color: #4ade80;
+    margin: 0 auto;
+    width: fit-content;
+  }
+  .pp-naam {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: clamp(24px, 4.4vw, 30px);
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    margin: 18px 0 0;
+  }
+  .pp-prijs {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: clamp(38px, 7vw, 46px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin: 6px 0 0;
+  }
+  .pp-prijs span { font-size: 0.62em; font-weight: 700; letter-spacing: -0.01em; }
+  .pp-sub { font-size: 14px; line-height: 1.5; color: rgba(255, 255, 255, 0.78); margin: 8px 0 0; }
+
+  .pp-regels { list-style: none; margin: 26px 0 0; padding: 0; }
+  .pp-regels li {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    padding: 14px 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.26);
+  }
+
+  /* Zijn prijskaart-knop, gemeten 2026-08-17: 54px hoog, over de volle
+     kaartbreedte, 22px op gewicht 900, in kapitalen, radius 4px. Bij hem wit
+     op de gekleurde kaart, bij ons dus wit op het groen. */
+  .pp-knop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 54px;
+    margin-top: 28px;
+    padding: 0;
+    background: #fff;
+    color: #156243;
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 200ms;
+  }
+  .pp-knop:hover { background: #eaf5ef; }
+
+  /* Overige diensten. Donkere balk met de kop erin, daaronder de losse regels
+     als lichte rijen, net als in het voorbeeld. */
+  .pp-los { padding: 64px 0 88px; }
+  .pp-balk {
+    background: #0a0a09;
+    border-radius: 8px;
+    padding: 20px 24px;
+    text-align: center;
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    color: #fafaf8;
+    margin: 0;
+  }
+  .pp-lijst { list-style: none; margin: 14px 0 0; padding: 0; }
+  .pp-lijst li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+    justify-content: space-between;
+    align-items: baseline;
+    background: #fff;
+    border: 1px solid #e4e3dc;
+    border-radius: 4px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+  }
+  .pp-lijst-d { font-size: 16px; line-height: 1.45; color: #141413; }
+  .pp-lijst-p { font-size: 15px; line-height: 1.45; color: #64645f; white-space: nowrap; }
+
+  @media (max-width: 560px) {
+    .pp-top { padding-top: 48px; }
+    .pp-kaart { padding: 28px 20px 30px; }
+    .pp-knop { font-size: 19px; }
+    .pp-los { padding: 48px 0 64px; }
+    .pp-balk { padding: 18px 16px; font-size: 19px; }
+    .pp-lijst-p { white-space: normal; }
+  }
+</style>

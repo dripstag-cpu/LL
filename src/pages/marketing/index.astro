@@ -1,71 +1,250 @@
 ---
+// Branches-overzicht, herbouwd 2026-08-17 (avond) naar de branchepagina van
+// het voorbeeld dat we aanhouden (uitlezing in doc 51c, sectie B): geen
+// donkere band maar direct een grote kop met een prijs-echo eronder, dan
+// foto-tegels per branche (bij hem 359 breed, 245 hoog, radius 8, wit),
+// daarna de lijst per categorie, en de vaste staart uit SiteFooter.astro.
+//
+// De vorige versie was een kale linklijst met een eigen "Wat het kost"-blok.
+// Dat blok is eruit: de staart heeft al de slotkaart met de knop.
+import fs from 'node:fs';
 import Layout from '../../layouts/Layout.astro';
-import { niches } from '../../data/niches.js';
+import SiteNav from '../../components/SiteNav.astro';
+import { niches, nicheGroups } from '../../data/niches.js';
 
 const list = niches.filter((n) => n.published !== false);
-const title = 'Marketing per type bedrijf | Local Levers';
-const description = 'Vindbaarheid en opvolging, toegespitst op jouw type bedrijf: klinieken, salons, praktijken, vakmannen en andere lokale specialisten.';
+// Koepelwoord "vakbedrijven" (doc 54 punt 7, 2026-08-21).
+// De categorie-labels uit niches.js tonen we onder die koepel; huis wordt
+// "Vakbedrijven" in beeld, zonder niches.js aan te raken.
+const groepLabels = { huis: 'Vakbedrijven' };
+const groepen = Object.entries(nicheGroups)
+  .map(([key, naam]) => ({
+    naam: groepLabels[key] || naam,
+    items: list.filter((n) => n.group === key),
+  }))
+  .filter((g) => g.items.length);
+const hoofdletter = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
+// Eén rij: alleen de vakbedrijven (de vaklui rond het huis). Klinieken en beauty
+// zijn volledig van de site (besluit Bryan 2026-08-18) en staan in niches.js op
+// published:false, dus ze vallen automatisch uit elke lijst.
+const rijen = [
+  {
+    naam: 'Vakbedrijven',
+    items: list.filter((n) => n.group === 'huis'),
+  },
+];
+
+// Een tegel zonder foto krijgt het vlakke groene vlak in plaats van een
+// kapotte achtergrond. Zelfde patroon als de demo-knoppen op de homepage:
+// staat het bestand er, dan doet de eerstvolgende build de rest.
+const heeftFoto = (slug) =>
+  fs.existsSync(new URL(`../../../public/img/branches/${slug}.jpg`, import.meta.url));
+
+const title = 'Branches: voor deze bedrijven werken we | Local Levers';
+const description =
+  'Marketing voor vakbedrijven: van loodgieter en elektricien tot installateur, dakdekker en hovenier. Hetzelfde systeem per vak, voor 397 euro ex btw per maand.';
+// Brede categorie-lijst, zoals zijn "All Trades by Category" op trades-we-serve:
+// veel vaknamen als tekst om de breedte te tonen. De uitgelichte vakken met een
+// eigen pagina (slug) worden een link, de rest is tekst. Geen dunne pagina's
+// bijbouwen; dit is presentatie van het bereik (doc 53).
+const categorieLijst = [
+  { groep: 'Bouw en constructie', items: [
+    { naam: 'Aannemers', slug: 'aannemers' }, { naam: 'Verbouw en renovatie', slug: 'verbouw-en-renovatie' },
+    { naam: 'Timmerbedrijven', slug: 'timmerbedrijven' }, { naam: 'Bouwbedrijven' }, { naam: 'Metselaars' },
+    { naam: 'Betonwerk' }, { naam: 'Funderingsherstel' }, { naam: 'Grondwerk' }, { naam: 'Sloopbedrijven' } ] },
+  { groep: 'Installatie en techniek', items: [
+    { naam: 'Loodgieters', slug: 'loodgieters' }, { naam: 'Elektriciens', slug: 'elektriciens' },
+    { naam: 'Installatiebedrijven', slug: 'installatiebedrijven' }, { naam: 'Isolatiebedrijven', slug: 'isolatiebedrijven' },
+    { naam: 'Zonnepanelen', slug: 'zonnepanelen' }, { naam: 'Cv en verwarming' }, { naam: 'Warmtepompen' },
+    { naam: 'Airco' }, { naam: 'Ventilatie' }, { naam: 'Riolering en ontstopping' } ] },
+  { groep: 'Afbouw en interieur', items: [
+    { naam: 'Stukadoors', slug: 'stukadoors' }, { naam: 'Tegelzetters', slug: 'tegelzetters' },
+    { naam: 'Schilders', slug: 'schildersbedrijven' }, { naam: 'Kozijnen', slug: 'kozijnenbedrijven' },
+    { naam: 'Vloeren' }, { naam: 'Plafonds' }, { naam: 'Keukenmontage' }, { naam: 'Badkamers' },
+    { naam: 'Meubelmakers' }, { naam: 'Behang en wandafwerking' } ] },
+  { groep: 'Dak en gevel', items: [
+    { naam: 'Dakdekkers', slug: 'dakdekkers' }, { naam: 'Gevelreiniging', slug: 'gevelreiniging' },
+    { naam: 'Dakkapellen' }, { naam: 'Gevelrenovatie' }, { naam: 'Voegwerk' }, { naam: 'Zinkwerk' },
+    { naam: 'Dakgoten' }, { naam: 'Schoorsteenvegers' } ] },
+  { groep: 'Buiten en groen', items: [
+    { naam: 'Hoveniers', slug: 'hoveniers' }, { naam: 'Straatmakers', slug: 'straatmakers' },
+    { naam: 'Boomverzorging', slug: 'boomverzorging' }, { naam: 'Bestrating' }, { naam: 'Tuinaanleg' },
+    { naam: 'Terras en vlonders' }, { naam: 'Hekwerk en poorten' }, { naam: 'Zwembaden' } ] },
+  { groep: 'Onderhoud en service', items: [
+    { naam: 'Klusbedrijven', slug: 'klusbedrijven' }, { naam: 'Ongediertebestrijding', slug: 'ongediertebestrijding' },
+    { naam: 'Glaszetters' }, { naam: 'Sloten en beveiliging' }, { naam: 'Schoonmaakbedrijven' },
+    { naam: 'Verhuisbedrijven' }, { naam: 'Vloer- en tapijtreiniging' } ] },
+];
 ---
 
 <Layout title={title} description={description}>
-  <main class="pg">
-    <section class="pg-hero">
-      <div class="pg-inner narrow">
-        <a href="/" class="pg-brand">Local<span>Levers</span></a>
-        <p class="pg-eyebrow">Voor wie</p>
-        <h1>Marketing per type bedrijf</h1>
-        <p class="pg-lead">Elke branche heeft zijn eigen winstgevende dienst en zijn eigen concurrentie. Kies je type bedrijf en zie precies waar klanten blijven liggen en hoe wij dat oplossen.</p>
-        <a href="/sprint/" class="pg-cta">Vraag je gratis reputatie-sprint aan &rarr;</a>
+  <SiteNav />
+
+  <main class="tr">
+    <section class="tr-kop">
+      <div class="tr-inner">
+        <h1>Al deze branches helpen we, en meer</h1>
+        <p class="tr-sub">
+          Hetzelfde systeem, toegespitst op jouw vak, voor &euro;397 ex btw per maand.
+          Staat je branche er niet tussen, dan hoort hij waarschijnlijk bij de
+          <a href="/marketing/lokale-specialisten/">andere lokale specialisten</a>.
+        </p>
       </div>
     </section>
 
-    <section class="pg-block">
-      <div class="pg-inner narrow">
-        <ul class="hub-list">
-          {list.map((n) => (
-            <li><a href={`/marketing/${n.slug}/`}>Marketing voor {n.label}</a></li>
+    <section class="tr-tegels">
+      <div class="tr-inner">
+        {rijen.map((rij) => (
+          <div class="tr-rij">
+            <h2 class="tr-rij-kop">{rij.naam}</h2>
+            <div class="tr-grid">
+              {rij.items.map((n) => (
+                <a class="tr-tegel" href={`/marketing/${n.slug}/`}>
+                  {heeftFoto(n.slug) ? (
+                    <span class="tr-foto" style={`background-image: url('/img/branches/${n.slug}.jpg')`}></span>
+                  ) : (
+                    <span class="tr-foto tr-foto--rest">LL</span>
+                  )}
+                  <span class="tr-naam">{hoofdletter(n.label)}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="tr-cats">
+      <div class="tr-inner">
+        <h2>Alle branches per categorie</h2>
+        <div class="tr-cat-grid">
+          {categorieLijst.map((g) => (
+            <div class="tr-cat">
+              <h3>{g.groep}</h3>
+              <ul>
+                {g.items.map((it) => (
+                  <li>
+                    {it.slug
+                      ? <a href={`/marketing/${it.slug}/`}>{it.naam}</a>
+                      : <span>{it.naam}</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
-
-    <section class="pg-block pg-cta-block">
-      <div class="pg-inner narrow">
-        <h2>Zie waar je nu staat</h2>
-        <p class="pg-lead">Vraag de gratis Online Reputatie Sprint aan. Zeven dagen lang zetten we je reviews en je vindbaarheid in gang, uit jouw naam, en je ziet aan het eind zwart op wit waar je staat. Geen kosten, geen verplichting.</p>
-        <a href="/sprint/" class="pg-cta">Vraag je gratis reputatie-sprint aan &rarr;</a>
-      </div>
-    </section>
-
-    <footer class="pg-footer">
-      <div class="pg-inner narrow">
-        <p>Meer weten? Lees de <a href="/gids/">kennisbank &rarr;</a></p>
-        <p class="pg-back">Local Levers &middot; Vindbaarheid en opvolging voor klinieken en lokale specialisten</p>
-      </div>
-    </footer>
   </main>
 </Layout>
 
 <style>
-  .pg { background: #FAFAF8; color: #0a0a09; font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif; }
-  .pg-inner { max-width: 940px; margin: 0 auto; padding: 0 24px; }
-  .pg-inner.narrow { max-width: 760px; }
-  .pg-brand { font-family: 'Outfit Variable', sans-serif; font-weight: 800; font-size: 18px; color: #0a0a09; text-decoration: none; }
-  .pg-brand span { color: #1A7A54; }
-  .pg-hero { padding: 64px 0 48px; background: radial-gradient(700px circle at 80% 0%, rgba(26,122,84,0.08), transparent 55%), #FAFAF8; }
-  .pg-eyebrow { margin-top: 36px; font-family: 'Outfit Variable', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #1A7A54; }
-  .pg h1 { font-family: 'Outfit Variable', sans-serif; font-size: clamp(30px, 4.6vw, 46px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin: 14px 0 0; }
-  .pg-lead { font-size: 17px; line-height: 1.65; color: #64645F; margin-top: 18px; }
-  .pg-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; background: var(--green); color: #fff; font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 15.5px; padding: 15px 26px; border-radius: 14px; text-decoration: none; }
-  .pg-block { padding: 40px 0; border-top: 1px solid #E4E3DC; }
-  .pg h2 { font-family: 'Outfit Variable', sans-serif; font-size: clamp(22px, 3vw, 28px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.2; margin: 0 0 18px; }
-  .hub-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
-  .hub-list li { border-top: 1px solid #E4E3DC; }
-  .hub-list li:first-child { border-top: none; }
-  .hub-list a { display: block; padding: 14px 0; font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 17px; line-height: 1.35; color: #0a0a09; text-decoration: none; }
-  .hub-list a:hover { color: #1A7A54; }
-  .pg-cta-block .pg-lead { margin-top: 14px; }
-  .pg-footer { padding: 36px 0 64px; border-top: 1px solid #E4E3DC; font-size: 14px; color: #8c8c87; }
-  .pg-footer a { color: #64645F; text-decoration: underline; text-underline-offset: 3px; }
-  .pg-back { font-size: 13px; margin-top: 12px; }
+  .tr { background: #FAFAF8; color: #0a0a09; font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif; }
+  .tr-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  .tr-kop { padding: 64px 0 12px; text-align: center; }
+  .tr-kop h1 {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: clamp(30px, 4.6vw, 50px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .tr-sub { font-size: 18px; line-height: 1.6; color: #64645F; margin: 16px auto 0; max-width: 58ch; }
+  .tr-sub a { color: var(--green); font-weight: 600; }
+
+  /* Twee gelijke rijen van tien: vijf tegels naast elkaar, twee regels per
+     groep. Zijn tegelstijl (wit, radius 8, foto boven, naam eronder), alleen
+     smaller omdat er vijf passen in plaats van drie. */
+  .tr-tegels { padding: 36px 0 8px; }
+  .tr-rij + .tr-rij { margin-top: 36px; }
+  .tr-rij-kop {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: clamp(20px, 2.6vw, 26px);
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    margin: 0 0 14px;
+  }
+  .tr-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .tr-tegel {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #E4E3DC;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #0a0a09;
+  }
+  .tr-foto {
+    display: block;
+    height: 128px;
+    background-size: cover;
+    background-position: center;
+  }
+  .tr-foto--rest {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(150deg, #1A7A54, #125C3F);
+    color: #fff;
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .tr-naam {
+    padding: 11px 13px;
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .tr-tegel:hover .tr-naam { color: var(--green); }
+
+  .tr-cats { padding: 56px 0 24px; }
+  .tr-cats h2 {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: clamp(24px, 3.4vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    text-align: center;
+    margin: 0 0 26px;
+  }
+  .tr-cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .tr-cat {
+    background: #fff;
+    border: 1px solid #E4E3DC;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .tr-cat h3 {
+    font-family: 'Outfit Variable', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0 0 12px;
+  }
+  .tr-cat ul { list-style: none; margin: 0; padding: 0; }
+  .tr-cat li + li { border-top: 1px solid #F0EEE7; }
+  .tr-cat a {
+    display: block;
+    padding: 9px 0;
+    color: #3C3C39;
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .tr-cat a:hover { color: var(--green); }
+
+  @media (max-width: 980px) {
+    .tr-grid { grid-template-columns: repeat(3, 1fr); }
+    .tr-cat-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 620px) {
+    .tr-kop { padding-top: 44px; }
+    .tr-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .tr-foto { height: 104px; }
+  }
 </style>

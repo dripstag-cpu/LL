@@ -1,6 +1,8 @@
 export const topics = [
   {
     slug: "google-maps-ranking-factoren",
+    metaTitle: "Google Maps ranking: welke factoren tellen echt?",
+    niches: ["loodgieters", "elektriciens", "installatiebedrijven", "dakdekkers", "klusbedrijven"],
     published: true,
     keyword: "google maps ranking factoren",
     h1: "Welke factoren bepalen je positie in Google Maps?",
@@ -8,7 +10,7 @@ export const topics = [
     sections: [
       {
         h: "Relevantie: hoe goed je profiel matcht met de zoekopdracht",
-        p: "Relevantie gaat over de vraag of jouw bedrijf past bij wat iemand intypt. Zoekt iemand op laserontharing of huidtherapie, dan kijkt Google naar je hoofdcategorie, je secundaire categorieen, je diensten en de teksten op je profiel. Een salon die alleen de categorie schoonheidssalon invult mist zoekopdrachten voor specifieke behandelingen. Volledig ingevulde diensten, een heldere omschrijving en de juiste categorieen vergroten het aantal zoekopdrachten waarop je meetelt."
+        p: "Relevantie gaat over de vraag of jouw bedrijf past bij wat iemand intypt. Zoekt iemand op laserontharing of huidtherapie, dan kijkt Google naar je hoofdcategorie, je secundaire categorieën, je diensten en de teksten op je profiel. Een salon die alleen de categorie schoonheidssalon invult mist zoekopdrachten voor specifieke behandelingen. Volledig ingevulde diensten, een heldere omschrijving en de juiste categorieën vergroten het aantal zoekopdrachten waarop je meetelt."
       },
       {
         h: "Afstand: waarom je fysieke locatie meeweegt",
@@ -36,10 +38,11 @@ export const topics = [
   },
   {
     slug: "in-de-top-3-van-google-maps-komen",
+    niches: ["loodgieters", "elektriciens", "ongediertebestrijding", "straatmakers", "hoveniers"],
     published: true,
     keyword: "in de top 3 google maps komen",
     h1: "Hoe kom je in de top 3 van Google Maps?",
-    lead: "De top 3 van Google Maps, ook wel de local pack genoemd, is de blok met drie bedrijven die Google direct onder de kaart toont. Die drie plekken pakken het grootste deel van de klikken en telefoontjes, dus daar wil je staan. Je komt er door je profiel volledig te maken, verse reviews binnen te halen en consistent aanwezig te zijn op alle relevante platforms.",
+    lead: "De top 3 van Google Maps, ook wel de local pack genoemd, is het blok met drie bedrijven die Google direct onder de kaart toont. Die drie plekken pakken het grootste deel van de klikken en telefoontjes, dus daar wil je staan. Je komt er door je profiel volledig te maken, verse reviews binnen te halen en consistent aanwezig te zijn op alle relevante platforms.",
     sections: [
       {
         h: "Waarom juist de top 3 zoveel oplevert",
@@ -63,6 +66,8 @@ export const topics = [
   },
   {
     slug: "wat-is-share-of-local-voice",
+    metaTitle: "Share of Local Voice: wat het is en waarom het telt",
+    niches: ["installatiebedrijven", "zonnepanelen", "isolatiebedrijven", "dakdekkers"],
     published: true,
     keyword: "share of local voice",
     h1: "Wat is Share of Local Voice en waarom telt het?",
@@ -94,6 +99,7 @@ export const topics = [
   },
   {
     slug: "hoe-meet-ik-mijn-vindbaarheid-in-google-maps",
+    niches: ["elektriciens", "tegelzetters", "stukadoors", "gevelreiniging", "timmerbedrijven"],
     published: true,
     keyword: "vindbaarheid meten google maps",
     h1: "Hoe meet je je vindbaarheid in Google Maps?",
@@ -121,6 +127,8 @@ export const topics = [
   },
   {
     slug: "lokale-seo-voor-klinieken",
+    metaTitle: "Lokale SEO voor klinieken en salons | Local Levers",
+    niches: ["laserklinieken", "huidklinieken", "huidtherapie", "schoonheidssalons"],
     published: true,
     keyword: "lokale seo klinieken",
     h1: "Lokale SEO voor klinieken en salons: hoe werkt het?",
@@ -132,7 +140,7 @@ export const topics = [
       },
       {
         h: "Het Google Business Profiel als middelpunt",
-        p: "Je profiel is de plek waar de meeste beslissingen vallen. Iemand die je vindt, kijkt naar je cijfer, je foto's, je openingstijden en de behandelingen die je noemt, en belt of boekt vaak direct vanuit dat profiel zonder ooit je website te bezoeken. Een profiel met de juiste categorieen, complete diensten en verse reviews doet meer voor je omzet dan bijna elke andere online inspanning. Daarom begint lokale SEO voor een behandel-salon altijd bij het profiel."
+        p: "Je profiel is de plek waar de meeste beslissingen vallen. Iemand die je vindt, kijkt naar je cijfer, je foto's, je openingstijden en de behandelingen die je noemt, en belt of boekt vaak direct vanuit dat profiel zonder ooit je website te bezoeken. Een profiel met de juiste categorieën, complete diensten en verse reviews doet meer voor je omzet dan bijna elke andere online inspanning. Daarom begint lokale SEO voor een behandel-salon altijd bij het profiel."
       },
       {
         h: "Consistentie over platforms, ook in ChatGPT en Perplexity",
@@ -150,12 +158,13 @@ export const topics = [
       },
       {
         q: "Kan ik lokale SEO zelf doen of is dat werk om uit te besteden?",
-        a: "De losse onderdelen zijn te leren, maar het is vooral doorlopend werk: reviews aanvragen, reageren, vermeldingen bijhouden, metingen doen en bijsturen. Voor een eigenaar die met klanten bezig is, valt dat er in de praktijk vaak bij weg. Uitbesteden loont wanneer je de continuiteit wilt garanderen zonder er zelf wekelijks tijd in te steken."
+        a: "De losse onderdelen zijn te leren, maar het is vooral doorlopend werk: reviews aanvragen, reageren, vermeldingen bijhouden, metingen doen en bijsturen. Voor een eigenaar die met klanten bezig is, valt dat er in de praktijk vaak bij weg. Uitbesteden loont wanneer je de continuïteit wilt garanderen zonder er zelf wekelijks tijd in te steken."
       }
     ]
   },
   {
     slug: "waarom-daalt-mijn-positie-in-google-maps",
+    niches: ["loodgieters", "schildersbedrijven", "klusbedrijven", "kozijnenbedrijven", "boomverzorging"],
     published: true,
     keyword: "positie google maps gedaald",
     h1: "Waarom daalt je positie in Google Maps?",
@@ -187,6 +196,8 @@ export const topics = [
   },
   {
     slug: "google-maps-vs-google-zoeken",
+    metaTitle: "Google Maps of Google zoeken: waar sta je het best?",
+    niches: ["aannemers", "verbouw-en-renovatie", "installatiebedrijven", "hoveniers", "straatmakers"],
     published: true,
     keyword: "verschil google maps google zoeken",
     h1: "Google Maps of Google zoeken: waar moet je op staan?",
@@ -194,7 +205,7 @@ export const topics = [
     sections: [
       {
         h: "Twee verschillende plekken, twee soorten zoekintentie",
-        p: "Wie Google Maps opent, is meestal op zoek naar een bedrijf in de buurt om naartoe te gaan of te bellen. Wie in de gewone zoekbalk een vraag typt, kan net zo goed informatie zoeken als een bedrijf. Google toont bij lokale zoekopdrachten in de gewone resultaten vaak een kaartblok met dezelfde top 3, gevolgd door websites. De kaart bedient de bezoeker die klaar is om te kiezen, de webresultaten bedienen ook wie zich nog aan het orienteren is."
+        p: "Wie Google Maps opent, is meestal op zoek naar een bedrijf in de buurt om naartoe te gaan of te bellen. Wie in de gewone zoekbalk een vraag typt, kan net zo goed informatie zoeken als een bedrijf. Google toont bij lokale zoekopdrachten in de gewone resultaten vaak een kaartblok met dezelfde top 3, gevolgd door websites. De kaart bedient de bezoeker die klaar is om te kiezen, de webresultaten bedienen ook wie zich nog aan het oriënteren is."
       },
       {
         h: "Waarom de kaart vaak doorslaggevend is",

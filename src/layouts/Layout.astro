@@ -1,4 +1,5 @@
 ---
+import SiteFooter from '../components/SiteFooter.astro';
 import '@fontsource-variable/outfit';
 import '@fontsource-variable/plus-jakarta-sans';
 import '../styles/global.css';
@@ -10,8 +11,9 @@ interface Props {
   description?: string;
 }
 const {
-  title = 'Local Levers | Vindbaarheid en opvolging voor klinieken en lokale specialisten',
-  description = 'Local Levers maakt klinieken en lokale specialisten beter vindbaar op Google, Apple en in AI-zoekopdrachten, met een sterk fundament, reviews en slimme opvolging.',
+  reviews = true,
+  title = 'Websites en online marketing voor vakbedrijven | Local Levers',
+  description = 'Website, reviews en vindbaarheid in een systeem voor vakbedrijven. Gevonden worden op Google, Bing, Apple en in AI-zoekhulpen.',
 } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -38,6 +40,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body>
     <slot />
+    <SiteFooter reviews={reviews} />
     <CookieConsent />
   </body>
 </html>

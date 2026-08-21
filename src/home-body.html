@@ -2,1299 +2,430 @@
 
 <!-- ====================================================================== -->
 <!-- STICKY NAV (verschijnt na hero)                                        -->
+<!--                                                                        -->
+<!-- Zelfde items en zelfde knop als src/components/SiteNav.astro, die op    -->
+<!-- alle andere pagina's staat. Deze kopie blijft bestaan omdat hij met     -->
+<!-- GSAP pas na de hero naar binnen schuift (zie scripts/home.js).          -->
+<!-- Wijzigt het menu daar, dan wijzigt het hier mee.                        -->
 <!-- ====================================================================== -->
 
-<header class="site-nav" id="siteNav">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">Local<span>Levers</span></a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#sectionForWho">Voor wie</a></li>
-        <li><a href="#sectionPillars">Aanpak</a></li>
-        <li><a href="#sectionAbout">Over Bryan</a></li>
-        <li><a href="#sectionFaq">FAQ</a></li>
-      </ul>
-    </nav>
-    <a data-cta="nav" href="/sprint/" class="nav-cta">Gratis sprint</a>
-  </div>
-</header>
 
 
 <!-- ============================================================================
-     CHANGE-LOG · v8 (eerlijkheids- en taal-pass, 2026-06-26)
+     CHANGE-LOG · v10 (herstructurering naar uitlegpagina, 2026-08-16)
 
-     Design overal ongemoeid. Negen correcties:
-     1. Interne fasenamen weg: "Revenue Rescue"/"Acquisition Scaling" als label
-        eruit. RR-eyebrow → "Het 12-weken programma". Scale-eyebrow → "De
-        toevoeging: schalen met advertenties".
-     2. Prijs/facturatie weg: "voorspelbaar bedrag per 4 weken", "geen setup
-        fee", "4-wekelijks opzegbaar", "jaarcontract", "performance-share" uit
-        copy, proof, FAQ en JSON-LD. Geen bedrag, tarief of opzeg-structuur.
-     3. Voorbeeld-cijfers (14/340/67%) in programma-sectie herschreven als
-        duidelijk voorbeeld ("bij een gemiddelde kliniek zien we vaak").
-     4. Valse bron weg: "8-15% rebooking, branche-observatie" vervangen door
-        een HBR-cijfer (7x, The Short Life of Online Sales Leads).
-     5. Restjes brede doelgroep → kliniek-specifiek (pillars-sub, blog, FAQ,
-        checklist-modal, definition).
-     6. Techniek-jargon (schema, JSON-LD, llms.txt, CRO, upsells) in de
-        extras-sectie vertaald naar gewone uitkomst-taal, ingekort, geen prijs.
-     7. Consequente merk-wij. About-bio van "ik" naar wij + Bryan in 3e persoon.
-     8. Proof eerlijk: "Bewezen" weg, "we werken met" → "gebouwd voor", geen
-        kliniek-cases geclaimd. Proof gebouwd op marktdata + diagnose + gratis
-        analyse. Placeholder-klant "Slotenmaker Amsterdam" uit de logo-marquee.
-        Cool Rush (Leiden, cold therapy) toegevoegd als live-systeem zonder
-        cijfers, klein gehouden, expliciet andere niche.
-     9. FAQ "Wat kost het?" leidt naar de gratis analyse, geen bedrag/model.
+     Aanleiding: doc 49 (het totaalpakket) maakte de oude verkooppagina onjuist.
+     De homepage verkoopt niet meer, die legt uit. Verkopen gebeurt op /gesprek/,
+     de prijs staat op /prijs/ en /gesprek/ en bewust nergens hier.
 
-     ============================================================================
-     CHANGE-LOG · v7 (één programma-focus, 2026-06-26)
+     VERWIJDERD
+     - Doctor-frame-blok. Verkocht een gratis analyse die niet meer bestaat.
+     - Story-blok met de nagebootste ChatGPT-demo. Verzonnen klinieken met
+       verzonnen review-aantallen, en de kern (je wordt ook in AI-zoekhulpen
+       gevonden) staat nu in één alinea in het definition-blok en bij het
+       onderdeel Lokale vindbaarheid.
+     - "AI beveelt je concurrent aan". Zelfde boodschap als het story-blok,
+       met een verzonnen voorbeeldbedrijf en verzonnen cijfers.
+     - Revenue-rescue-blok. Fasenaam uit een dood aanbod, plus drie
+       marktstatistieken van derden (Invoca, CallRail, HBR).
+     - Schaal-blok over advertenties. Meta Ads is per doc 49 vervallen als
+       klantdienst en Google Ads is een losse regel op /prijs/, geen sectie.
+     - Extras-blok "Daarnaast". Website en opvolging zitten sinds doc 49 in
+       het pakket zelf, dus dat blok verkocht wat er al in zit.
+     - Proof-blok. Bevatte een marktstatistiek van een derde partij en
+       verkocht de gratis analyse.
+     - Blog-blok. Stond al op display:none met verzonnen datums.
+     - PS/PPS-blok. Verliesangst-slot, past niet bij een uitlegpagina.
+     - Mesh-divider die tussen twee verwijderde secties stond.
 
-     Volledige focus op één aanbod: het 12-weken programma "Revenue Rescue".
-     - Geen "fases / Phase 1/2/3 / tiers"-taal meer. Story-wrap "in drie fases"
-       → "één programma van 12 weken". RR-sectie herpositioneerd: eyebrow
-       "Revenue Rescue · Het 12-weken programma", intro dekt nu de hele
-       fundering (vindbaar + gekozen + nooit gemist) in 12 weken.
-     - Acquisition Scaling BLIJFT, maar als TOEVOEGING boven op het programma
-       (niet als losse fase/tier). Eyebrow "· Toevoeging op het programma",
-       intro + flow-tags ("In het programma" / "De toevoeging") herschreven.
-     - FAQ "Wat kost het?" / "Contracten" / "Garantie" + JSON-LD: fases/Phase
-       eruit, herschreven naar één programma + optionele toevoeging.
-     - "12 weken minimum" → "het programma loopt 12 weken".
+     TOEGEVOEGD
+     - #sectionOnderdelen: de vijf onderdelen als losse kaarten, elk met een
+       productnaam en een link naar zijn eigen pagina onder /wat-we-doen/.
+     - #sectionBranches: alle branches letterlijk uitgeschreven, met een link
+       per branchepagina en /marketing/ onderaan.
 
-     ============================================================================
-     CHANGE-LOG · v6 (pakketten/prijzen weg, 2026-06-26)
-
-     Op verzoek Bryan: GEEN publieke pakketten of prijzen meer.
-     - Hele Pakketten-sectie (#sectionPricing: 3 tiers + "Vanaf €347" +
-       gratis-analyse-callout) volledig verwijderd, plus de bijbehorende
-       ScrollTrigger. Nav-link "Pakketten" → "Aanpak" (#sectionPillars).
-     - Elke publieke Local Levers-prijs eruit: €347 uit meta-description, FAQ
-       "Wat kost het?" en JSON-LD. "12 weken minimum op de tiers" → "Geen
-       jaarcontract". Proof/FAQ "tiers/recurring tiers/vast bedrag" herschreven
-       naar fase-taal zonder prijs.
-     - RR- en Scale-secties blijven (beschrijven de aanpak narratief, niet als
-       geprijsd pakket). Fasenamen daar blijven als sectielabels.
-     - Bewust BEHOUDEN: klant-economie in FAQ-voorbeelden (behandelwaarde van de
-       kliniek zelf, bv. haartransplantatie ~€5.000), want dat is geen Local
-       Levers-prijs maar de high-AOV-onderbouwing.
-
-     ============================================================================
-     CHANGE-LOG · v5 (inhoud-pass, design ongemoeid, 2026-06-26)
-
-     ALLEEN tekst + CTA-bestemmingen gewijzigd. Geen design, layout, kleuren,
-     fonts, secties of hero-animatie aangeraakt.
-
-     1. AANBOD: de €37 audit is volledig verwijderd als product. Het post-hero
-        aanbod "Stop met klanten verliezen die je nooit zag" blijft op zijn plek
-        maar wijst nu naar een GRATIS ANALYSE (https://go.locallevers.com/book).
-        Alle €37-CTA's, prijzen, badges en geld-terug-regels eruit.
-     2. CTA-ROUTING: alle €37-knoppen → "Vraag je gratis reputatie-sprint aan" (booking).
-        Losse "2-min check"-knoppen → ook gratis analyse. Secundaire check-knoppen
-        naast een primaire (hero-soft, doctor-secondary) → gratis GBP-checklist.
-        2-min check is als offering verwijderd (keuze 2A). Quiz-modal is daardoor
-        onbereikbaar op de homepage geworden (dode code, blijft staan).
-     3. DOELGROEP (keuze 1A): versmald naar uitsluitend high-AOV klinieken
-        (esthetiek/injectables, medisch afslanken/GLP-1, ooglaseren,
-        haartransplantatie, plastische chirurgie). Dienstverleners-bucket en
-        tandartsen overal verwijderd. Pijler- en story-voorbeelden → klinieken.
-        "Hair transplant" → "Haartransplantatie". Eén taal (NL).
-     4. STEM: consequente merk-wij. "Een klein team" verwijderd. Bryan blijft als
-        oprichter genoemd; about-bio blijft first-person (coherent founder-blok).
-     5. FOOTER: interne fasenamen (Authority Foundation/Revenue Rescue/Acquisition
-        Scaling) en €37-audit-link vervangen door neutrale verwijzingen +
-        gratis analyse.
-     6. JSON-LD FAQ + meta title/description meegetrokken voor AEO-consistentie.
-
-     ============================================================================
-     CHANGE-LOG · Local Levers homepage rewrite v3 (ICP refinement, 2026-05-07)
-
-     V3 WIJZIGINGEN T.O.V. V2 (zelfde dag, ICP-refinement pass)
-
-     - Hero h1 BEHOUDEN: "Je concurrent krijgt de klant die van jou had moeten
-       zijn." (Bryan's mid-stream tweak, niet teruggezet naar "telefoontje").
-     - Hero eyebrow: "Voor klinieken en lokale service-bedrijven" → "Voor
-       klinieken en service-bedrijven die meer klanten willen zonder meer
-       gedoe". Twee andere varianten als comments hieronder.
-     - Hero card-text: "Geen lead glipt nog door de mazen" + oplossings-belofte
-       → "Het is niet één gemist contact. Het is een patroon." + pijn-verdieping
-       die eindigt op competitieve dreiging. Geen "consult", geen "patient".
-     - Floating badges: van response + reviews → AI-aanbeveling + 21:14 response.
-       Reviews-badge weggehaald (komt later in pagina). Sparkle-icoon (✨) op
-       badge 1 vervangt bliksem (laatste blijft op badge 2 voor snelheid).
-     - Definition prose: verticals uitgebreid (hair transplant + home automation
-       toegevoegd, "aannemers, zwembad-installateurs" → "renovatie, zwembadbouw,
-       zonnepanelen, home automation"). "consult" → "afspraak".
-     - Pijler-cards: elk pillar-body opent nu met een ander vertical-voorbeeld
-       (dierenkliniek voor Get found, renovatiebedrijf voor Get chosen, pool-
-       installateur voor Never miss a lead). "klant" → "klant".
-     - Story-wrap: "tandartsen, klinieken, aannemers" → "tandartsen, dieren-
-       klinieken, renovatiebedrijven en pool-installateurs" voor bredere ICP-
-       herkenning.
-
-     - PRICING CORRECTIE (kritiek): één vanaf-prijs op de hele pagina.
-       · pricing-sub: "We werken vanaf €347 per maand" als koepelterm.
-       · Tier 1 card: tier-price-block VERWIJDERD (geen €347 meer in de card).
-       · Tier 2 card: tier-price-block VERWIJDERD (geen €497 meer).
-       · Tier 3 card: bleef "Performance partnership, op uitnodiging" (label,
-         geen prijs).
-       · FAQ "Wat kost het?": herschreven, alleen €347 umbrella + €37 audit
-         + €150 ex BTW website. €497 helemaal weg uit copy én JSON-LD.
-
-     - FAQ: nieuw item toegevoegd: "Werkt dit ook voor niet-medische service-
-       bedrijven zoals aannemers of installateurs?" (direct na "Voor welke type
-       bedrijven werken jullie?"). Antwoord benoemt renovatie, pool, zonne-
-       panelen expliciet. JSON-LD ook bijgewerkt.
-
-     - "Voor welke type bedrijven" antwoord uitgebreid: dermatologen, hair
-       transplant-klinieken, home automation-specialisten toegevoegd.
-
-     ANDERE PRICING-VERMELDINGEN GECHECKT
-       · Hero CTA: "audit van €37" — OK (audit blijft concreet)
-       · AI-rec section sub: "€37, persoonlijk PDF-rapport" — OK
-       · Audit callout boven tier grid: "€37" — OK
-       · Final CTA: "De audit (€37)" — OK
-       · About / Footer: geen prijzen — OK
-     Conclusie: enige niet-audit prijzen op de pagina zijn nu de umbrella €347
-     in pricing-sub, en €150 ex BTW website in extras + FAQ. Geen Phase 2- of
-     Phase 3-prijs ergens zichtbaar.
-
-     ============================================================================
-     V2 WIJZIGINGEN (zelfde dag, eerste pass)
-     ============================================================================
-
-     WAT IS GEWIJZIGD (per sectie, met emotionele triggers)
-
-     1. HERO
-        Was: feature-stack ("Get found. Get chosen. Never miss a lead.") met
-             feature-eyebrow ("Lead-response en lokale SEO voor klinieken").
-        Nu:  audience-eyebrow + emotionele 2-regel claim.
-             Variant 1 actief: Verliesangst + Competitieve dreiging.
-             Variant 2 + 3 hieronder als comments, klaar om te swappen.
-        CTA-wrapper h2 ook herwerkt naar Verliesangst-trigger.
-        card-left-text h3 + p herwerkt: feature → emotie ("Geen lead glipt nog door").
-
-     2. DEFINITION (sectie 2)
-        Opener was feature-eerst ("Local Levers is online vindbaarheid en
-        lead-opvolging voor..."). Nu start hij met Verliesangst + Competitieve
-        dreiging ("Elke maand verlies je klanten aan concurrenten die simpelweg
-        vindbaarder zijn..."). Rest van de prose AEO-vriendelijk gehouden.
-
-     3. PIJLERS (sectie 3)
-        Reeds emotie-geleid (passes check). Geen wijzigingen.
-
-     4. STORY (sectie 4)
-        "Local Levers fixt dat in drie fases" → "lost dat op in drie fases"
-        (anglicisme weggewerkt).
-
-     5. AI BEVEELT JE CONCURRENT AAN (sectie 5)
-        Reeds sterk. Geen wijzigingen.
-
-     6. REVENUE RESCUE (sectie 6)
-        Reeds emotie-geleid. Geen wijzigingen.
-
-     6.5 ACQUISITION SCALING (sectie 6.5)
-        Reeds emotie-geleid. Geen wijzigingen.
-
-     7. EXTRAS (Daarnaast)
-        - "AI-zoekmachines kunnen 'm perfect lezen" → "precies lezen" (geen
-          superlatief).
-        - "Snelheid sub-1 seconde" → "Snelheid onder 1 seconde" (NL).
-        - "AI-search readiness" → "AI-search-ready" (compacter).
-        - Toegevoegd: "Vanaf €150 ex BTW" als losse vermelding bij de website-
-          card (per brief).
-
-     8. PRICING (sectie 7) — grootste herwerking
-        - Audit callout verplaatst van onderkant naar BOVEN de tier grid, met
-          badge "Begin hier", grotere h3, prominenter visueel. Argument:
-          de laagdrempelige instap moet niet als afterthought voelen, en
-          stuurt een deel van het verkeer direct naar de €37 audit.
-        - Per tier-card toegevoegd:
-          · tier-emotion (1-regel emotionele opener, bovenin)
-          · tier-price-block met "vanaf €X / maand"
-          · tier-price-sub: "exact aanbod afhankelijk van je situatie"
-        - Tier 1 Authority Foundation: emotie = Competitieve dreiging +
-          Erkenning. Prijs: vanaf €347/mo.
-        - Tier 2 Revenue Rescue: emotie = Onzichtbare bloeding + Verliesangst.
-          Prijs: vanaf €497/mo (anker, niet €747). Sub vermeldt expliciet dat
-          het exacte aanbod afhankelijk is van de situatie. CTA gewijzigd van
-          "Bekijk Revenue Rescue" naar "Plan een gesprek" om calls te triggeren.
-        - Tier 3 Acquisition Scaling: GEEN prijs, in plaats daarvan
-          "Performance partnership, op uitnodiging" met sub "We kijken eerst of
-          dit past". CTA blijft "Plan een gesprek".
-        - Pricing-sub herwerkt: framing dat elk bedrijf een ander startpunt
-          heeft, dus eerst kijken of het past (custom feel = call trigger).
-
-     8.5 BLOG SECTIE (NIEUW)
-        Tussen Proof en About geplaatst. Argument:
-        - Pricing → Proof bouwt het commerciële + bewijs verhaal.
-        - Blog reinforces autoriteit (zelfde signaal-richting als Proof).
-        - Daarna About personaliseert, FAQ adresseert objecties, Final CTA sluit.
-        Plaatsing tussen Pijlers en Pricing zou het emotionele momentum
-        breken (Story → AI-rec → RR → Scale is een opbouwende sequentie).
-        Drie cards met placeholders voor: AI-search, Google-profiel, Lead-response.
-        Eyebrow: "Inzichten". Sub conform brief.
-        CTA naar /blog/ onderaan.
-        Eigen GSAP scroll-reveal toegevoegd in dezelfde stijl als andere secties.
-
-     9. ABOUT (sectie 9)
-        Reeds emotie-geleid. Geen wijzigingen.
-
-     10. FAQ (sectie 10)
-        - "Wat kost het?" herschreven: alle €747 verwijderd, vervangen door
-          "vanaf €497/mo" met expliciete "afhankelijk van je situatie" framing.
-          Toegevoegd: complete website "vanaf €150 ex BTW".
-          Acquisition Scaling: "performance partnership op uitnodiging".
-        - Bijhorende FAQPage JSON-LD ook bijgewerkt om consistent te zijn.
-
-     11. FINAL CTA (sectie 11)
-        - "Voor wie clarity wil" → "Voor wie duidelijkheid wil" (NL).
-
-     EMOTIONELE TRIGGERS PER SECTIE
-        Hero:        Verliesangst + Competitieve dreiging
-        Definition:  Verliesangst + Competitieve dreiging
-        Pijlers:     Erkenning + Competitieve dreiging + Onzichtbare bloeding
-        Story:       Gemiste controle + Verliesangst
-        AI-rec:      Gemiste controle + Verliesangst
-        Revenue R.:  Onzichtbare bloeding + Verliesangst
-        Acq. Scale:  Onzichtbare bloeding + Zekerheid
-        Extras:      Gemak + Zekerheid
-        Pricing:     Zekerheid + Gemiste controle (custom feel)
-        Audit:       Gemak + Zekerheid (laagdrempelig)
-        Blog:        Erkenning + Status (autoriteits-content)
-        About:       Zekerheid (direct contact met oprichter)
-        FAQ:         Zekerheid + Risicovermijding
-        Final CTA:   Gemak + Zekerheid (3 paden, laagste risico)
-
-     HARD CONSTRAINTS GECHECKT
-        [x] Geen em dashes in zichtbare copy
-        [x] Geen emojis in copy (de 👍 in de ChatGPT-mockup is content van een
-            geciteerde AI-output, niet Bryan's voice)
-        [x] Geen Engelse termen waar NL kan
-        [x] Geen uitroeptekens
-        [x] Geen superlatieven
-        [x] Geen exacte €747 of €500-prijzen op de pagina of in JSON-LD
-        [x] Audit €37 concreet zichtbaar
-        [x] Website €150 ex BTW als losse vermelding
-        [x] Brand colors uit bestaande CSS variabelen
-        [x] Outfit (headings) + Plus Jakarta Sans (body)
-        [x] Iedere sectie opent met emotie
-        [x] GSAP animatie code intact
-        [x] iPhone mockup en floating badges intact (alleen badge 1 sub-tekst
-            licht aangescherpt naar zuiver Nederlands)
-
-     ============================================================================
-     HERO VARIANTS — h1 BEHOUDEN: "Je concurrent krijgt de klant / die van jou
-     had moeten zijn." Eyebrow heeft nu 3 varianten, A actief.
-
-     EYEBROW VARIANT A (NU ACTIEF) — universeel + admin-pijn
-     "Voor klinieken en service-bedrijven die meer klanten willen zonder meer gedoe"
-
-     EYEBROW VARIANT B — verliesangst-direct
-     "Voor lokale klinieken en service-bedrijven die geen klant meer willen verliezen aan wie sneller was"
-
-     EYEBROW VARIANT C — segment-specifiek met klantwaarde
-     "Voor klinieken en service-bedrijven met klantbedragen boven €200"
-
-     ============================================================================
-     HEROS H1-VARIANTEN (oudere v2-iteraties, h1 blijft nu hetzelfde)
-
-     v2 H1-VARIANT 2 — Gemiste controle + Verliesangst (AI angle)
-     Vervang de twee hero h1-line spans door:
-
-     <span class="hero-h1-line text-track gsap-reveal text-3d-matte">ChatGPT beveelt je concurrent aan.</span>
-     <span class="hero-h1-line text-days gsap-reveal text-green-glow">Jou niet.</span>
-
-     v2 H1-VARIANT 3 — Onzichtbare bloeding + Verliesangst (gekwantificeerd)
-     Vervang de twee hero h1-line spans door:
-
-     <span class="hero-h1-line text-track gsap-reveal text-3d-matte">14 berichten vorige maand.</span>
-     <span class="hero-h1-line text-days gsap-reveal text-green-glow">Allemaal klanten bij je concurrent.</span>
-
+     REGELS DIE HIER GELDEN
+     - Geen prijs op deze pagina. Die staat op /prijs/ en /gesprek/.
+     - Eén CTA per sectie, met per plek de tekst die daar hoort, zoals in het
+       voorbeeld: "Plan een gesprek" naar /gesprek/, "Bekijk alle branches"
+       naar /marketing/, "Bekijk de korte demo" opent de demo. Geen pijl in de
+       knop. Elke CTA houdt zijn data-cta met de sectienaam, dat wordt gemeten.
+     - Doelgroep: vakbedrijven (koepelwoord, doc 54 punt 7 (2026-08-21)).
+       Klinieken en beauty zijn volledig van de site (besluit Bryan 2026-08-18).
+     - Geen resultaat-claims, geen posities, geen aantallen, geen cijfers van
+       derden. Geen Google-only framing. "AI" nooit als product.
      ============================================================================ -->
 
 <!-- ====================================================================== -->
 <!-- HERO — cinematic GSAP -->
 <!-- ====================================================================== -->
-<div class="cinematic-container" id="cinematicContainer">
-  <div class="bg-mesh" aria-hidden="true"></div>
+<!-- ======================================================================
+     HERO (2026-08-17)
 
-  <!--
-    HERO VARIANT KEUZE — er staan 3 varianten klaar.
-    Hieronder is VARIANT 1 actief. Variant 2 en 3 staan als HTML-comments boven de body
-    in het change-log blok. Wissel door .hero-h1-eyebrow + de twee .hero-h1-line spans
-    te vervangen door de gewenste set.
-  -->
+     Was: een filmische GSAP-reeks die 2400 pixels lang aan de bovenkant van
+     het scherm vastgezet werd, met een iPhone-kaart, een tellertje en aan het
+     eind nog een heel CTA-scherm ("Geen bureau heeft een wondermiddel"). Wie
+     scrolde kwam pas na drie schermen bij de eerste echte inhoud.
 
-  <!-- LAYER 1: HERO TEXT (Variant 1 actief: Verliesangst + Competitieve dreiging) -->
-  <div class="hero-text-wrapper" id="heroTextWrapper">
-    <h1 class="hero-h1">
-      <span class="hero-h1-eyebrow gsap-reveal">Voor klinieken en lokale specialisten die de best beoordeelde en meest gekozen zaak in hun stad willen zijn</span>
-      <span class="hero-h1-line text-track gsap-reveal text-3d-matte">Je concurrent krijgt de klant</span>
-      <span class="hero-h1-line text-days gsap-reveal text-green-glow">die van jou had moeten zijn.</span>
+     Nu: kop, uitleg, één knop, en meteen door. Het voorbeeld dat we volgen
+     doet hetzelfde en gaat daarna direct het websiteblok in.
+     ====================================================================== -->
+<section class="hero">
+  <div class="hero-inner">
+    <!-- De korte kop, zoals de homepage van het voorbeeld. De lange titel met
+         de prijs en de pijl omlaag staat op /gesprek/, want daar staat hij bij
+         hem ook: op de landingspagina, niet op de homepage. (Rechtgezet
+         2026-08-17 avond, hij stond hier een uur verkeerd.) -->
+    <h1 data-op class="hero-h1">
+      Websites en marketingsystemen
+      <em>voor bouw-, renovatie- en installatiebedrijven.</em>
     </h1>
-  </div>
-
-  <!-- LAYER 2: CTA (revealed at end) -->
-  <div class="cta-wrapper gsap-reveal" id="ctaWrapper">
-    <h2 class="text-silver-matte">Stop met klanten verliezen die je nooit zag.</h2>
-    <p>Vraag je gratis Online Reputatie Sprint aan. Zeven dagen lang zetten we je reviews en vindbaarheid in gang, gratis en vrijblijvend.</p>
-    <div class="cta-buttons">
-      <a data-cta="hero" href="/sprint/" class="btn-modern-light">
-        <div>
-          <div class="label-top">Gratis en vrijblijvend</div>
-          <div class="label-main">Vraag je gratis reputatie-sprint aan →</div>
-        </div>
-      </a>
-    </div>
-    <p class="hero-guarantee" style="margin-top: 12px; font-size: 13px; color: #64645F; text-align: center;">Geen kosten, geen verplichting. Je weet daarna precies waar je staat.</p>
-    <p class="hero-secondary" style="margin-top: 18px; text-align: center;">
-      <a data-cta="hero-checklist" href="/checklist/" style="color: #64645F; text-decoration: underline; text-underline-offset: 4px; font-size: 14px;">Liever eerst zelf rondkijken? Pak de gratis checklist →</a>
+    <p data-op class="hero-sub">
+      <strong>Even zonder gelul: marketing is geen hogere wiskunde.</strong>
+      Geen enkel bureau heeft het wondermiddel voor al je problemen, het onze ook niet.
+      Wij geven je het gereedschap om te winnen, maar je moet het wel gebruiken.
     </p>
-  </div>
-
-  <!-- LAYER 3: PREMIUM CARD WITH iPHONE -->
-  <div class="card-stage">
-    <div class="main-card premium-depth-card gsap-reveal" id="mainCard">
-      <div class="card-sheen" aria-hidden="true"></div>
-
-      <div class="card-grid">
-        <div class="card-left-text gsap-reveal" id="cardLeftText">
-          <h3>Het is niet één gemist contact. Het is een patroon.</h3>
-          <p>De vraag tijdens je afspraak die je niet kon oppakken. Het bericht om 21:00 dat je morgen pas zag. De klant van zes maanden geleden die nooit meer terugkwam. Bij elkaar opgeteld zijn dat geen incidenten. Het is een opening waar je concurrent in stapt.</p>
-        </div>
-
-        <div class="mockup-scroll-wrapper" id="mockupWrapper">
-          <div class="iphone-frame iphone-bezel" id="iphoneFrame">
-            <div style="position: absolute; top: 120px; left: -3px; width: 3px; height: 25px;" class="hardware-btn" aria-hidden="true"></div>
-            <div style="position: absolute; top: 160px; left: -3px; width: 3px; height: 45px;" class="hardware-btn" aria-hidden="true"></div>
-            <div style="position: absolute; top: 220px; left: -3px; width: 3px; height: 45px;" class="hardware-btn" aria-hidden="true"></div>
-            <div style="position: absolute; top: 170px; right: -3px; width: 3px; height: 70px; transform: scaleX(-1);" class="hardware-btn" aria-hidden="true"></div>
-
-            <div class="iphone-screen">
-              <div class="screen-glare" style="position: absolute; inset: 0; z-index: 40; pointer-events: none;" aria-hidden="true"></div>
-              <div class="dynamic-island"></div>
-
-              <div class="app-interface">
-                <div class="phone-widget app-header">
-                  <div>
-                    <div class="label">Vandaag</div>
-                    <div class="title">Inbox</div>
-                  </div>
-                  <div class="avatar">LL</div>
-                </div>
-
-                <div class="phone-widget metric-ring-wrapper">
-                  <svg aria-hidden="true" viewBox="0 0 176 176">
-                    <circle cx="88" cy="88" r="64" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="12"></circle>
-                    <circle class="progress-ring" cx="88" cy="88" r="64" fill="none" stroke="url(#ringGrad)" stroke-width="12"></circle>
-                    <defs>
-                      <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#4ADE80"/>
-                        <stop offset="100%" stop-color="#1A7A54"/>
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                  <div class="center">
-                    <span class="counter-val" id="counterVal">0</span>
-                    <span class="counter-label"><span class="cl-long">SECONDE RESPONSE</span><span class="cl-short">seconden</span></span>
-                  </div>
-                </div>
-
-                <div class="activity-list">
-                  <div class="phone-widget activity-item widget-depth">
-                    <div class="icon green">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    </div>
-                    <div class="content">
-                      <div class="line-1 s1"></div>
-                      <div class="line-2 s1"></div>
-                    </div>
-                  </div>
-                  <div class="phone-widget activity-item widget-depth">
-                    <div class="icon blue">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
-                    </div>
-                    <div class="content">
-                      <div class="line-1 s2"></div>
-                      <div class="line-2 s2"></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="home-indicator-bar"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="floating-badge floating-ui-badge gsap-reveal b1" id="badge1">
-            <div class="icon">✨</div>
-            <div class="text">
-              <div class="title">Aanbevolen door Google en ChatGPT</div>
-              <div class="sub">Bij zoekopdrachten in jouw stad</div>
-            </div>
-          </div>
-
-          <div class="floating-badge floating-ui-badge gsap-reveal b2" id="badge2">
-            <div class="icon">⚡</div>
-            <div class="text">
-              <div class="title">47 sec geantwoord</div>
-              <div class="sub">Op bericht om 21:14</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-right-text gsap-reveal" id="cardRightText">
-          <h2 class="text-card-silver-matte">LOCAL<br/><span style="color: #1A7A54; -webkit-text-fill-color: #1A7A54; background: none; filter: none;">LEVERS</span></h2>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ====================================================================== -->
-<!-- TRUST-STRIP — subtle one-liner credibility under hero                  -->
-<!-- ====================================================================== -->
-<div class="trust-strip" style="text-align:center; padding:24px 16px; color:#64645F; font-size:14px; letter-spacing:0.02em; border-top:1px solid #E4E3DC; border-bottom:1px solid #E4E3DC;">
-  10 jaar marketing: pre-sales · social · direct response · brand scaling · 10M+ Instagram-netwerk operationeel beheerd
-</div>
-
-<!-- ====================================================================== -->
-<!-- DOCTOR-FRAME MINI-BLOK — eerst diagnose, dan plan                      -->
-<!-- ====================================================================== -->
-
-<section class="section-doctor" id="sectionDoctor">
-  <div class="doctor-inner">
-    <div class="doctor-eyebrow"><span></span>Eerst diagnose, dan plan<span></span></div>
-    <p class="doctor-body">Een bureau dat zonder te kijken zegt 'we kunnen je groeien' is hetzelfde als een arts die zonder onderzoek pillen voorschrijft. Daarom werken we vanaf een analyse en niet vanaf een 'kennismakingsgesprek waar we wel zien waar het heen gaat'.</p>
-    <p class="doctor-body"><strong>Geen voorschrift zonder onderzoek.</strong> We kijken eerst naar je situatie, daarna pas een plan. Vraag je gratis reputatie-sprint aan, of pak eerst zelf de checklist.</p>
-    <div class="doctor-ctas">
-      <a data-cta="merkblok" href="/sprint/" class="doctor-cta-primary">Vraag je gratis reputatie-sprint aan →</a>
-      <a data-cta="merkblok-checklist" href="/checklist/" class="doctor-cta-secondary">Gratis checklist →</a>
-    </div>
-    <p class="doctor-guarantee">Gratis en vrijblijvend. Je weet daarna precies waar je staat.</p>
+    <a data-op data-cta="hero" href="/gesprek/" class="hero-knop">Plan een gesprek</a>
+    <p data-op class="hero-onder">Geen opstartkosten, maandelijks opzegbaar, en de eerste maand geld terug.</p>
   </div>
 </section>
+<!-- ====================================================================== -->
+<!-- TRUST-STRIP — één regel achtergrond onder de hero                      -->
+<!-- ====================================================================== -->
+
 
 <!-- ====================================================================== -->
 <!-- SECTION 2 — DEFINITION (AEO-critical first 60 words of body prose) -->
 <!-- ====================================================================== -->
-<section class="section-definition" id="sectionDefinition">
-  <div class="definition-inner">
-    <div class="definition-eyebrow">Wat we doen</div>
-    <p class="definition-prose">
-      Elke maand kiezen klanten de kliniek die <span class="accent">simpelweg vindbaarder</span> is en sneller reageert. <strong>Local Levers</strong> draait dat om, gebouwd voor <strong>klinieken en lokale specialisten</strong> waar reviews en vindbaarheid bepalen wie de klant boekt. We zorgen dat je <strong>gevonden wordt waar mensen zoeken</strong>: op Google Maps, in Apple Maps, in de directories en in de antwoorden van ChatGPT en Perplexity. Dat je <strong>gekozen wordt</strong> via je reviews en reputatie. En dat <strong>geen enkele aanvraag meer wegloopt</strong>. Ook niet 's avonds, in het weekend, of als je net in een behandeling zit. Zo vul je je agenda met je meest winstgevende werk. Geen agency, geen software-pakket.
-      <span class="signature">Local Levers, opgericht door <strong>Bryan Ubink</strong>. Vanuit Nederland.</span>
-    </p>
+<!-- ======================================================================
+     ECHTE GOOGLE-REVIEWS. Letterlijk overgenomen van het bedrijfsprofiel,
+     niets aan veranderd en niets bijgeschreven. Komt er een review bij, dan
+     hier toevoegen en niet herformuleren.
+     ====================================================================== -->
+<section class="section-reviews" id="sectionReviews">
+  <div class="rv-inner">
+    <h2 data-op class="rv-h2">Wat mensen zeggen die met ons werkten</h2>
+    <div class="rv-grid"><figure data-op class="rv-kaart">
+        <div class="rv-sterren" aria-label="5 van de 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>Als ondernemer heb je geen tijd om je bezig te houden met online marketing. Local Levers heeft dat uit handen genomen, het resultaat: eindelijk gevonden worden door de mensen die onze service zoeken. Bryan denkt mee en belooft niks wat hij niet waarmaakt.</blockquote>
+        <figcaption><span class="rv-naam">Nick</span><span class="rv-bron">Google-review</span></figcaption>
+      </figure><figure data-op class="rv-kaart">
+        <div class="rv-sterren" aria-label="5 van de 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>Heel fijn samengewerkt met Bryan. Vanaf het eerste contact dacht hij goed mee en was hij altijd snel bereikbaar als ik vragen had of iets wilde aanpassen.</blockquote>
+        <figcaption><span class="rv-naam">Albert</span><span class="rv-bron">Google-review</span></figcaption>
+      </figure><figure data-op class="rv-kaart">
+        <div class="rv-sterren" aria-label="5 van de 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>Bryan is een zeer prettig persoon om mee samen te werken en komt zijn afspraken altijd netjes op tijd na.</blockquote>
+        <figcaption><span class="rv-naam">Rob</span><span class="rv-bron">Google-review</span></figcaption>
+      </figure><figure data-op class="rv-kaart">
+        <div class="rv-sterren" aria-label="5 van de 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>Erg behulpzaam en snelle respons.</blockquote>
+        <figcaption><span class="rv-naam">Jordan</span><span class="rv-bron">Google-review</span></figcaption>
+      </figure></div>
+    <a class="rv-alle" data-cta="reviews-alle" href="/reviews/">Bekijk alle reviews</a>
   </div>
 </section>
 
-<!-- ====================================================================== -->
-<!-- SECTION 2.5 — VOOR WIE? (twee buckets: klinieken + dienstverleners)    -->
-<!-- ====================================================================== -->
-
-<section class="section-forwho" id="sectionForWho">
-  <div class="forwho-inner">
-    <div class="forwho-header">
-      <div class="forwho-eyebrow"><span></span>Voor wie?<span></span></div>
-      <h2 class="forwho-h2">Klinieken en lokale specialisten. <span class="accent">Toegespitst op jouw winstgevende werk.</span></h2>
+<section class="section-ob ob--links" id="ob-website">
+  <div data-op class="ob-intro">
+  <h2>Simpele systemen die gewoon werken</h2>
+  <p>Geen diploma nodig, alleen een bedrijf dat draait.</p>
+</div>
+  <div class="ob-inner">
+    <div class="ob-tekst">
+      <h2 class="ob-h2">Functionele Website</h2>
+      <p class="ob-body">Een site die van een bezoeker een gesprek maakt, niet een folder die staat te verstoffen. Met hosting, inbegrepen zolang je klant bent.</p>
+      <div class="ob-subs"><div class="ob-sub"><h3><span class="ob-vink"></span>Word eindelijk gevonden</h3><p>Als iemand je bedrijf opzoekt en niks vindt, is dat een beetje pijnlijk. Dat laten we niet gebeuren.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Je beste reviews in beeld</h3><p>Iedereen heeft er een of twee die tegenvallen. Daar hoeft je volgende klant niet als eerste tegenaan te kijken.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Gemaakt voor een duim, niet voor een muis</h3><p>Op een telefoon, met &eacute;&eacute;n hand, in een wachtkamer. Daar zorgen wij dat hij om door een ringetje te halen is.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Een pagina per dienst</h3><p>Alles op &eacute;&eacute;n pagina is een folder. Google leest hem, haalt zijn schouders op en gaat verder.</p></div></div>
     </div>
-    <div class="forwho-grid">
-      <article class="premium-depth-card forwho-tile">
-        <div class="card-sheen" aria-hidden="true"></div>
-        <div class="forwho-tile-tag">Klinieken</div>
-        <h3 class="forwho-tile-title">Waar één behandeltraject al veel waard is</h3>
-        <p class="forwho-tile-list">Laserontharing · Huidverjonging · Microneedling · HIFU · Peelings · Huidtherapie</p>
-      </article>
-      <article class="premium-depth-card forwho-tile">
-        <div class="card-sheen" aria-hidden="true"></div>
-        <div class="forwho-tile-tag">Beauty en wellness</div>
-        <h3 class="forwho-tile-title">Zaken die leven van terugkerende klanten</h3>
-        <p class="forwho-tile-list">Beauty- en huidsalons · Lash &amp; brow · Nagelstudio · PMU · Wellness</p>
-      </article>
-      <article class="premium-depth-card forwho-tile">
-        <div class="card-sheen" aria-hidden="true"></div>
-        <div class="forwho-tile-tag">Lokale specialisten</div>
-        <h3 class="forwho-tile-title">Waar mensen je op reviews kiezen</h3>
-        <p class="forwho-tile-list">Fysio en paramedisch · Vakmannen en installateurs · Makelaars · Andere lokale bedrijven met hoge klantwaarde</p>
-      </article>
-    </div>
+    <div class="ob-visual"><div class="dev-paar"><div class="dev dev--lap" data-start="0"><div class="dev-scherm"><div class="wb"><div class="wb-nav"><span class="wb-merk">Eemhof&nbsp;Installatie</span><span class="wb-links"><span>Diensten</span><span>Tarieven</span><span>Over ons</span></span><span class="wb-cta">Offerte aanvragen</span></div><div class="wb-hero"><div class="wb-foto"></div><div class="wb-tekst"><h4>Cv-ketel en warmtepomp<br />in Amersfoort</h4><p>Vrijblijvende offerte binnen een dag. Je weet meteen wat het kost en wanneer we kunnen komen.</p><span class="wb-sterren">&#9733;&#9733;&#9733;&#9733;&#9733; <b>4,9 uit 138 reviews</b></span></div><div class="wb-form"><span class="wb-form-kop">Vraag een offerte aan</span><span class="wb-form-sub">Je krijgt binnen een minuut antwoord.</span><div class="wb-veld"><span class="wb-typ wb-typ--1" style="--n:14">Sanne de Vries</span></div><div class="wb-veld"><span class="wb-typ wb-typ--2" style="--n:14">06 24 88 13 07</span></div><div class="wb-veld wb-veld--groot"><span class="wb-typ wb-typ--3" style="--n:28">Cv-ketel doet het niet meer,</span><span class="wb-typ wb-typ--4" style="--n:25">kunnen jullie langskomen?</span></div><div class="wb-knop">Verstuur aanvraag</div></div></div></div></div><img class="dev-frame" src="/img/mockups/laptop.png" alt="" aria-hidden="true" width="2090" height="1439" loading="lazy" decoding="async" /></div><div class="dev dev--fon" data-start="0.5"><div class="dev-scherm"><div class="fs"><div class="fs-kop"><span class="fs-terug"></span><span class="fs-av">E</span><span class="fs-naam">Eemhof Installatie<em>online</em></span></div><div class="fs-body"><span class="fs-dag">Vandaag</span><div class="bl bl--in">Hoi Sanne, je aanvraag is binnen. Cv-ketel die het niet meer doet, klopt dat?<span class="bl-tijd">14:02</span></div><div class="bl bl--uit">Ja klopt<span class="bl-tijd">14:03</span></div><div class="bl bl--in">Top. Duidelijk. We hebben genoeg om mee aan de slag te gaan, je hoort vandaag nog van ons.<span class="bl-tijd">14:03</span></div><div class="bl bl--uit">Top, bedankt<span class="bl-tijd">14:06</span></div></div><div class="fs-invoer"><span></span><i></i></div></div></div><img class="dev-frame" src="/img/mockups/telefoon.png" alt="" aria-hidden="true" width="983" height="2003" loading="lazy" decoding="async" /></div></div></div>
   </div>
 </section>
 
-<!-- ====================================================================== -->
-<!-- SECTION 3 — DRIE PIJLERS -->
-<!-- ====================================================================== -->
-<section class="section-pillars" id="sectionPillars">
-  <div class="pillars-inner">
-    <div class="pillars-eyebrow">Hoe we werken</div>
-    <h2 class="pillars-h2">Drie pijlers. Eén aanpak. <span class="accent">Meer van je beste werk.</span></h2>
-    <p class="pillars-sub">Drie problemen die elke kliniek heeft. Eén aanpak die ze alle drie oplost.</p>
-
-    <div class="pillars-grid">
-      <article class="pillar-card">
-        <div class="pillar-num">01</div>
-        <div class="pillar-eyebrow">Get found</div>
-        <h3 class="pillar-title">Vindbaar</h3>
-        <p class="pillar-body">Een laserkliniek in Amsterdam staat op plek 7. De concurrent op plek 1. Het verschil zit niet in behandelkwaliteit, het zit in profiel-compleetheid en review-velocity. We zorgen dat je verschijnt waar klanten zoeken: op Google Maps, in Apple Maps, in de directories en in de antwoorden die ChatGPT en Google AI Overviews nu over jouw branche geven.</p>
-        <div class="pillar-stat">
-          <div class="stat-num">Top 3 of niks</div>
-          <div class="stat-text">75% van alle kliks in Google Maps gaat naar de top 3 resultaten. Plek 1 alleen al pakt 33%. Onder plek 4 zak je onder de 1%. Of je staat boven, of je bestaat niet voor die klant.</div>
-          <div class="stat-source">BrightLocal Local Consumer Review Survey 2024</div>
-        </div>
-      </article>
-
-      <article class="pillar-card">
-        <div class="pillar-num">02</div>
-        <div class="pillar-eyebrow">Get chosen</div>
-        <h3 class="pillar-title">Gekozen</h3>
-        <p class="pillar-body">Een huidkliniek heeft 34 reviews. De concurrent 112. Bij een behandeltraject van honderden euro's kiest niemand de optie met minder bewijs. Klanten kiezen tussen jou en drie andere klinieken, en dat besluit valt op reviews, op je profiel, op signalen die binnen tien seconden binnenkomen. Wij bouwen de structuur waardoor jij die keuze wint.</p>
-        <div class="pillar-stat">
-          <div class="stat-num">78%</div>
-          <div class="stat-text">van Nederlanders vertrouwt bedrijven met 4,5★ of hoger significant meer dan bedrijven met 3,5★.</div>
-          <div class="stat-source">BrightLocal Local Consumer Review Survey 2024</div>
-        </div>
-      </article>
-
-      <article class="pillar-card">
-        <div class="pillar-num">03</div>
-        <div class="pillar-eyebrow">Never miss a lead</div>
-        <h3 class="pillar-title">Nooit gemist</h3>
-        <p class="pillar-body">Een groot deel van de aanvragen voor een consult komt buiten praktijkuren binnen. Zonder geautomatiseerde opvolging gaat de klant vaak naar wie het eerste reageert. Hetzelfde voor de gemiste oproep tijdens een behandeling, het bericht dat 's avonds binnenkomt, de klant die zes maanden niet is langs geweest. We vangen het op, voor je concurrent dat doet.</p>
-        <div class="pillar-stat">
-          <div class="stat-num">21× kans</div>
-          <div class="stat-text">Een lead binnen 5 minuten terugbellen maakt je 21× meer kans om hem te kwalificeren dan binnen 30 minuten.</div>
-          <div class="stat-source">HBR / InsideSales Lead Response Management Study</div>
-        </div>
-      </article>
+<section class="section-ob ob--rechts" id="ob-reviews">
+  <div class="ob-inner">
+    <div class="ob-tekst">
+      <h2 class="ob-h2">Reviewtrechter</h2>
+      <p class="ob-body">Je klanten waren tevreden, ze zijn het alleen vergeten op te schrijven. Wij vragen het ze, langs het kanaal waarop ze al met je praten, en blijven vriendelijk herinneren.</p>
+      <div class="ob-subs"><div class="ob-sub"><h3><span class="ob-vink"></span>We beginnen bij wie je al kent</h3><p>Aan je bestaande klanten is het nooit gevraagd. Dat is de makkelijkste ja die je ooit krijgt.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Eerst vragen hoe het ging</h3><p>Was het niet goed, dan hoor jij het als eerste, met de link naar je profiel er nog steeds bij.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Mensen zeggen ja en doen het niet</h3><p>Niet uit onwil, ze vergeten het. Wij blijven vragen tot het er staat of tot ze nee zeggen.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Elk antwoord is van jou</h3><p>Twintig reviews met exact hetzelfde bedankje eronder ziet iedereen. Google ook.</p></div></div>
     </div>
+    <div class="ob-visual"><div class="dev dev--fon"><div class="dev-scherm"><div class="sc sc--1"><div class="fs-status"><span>9:41</span><i></i></div><div class="rvk"><div class="rvk-logo">E</div><h5>Hoe was het met de cv-ketel?</h5><p>Je mening helpt anderen kiezen. Het kost je een halve minuut.</p><div class="rvk-sterren"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div><span class="rvk-knop">Volgende</span></div></div><div class="sc sc--2"><div class="fs-status"><span>9:41</span><i></i></div><div class="rvk-uit"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>Vijf sterren van Marieke</div><div class="gr"><div class="gr-bedrijf">Eemhof Installatie &middot; Amersfoort</div><div class="gr-wie"><i></i><div><b>Marieke</b><em>Openbaar op Google</em></div></div><div class="gr-sterren"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div><div class="gr-tekst"><span class="typ">Netjes uitgelegd wat er moest gebeuren</span></div><div class="gr-acties"><span>Annuleren</span><b>Plaatsen</b></div></div></div><div class="sc sc--3"><div class="fs-status"><span>9:41</span><i></i></div><div class="rvk rvk--fb"><div class="rvk-laag"><span class="aan">&#9733;</span><span class="aan">&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div><h5>Wat had beter gekund?</h5><p>Dit gaat rechtstreeks naar Eemhof Installatie, zodat ze het meteen kunnen rechtzetten.</p><div class="rvk-fb"><span class="typ">De monteur was een half uur te laat</span></div><span class="rvk-knop">Versturen</span><span class="rvk-alt">Liever meteen een review achterlaten? <b>Dat kan hier</b></span></div></div></div><img class="dev-frame" src="/img/mockups/telefoon.png" alt="" aria-hidden="true" width="983" height="2003" loading="lazy" decoding="async" /></div></div>
   </div>
 </section>
 
-<!-- ====================================================================== -->
-<!-- SECTION 4 — STORY (live ChatGPT demo) -->
-<!-- ====================================================================== -->
-<section class="section-story" id="sectionStory">
-  <div class="story-inner">
-    <div class="story-eyebrow">Wat ChatGPT nu over jouw branche zegt</div>
-    <h2 class="story-h2">Iemand vraagt ChatGPT: <em>"beste [...] in Amsterdam"</em>.</h2>
-
-    <div class="chatgpt-window" id="chatgptWindow">
-      <div class="chat-header">
-        <div class="chat-logo">ChatGPT</div>
-      </div>
-      <div class="chat-body">
-        <div class="user-msg">
-          <div class="user-bubble"><span>beste <span id="userPrompt"></span><span class="cursor" id="promptCursor"></span> in Amsterdam</span></div>
-        </div>
-        <div class="ai-msg">
-          <div class="ai-avatar"><svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M12 2.5L14.5 9.5L21.5 12L14.5 14.5L12 21.5L9.5 14.5L2.5 12L9.5 9.5Z"/></svg></div>
-          <div class="ai-content" id="aiContent">
-            <p class="ai-thinking" id="aiThinking">Zoeken op het web…</p>
-            <div class="google-map" id="aiMap">
-              <!-- Pin posities op echte Amsterdam-locaties (Bos en Lommer, Jordaan, centrum, Oud-Zuid) -->
-              <!-- Pin posities matchen werkelijke Amsterdam-locaties:
-                   Jordaan (W-centrum) · Reguliersgracht (centrum) · Linnaeus/Oost · Wibautstraat (Oost) · Oud-Zuid -->
-              <div class="map-marker" style="top: 27%; left: 33%;">
-                <span class="pin"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>4.9</span>
-                <span class="marker-name">Huidkliniek Jordaan</span>
-              </div>
-              <div class="map-marker" style="top: 40%; left: 51%;">
-                <span class="pin"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>4.7</span>
-                <span class="marker-name">Huidkliniek Centrum</span>
-              </div>
-              <div class="map-marker" style="top: 60%; left: 78%;">
-                <span class="pin"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>4.6</span>
-                <span class="marker-name">Skin Studio Oost</span>
-              </div>
-              <div class="map-marker" style="top: 68%; left: 60%;">
-                <span class="pin"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>4.7</span>
-                <span class="marker-name">Amsterdam Skin Clinic</span>
-              </div>
-              <div class="map-marker" style="top: 75%; left: 24%;">
-                <span class="pin"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>4.8</span>
-                <span class="marker-name">Huidkliniek Zuid</span>
-              </div>
-            </div>
-            <p class="ai-text">Hier zijn een aantal van de <strong>beste huidklinieken in Amsterdam</strong>. Ik weeg vooral het <strong>aantal reviews</strong>, de gemiddelde score en hoe compleet het profiel is.</p>
-            <hr class="ai-divider" />
-            <p class="ai-section-header"><strong>Top huidklinieken in Amsterdam</strong></p>
-            <ul class="ai-list">
-              <li class="ai-item">
-                <span class="name">Huidkliniek Zuid</span><span class="rating">4.8 · 312 reviews</span>
-                <span class="quote">Veel recente reviews en een compleet profiel. Ook 's avonds bereikbaar.</span>
-              </li>
-              <li class="ai-item">
-                <span class="name">Amsterdam Skin Clinic</span><span class="rating">4.7 · 268 reviews</span>
-                <span class="quote">Sterke reputatie, breed behandelaanbod en snelle reactie op aanvragen.</span>
-              </li>
-              <li class="ai-item">
-                <span class="name">Huidkliniek Jordaan</span><span class="rating">4.9 · 156 reviews</span>
-                <span class="quote">Hoogste score, maar minder reviews dan de top twee.</span>
-              </li>
-              <li class="ai-item">
-                <span class="name">Skin Studio Oost</span><span class="rating">4.6 · 141 reviews</span>
-                <span class="quote">Goed beoordeeld en groeit snel in nieuwe reviews.</span>
-              </li>
-              <li class="ai-item">
-                <span class="name">Huidkliniek Centrum</span><span class="rating">4.7 · 98 reviews</span>
-                <span class="quote">Solide profiel, maar te weinig reviews om bovenaan te staan.</span>
-              </li>
-            </ul>
-            <p class="ai-closing">Wil je dat ik kijk naar huidklinieken in een specifieke buurt of met een bepaalde specialisatie?</p>
-          </div>
-        </div>
-      </div>
+<section class="section-ob ob--links" id="ob-terugbelbericht">
+  <div class="ob-inner">
+    <div class="ob-tekst">
+      <h2 class="ob-h2">Gemiste Oproep Terugbericht</h2>
+      <p class="ob-body">Een gemiste oproep is geen gemiste klant meer. Binnen dertig seconden staat er een gesprek in plaats van een rood cijfertje.</p>
+      <div class="ob-subs"><div class="ob-sub"><h3><span class="ob-vink"></span>Sneller dan jij je telefoon pakt</h3><p>Jij bent bezig met iemand. Tegen de tijd dat je kunt kijken, ligt er al een antwoord.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Ook om half tien 's avonds</h3><p>Wie op vrijdagavond belt en niks hoort, belt zaterdag de volgende in het rijtje.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Meteen de juiste vraag terug</h3><p>Geen "we bellen je nog", maar meteen de vraag waar je mee zit. Zo weet je al wat de klus is.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>En dan neem jij het over</h3><p>Zodra jij begint te typen, houdt het systeem zijn mond.</p></div></div>
     </div>
-
-    <p style="text-align:center;font-size:12px;color:#64645F;margin-top:14px;">Voorbeeld-illustratie. De genoemde klinieken zijn fictief, geen echte zoekresultaten.</p>
-
-    <div class="story-punch">
-      <p class="punch-line"><strong>Sta je er niet tussen?</strong> Dan besta je niet voor die klant.</p>
-      <p class="punch-line"><strong>Sta je er wél tussen?</strong> Dan vecht je tegen anderen op sterren, reviews en wie het beste bereikbaar is.</p>
-      <p class="punch-line final">Hoe dan ook, je verliest klanten waarvan je niet weet dat ze bestaan.</p>
-    </div>
-
-    <p class="story-wrap">Dit gebeurt elke dag. Voor klinieken en lokale specialisten, voor elke zaak die te weinig zichtbaar is en te weinig reviews heeft. <strong>Local Levers draait dat om: gevonden worden op Google, Apple en in ChatGPT en Perplexity, gekozen worden via je reviews, en geen aanvraag meer laten weglopen.</strong></p>
-
-    <div style="text-align:center;margin-top:36px;">
-      <a data-cta="ai-verhaal" href="/sprint/" style="display:inline-flex;align-items:center;gap:8px;background:#1A7A54;color:#fff;font-family:'Outfit',sans-serif;font-weight:700;font-size:16px;padding:16px 30px;border-radius:14px;text-decoration:none;">Vraag je gratis reputatie-sprint aan <span>&rarr;</span></a>
-      <p style="margin-top:14px;font-size:14px;color:#64645F;">Zie waar je echt staat, op Google, Apple en in wat ChatGPT zegt.</p>
-    </div>
+    <div class="ob-visual"><div class="dev dev--fon"><div class="dev-scherm"><div class="sc sc--a"><div class="sc-bel-bg"></div><div class="fs-status"><span>9:41</span><i></i></div><div class="fs-bel"><div class="fs-bel-av"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:11cqw;height:11cqw;fill:currentColor"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z"/></svg></div><div class="fs-bel-nr">06 21 44 87 03</div><div class="fs-bel-sub">Onbekend</div><div class="fs-bel-label">Inkomende oproep</div><div class="fs-bel-knoppen"><span class="fs-bel-knop fs-bel-knop--nee"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span><span class="fs-bel-knop fs-bel-knop--ja"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span></div></div></div><div class="sc sc--b"><div class="fs"><div class="fs-kop"><span class="fs-terug"></span><span class="fs-av">E</span><span class="fs-naam">Eemhof Installatie<em>gemiste oproep om 17:26</em></span></div><div class="fs-body"><span class="fs-dag">Vandaag</span><div class="bl bl--in">Hoi, je belde net en we konden niet opnemen. Waar kunnen we je mee helpen?<span class="bl-tijd">17:26</span></div><div class="bl bl--uit">Ik heb een lekkage onder de gootsteen<span class="bl-tijd">17:29</span></div><div class="bl bl--in">Duidelijk, ik zet het door en je hoort vandaag nog van ons.<span class="bl-tijd">17:30</span></div></div><div class="fs-invoer"><span></span><i></i></div></div></div></div><img class="dev-frame" src="/img/mockups/telefoon.png" alt="" aria-hidden="true" width="983" height="2003" loading="lazy" decoding="async" /></div></div>
   </div>
 </section>
 
-<!-- ====================================================================== -->
-<!-- SECTION 5 — AI BEVEELT JE CONCURRENT AAN -->
-<!-- ====================================================================== -->
-<section class="section-ai-recommend" id="sectionAiRecommend">
-  <div class="ai-rec-inner">
-    <div class="ai-rec-eyebrow"><span></span>Zo kiest ChatGPT wie hij aanraadt</div>
-    <h2 class="ai-rec-h2">ChatGPT beveelt je <span class="ai-rec-strike">concurrent</span> aan. Niet jou.</h2>
-    <p class="ai-rec-sub">Wanneer iemand ChatGPT, Google AI Overviews of Perplexity vraagt om een aanbeveling in jouw regio, halen die assistenten hun antwoord uit Google Bedrijfsprofielen, reviews en website-data. Is jouw informatie incompleet of verouderd, dan slaat ChatGPT je over en raadt je concurrent aan. Jij weet niet eens dat het is gebeurd.</p>
-
-    <p style="text-align:center;font-size:12px;color:#64645F;margin:-8px 0 20px;">Voorbeeld-illustratie met een fictief bedrijf.</p>
-
-    <div class="ai-rec-stage">
-      <!-- Recommendation card (the competitor wins) -->
-      <div class="ai-rec-card">
-        <div class="ai-rec-card-head">
-          <div class="ai-rec-avatar">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 9.5 8.5 2.5 9 8 13.5 6.5 21 12 17.27 17.5 21 16 13.5 21.5 9 14.5 8.5z"/></svg>
-          </div>
-          <div class="ai-rec-card-meta">
-            <div class="ai-rec-card-title">ChatGPT</div>
-            <div class="ai-rec-card-status">1 aanbeveling</div>
-          </div>
-          <div class="ai-rec-card-time">net</div>
-        </div>
-
-        <div class="ai-rec-prompt">
-          <span class="ai-rec-prompt-label">Vraag van een potentiële klant</span>
-          "Ik zoek een goede fysiotherapeut in Utrecht, welke kun je aanraden?"
-        </div>
-
-        <div class="ai-rec-answer">
-          Op basis van <strong>87 geverifieerde reviews</strong> (gemiddeld <strong>4,8 sterren</strong>), een compleet profiel met foto's, openingstijden en behandelinformatie, raad ik <span class="ai-rec-name">Voorbeeldpraktijk</span> aan. Hun reviews noemen specifiek manuele therapie en het resultaat.
-        </div>
-
-        <div class="ai-rec-pills">
-          <span class="ai-rec-pill">87 reviews</span>
-          <span class="ai-rec-pill">★ 4,8</span>
-          <span class="ai-rec-pill">Compleet profiel</span>
-          <span class="ai-rec-pill">Snel terecht</span>
-        </div>
-      </div>
-
-      <!-- Skipped (you) card -->
-      <div class="ai-rec-skipped">
-        <div class="ai-rec-skipped-head">
-          <span class="skip-tag">Niet meegenomen</span>
-          <div class="skip-headline">Jouw bedrijf werd overgeslagen.</div>
-        </div>
-        <ul class="ai-rec-skipped-list">
-          <li>
-            <span class="skip-num">23</span>
-            <span>reviews. Onder de drempel die ChatGPT als 'voldoende sociaal bewijs' interpreteert.</span>
-          </li>
-          <li>
-            <span class="skip-num">2/8</span>
-            <span>behandelcategorieën ingevuld in je profiel. ChatGPT weet niet dat je manuele therapie doet.</span>
-          </li>
-          <li>
-            <span class="skip-num muted">0</span>
-            <span>schema-markup op je website. De crawlers van ChatGPT en Perplexity kunnen de inhoud niet structureel lezen.</span>
-          </li>
-        </ul>
-      </div>
+<section class="section-ob ob--rechts" id="ob-campagnes">
+  <div class="ob-inner">
+    <div class="ob-tekst">
+      <h2 class="ob-h2">Campagnes Met &Eacute;&eacute;n Klik</h2>
+      <p class="ob-body">Jij weet het en wij weten het: doorverwijzingen en terugkerende klanten zijn je beste klanten. Laten we ze allebei ophalen.</p>
+      <div class="ob-subs"><div class="ob-sub"><h3><span class="ob-vink"></span>Voor je klaargezet</h3><p>Nog een keer: we houden het simpel. E&eacute;n klik en de campagne loopt.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Doorverwijzingen vragen</h3><p>Jij levert goed werk en je klanten zijn blij. Laten we ze eraan herinneren dat ze dat doorvertellen.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Oude klanten terughalen</h3><p>Klanten die een tijd niets van je hoorden, en de offertes die destijds zijn blijven liggen. E&eacute;n bericht brengt ze weer in beweging.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Binnen handbereik</h3><p>E&eacute;n knop, wij doen de rest. Daar hoef je geen marketingteam voor in te huren.</p></div></div>
     </div>
-
-    <p class="ai-rec-pullquote">Dit is niet iets dat eraan komt. Het gebeurt <strong>nu al</strong>.</p>
-
-    <div class="ai-rec-cta-wrap">
-      <a data-cta="ai-aanbeveling" href="/sprint/" class="ai-rec-cta">Vraag je gratis reputatie-sprint aan <span class="arrow">→</span></a>
-      <p class="ai-rec-cta-sub">Zeven dagen, gratis en vrijblijvend. Je ziet zelf wat het opleverde.</p>
-    </div>
+    <div class="ob-visual"><div class="dev dev--fon"><div class="dev-scherm"><div class="sc sc--a"><div class="sc-bel-bg"></div><div class="fs-status"><span>9:41</span><i></i></div><div class="cm"><div class="cm-kop">Campagne starten</div><div class="cm-keuze"><span>Doorverwijzingen vragen</span><span class="cm-aan">Klanten terughalen</span></div><div class="cm-veld"><em>Voornaam</em><span class="cm-typ cm-typ--1" style="--n:6">Marijn</span></div><div class="cm-veld"><em>Telefoonnummer</em><span class="cm-typ cm-typ--2" style="--n:13">06 41 22 87 60</span></div><div class="cm-knop">Start campagne</div><div class="cm-onder">Of plak je hele lijst in &eacute;&eacute;n keer</div></div></div><div class="sc sc--b"><div class="sc-bel-bg"></div><div class="cf"><i style="left:8%;animation-delay:0s"></i><i style="left:19%;animation-delay:0.35s"></i><i style="left:28%;animation-delay:0.15s"></i><i style="left:37%;animation-delay:0.6s"></i><i style="left:46%;animation-delay:0.05s"></i><i style="left:55%;animation-delay:0.45s"></i><i style="left:64%;animation-delay:0.25s"></i><i style="left:73%;animation-delay:0.7s"></i><i style="left:82%;animation-delay:0.1s"></i><i style="left:91%;animation-delay:0.5s"></i><div class="cf-banner">Campagne loopt</div><div class="cf-onder">Marijn heeft een bericht<em>Reageert hij, dan sta jij in de app</em></div></div></div></div><img class="dev-frame" src="/img/mockups/telefoon.png" alt="" aria-hidden="true" width="983" height="2003" loading="lazy" decoding="async" /></div></div>
   </div>
 </section>
 
-<!-- ====================================================================== -->
-<!-- SECTION 5.5 — GRATIS REPUTATIE-SPRINT (hoofdaanbod voordeur) -->
-<!-- ====================================================================== -->
-<section class="section-sprint" id="sectionSprint">
-  <div class="sprint-inner">
-    <div class="sprint-card">
-      <div class="sprint-eyebrow"><span></span>Gratis Online Reputatie Sprint<span></span></div>
-      <h2 class="sprint-h2">Zeven dagen. Je eerste echte reviews. <span class="accent">Gratis.</span></h2>
-      <p class="sprint-body">In zeven dagen zetten we je review-systeem op, optimaliseren we je Google-profiel op je winstgevende dienst, en bouwen we een rapport dat laat zien waar je staat tegenover je concurrenten in je stad. Normaal een betaald traject, <strong>t.w.v. &euro;447</strong>. We doen hem gratis voor een beperkt aantal zaken per maand.</p>
-      <p class="sprint-guarantee">De sprint kost je niets en verplicht tot niets. Je ziet wat het opleverde voordat je iets beslist.</p>
-      <a data-cta="sprint-uitleg" href="/sprint/" class="sprint-cta">Vraag je gratis reputatie-sprint aan <span class="arrow">&rarr;</span></a>
-      <p class="sprint-sub">Beperkt aantal plekken per maand. We kijken eerst kort of je zaak past.</p>
+<section class="section-ob ob--links" id="ob-vindbaarheid">
+  <div class="ob-inner">
+    <div class="ob-tekst">
+      <h2 class="ob-h2">Lokale Vindbaarheid</h2>
+      <p class="ob-body">Gevonden worden op wat je doet, niet alleen op hoe je heet. Op Google, Bing, Apple en in de AI-zoekhulpen.</p>
+      <div class="ob-subs"><div class="ob-sub"><h3><span class="ob-vink"></span>Op je bedrijfsnaam zoekt niemand</h3><p>Behalve mensen die je al kennen. Die had je al.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Ook buiten Google</h3><p>Bing en Apple erbij, want daar halen ChatGPT en de rest hun antwoorden vandaan.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Elke maand een kaart van je eigen stad</h3><p>Per wijk, met vorige maand ernaast. Geen dashboard met veertig grafieken.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Wij beloven geen plek &eacute;&eacute;n</h3><p>Iedereen belooft dat. Wij beloven het werk, en jij kunt het nakijken.</p></div></div>
     </div>
+    <div class="ob-visual"><div class="dev dev--fon"><div class="dev-scherm"><div class="kl"><div class="kl-bg"><div class="sc-kaart"><span class="sc-water"></span><span class="sc-speld sc-speld--jij" style="left:46%;top:34%"></span><span class="sc-speld" style="left:22%;top:20%"></span><span class="sc-speld" style="left:70%;top:50%"></span></div></div><div class="fs-status"><span>9:41</span><i></i></div><div class="gm-zoek"><i></i><span>loodgieter amersfoort</span></div><div class="kl-lijst"><div class="gm-kaart kl-kaart kl-kaart--a"><div class="gm-info"><div class="gm-naam">Van der Meer Loodgieters</div><div class="gm-score"><b>4,6</b><em>&#9733;&#9733;&#9733;&#9733;&#9733;</em>(74)</div><div class="gm-meta">Loodgietersbedrijf &middot; Amersfoort<br /><span class="gm-dicht">Gesloten</span> &middot; Opent 09:00</div></div><div class="gm-knoppen"><span class="gm-knop"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm6.9 8h-2.4a14 14 0 0 0-1-4.4A7 7 0 0 1 18.9 11zM12 5c.8 0 1.9 1.6 2.4 4.5h-4.8C10.1 6.6 11.2 5 12 5zM8.5 6.6a14 14 0 0 0-1 4.4H5.1a7 7 0 0 1 3.4-4.4zM5.1 13h2.4c.1 1.6.4 3.1 1 4.4A7 7 0 0 1 5.1 13zm4.5 0h4.8c-.5 2.9-1.6 4.5-2.4 4.5S10.1 15.9 9.6 13zm5.9 4.4c.5-1.3.9-2.8 1-4.4h2.4a7 7 0 0 1-3.4 4.4z"/></svg></span>Website</span><span class="gm-knop"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 3.4 3.6 10.2c-.8.3-.8 1.4 0 1.7l6.6 2.4 2.4 6.6c.3.8 1.4.8 1.7 0l6.8-17c.3-.7-.4-1.4-1.1-1.1z"/></svg></span>Route</span></div></div><div class="gm-kaart kl-kaart kl-kaart--b"><div class="gm-info"><div class="gm-naam">Installatiebedrijf Eemvallei</div><div class="gm-score"><b>4,4</b><em>&#9733;&#9733;&#9733;&#9733;&#9733;</em>(51)</div><div class="gm-meta">Installatiebedrijf &middot; Leusden<br /><span class="gm-open">Open</span> &middot; Sluit om 18:00</div></div><div class="gm-knoppen"><span class="gm-knop"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm6.9 8h-2.4a14 14 0 0 0-1-4.4A7 7 0 0 1 18.9 11zM12 5c.8 0 1.9 1.6 2.4 4.5h-4.8C10.1 6.6 11.2 5 12 5zM8.5 6.6a14 14 0 0 0-1 4.4H5.1a7 7 0 0 1 3.4-4.4zM5.1 13h2.4c.1 1.6.4 3.1 1 4.4A7 7 0 0 1 5.1 13zm4.5 0h4.8c-.5 2.9-1.6 4.5-2.4 4.5S10.1 15.9 9.6 13zm5.9 4.4c.5-1.3.9-2.8 1-4.4h2.4a7 7 0 0 1-3.4 4.4z"/></svg></span>Website</span><span class="gm-knop"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 3.4 3.6 10.2c-.8.3-.8 1.4 0 1.7l6.6 2.4 2.4 6.6c.3.8 1.4.8 1.7 0l6.8-17c.3-.7-.4-1.4-1.1-1.1z"/></svg></span>Route</span></div></div><div class="gm-kaart gm-kaart--jij kl-kaart kl-kaart--jij"><div class="gm-info"><span class="gm-jij-label">Jouw bedrijf</span><div class="gm-naam">Eemhof Installatie</div><div class="gm-score"><b>4,9</b><em>&#9733;&#9733;&#9733;&#9733;&#9733;</em><span class="kl-tel kl-tel--rv"><i>(46)</i><i>(58)</i><i>(71)</i><i>(85)</i><i>(97)</i><i>(110)</i><i>(121)</i><i>(130)</i><i>(138)</i></span></div><div class="gm-meta">Installatiebedrijf &middot; Amersfoort centrum<br /><span class="gm-open">Open</span> &middot; Sluit om 20:00</div></div><div class="gm-knoppen"><span class="gm-knop"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm6.9 8h-2.4a14 14 0 0 0-1-4.4A7 7 0 0 1 18.9 11zM12 5c.8 0 1.9 1.6 2.4 4.5h-4.8C10.1 6.6 11.2 5 12 5zM8.5 6.6a14 14 0 0 0-1 4.4H5.1a7 7 0 0 1 3.4-4.4zM5.1 13h2.4c.1 1.6.4 3.1 1 4.4A7 7 0 0 1 5.1 13zm4.5 0h4.8c-.5 2.9-1.6 4.5-2.4 4.5S10.1 15.9 9.6 13zm5.9 4.4c.5-1.3.9-2.8 1-4.4h2.4a7 7 0 0 1-3.4 4.4z"/></svg></span>Website</span><span class="gm-knop"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 3.4 3.6 10.2c-.8.3-.8 1.4 0 1.7l6.6 2.4 2.4 6.6c.3.8 1.4.8 1.7 0l6.8-17c.3-.7-.4-1.4-1.1-1.1z"/></svg></span>Route</span></div></div><div class="kl-badge"><svg class="kl-pijl" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.4 21 12h-5.2v9.6H8.2V12H3z"/></svg><span class="kl-cirkel"><span class="kl-tel kl-tel--plek"><i>12</i><i>7</i><i>3</i><i>1</i></span></span></div></div></div></div><img class="dev-frame" src="/img/mockups/telefoon.png" alt="" aria-hidden="true" width="983" height="2003" loading="lazy" decoding="async" /></div></div>
   </div>
 </section>
 
-<!-- ====================================================================== -->
-<!-- SECTION 5.6 — ZO ZIET HET ERUIT (echte schermen uit de sprint) -->
-<!-- ====================================================================== -->
-<section class="section-screens" id="sectionScreens">
-  <div class="screens-inner">
-    <div class="screens-header">
-      <div class="screens-eyebrow"><span></span>Zo ziet het eruit<span></span></div>
-      <h2 class="screens-h2">Geen dashboards. Het echte werk, in gewone taal.</h2>
-      <p class="screens-sub">Dit is wat we in de sprint voor je aanzetten: reviews vragen uit jouw naam, elke review netjes beantwoord, en een kaart die laat zien waar je staat.</p>
+<section class="section-ob ob--rechts" id="ob-chat">
+  <div class="ob-inner">
+    <div class="ob-tekst">
+      <h2 class="ob-h2">Chat Op Je Website</h2>
+      <p class="ob-body">De vragen die iedereen stelt voordat hij belt, meteen beantwoord. En de aanvraag netjes vastgelegd, klaar voor jouw vervolg.</p>
+      <div class="ob-subs"><div class="ob-sub"><h3><span class="ob-vink"></span>Wat kost het, hoe snel kun je, hoe gaat het</h3><p>Elke keer diezelfde drie. Niet meer door jou, om elf uur 's avonds.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Het juiste antwoord, niet je homepage</h3><p>Jij hebt tien diensten met tien verhalen. Vraagt iemand naar een cv-ketel, dan gaat het antwoord over een cv-ketel, niet over een algemeen welkomstpraatje.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Weet hij het niet, dan zegt hij dat</h3><p>Dan gaat de vraag naar jou. Liever eerlijk uitzoeken dan iets zeggen dat je moet terugnemen.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Waar hij van afblijft</h3><p>Een installateur wordt vaak om een vaste prijs gevraagd zonder dat iemand naar de situatie gekeken heeft. Zulke vragen gaan naar jou.</p></div></div>
     </div>
-    <div class="screens-grid">
-      <figure class="screen-card">
-        <img src="/assets/sprint-whatsapp.png" alt="Voorbeeld van een WhatsApp-bericht waarin een klant na haar bezoek om een review wordt gevraagd" loading="lazy" />
-        <figcaption>We vragen je klanten na hun bezoek om een review, uit jouw naam. Eerst hoe het was, dan pas de review-vraag.</figcaption>
-      </figure>
-      <figure class="screen-card">
-        <img src="/assets/sprint-reactie.png" alt="Voorbeeld van een vijfsterren-review met een reactie van de eigenaar binnen 48 uur" loading="lazy" />
-        <figcaption>Elke review beantwoord, netjes en binnen 48 uur. Dat ziet Google, en de volgende klant ook.</figcaption>
-      </figure>
-      <figure class="screen-card">
-        <img src="/assets/sprint-grid.png" alt="Voorbeeld van een kaart die per buurt laat zien op welke positie je in de zoekresultaten staat" loading="lazy" />
-        <figcaption>Een kaart van je stad die laat zien waar je nu staat, per buurt, op je winstgevende dienst.</figcaption>
-      </figure>
-    </div>
-    <p class="screens-note">Voorbeeld-illustraties. In de sprint bouwen we dit met jouw eigen zaak en klanten.</p>
+    <div class="ob-visual"><div class="cw"><div class="cw-bar"><span class="cw-dot"></span><span class="cw-dot"></span><span class="cw-dot"></span><span class="cw-url">eemhof-installatie.nl</span></div><div class="cw-page"><span class="cw-ph cw-ph--cirkel"></span><span class="cw-ph cw-ph--b1"></span><span class="cw-ph cw-ph--b2"></span><span class="cw-ph cw-ph--b3"></span><span class="cw-ph cw-ph--knop"></span><span class="cw-ph cw-ph--knop cw-ph--knop2"></span></div><div class="cw-widget"><div class="cw-kop"><span class="cw-terug"></span><span class="cw-av">E</span><span class="cw-naam">Eemhof Installatie<em>antwoordt meteen</em></span></div><div class="cw-body"><div class="cw-msg cw-msg--uit">Wat kost het om een cv-ketel te vervangen?</div><div class="cw-msg cw-msg--in">Dat hangt af van het type ketel. Meestal tussen de 1.800 en 2.600 euro, inclusief montage.</div><div class="cw-msg cw-msg--uit">En hoe snel kunnen jullie?</div><div class="cw-msg cw-msg--in">Deze week donderdag of vrijdag zit er nog ruimte in. Bij de afspraak zie je meteen wat het in jouw geval wordt.</div></div><div class="cw-invoer"><span class="cw-invoer-veld">Typ je bericht...</span><i class="cw-verzend"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 3.4 3.6 10.2c-.8.3-.8 1.4 0 1.7l6.6 2.4 2.4 6.6c.3.8 1.4.8 1.7 0l6.8-17c.3-.7-.4-1.4-1.1-1.1z"/></svg></i></div></div><button class="cw-fab" type="button" aria-hidden="true" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H10l-5 4v-4a2 2 0 0 1-1-2V6a2 2 0 0 1 2-2z"/></svg><span class="cw-fab-badge">1</span></button></div></div>
   </div>
 </section>
 
-<!-- Mesh divider tussen AI (sectie 5) en Revenue Rescue (sectie 6) -->
-<div class="mesh-divider" aria-hidden="true"></div>
-
-<!-- ====================================================================== -->
-<!-- SECTION 6 — REVENUE RESCUE -->
-<!-- ====================================================================== -->
-<section class="section-rr" id="sectionRR">
-  <div class="rr-inner">
-    <div class="rr-header">
-      <div class="rr-eyebrow"><span></span>De volledige aanpak</div>
-      <h2 class="rr-h2">Stop met klanten verliezen aan de zaak die beter vindbaar is.</h2>
-      <p class="rr-intro">Twee dingen bepalen wie de klant boekt: of je gevonden wordt waar mensen zoeken, en of je gekozen wordt als ze je eenmaal zien. De Reputatie Motor zet allebei op orde en houdt het maand na maand op orde.</p>
-      <p class="rr-lead">Bij de meeste zaken zien we hetzelfde: je staat niet bovenaan als iemand in je buurt zoekt, je hebt minder recente reviews dan de concurrent, en in de antwoorden van ChatGPT en Perplexity kom je niet voor. Drie lekken waardoor klanten bij een ander boeken.</p>
+<section class="section-ob ob--links" id="ob-opvolging">
+  <div class="ob-inner">
+    <div class="ob-tekst">
+      <h2 class="ob-h2">Automatische Opvolging</h2>
+      <p class="ob-body">De eerste die antwoordt wint meestal. Elke aanvraag krijgt binnen een minuut een WhatsApp-bericht terug, ook die van zondagavond half elf.</p>
+      <div class="ob-subs"><div class="ob-sub"><h3><span class="ob-vink"></span>Uit welke hoek hij ook komt</h3><p>Formulier, chat, telefoon, Facebook, Instagram. Alles op dezelfde plek, dezelfde snelle reactie.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Niet de goedkoopste wint</h3><p>En ook niet de beste. Meestal degene die er als eerste was.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Jij krijgt een seintje</h3><p>Zodra iemand reageert weet jij het. Nergens inloggen om te kijken of er iets ligt.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>En dan stopt het</h3><p>Zodra jij het gesprek overneemt, doet het systeem er het zwijgen toe.</p></div></div>
     </div>
-
-    <div class="rr-split">
-      <div class="rr-side rr-side--leak">
-        <span class="rr-side-tag">Wat we vaak zien</span>
-        <div class="rr-side-h3">Drie lekken die je nooit ziet.</div>
-        <ul class="rr-side-list">
-          <li>
-            <span class="rr-side-num">Plek 4+</span>
-            <div>je staat niet in de top als iemand in je stad naar je behandeling zoekt, dus de meeste klikken gaan langs je heen.</div>
-          </li>
-          <li>
-            <span class="rr-side-num">Reviews</span>
-            <div>je hebt minder recente reviews dan de zaak om de hoek, dus bij twijfel valt de keuze op hen.</div>
-          </li>
-          <li>
-            <span class="rr-side-num">ChatGPT</span>
-            <div>vraagt iemand ChatGPT of Perplexity om een aanrader in de buurt, dan kom jij er niet in voor.</div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="rr-arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
-
-      <div class="rr-side rr-side--fix">
-        <span class="rr-side-tag">Wat het programma doet</span>
-        <div class="rr-side-h3">Elke lek dichtgezet.</div>
-        <ul class="rr-side-list">
-          <li>
-            <span class="rr-check">✓</span>
-            <div>Een review-systeem dat tevreden klanten vanzelf om een review vraagt, en ontevreden klanten eerst bij jou laat uitkomen.</div>
-          </li>
-          <li>
-            <span class="rr-check">✓</span>
-            <div>Elke review binnen 48 uur persoonlijk beantwoord, uit jouw naam.</div>
-          </li>
-          <li>
-            <span class="rr-check">✓</span>
-            <div>Je Google-profiel volledig ingericht op de behandeling waar je meer van wilt doen.</div>
-          </li>
-          <li>
-            <span class="rr-check">✓</span>
-            <div>Vindbaar op Google, Apple, in de directories en in de antwoorden van ChatGPT en Perplexity, met elke maand een kaart van je stad die laat zien waar je staat.</div>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="rr-stats">
-      <div class="rr-stat">
-        <div class="rr-stat-num">27%</div>
-        <div class="rr-stat-text">van inkomende telefoontjes naar lokale bedrijven wordt nooit beantwoord.</div>
-        <div class="rr-stat-source">Invoca Buyer Experience Benchmark 2023</div>
-      </div>
-      <div class="rr-stat">
-        <div class="rr-stat-num">20-35%</div>
-        <div class="rr-stat-text">van gemiste oproepen wordt binnen 7 dagen teruggewonnen via auto-respons binnen 60 seconden.</div>
-        <div class="rr-stat-source">CallRail Lead Response benchmarks</div>
-      </div>
-      <div class="rr-stat">
-        <div class="rr-stat-num">7×</div>
-        <div class="rr-stat-text">meer kans op een gesprek met de beslisser als je binnen een uur op een aanvraag reageert, in plaats van een uur later.</div>
-        <div class="rr-stat-source">HBR, The Short Life of Online Sales Leads (2011)</div>
-      </div>
-    </div>
-
-    <div class="rr-cta-wrap">
-      <a data-cta="reactivatie" href="/sprint/" class="rr-cta">Vraag je gratis reputatie-sprint aan <span class="arrow">→</span></a>
-      <p class="rr-cta-sub">Of het bij je past hangt af van waar je nu staat, dat zien we samen in het gratis rapport.</p>
-    </div>
+    <div class="ob-visual"><div class="dev dev--fon"><div class="dev-scherm"><div class="sc sc--a"><div class="fs"><div class="fs-kop"><span class="fs-terug"></span><span class="fs-av">4</span><span class="fs-naam">Nieuw binnen<em>vanochtend</em></span></div><div class="lg" style="flex:1;background:#fff"><div class="lg-rij"><span class="lg-icoon lg-icoon--op">&#9993;</span><div class="lg-tekst"><b>Sanne</b><em>Formulier op je website</em></div><span class="lg-tijd">09:12</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--op">&#9993;</span><div class="lg-tekst"><b>Mark</b><em>Bericht op Instagram</em></div><span class="lg-tijd">10:40</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--mis"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span><div class="lg-tekst"><b>Onbekend</b><em>Gemiste oproep</em></div><span class="lg-tijd">11:48</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--op">&#9993;</span><div class="lg-tekst"><b>Ilse</b><em>Chat op je website</em></div><span class="lg-tijd">12:15</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--op">&#9993;</span><div class="lg-tekst"><b>Bas</b><em>Bericht op Facebook</em></div><span class="lg-tijd">13:02</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--mis"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span><div class="lg-tekst"><b>Onbekend</b><em>Gemiste oproep</em></div><span class="lg-tijd">14:20</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--op">&#9993;</span><div class="lg-tekst"><b>Femke</b><em>Formulier op je website</em></div><span class="lg-tijd">15:47</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--op">&#9993;</span><div class="lg-tekst"><b>Joost</b><em>Bericht op WhatsApp</em></div><span class="lg-tijd">16:31</span></div></div><div class="fs-slot"><i>&#10003;</i>Alle acht binnen een minuut beantwoord</div></div></div><div class="sc sc--b"><div class="fs"><div class="fs-kop"><span class="fs-terug"></span><span class="fs-av">E</span><span class="fs-naam">Sanne<em>via je website</em></span></div><div class="fs-body"><div class="bl bl--in">Nieuwe aanvraag: cv-ketel geeft storing.<span class="bl-tijd">09:12</span></div><div class="bl bl--uit">Hoi Sanne, bedankt voor je bericht. We pakken het meteen op, je hoort vandaag nog van ons.<span class="bl-tijd">09:12</span></div><div class="bl bl--in">Verstuurd, 41 seconden na binnenkomst.<span class="bl-tijd">09:13</span></div></div><div class="fs-invoer"><span></span><i></i></div></div></div></div><img class="dev-frame" src="/img/mockups/telefoon.png" alt="" aria-hidden="true" width="983" height="2003" loading="lazy" decoding="async" /></div></div>
   </div>
 </section>
 
-<!-- ====================================================================== -->
-<!-- SECTION 6.5 — ACQUISITION SCALING (toevoeging boven op het programma) -->
-<!-- ====================================================================== -->
-<section class="section-scale" id="sectionScale">
-  <div class="scale-inner">
-    <div class="scale-header">
-      <div class="scale-eyebrow"><span></span>De toevoeging: schalen met advertenties</div>
-      <h2 class="scale-h2">Adverteren zonder fundering is geld in een lekkende emmer.</h2>
-      <p class="scale-intro">Dit is de toevoeging boven op het fundament, voor zaken die serieus willen groeien. Pas als je fundering staat, je bent vindbaar en je opvolging is dicht, voegen we advertenties toe. Een vaste maandelijkse samenwerking met een eenmalige setup, waarbij je zelf je advertentiebudget bepaalt.</p>
+<section class="section-ob ob--rechts" id="ob-inbox">
+  <div class="ob-inner">
+    <div class="ob-tekst">
+      <h2 class="ob-h2">Alles-in-één Postvak</h2>
+      <p class="ob-body">Vier apps waarin klanten je iets vragen, nu één scherm. Op je computer en op je telefoon, met je collega erbij.</p>
+      <div class="ob-subs"><div class="ob-sub"><h3><span class="ob-vink"></span>Je hoeft niet meer te onthouden waar iemand je schreef</h3><p>Vier kanalen in dezelfde lijst. Geen vier apps met vier rode bolletjes.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Ook op je telefoon</h3><p>Dezelfde lijst, in je hand, waar je ook bent.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Je collega ziet hetzelfde</h3><p>De balie hoeft jou niet te appen over die mevrouw van gisteren.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Niets zakt naar beneden</h3><p>Beantwoord of niet, dat zie je in &eacute;&eacute;n oogopslag. Zonder scrollen en zonder hopen.</p></div></div>
     </div>
-
-    <div class="scale-flow-label">Hoe het opbouwt:</div>
-    <div class="scale-flow">
-      <div class="scale-step done">
-        <div class="scale-step-row">
-          <span class="scale-step-num">01</span>
-          <span class="scale-step-mark" aria-label="in het programma">✓</span>
-        </div>
-        <div class="scale-step-title">Vindbaar</div>
-        <div class="scale-step-body">Google ziet je. Patiënten ook. Reviews op orde, profiel compleet, vindbaar in ChatGPT en Perplexity.</div>
-        <span class="scale-step-tag">In het programma</span>
-      </div>
-
-      <div class="scale-flow-plus" aria-hidden="true">+</div>
-
-      <div class="scale-step done">
-        <div class="scale-step-row">
-          <span class="scale-step-num">02</span>
-          <span class="scale-step-mark" aria-label="in het programma">✓</span>
-        </div>
-        <div class="scale-step-title">Meer uit je klanten</div>
-        <div class="scale-step-body">Geen aanvraag gemist, plus reactivatie van oude klanten en slimme vervolg-aanbiedingen. Meer waarde uit wie je al hebt.</div>
-        <span class="scale-step-tag">In het programma</span>
-      </div>
-
-      <div class="scale-flow-plus" aria-hidden="true">+</div>
-
-      <div class="scale-step current">
-        <div class="scale-step-row">
-          <span class="scale-step-num">03</span>
-          <span class="scale-step-mark" aria-label="toevoeging">★</span>
-        </div>
-        <div class="scale-step-title">Schalen</div>
-        <div class="scale-step-body">Google Ads, en Meta met advertenties die wij maken. Nieuwe vraag boven op wat al loopt.</div>
-        <span class="scale-step-tag">De toevoeging</span>
-      </div>
-    </div>
-
-    <p class="scale-pull">Met de fundering erin vermenigvuldigen ads de leads die toch al binnenkomen. <strong>Zonder fundering lekt elke euro weg.</strong></p>
-
-    <div class="scale-cta-wrap">
-      <a data-cta="ads-fundament" href="/sprint/" class="scale-cta">Vraag je gratis reputatie-sprint aan <span class="arrow">→</span></a>
-      <p class="scale-cta-sub" style="margin-top: 12px; font-size: 13px; color: #64645F; text-align: center;">Geen call zonder diagnose. We kijken eerst.</p>
-      <p class="scale-cta-sub">Een toevoeging boven op het programma, geen los pakket. We kijken eerst of je fundering staat. Als die nog niet klaar is, beginnen we daar.</p>
-    </div>
+    <div class="ob-visual"><div class="dev-paar"><div class="dev dev--lap" data-start="0"><div class="dev-scherm"><div class="ib"><div class="ib-zij"><div class="ib-kop"><b>Postvak</b><em>4 nieuw</em></div><div class="ib-rij ib-rij--aan"><span class="ib-av">S</span><div class="ib-rij-tekst"><b>Sanne <span class="ib-kn kn kn--wa">WhatsApp</span></b><em>Kan de cv-ketel deze week nagekeken worden?</em></div></div><div class="ib-rij"><span class="ib-av">M</span><div class="ib-rij-tekst"><b>Mark <span class="ib-kn kn kn--ig">Instagram</span></b><em>Wat kost een nieuwe cv-ketel?</em></div></div><div class="ib-rij"><span class="ib-av">I</span><div class="ib-rij-tekst"><b>Ilse <span class="ib-kn kn kn--fb">Facebook</span></b><em>Plaatsen jullie ook warmtepompen?</em></div></div><div class="ib-rij"><span class="ib-av">P</span><div class="ib-rij-tekst"><b>Peter <span class="ib-kn kn kn--ml">E-mail</span></b><em>Graag een afspraak volgende week</em></div></div></div><div class="ib-gesprek"><div class="ib-gesprek-kop"><span class="ib-av">S</span>Sanne<span class="ib-kn kn kn--wa">WhatsApp</span></div><div class="ib-body"><div class="ib-bl ib-bl--in">Kan de cv-ketel deze week nagekeken worden?</div><div class="ib-bl ib-bl--uit">Donderdag 14:30 en 16:00 zijn vrij. Zal ik er een vastzetten?</div><div class="ib-bl ib-bl--in">Doe 16:00 maar, dank je</div></div><div class="ib-invoer"><span></span><i></i></div></div></div></div><img class="dev-frame" src="/img/mockups/laptop.png" alt="" aria-hidden="true" width="2090" height="1439" loading="lazy" decoding="async" /></div><div class="dev dev--fon" data-start="0.5"><div class="dev-scherm"><div class="fs"><div class="fs-kop"><span class="fs-terug"></span><span class="fs-av">4</span><span class="fs-naam">Postvak<em>4 nieuw</em></span></div><div class="lg" style="flex:1;background:#fff"><div class="lg-rij"><span class="lg-icoon lg-icoon--op">S</span><div class="lg-tekst"><b>Sanne <span class="kn kn--wa">WhatsApp</span></b><em>Kan de cv-ketel deze week nagekeken worden?</em></div><span class="lg-tijd">09:12</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--op">M</span><div class="lg-tekst"><b>Mark <span class="kn kn--ig">Instagram</span></b><em>Wat kost een nieuwe cv-ketel?</em></div><span class="lg-tijd">10:40</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--op">I</span><div class="lg-tekst"><b>Ilse <span class="kn kn--fb">Facebook</span></b><em>Plaatsen jullie ook warmtepompen?</em></div><span class="lg-tijd">12:15</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--op">P</span><div class="lg-tekst"><b>Peter <span class="kn kn--ml">E-mail</span></b><em>Graag een afspraak volgende week</em></div><span class="lg-tijd">13:02</span></div></div><div class="fs-slot"><i>&#10003;</i>Zelfde lijst als op je computer</div></div></div><img class="dev-frame" src="/img/mockups/telefoon.png" alt="" aria-hidden="true" width="983" height="2003" loading="lazy" decoding="async" /></div></div></div>
   </div>
-</section>
-<!-- ====================================================================== -->
-<!-- SECTION — DAARNAAST (website + opvolging/systeem-teaser) -->
-<!-- ====================================================================== -->
-<section class="section-extras" id="sectionExtras">
-  <div class="extras-inner">
-    <div class="extras-header">
-      <div class="extras-eyebrow"><span></span>Daarnaast</div>
-      <h2 class="extras-h2">We bouwen ook het hele plaatje opnieuw.</h2>
-      <p class="extras-sub">Vindbaarheid en opvolging zijn de basis. Daaronder: websites die in een seconde laden en die zoektools als ChatGPT en Perplexity goed kunnen lezen. Plus een opvolging die de bezoekers die binnenkomen ook écht klant maakt.</p>
-    </div>
+  </section>
 
-    <div class="extras-grid">
-      <div class="extra-card">
-        <div class="extra-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
-        </div>
-        <h3 class="extra-title">Een website die klanten oplevert</h3>
-        <p class="extra-body">Een nieuwe website die supersnel laadt en die Google en ChatGPT goed kunnen lezen. Veilig, altijd up-to-date, en gebouwd om bezoekers in afspraken om te zetten. Geen trage WordPress-site die vastloopt.</p>
-        <ul class="extra-list">
-          <li>Laadt in een seconde</li>
-          <li>Goed vindbaar in Google en ChatGPT</li>
-          <li>Veilig en altijd up-to-date</li>
-          <li>Gebouwd om bezoekers klant te maken</li>
-        </ul>
-        <div class="extra-foot">Vervangt je WordPress in 2 tot 3 weken.</div>
-      </div>
-
-      <div class="extra-card">
-        <div class="extra-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
-        </div>
-        <h3 class="extra-title">Meer halen uit je bezoekers</h3>
-        <p class="extra-body">Elke aanvraag, gemiste oproep en oude klant komt in één systeem dat vanzelf opvolgt tot er een afspraak staat. Wij richten het in en houden het draaiend, jij hoeft er niet naar om te kijken.</p>
-        <ul class="extra-list">
-          <li>Elke aanvraag, appje en gemiste oproep op één plek, niks valt meer tussen wal en schip</li>
-          <li>Gemiste oproep? Binnen een minuut automatisch een berichtje terug, voordat de klant de volgende belt</li>
-          <li>Oude klanten die niet meer langskwamen, op het juiste moment een persoonlijk berichtje om terug te komen</li>
-          <li>De hele opvolging loopt op de achtergrond. Jij krijgt de afspraken, niet het beheer</li>
-        </ul>
-        <div class="extra-foot">Voor zaken die meer uit hun bestaande verkeer en klanten willen halen</div>
-      </div>
+<section class="section-ob ob--links" id="ob-nummer">
+  <div class="ob-inner">
+    <div class="ob-tekst">
+      <h2 class="ob-h2">Zakelijk Nummer</h2>
+      <p class="ob-body">Je klanten bellen je bedrijf, niet jou op zondag tijdens het eten. Bellen en appen op hetzelfde nummer.</p>
+      <div class="ob-subs"><div class="ob-sub"><h3><span class="ob-vink"></span>Je 06 blijft van jou</h3><p>&Eacute;&eacute;n nummer op je profiel, je site en je kaartje. Niet dat waarop je moeder belt.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Bellen en appen op hetzelfde nummer</h3><p>Bellen en appen op hetzelfde nummer, zonder tweede toestel in je zak.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Je ziet wat er gebeurd is</h3><p>Beantwoord of gemist, en of er een bericht uit is gegaan.</p></div><div class="ob-sub"><h3><span class="ob-vink"></span>Blijft van jou</h3><p>Stop je, dan neem je het nummer gewoon mee.</p></div></div>
     </div>
+    <div class="ob-visual"><div class="dev dev--fon"><div class="dev-scherm"><div class="sc sc--a"><div class="sc-bel-bg"></div><div class="fs-status"><span>9:41</span><i></i></div><div class="fs-bel"><div class="fs-bel-av"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:11cqw;height:11cqw;fill:currentColor"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z"/></svg></div><div class="fs-bel-nr">06 21 44 87 03</div><div class="fs-bel-sub">Zakelijke lijn</div><div class="fs-bel-label">Zakelijk nummer</div><div class="fs-bel-knoppen"><span class="fs-bel-knop fs-bel-knop--nee"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span><span class="fs-bel-knop fs-bel-knop--ja"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span></div></div></div><div class="sc sc--b"><div class="fs"><div class="fs-kop"><span class="fs-terug"></span><span class="fs-av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span><span class="fs-naam">Gesprekken<em>vandaag</em></span></div><div class="lg" style="flex:1;background:#fff"><div class="lg-rij"><span class="lg-icoon lg-icoon--op"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span><div class="lg-tekst"><b>Beantwoord, 4 min</b><em>Zakelijke lijn</em></div><span class="lg-tijd">09:12</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--mis"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span><div class="lg-tekst"><b>Gemist</b><em>Bericht verstuurd na 28 seconden</em></div><span class="lg-tijd">11:48</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--op"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span><div class="lg-tekst"><b>Beantwoord, 2 min</b><em>Zakelijke lijn</em></div><span class="lg-tijd">14:03</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--mis"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span><div class="lg-tekst"><b>Gemist</b><em>Bericht verstuurd na 24 seconden</em></div><span class="lg-tijd">17:26</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--op"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span><div class="lg-tekst"><b>Beantwoord, 6 min</b><em>Zakelijke lijn</em></div><span class="lg-tijd">18:04</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--mis"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span><div class="lg-tekst"><b>Gemist</b><em>Bericht verstuurd na 31 seconden</em></div><span class="lg-tijd">19:12</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--op"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span><div class="lg-tekst"><b>Beantwoord, 3 min</b><em>Zakelijke lijn</em></div><span class="lg-tijd">19:40</span></div><div class="lg-rij"><span class="lg-icoon lg-icoon--mis"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span><div class="lg-tekst"><b>Gemist</b><em>Bericht verstuurd na 26 seconden</em></div><span class="lg-tijd">20:55</span></div></div><div class="fs-slot"><i>&#10003;</i>Vier gemist, alle vier teruggeschreven</div></div></div></div><img class="dev-frame" src="/img/mockups/telefoon.png" alt="" aria-hidden="true" width="983" height="2003" loading="lazy" decoding="async" /></div></div>
   </div>
 </section>
 
-<!-- LOGO CLOUD / client track record — verwijderd 2026-07-06 (geen bedrijfsnamen tonen) -->
 
-<!-- SECTION 7 (Pakketten) verwijderd 2026-06-26 — geen publieke pakketten of prijzen meer; alles leidt naar de gratis analyse -->
+<section class="section-branches" id="sectionBranches">
+  <div class="br-inner">
+    <h2 class="br-h2">Voor welk soort bedrijf we dit doen</h2>
+    <p class="br-sub">Loodgieters, elektriciens, installateurs en andere vakbedrijven. Staat jouw vak er niet bij en werk je op aanvraag met terugkerende klanten, dan werkt het waarschijnlijk ook voor jou.</p>
 
-<!-- ====================================================================== -->
-<!-- SECTION 7.5 — GBP-CHECKLIST MAGIC LANTERN ENTRY                        -->
-<!-- ====================================================================== -->
-
-<section class="section-magic" id="sectionMagic">
-  <div class="magic-inner">
-    <div class="magic-eyebrow"><span></span>Liever eerst zelf rondkijken?<span></span></div>
-    <h2 class="magic-h2">Pak de gratis GBP-checklist 2026</h2>
-    <p class="magic-body">13 punten waar elk Google-profiel op staat of valt in 2026, inclusief 4 nieuwe punten voor je zichtbaarheid in ChatGPT, Gemini en Perplexity. Geen marketing-bombardement, geen verkooppraat.</p>
-    <a data-cta="checklist-blok" href="/checklist/" class="magic-cta">Download de checklist (gratis) →</a>
-    <p class="magic-sub">PDF in je inbox plus 5 emails per niche verspreid over 2 weken. Daarna stopt het.</p>
-  </div>
-</section>
-
-<!-- ====================================================================== -->
-<!-- SECTION 8 — PROOF (LIGHT) -->
-<!-- ====================================================================== -->
-<section class="section-proof" id="sectionProof">
-  <div class="proof-inner">
-    <div class="proof-header">
-      <div class="proof-eyebrow"><span></span>Geen beloftes, wel onderbouwing<span></span></div>
-      <h2 class="proof-h2">We vragen je niet om ons te geloven. We laten het op je eigen profiel zien.</h2>
-      <p class="proof-sub">We combineren wat aantoonbaar werkt in de markt met een gratis diagnose op jouw eigen profiel. Die analyse legt met echte data het lek in jouw vindbaarheid bloot, voordat je iets betaalt.</p>
-    </div>
-
-    <div class="proof-grid">
-      <!-- Column 1 — De markt (mechanism data) -->
-      <article class="proof-card">
-        <div class="proof-card-head">
-          <span class="proof-card-tag">De markt</span>
-          <h3 class="proof-card-title">Wat we weten dat werkt</h3>
-          <p class="proof-card-sub">Cijfers uit marktdata, geen verzonnen claims.</p>
-        </div>
-        <ul class="proof-stats">
-          <li class="proof-stat">
-            <div class="proof-stat-num">76%</div>
-            <div>
-              <div class="proof-stat-text">van mobiele lokale zoekopdrachten leidt binnen 24 uur tot een bezoek aan een bedrijf.</div>
-              <span class="proof-stat-source">Think with Google 2024</span>
-            </div>
-          </li>
-          <li class="proof-stat">
-            <div class="proof-stat-num">17-22%</div>
-            <div>
-              <div class="proof-stat-text">click-through rate op de #1 plek in Google Maps.</div>
-              <span class="proof-stat-source">BrightLocal Local Consumer Review Survey 2024</span>
-            </div>
-          </li>
-        </ul>
-      </article>
-
-      <!-- Column 2 — De aanpak (diagnose + gratis analyse als bewijs) -->
-      <article class="proof-card">
-        <div class="proof-card-head">
-          <span class="proof-card-tag">De aanpak</span>
-          <h3 class="proof-card-title">Waarom je ons niet op ons woord hoeft te geloven</h3>
-          <p class="proof-card-sub">We laten eerst je eigen situatie zien. Pas daarna beslis jij.</p>
-        </div>
-        <ul class="proof-checks">
-          <li class="proof-check">
-            <span class="proof-check-icon" aria-hidden="true">✓</span>
-            <div>
-              <strong>Eerst diagnose, dan pas een plan</strong>
-              Geen voorschrift zonder onderzoek. We kijken eerst waar je nu klanten laat liggen voordat we iets aanraden.
-            </div>
-          </li>
-          <li class="proof-check">
-            <span class="proof-check-icon" aria-hidden="true">✓</span>
-            <div>
-              <strong>Je ziet het lek op je eigen kliniek</strong>
-              De gratis analyse gaat over jouw situatie, niet over die van een ander. Concreet, op jouw profiel en jouw zoekwoorden.
-            </div>
-          </li>
-          <li class="proof-check">
-            <span class="proof-check-icon" aria-hidden="true">✓</span>
-            <div>
-              <strong>De analyse is gratis en vrijblijvend</strong>
-              Je weet daarna precies waar je staat. Geen kosten, geen verplichting.
-            </div>
-          </li>
-          <li class="proof-check">
-            <span class="proof-check-icon" aria-hidden="true">✓</span>
-            <div>
-              <strong>Maandelijks rapport via WhatsApp</strong>
-              Geen dashboards om te leren, geen verplichte calls.
-            </div>
-          </li>
-        </ul>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ====================================================================== -->
-<!-- SECTION 8.5 — BLOG / INZICHTEN (LIGHT)                                -->
-<!-- Plek: na Proof, voor About. Argument in change-log.                    -->
-<!-- ====================================================================== -->
-<section class="section-blog" id="sectionBlog" style="display:none;">
-  <div class="blog-inner">
-    <div class="blog-header">
-      <div class="blog-eyebrow"><span></span>Inzichten<span></span></div>
-      <h2 class="blog-h2">Wat we zien gebeuren bij klinieken.</h2>
-      <p class="blog-sub">Praktische analyses over lokale zichtbaarheid, vindbaarheid in ChatGPT en Perplexity, en de aanpak achter consistente klanten. Geschreven voor eigenaren, niet voor marketeers.</p>
-    </div>
-
-    <div class="blog-grid">
-      <a class="blog-card" href="/gids/vindbaar-in-chatgpt-als-kliniek/">
-        <div class="blog-image" aria-hidden="true">
-          <span class="placeholder-mark">ChatGPT</span>
-        </div>
-        <div class="blog-card-body">
-          <span class="blog-tag">ChatGPT</span>
-          <h3 class="blog-title">Waarom ChatGPT je concurrent aanbeveelt en jou niet.</h3>
-          <p class="blog-excerpt">Zoektools als ChatGPT, Perplexity en Google AI Overviews halen aanbevelingen uit signalen die de meeste klinieken niet eens kennen. Dit is wat zij gebruiken om te beslissen wie ze noemen.</p>
-          <div class="blog-meta">
-            <span>14 april 2026</span>
-            <span class="dot"></span>
-            <span>7 min lezen</span>
-          </div>
-          <span class="blog-card-cta">Lees meer <span class="arrow">→</span></span>
-        </div>
-      </a>
-
-      <a class="blog-card" href="/gids/hoe-kom-ik-hoger-in-google-maps-als-kliniek/">
-        <div class="blog-image" aria-hidden="true">
-          <span class="placeholder-mark">GBP</span>
-        </div>
-        <div class="blog-card-body">
-          <span class="blog-tag">Google Maps</span>
-          <h3 class="blog-title">7 fouten op je Google Bedrijfsprofiel die je klanten kosten.</h3>
-          <p class="blog-excerpt">Een onvolledig profiel zakt in de Maps-pack en wordt door ChatGPT overgeslagen. Dit zijn de zeven dingen die het verschil maken tussen plek 1 en plek 8.</p>
-          <div class="blog-meta">
-            <span>2 april 2026</span>
-            <span class="dot"></span>
-            <span>9 min lezen</span>
-          </div>
-          <span class="blog-card-cta">Lees meer <span class="arrow">→</span></span>
-        </div>
-      </a>
-
-      <a class="blog-card" href="/gids/">
-        <div class="blog-image" aria-hidden="true">
-          <span class="placeholder-mark">67%</span>
-        </div>
-        <div class="blog-card-body">
-          <span class="blog-tag">Lead-response</span>
-          <h3 class="blog-title">67% van je leads komt buiten kantooruren. Wat gebeurt ermee?</h3>
-          <p class="blog-excerpt">De meeste klinieken zien deze leads pas na drie dagen. Tegen die tijd is je concurrent al gebeld. Wat goede after-hours opvolging er anders uit laat zien.</p>
-          <div class="blog-meta">
-            <span>21 maart 2026</span>
-            <span class="dot"></span>
-            <span>6 min lezen</span>
-          </div>
-          <span class="blog-card-cta">Lees meer <span class="arrow">→</span></span>
-        </div>
-      </a>
-    </div>
-
-    <div class="blog-all">
-      <a class="blog-all-link" href="/gids/">Bekijk alle artikelen <span class="arrow">→</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ====================================================================== -->
-<!-- SECTION 9 — ABOUT BRYAN (WARM LIGHT) -->
-<!-- ====================================================================== -->
-<section class="section-about" id="sectionAbout">
-  <div class="about-inner">
-    <div class="about-photo-wrap">
-      <img src="/assets/bryan-ubink.webp" alt="Bryan Ubink, oprichter Local Levers" class="about-photo" width="720" height="877" loading="lazy" decoding="async">
-    </div>
-
-    <div class="about-content">
-      <div class="about-eyebrow"><span></span>Direct met de oprichter</div>
-      <h2 class="about-h2">Bryan Ubink</h2>
-
-      <div class="about-bio">
-        <p>Local Levers is opgericht door <strong>Bryan Ubink</strong>. Online marketing is altijd zijn grote passie geweest. In tien jaar bouwde hij daarmee een Instagram-netwerk van meer dan 10 miljoen volgers, met meme- en videopagina's en merk-samenwerkingen, onder andere met MrBeast. Daar leerde hij wat aandacht waard is, hoe Meta's advertentieplatform aan beide kanten werkt, en hoe je een publiek opbouwt zonder budget.</p>
-        <p>Daarna bouwde hij Dutch Padel School vanaf nul op, waar zijn twee werelden samenkwamen: marketing en de sport zelf. Hij schaalde het, verkocht zijn aandelen aan zijn partner, en ontdekte iets wat bleef hangen: hoe leuk hij lokale marketing vond, en hoe direct het effect is voor een ondernemer om de hoek.</p>
-        <p>Daarom is Local Levers er. Bryan weet uit eigen ervaring wat een lokale ondernemer voelt: cashflow-stress, geen tijd voor vage marketing-projecten, en gewoon meer van je beste klanten willen. Local Levers lost precies dat op, met dezelfde marketing-mechaniek, maar dan voor jouw kliniek of salon.</p>
-      </div>
-
-      <div class="about-meta">
-        <span class="about-tag">10 jaar marketing</span>
-        <span class="about-tag">Wereldmerken én lokaal</span>
-        <span class="about-tag">Direct contact via WhatsApp</span>
-      </div>
-
-      <div class="about-ctas">
-        <a data-cta="over-bryan" class="about-cta-primary" href="/sprint/">Vraag je gratis reputatie-sprint aan <span class="arrow">→</span></a>
-        <a class="about-cta-secondary" href="https://instagram.com/bryanubink" target="_blank" rel="noopener">Volg op Instagram <span class="arrow">↗</span></a>
+    <div class="br-groep">
+      <h3 class="br-rij-kop">Vakbedrijven</h3>
+      <div class="br-rail-wrap">
+        <button class="br-pijl br-vorige" type="button" aria-label="Vorige">&#8249;</button>
+        <div class="br-rail" id="brRail1"><a class="br-kaart" href="/marketing/loodgieters/">
+        <span class="br-beeld" data-branche="loodgieters"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Loodgieters</span>
+      </a><a class="br-kaart" href="/marketing/elektriciens/">
+        <span class="br-beeld" data-branche="elektriciens"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Elektriciens</span>
+      </a><a class="br-kaart" href="/marketing/installatiebedrijven/">
+        <span class="br-beeld" data-branche="installatiebedrijven"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Installatiebedrijven</span>
+      </a><a class="br-kaart" href="/marketing/dakdekkers/">
+        <span class="br-beeld" data-branche="dakdekkers"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Dakdekkers</span>
+      </a><a class="br-kaart" href="/marketing/zonnepanelen/">
+        <span class="br-beeld" data-branche="zonnepanelen"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Zonnepanelen</span>
+      </a><a class="br-kaart" href="/marketing/schildersbedrijven/">
+        <span class="br-beeld" data-branche="schildersbedrijven"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Schildersbedrijven</span>
+      </a><a class="br-kaart" href="/marketing/hoveniers/">
+        <span class="br-beeld" data-branche="hoveniers"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Hoveniers</span>
+      </a><a class="br-kaart" href="/marketing/tegelzetters/">
+        <span class="br-beeld" data-branche="tegelzetters"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Tegelzetters</span>
+      </a><a class="br-kaart" href="/marketing/stukadoors/">
+        <span class="br-beeld" data-branche="stukadoors"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Stukadoors</span>
+      </a><a class="br-kaart" href="/marketing/aannemers/">
+        <span class="br-beeld" data-branche="aannemers"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Aannemers</span>
+      </a><a class="br-kaart" href="/marketing/verbouw-en-renovatie/">
+        <span class="br-beeld" data-branche="verbouw-en-renovatie"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Verbouw en renovatie</span>
+      </a><a class="br-kaart" href="/marketing/klusbedrijven/">
+        <span class="br-beeld" data-branche="klusbedrijven"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Klusbedrijven</span>
+      </a><a class="br-kaart" href="/marketing/kozijnenbedrijven/">
+        <span class="br-beeld" data-branche="kozijnenbedrijven"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Kozijnenbedrijven</span>
+      </a><a class="br-kaart" href="/marketing/isolatiebedrijven/">
+        <span class="br-beeld" data-branche="isolatiebedrijven"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Isolatiebedrijven</span>
+      </a><a class="br-kaart" href="/marketing/straatmakers/">
+        <span class="br-beeld" data-branche="straatmakers"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Straatmakers</span>
+      </a><a class="br-kaart" href="/marketing/timmerbedrijven/">
+        <span class="br-beeld" data-branche="timmerbedrijven"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Timmerbedrijven</span>
+      </a><a class="br-kaart" href="/marketing/ongediertebestrijding/">
+        <span class="br-beeld" data-branche="ongediertebestrijding"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Ongediertebestrijding</span>
+      </a><a class="br-kaart" href="/marketing/gevelreiniging/">
+        <span class="br-beeld" data-branche="gevelreiniging"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Gevelreiniging</span>
+      </a><a class="br-kaart" href="/marketing/boomverzorging/">
+        <span class="br-beeld" data-branche="boomverzorging"><span class="br-merk">LL</span></span>
+        <span class="br-naam">Boomverzorging</span>
+      </a></div>
+        <button class="br-pijl br-volgende" type="button" aria-label="Volgende">&#8250;</button>
       </div>
     </div>
+
+    <a data-cta="branches" class="br-alle" href="/marketing/">Bekijk alle branches</a>
   </div>
 </section>
 
-<!-- ====================================================================== -->
-<!-- SECTION 10 — FAQ (LIGHT, AI-OPTIMIZED) -->
-<!-- ====================================================================== -->
+
+<section class="section-waarom" id="sectionWaarom">
+  <div class="wr-inner">
+    <h2 class="wr-h2">Waarom wij anders zijn,<br />net als ieder bedrijf dat dat beweert</h2>
+    <div class="wr-grid"><article class="wr-kaart">
+        <span class="wr-icoon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V8a5 5 0 0 1 9.9-1"/><rect x="4" y="11" width="16" height="9" rx="2"/></svg></span>
+        <h3>Maandelijks opzegbaar</h3>
+        <p>Geen opstartkosten en geen looptijd die je vooraf vastlegt. Je blijft omdat het werkt.</p>
+      </article><article class="wr-kaart">
+        <span class="wr-icoon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22l-9-9V4h9l8.6 8.6a1.4 1.4 0 0 1 0 2z"/><circle cx="7.5" cy="7.5" r="1.4"/></svg></span>
+        <h3>Eén prijs, alles erin</h3>
+        <p>€397 per maand, geen opstartkosten en geen losse facturen voor profiel, website of reviewsysteem. Wat op de prijspagina staat is wat je betaalt.</p>
+      </article><article class="wr-kaart">
+        <span class="wr-icoon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span>
+        <h3>Eén scherm voor alles</h3>
+        <p>Chat, WhatsApp, Facebook en Instagram komen binnen op één plek, niet verspreid over vier apps. Wij zetten het systeem op en houden het draaiend, jij hoeft er niets bij te leren.</p>
+      </article><article class="wr-kaart">
+        <span class="wr-icoon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <h3>Geen gebakken lucht</h3>
+        <p>We beloven geen aantal reviews en geen positie in Google of de AI-zoekhulpen, want dat hangt van te veel af om te garanderen. We beloven het werk zelf, en je leest in het rapport na wat er gebeurd is.</p>
+      </article><article class="wr-kaart">
+        <span class="wr-icoon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-7"/><path d="M12 14c0-3 2-5 5-5 0 3-2 5-5 5z"/><path d="M12 14c0-3-2-5-5-5 0 3 2 5 5 5z"/></svg></span>
+        <h3>We staan niet stil</h3>
+        <p>Je profiel, site en systeem worden bijgehouden zolang je klant bent, niet één keer ingericht en dan losgelaten. Wat niet werkt passen we aan, zonder dat daar een nieuwe factuur bij hoort.</p>
+      </article><article class="wr-kaart">
+        <span class="wr-icoon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8"/><path d="M17 6l2 2"/><path d="M14.5 8.5l2 2"/></svg></span>
+        <h3>Eerste maand geld terug</h3>
+        <p>De eerste maand kost je niets als het niet bevalt. Je ziet eerst wat er staat, en dan pas beslis je of je verder gaat. Daarna lees je elke maand in het rapport na wat er is gebeurd.</p>
+      </article></div>
+  </div>
+</section>
+
 <section class="section-faq" id="sectionFaq">
   <div class="faq-inner">
     <div class="faq-header">
-      <div class="faq-eyebrow"><span></span>Vragen die mensen stellen<span></span></div>
-      <h2 class="faq-h2">Eerlijke antwoorden voordat je start.</h2>
-      <p class="faq-sub">Korte, eerlijke antwoorden op de meest gestelde vragen over Local Levers, hoe we werken, en wat je kan verwachten.</p>
+      <div data-op class="faq-eyebrow"><span></span>Vragen die mensen stellen<span></span></div>
+      <h2 data-op class="faq-h2">Eerlijke antwoorden voordat je start.</h2>
+      <p data-op class="faq-sub">De twijfels die meestal opkomen voordat iemand begint, met een eerlijk antwoord erbij.</p>
     </div>
 
     <div class="faq-list">
-
-      <details class="faq-item">
-        <summary>Wat doet Local Levers precies?</summary>
+      <details data-op class="faq-item">
+        <summary>Wanneer zie ik resultaat?</summary>
         <div class="faq-answer">
-          <p>Local Levers helpt klinieken en behandel-salons groeien via drie pijlers: <strong>vindbaar</strong> worden op Google Maps, Apple Maps, lokale directories en in zoektools als ChatGPT, Perplexity en Google AI Overviews; <strong>gekozen</strong> worden via geautomatiseerde review-werving en reputatie-opbouw; en <strong>geen aanvraag missen</strong> via snelle opvolging, after-hours lead-capture en reactivatie van oude klanten. Wij zetten het op en beheren het, jij hoeft geen software te leren of dashboards bij te houden. Geleverd vanuit Nederland, met directe communicatie via WhatsApp.</p>
+          <p>Dat hangt volledig af van wat je verder doet, hoe lang je bedrijf al draait, hoe goed je werk is, en of je het systeem ook echt gebruikt. Als je denkt dat je je ogen dicht kunt doen en voor &euro;397 per maand al je problemen oplost, dan zijn wij niet de juiste partij.</p>
+          <p>Wat we bouwen is een fundament: online gevonden worden, een site die aanvragen oppakt, en een reputatie die klopt. Daar hoort meer bij dan alleen wij. Bedrijven die het snelst iets merken, doen daarnaast ook iets anders, en die hebben hun klanten goed geholpen zodat er iets te vragen valt.</p>
+          <p>Concreet: het terugbelbericht en de chat werken vanaf dag &eacute;&eacute;n. Je profiel, je site en het reviewsysteem staan aan het eind van de eerste maand. Wat daarna beweegt, lees je elke maand terug in het rapport. Wij doen het werk, jij levert de brandstof.</p>
         </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Voor welke bedrijven werken jullie?</summary>
+      <details data-op class="faq-item">
+        <summary>Leg eens uit hoe jullie mijn bedrijf laten groeien</summary>
         <div class="faq-answer">
-          <p>Klinieken en lokale specialisten waar reputatie en online vindbaarheid direct bepalen wie de klant kiest:</p>
-          <p>Laser- en huidklinieken, huidtherapie, beauty- en wellnesszaken, plus fysio en paramedisch, vakmannen en installateurs, makelaars en andere lokale bedrijven met een hoge klantwaarde waar reviews de keuze bepalen.</p>
-          <p>Onze aanpak is er voor zaken waar online vindbaarheid, reviews en response-snelheid direct bepalen hoeveel nieuwe klanten er binnenkomen.</p>
+          <p>Prima.</p>
+          <p>1. Geloof je dat meer vijfsterrenreviews meer mensen naar je toe halen?</p>
+          <p>2. Geloof je dat online gevonden worden, met een site die werkt in plaats van een folder, meer bezoekers klant maakt?</p>
+          <p>3. Geloof je dat meteen antwoorden op een aanvraag professioneler overkomt, en dus meer werk oplevert dan drie uur later?</p>
+          <p>4. Geloof je dat een gemiste oproep waar niemand op terugbelt gewoon een klant is die naar een ander gaat?</p>
+          <p>5. Geloof je dat je tijd overhoudt als dezelfde drie standaardvragen niet elke avond door jou beantwoord hoeven te worden?</p>
+          <p>6. Geloof je dat het uitmaakt of iemand je vindt op het moment dat hij zoekt, of pas als hij al ergens anders zit?</p>
+          <p>Geloof je een of meer van die dingen, dan is dat precies waar wij mee helpen. Geloof je er geen enkele van, dan zijn we niet de juiste partij, en dat is ook prima.</p>
         </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Werkt dit ook voor mijn type zaak?</summary>
+      <details data-op class="faq-item">
+        <summary>Wat gebeurt er als ik opzeg?</summary>
         <div class="faq-answer">
-          <p>Ja. De drie pijlers werken identiek voor elke lokale zaak die op reviews en vindbaarheid draait. Een kliniek, een salon of een lokale specialist heeft dezelfde drie problemen: je staat niet op plek 1 in Google, je hebt minder reviews dan de concurrent, en een groot deel van je aanvragen komt buiten openingstijden binnen waar niemand op reageert.</p>
-          <p>Wat verschilt: de diensten op je profiel, de zoekwoorden die we targeten, en de toon van automatische berichten. De fundering is hetzelfde: meer reviews dan de concurrent, snellere opvolging, en een compleet profiel dat zoektools als ChatGPT en Perplexity kunnen lezen.</p>
+          <p>Dan vinden we dat jammer, maar daar komen we wel overheen.</p>
+          <p>Je raakt wel alles kwijt dat we voor je hebben opgezet. Je nummer en je domeinnaam houd je gewoon.</p>
         </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Hoe is dit anders dan een gewoon marketingbureau?</summary>
+      <details data-op class="faq-item">
+        <summary>Waarom is de prijs zo laag, wat is het addertje?</summary>
         <div class="faq-answer">
-          <p>Veel marketingbureaus verkopen generieke SEO-pakketten of social-media-management met vage rapporten over impressies en bereik. Local Levers bouwt meetbare, traceerbare systemen specifiek voor klinieken: hogere Google Maps-rankings, vindbaarheid in ChatGPT en Perplexity, geautomatiseerde Google-review-werving, gemiste-lead-recovery, after-hours respons-automatisering en reactivatie van dormante klanten.</p>
-          <p>Je werkt direct met de mensen die het werk doen, met Bryan Ubink als oprichter als vast aanspreekpunt en persoonlijk contact via WhatsApp. Maandelijks een kort rapport via WhatsApp met voice-note: je positie op je winstgevende dienst, je reviews en hun versheid, een concurrent-audit van de top 3, en je zichtbaarheid in ChatGPT en Perplexity.</p>
+          <p>Omdat we niet voor elke klant iets nieuws bedenken. Hetzelfde systeem, jouw gegevens erin, en niemand ertussen die betaald moet worden.</p>
+          <p>Wil je een maatwerk-ontwerp waar drie maanden over vergaderd wordt, dan ben je bij een bureau beter af. En betaal je daar ook naar.</p>
         </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Hoe help je mijn bedrijf in de antwoorden van ChatGPT en Perplexity?</summary>
+      <details data-op class="faq-item">
+        <summary>Sta ik straks bovenaan in Google?</summary>
         <div class="faq-answer">
-          <p>Zoektools als ChatGPT, Google AI Overviews en Perplexity halen bedrijfsaanbevelingen uit Google Bedrijfsprofielen, online reviews, gestructureerde website-data (schema.org) en directory-listings. Wanneer iemand ChatGPT vraagt om een aanbeveling als <em>"beste laserkliniek in mijn buurt"</em> of <em>"top huidkliniek in Utrecht"</em>, beveelt ChatGPT klinieken aan met complete profielen, hoge review-aantallen, consistente directory-listings en schema-markup op hun website.</p>
-          <p>Wij optimaliseren al die signalen zodat ChatGPT en Perplexity jouw bedrijf herkennen als vertrouwde lokale aanbeveling: schema-markup en llms.txt op je website, aanwezigheid op Bing Places, Apple Maps en Foursquare, je Google Bedrijfsprofiel compleet maken met accurate categorieën, services en bedrijfsattributen.</p>
+          <p>Dat kan niemand je eerlijk beloven, wij ook niet. Iedereen die het w&eacute;l belooft, verkoopt je iets wat hij niet in de hand heeft.</p>
+          <p>Wat we w&eacute;l doen is alles op orde brengen waar het op beoordeeld wordt: je profiel op Google, Bing Places en Apple Business Connect compleet en overal gelijk, je reviews op gang, je site opgebouwd rond wat je echt doet, en je zichtbaarheid in ChatGPT en Perplexity gemeten.</p>
+          <p>Elke maand krijg je een kaart van je eigen stad waarop je per wijk ziet waar je staat, met de vorige maand ernaast. Dan hoef je ons niet te geloven, dan kun je het nakijken.</p>
         </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Hoe snel zie ik resultaat?</summary>
+      <details data-op class="faq-item">
+        <summary>Ik krijg al genoeg klanten via mond-tot-mondreclame</summary>
         <div class="faq-answer">
-          <p>In de eerste <strong>2 tot 4 weken</strong> zetten we het fundament neer: je Google-profiel compleet, de eerste review-aanvragen die uitgaan, en snellere opvolging op wat binnenkomt.</p>
-          <p>Vindbaarheid en reviews bouwen daarna geleidelijk op. We doen een nulmeting bij de start en laten je elke maand zien hoe het beweegt.</p>
+          <p>Mooi, en daar verandert dit niets aan. Mond-tot-mondreclame blijft je beste bron.</p>
+          <p>Alleen: wie jouw naam hoort van een vriendin zoekt je daarna op. Dat is het moment waarop het misgaat, als je profiel half leeg is, je laatste review van 2023 is, of het formulier op je site in een mailbox valt die niemand leest.</p>
+          <p>Wij regelen dat stuk. Niet in plaats van via via, maar zodat via via niet halverwege doodloopt.</p>
         </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Hoe zit het met contracten en opzeggen?</summary>
+      <details data-op class="faq-item">
+        <summary>En als het bij mij niet werkt?</summary>
         <div class="faq-answer">
-          <p>Je zit nergens aan vast voordat je precies weet wat je krijgt. Vindbaarheid en reviews bouwen geleidelijk op, dus geef het de tijd om te werken.</p>
-          <p>De precieze afspraken stemmen we af op jouw situatie en bespreken we in het gesprek na de gratis analyse. Geen verrassingen, alles vooraf duidelijk.</p>
+          <p>Dan stop je. Geen opstartkosten, maandelijks opzegbaar, en bevalt de eerste maand je niet, dan krijg je hem terug.</p>
+          <p>Dat is geen verkooptruc, dat is hoe we het risico bij ons houden in plaats van bij jou. Wij hebben er meer belang bij dat het werkt dan jij, want jij kunt morgen weglopen.</p>
+          <p>En je hoeft ons niet op ons woord te geloven. Je profiel, je site, je reviews en het maandrapport kun je gewoon zelf naast elkaar leggen.</p>
         </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Hoe zit het met data-privacy en AVG?</summary>
+      <details data-op class="faq-item">
+        <summary>Ik heb al een website waar ik tevreden over ben</summary>
         <div class="faq-answer">
-          <p>Local Levers werkt onder volledige <strong>AVG/GDPR-compliance</strong> in alle Europese markten. We verwerken alleen contact- en planningsdata, nooit medische dossiers. Alles wordt versleuteld opgeslagen in een AVG-conforme omgeving.</p>
-          <p>Elk contact moet expliciet opt-in geven voordat zij communicatie ontvangen. Elk geautomatiseerd bericht bevat een opt-out-optie. Een verwerkersovereenkomst (DPA) wordt getekend bij onboarding. Het recht op data-verwijdering wordt binnen 72 uur na verzoek gehonoreerd. In geautomatiseerde berichten gebruiken we alleen generieke verwijzingen ("je laatste bezoek"), nooit specifieke behandel- of dienstdetails.</p>
+          <p>Dan bouwen we hem na. We werken alleen met sites die we zelf gemaakt hebben, want in een site van iemand anders weet je nooit wat eronder zit en wat er kapotgaat zodra je hem aanraakt.</p>
+          <p>Ziet die van jou er goed uit, dan houden we dat ontwerp aan. Je domeinnaam blijft gewoon van jou.</p>
         </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Moet ik tech-savvy zijn om dit te gebruiken?</summary>
+      <details data-op class="faq-item">
+        <summary>Moet ik er zelf iets voor doen?</summary>
         <div class="faq-answer">
-          <p>Helemaal niet. Wij doen de complete setup en het doorlopende beheer van je Google Bedrijfsprofiel-optimalisatie, review-automatisering, vindbaarheid in ChatGPT en Perplexity, lead-response-systeem en klant-reactivatie.</p>
-          <p>Je krijgt maandelijks een rapport via WhatsApp met voice-note: je positie op je winstgevende behandeling, je reviews en hun versheid, de top-3-concurrenten, en je zichtbaarheid in ChatGPT en Perplexity. Geen dashboards om te leren, geen software om te beheren, geen wekelijkse meetings. Alles draait op de achtergrond zodat jij je kunt focussen op je zaak.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Wat kost het?</summary>
-        <div class="faq-answer">
-          <p>Dat hangt af van waar je nu staat: hoeveel reviews je hebt, of je profiel compleet is, hoeveel aanvragen je nu mist en hoe groot je klantenbestand al is. Een kliniek die al goed loopt heeft iets anders nodig dan een kliniek die net begint.</p>
-          <p>Daarom zetten we geen prijs op de site. Wat past, en wat het oplevert, wordt duidelijk in de gratis analyse. Daarin laten we zien waar je nu klanten laat liggen en wat het programma daaraan zou doen. Pas daarna bespreken we wat het kost, afgestemd op jouw situatie.</p>
-          <p>Wil je weten waar je staat? Vraag de <strong>gratis analyse</strong> aan. Gratis en vrijblijvend, geen verplichting.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Waar is Local Levers gevestigd?</summary>
-        <div class="faq-answer">
-          <p>Local Levers werkt vanuit Nederland en bedient klinieken door heel Europa. Alle diensten (Google Bedrijfsprofiel-optimalisatie, review-management, vindbaarheid in ChatGPT en Perplexity, lead-response-automatisering en website-development) worden remote geleverd. Communicatie verloopt direct via WhatsApp, met maandelijkse rapportage. Geen kantoorbezoeken nodig.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Krijg ik een garantie?</summary>
-        <div class="faq-answer">
-          <p>Ja. De gratis sprint kost je niets en verplicht tot niets, je ziet wat het opleverde voordat je iets beslist. Op de doorlopende Reputatie Motor werken we met een maandgarantie die meebeweegt met de fase: in de opbouwmaanden elke maand nieuwe reviews erbij en een betere dekking op de kaart dan de maand ervoor, of die maand is gratis, zolang je ons klantcontacten blijft aanleveren. Het volledige traject leggen we bij de start uit. De toevoeging met advertenties heeft een eigen afspraak die we in het gesprek bespreken.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Wat is de logische eerste stap?</summary>
-        <div class="faq-answer">
-          <p>Twee paden, afhankelijk van waar je staat:</p>
-          <ol style="padding-left: 20px; margin-top: 8px;">
-            <li>Klaar om te beginnen: vraag je gratis Online Reputatie Sprint aan via <a href="/sprint/" style="color: inherit; text-decoration: underline;">de sprint-pagina</a>.</li>
-            <li>Wil eerst zelf rondkijken: pak de gratis GBP-checklist op <a href="/checklist/" style="color: inherit; text-decoration: underline;">/checklist</a>.</li>
-          </ol>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Kan ik direct een gesprek inplannen?</summary>
-        <div class="faq-answer">
-          <p>Ja. Je vraagt de gratis Online Reputatie Sprint aan via <a href="/sprint/" style="color: inherit; text-decoration: underline;">de sprint-pagina</a> en beantwoordt een paar korte vragen. We kijken eerst naar je situatie, zodat het gesprek inhoudelijk wordt. Bij een goede match plannen we de sprint in. Bij niet-match krijg je een eerlijk antwoord en gratis materiaal om zelf mee aan de slag te gaan.</p>
+          <p>Ja, en dat is geen kleine lettertjes. Zonder jou werkt het niet.</p>
+          <p>Je vult &eacute;&eacute;n formulier in aan het begin, met je gegevens en je klantenlijst. Zonder die klantenlijst kan het reviewsysteem niemand iets vragen. En als er iemand reageert op een afspraak, moet jij bereikbaar zijn.</p>
+          <p>Verstand van marketing hoef je niet te hebben, en installeren of bijhouden ook niet. Maar er is geen versie waarin jij niets doet en het toch loopt.</p>
         </div>
       </details>
 
@@ -1302,119 +433,9 @@
   </div>
 </section>
 
-<!-- FAQPage JSON-LD voor AI search optimization -->
-
-
-<!-- ====================================================================== -->
-<!-- SECTION 11 — FINAL CTA (DARK) -->
-<!-- ====================================================================== -->
-<section class="section-final" id="sectionFinal">
-  <div class="final-inner">
-    <div class="final-header">
-      <div class="final-eyebrow"><span></span>Klaar om te starten?<span></span></div>
-      <h2 class="final-h2">Kies waar je begint.</h2>
-      <p class="final-sub">Geen druk om vandaag te beslissen. Begin met de optie die voor jou het laagste risico voelt.</p>
-    </div>
-
-    <div class="final-grid">
-      <article class="final-card">
-        <span class="final-card-tag">Voor wie wil testen</span>
-        <h3 class="final-card-title">De gratis checklist</h3>
-        <p class="final-card-body">13-punts Google Maps Checklist 2026. Geen telefoongesprek vereist. Alleen je e-mailadres.</p>
-        <a data-cta="slot-checklist" class="final-card-cta" href="/checklist/">Download gratis <span class="arrow">→</span></a>
-      </article>
-
-      <article class="final-card final-card--featured">
-        <span class="final-card-badge">Meeste mensen starten hier</span>
-        <span class="final-card-tag">Voor wie vooruit wil</span>
-        <h3 class="final-card-title">De gratis reputatie-sprint</h3>
-        <p class="final-card-body">Zeven dagen lang zetten we je reviews en vindbaarheid in gang. Je ziet wat het opleverde voordat je iets beslist. Gratis en vrijblijvend.</p>
-        <a data-cta="slot-sprint" class="final-card-cta" href="/sprint/">Vraag je gratis reputatie-sprint aan <span class="arrow">→</span></a>
-      </article>
-    </div>
-
-    <p class="final-trust">De sprint is gratis en vrijblijvend, zonder verplichting · Eerst zien wat het oplevert · AVG-compliant</p>
-  </div>
-</section>
-
-<!-- ====================================================================== -->
-<!-- POST-FINAL PS BLOCK                                                    -->
-<!-- ====================================================================== -->
-<section style="padding: 72px 24px; background: var(--dark); border-top: 1px solid rgba(255,255,255,0.04);">
-  <div style="max-width: 720px; margin: 0 auto;">
-    <p style="color: var(--light-muted); font-size: 16px; line-height: 1.65; margin-bottom: 18px;"><strong style="color: var(--color-foreground);">PS:</strong> De zaken die goed vindbaar zijn en veel reviews hebben, zijn de zaken die er bewust aan werken. Profielen veranderen niet vanzelf. Reviews komen niet vanzelf binnen. Vindbaarheid in ChatGPT en Perplexity bouwt zich niet vanzelf op.</p>
-    <p style="color: var(--light-muted); font-size: 16px; line-height: 1.65;"><strong style="color: var(--color-foreground);">PPS:</strong> Iedere maand dat je niet weet waar je staat, kiest iemand die op zoek was naar wat jij verkoopt voor de concurrent. Dat is de werkelijke kost van wachten.</p>
-  </div>
-</section>
+<!-- Het losse slotblok is weg (2026-08-17 avond): het voorbeeld heeft het
+     niet. Na de FAQ komt direct de vaste staart uit SiteFooter.astro. -->
 
 <!-- ====================================================================== -->
 <!-- FOOTER -->
 <!-- ====================================================================== -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-logo">Local<span>Levers</span></div>
-        <p class="footer-tagline">Vindbaarheid, reviews en opvolging voor klinieken en lokale specialisten in Nederland.</p>
-      </div>
-
-      <div class="footer-col">
-        <h3>Voor welk bedrijf</h3>
-        <ul>
-          <li><a href="/marketing/schoonheidssalons/">Schoonheidssalons</a></li>
-          <li><a href="/marketing/laserklinieken/">Laserklinieken</a></li>
-          <li><a href="/marketing/huidklinieken/">Huidklinieken</a></li>
-          <li><a href="/marketing/huidtherapie/">Huidtherapie</a></li>
-          <li><a href="/marketing/">Alle branches &rarr;</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h3>Kennisbank</h3>
-        <ul>
-          <li><a href="/gids/hoe-kom-ik-hoger-in-google-maps-als-kliniek/">Hoger in Google Maps</a></li>
-          <li><a href="/gids/meer-google-reviews-krijgen-als-kliniek/">Meer reviews krijgen</a></li>
-          <li><a href="/gids/vindbaar-in-chatgpt-als-kliniek/">Vindbaar in ChatGPT</a></li>
-          <li><a href="/gids/">Alle gidsen &rarr;</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h3>Resources</h3>
-        <ul>
-          <li><a data-cta="footer" href="/sprint/">Gratis reputatie-sprint</a></li>
-          <li><a data-cta="footer" href="/sprint/">Gratis reputatie-sprint</a></li>
-          <li><a data-cta="footer" href="/checklist/">Gratis checklist</a></li>
-          <li><a href="#sectionFaq">FAQ</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h3>Bedrijf</h3>
-        <ul>
-          <li><a href="/privacy/">Privacy</a></li>
-          <li><a href="/cookies/">Cookies</a></li>
-          <li><a href="#" data-ll="voorkeuren">Cookievoorkeuren</a></li>
-          <li><a href="/voorwaarden/">Voorwaarden</a></li>
-          <li><a href="https://instagram.com/bryanubink" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:info@locallevers.com">E-mail</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <div>© 2026 LocalLevers · Bryan Ubink · Nederland</div>
-      <div>KvK 72087986 · BTW NL002405113B91</div>
-    </div>
-  </div>
-</footer>
-
-
-
-<!-- ============================================================ -->
-<!-- LOCAL LEVERS MODALS - INLINE (geen cache issues)             -->
-<!-- Quiz "Waar sta jij nu?" + GBP-checklist + exit-intent        -->
-<!-- Source: website/assets/locallevers-modals.js                 -->
-<!-- ============================================================ -->
-
-

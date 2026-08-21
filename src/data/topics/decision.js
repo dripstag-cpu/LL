@@ -1,6 +1,8 @@
 export const topics = [
   {
     slug: 'marketing-uitbesteden-of-zelf-doen',
+    metaTitle: 'Marketing uitbesteden of zelf doen als kliniek?',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'marketing uitbesteden of zelf doen',
     h1: 'Marketing uitbesteden of zelf doen als kliniek?',
@@ -15,8 +17,8 @@ export const topics = [
         p: `Uitbesteden betekent dat het onderhoud een vaste routine wordt in plaats van iets dat afhangt van je drukte. Het profiel blijft compleet, reviewverzoeken gaan automatisch de deur uit, en je gegevens blijven overal gelijk. Belangrijker: iemand houdt in de gaten of je nog terugkomt in ChatGPT en Perplexity en of je concurrenten je voorbijstreven. Dat is werk dat pas rendeert als het maand na maand doorloopt, en dat is nou juist het deel dat een eigenaar naast het echte werk zelden volhoudt.`
       },
       {
-        h: 'Een tussenweg die het risico klein houdt',
-        p: `Je hoeft niet te kiezen tussen alles zelf doen of meteen een jaarcontract tekenen. Begin met de gratis Online Reputatie Sprint, die laat zien waar je nu staat op Google, in ChatGPT en Perplexity en de directories die klanten gebruiken. Daarna kun je met een klein actieplan zelf aan de slag, of de uitvoering overdragen. Zo baseer je de beslijssing op wat er in jouw geval echt mist, niet op een algemeen verhaal. Geen langlopende verplichting voordat je ziet of het werkt voor jouw kliniek.`
+        h: 'Uitbesteden zonder je vast te leggen',
+        p: `Je hoeft niet te kiezen tussen alles zelf blijven doen of je voor een jaar vastleggen. Ons pakket kost €397 ex btw per maand, zonder opstartkosten en maandelijks opzegbaar. De eerste maand is de opbouwmaand: we meten waar je nu staat op Google, in AI-zoekhulpen als ChatGPT en Perplexity en op de directories die klanten gebruiken, zetten je profielen op orde en het reviewsysteem aan. Bevalt die maand je niet, dan krijg je hem terug. Zo baseer je de beslissing op wat er in jouw geval echt mist, niet op een algemeen verhaal, en zonder langlopende verplichting.`
       }
     ],
     faq: [
@@ -28,6 +30,8 @@ export const topics = [
   },
   {
     slug: 'marketingbureau-kiezen-voor-kliniek',
+    metaTitle: 'Marketingbureau kiezen voor je kliniek of salon',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'marketingbureau kiezen kliniek',
     h1: 'Hoe kies je een marketingbureau voor je kliniek of salon?',
@@ -43,7 +47,7 @@ export const topics = [
       },
       {
         h: 'Kijk naar de instap en de contractvorm',
-        p: `Een bureau dat vertrouwen heeft in zijn aanpak hoeft je niet meteen aan een jaarcontract te binden. Een lage instap, bijvoorbeeld eerst een rapport of een klein actieplan, laat je zien wat er speelt voordat je je vastlegt. Zo test je de samenwerking op echte inhoud in plaats van op een verkooppraatje. Wees voorzichtig met partijen die pas willen laten zien wat ze doen nadat je hebt getekend. Transparantie vooraf zegt meer over de kwaliteit dan de grootte van het portfolio.`
+        p: `Een bureau dat vertrouwen heeft in zijn aanpak laat eerst zien wat er misgaat, voordat het om een handtekening vraagt. Een lage instap, bijvoorbeeld eerst een rapport of een klein actieplan, laat je zien wat er speelt voordat je je vastlegt. Zo test je de samenwerking op echte inhoud in plaats van op een verkooppraatje. Wees voorzichtig met partijen die pas willen laten zien wat ze doen nadat je hebt getekend. Transparantie vooraf zegt meer over de kwaliteit dan de grootte van het portfolio.`
       }
     ],
     faq: [
@@ -55,6 +59,8 @@ export const topics = [
   },
   {
     slug: 'instagram-vs-google-voor-salons',
+    metaTitle: 'Instagram of Google: waar komen salonklanten vandaan?',
+    niches: ['laserklinieken', 'huidklinieken', 'huidtherapie', 'schoonheidssalons'],
     published: true,
     keyword: 'instagram of google salon klanten',
     h1: 'Instagram of Google: waar komen je salonklanten echt vandaan?',
@@ -82,6 +88,8 @@ export const topics = [
   },
   {
     slug: 'wat-levert-een-compleet-google-profiel-op',
+    metaTitle: 'Wat levert een compleet Google-profiel op?',
+    niches: ['loodgieters', 'dakdekkers', 'klusbedrijven', 'hoveniers', 'tegelzetters'],
     published: true,
     keyword: 'wat levert google profiel op',
     h1: 'Wat levert een compleet Google-profiel je op?',
@@ -103,12 +111,13 @@ export const topics = [
     faq: [
       {
         q: 'Ik heb al een Google-vermelding, is dat niet genoeg?',
-        a: `Een vermelding hebben en een compleet, actueel profiel voeren zijn twee verschillende dingen. Veel vermeldingen missen diensten, foto's of recente reviews, en dat kost je zichtbaarheid en vertrouwen op het beslismoment. De gratis Online Reputatie Sprint laat precies zien wat er in jouw geval mist en of het onderhoud loopt.`
+        a: `Een vermelding hebben en een compleet, actueel profiel voeren zijn twee verschillende dingen. Veel vermeldingen missen diensten, foto's of recente reviews, en dat kost je zichtbaarheid en vertrouwen op het beslismoment. In de eerste maand lopen we je profiel na op precies die punten, en daarna zie je elke maand in je rapport of het onderhoud loopt.`
       }
     ]
   },
   {
     slug: 'oude-klanten-terugwinnen',
+    niches: ['installatiebedrijven', 'schildersbedrijven', 'hoveniers', 'ongediertebestrijding', 'gevelreiniging'],
     published: true,
     keyword: 'oude klanten terugwinnen reactivatie',
     h1: 'Oude klanten terugwinnen met reactivatie',
@@ -136,6 +145,8 @@ export const topics = [
   },
   {
     slug: 'gemiste-telefoontjes-opvolgen',
+    metaTitle: 'Gemiste telefoontjes automatisch opvolgen',
+    niches: ['loodgieters', 'elektriciens', 'installatiebedrijven', 'ongediertebestrijding', 'dakdekkers'],
     published: true,
     keyword: 'gemiste telefoontjes opvolgen',
     h1: 'Geen gemist telefoontje meer: automatische opvolging',
@@ -147,7 +158,7 @@ export const topics = [
       },
       {
         h: 'Wat automatische opvolging doet',
-        p: `Zodra een oproep wordt gemist, gaat er automatisch een bericht naar de beller, bijvoorbeeld per sms of WhatsApp, waarin staat dat je hem zag bellen en zo terugkomt. De beller weet dan dat hij gezien is en hoeft niet direct verder te zoeken. Vaak reageert hij op dat bericht, waardoor het gesprek verschuift naar tekst, wat rustiger is en beter past naast je behandelagenda. Zo verlies je het contact niet in de seconden waarin je de telefoon niet kunt aannemen.`
+        p: `Zodra een oproep wordt gemist, gaat er automatisch een bericht naar de beller, bijvoorbeeld per sms of WhatsApp, waarin staat dat je hem zag bellen en zo terugkomt. De beller weet dan dat hij gezien is en hoeft niet direct verder te zoeken. Vaak reageert hij op dat bericht, waardoor het gesprek verschuift naar tekst, wat rustiger is en beter past naast je planning. Zo verlies je het contact niet in de seconden waarin je de telefoon niet kunt aannemen.`
       },
       {
         h: 'Waarom tekst vaak beter werkt dan terugbellen',
@@ -163,6 +174,7 @@ export const topics = [
   },
   {
     slug: 'aanvragen-buiten-openingstijden-opvangen',
+    niches: ['loodgieters', 'elektriciens', 'klusbedrijven', 'ongediertebestrijding', 'installatiebedrijven'],
     published: true,
     keyword: 'aanvragen buiten openingstijden',
     h1: 'Aanvragen buiten openingstijden opvangen',

@@ -1,0 +1,209 @@
+---
+// Overzichtspagina van de onderdelen, toegevoegd 2026-08-17.
+//
+// Waarom deze pagina bestaat: er waren onderdeel-pagina's en geen index. Het
+// menu-item "Wat we doen" kwam daardoor nergens uit, en wie op een van de
+// pagina's binnenkwam kon alleen zijwaarts naar de andere.
+//
+// OPBOUW, herzien 2026-08-17. Ze staan hier allemaal in dezelfde kaartvorm als bij
+// het voorbeeld dat we aanhouden en als in de .section-ob-blokken op de
+// homepage: de productnaam groot, daaronder de cursieve regel met de klap
+// erin, dan vier korte punten, dan de knop. Alleen het beeld ernaast ontbreekt,
+// dus de vier punten staan in de kolom waar bij hem het toestel staat.
+//
+// De lijst komt uit src/data/onderdelen.js en telt zichzelf, zodat er hier
+// niets omgeschreven hoeft te worden als er een onderdeel bij komt.
+//
+// De prijs staat hier bewust niet. Die staat op /prijs/ en /gesprek/, en de
+// voettekst linkt naar allebei. Nog een plek met het bedrag erin betekent nog
+// een plek die vergeten wordt als het bedrag wijzigt.
+//
+// De knop per kaart is met opzet een lichte knop en geen groene. De groene knop
+// is de CTA en staat één keer op de pagina, in de kop. De rest is navigatie.
+import Layout from '../../layouts/Layout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import { onderdelen } from '../../data/onderdelen.js';
+
+// Het aantal staat nergens met de hand geschreven. Komt er een onderdeel bij,
+// dan telt deze pagina zichzelf en klopt de kop nog steeds. Dat ging eerder mis
+// toen het er acht werden en op drie plekken "zeven" bleef staan.
+const TELWOORDEN = ['nul', 'één', 'twee', 'drie', 'vier', 'vijf', 'zes', 'zeven', 'acht', 'negen', 'tien', 'elf', 'twaalf'];
+const aantal = TELWOORDEN[onderdelen.length] ?? String(onderdelen.length);
+
+const title = `Wat we doen: de ${aantal} onderdelen van het systeem | Local Levers`;
+const description =
+  'Website, reviews, terugbelbericht, campagnes, vindbaarheid, chat, opvolging, postvak en een zakelijk nummer. Eén systeem voor vakbedrijven.';
+
+const drie = [
+  {
+    kop: 'Gevonden worden',
+    tekst:
+      'Je bedrijfsgegevens staan gelijk op Google, Bing en Apple, en je zichtbaarheid in de AI-zoekhulpen wordt gemeten. Elke maand krijg je een kaart van je eigen stad waarop je ziet waar je staat.',
+  },
+  {
+    kop: 'Gekozen worden',
+    tekst:
+      'Je bestaande klanten krijgen op het juiste moment de vraag hoe het ging. Wie tevreden is gaat meteen door naar je profiel, wie iets aan te merken heeft komt eerst bij jou, met de link naar je profiel er nog steeds bij. Elke review krijgt een antwoord.',
+  },
+  {
+    kop: 'Geboekt worden',
+    tekst:
+      'Een website met hosting, een chat die de vragen meteen beantwoordt en een bericht binnen dertig seconden als je een oproep mist. Elke aanvraag krijgt binnen een minuut antwoord en komt in één postvak terecht, op een zakelijk nummer dat van jou blijft.',
+  },
+];
+---
+
+<Layout title={title} description={description}>
+  <SiteNav />
+
+  <main class="wd">
+    <section class="wd-hero">
+      <div class="wd-inner">
+        <h1>Simpele systemen die gewoon werken</h1>
+        <p class="wd-regel">
+          Eén systeem met {aantal} onderdelen, voor vakbedrijven. Geen diploma nodig, alleen een bedrijf dat draait.
+        </p>
+        <a data-cta="wat-we-doen-hero" class="wd-knop" href="/gesprek/">Plan een gesprek</a>
+      </div>
+    </section>
+
+    <section class="wd-drie-blok">
+      <div class="wd-inner">
+        <div class="wd-drie">
+          {drie.map((d) => (
+            <div>
+              <h2>{d.kop}</h2>
+              <p>{d.tekst}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="wd-lijst-blok">
+      <div class="wd-inner">
+        {onderdelen.map((o, i) => (
+          <article class="wd-kaart">
+            <div class="wd-kop">
+              <span class="wd-num">{String(i + 1).padStart(2, '0')}</span>
+              <h2>{o.naam}</h2>
+              <p class="wd-kaart-regel">{o.regel}</p>
+              <a class="wd-kaart-knop" href={`/wat-we-doen/${o.slug}/`}>
+                Bekijk hoe het werkt <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+            <ul class="wd-punten">
+              {o.blokken.map((b) => (
+                <li>
+                  <h3>{b.h}</h3>
+                  <p>{b.p}</p>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="wd-slot-blok">
+      <div class="wd-inner">
+        <h2>Ze zijn niet los te bestellen</h2>
+        <p>
+          Ze zitten er allemaal in, want ze leunen op elkaar. De website is de bron waar de
+          chat zijn antwoorden uit haalt. De reviews die binnenkomen staan op elke pagina van
+          diezelfde website. En het terugbelbericht, de chat, het formulier en je sociale kanalen
+          komen allemaal in hetzelfde postvak uit, waar de opvolging er binnen een minuut op
+          reageert.
+        </p>
+        <a class="wd-tekstlink" href="/prijs/">Bekijk wat het kost <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .wd { background: #fafaf8; color: #141413; font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif; }
+  .wd-inner { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  .wd-hero { padding: 72px 0 44px; text-align: center; }
+  .wd h1 {
+    font-family: 'Outfit Variable', sans-serif; font-size: clamp(34px, 5.4vw, 50px);
+    font-weight: 800; line-height: 1.08; letter-spacing: -.03em; margin: 0;
+  }
+  .wd-regel {
+    font-style: italic; font-size: clamp(17px, 2vw, 20px); line-height: 1.55;
+    color: #3c3c39; margin: 20px auto 0; max-width: 58ch;
+  }
+  .wd-knop {
+    display: inline-flex; align-items: center; gap: 9px; margin-top: 30px;
+    background: var(--green); color: #fff; font-family: 'Outfit Variable', sans-serif;
+    font-weight: 600; font-size: 17px; letter-spacing: -.005em;
+    padding: 16px 32px; border-radius: 4px; text-decoration: none; transition: background .16s ease;
+  }
+  .wd-knop:hover { background: #1f9067; }
+
+  .wd-drie-blok { padding: 20px 0 56px; }
+  .wd-drie { display: grid; gap: 30px; }
+  .wd-drie h2 {
+    font-family: 'Outfit Variable', sans-serif; font-size: 20px; font-weight: 700;
+    color: var(--green); margin: 0 0 10px; letter-spacing: -.015em;
+  }
+  .wd-drie p { font-size: 16px; line-height: 1.62; color: #3c3c39; margin: 0; }
+
+  .wd-lijst-blok { padding: 0 0 56px; }
+  .wd-kaart {
+    display: grid; gap: 28px; background: #fff; border: 1px solid #e4e3dc;
+    border-radius: 8px; padding: 40px; margin-bottom: 20px;
+  }
+  .wd-kaart:last-child { margin-bottom: 0; }
+  .wd-num {
+    display: block; font-family: 'Outfit Variable', sans-serif; font-weight: 800;
+    font-size: 13px; letter-spacing: .1em; color: #b4b3ab; margin-bottom: 8px;
+  }
+  .wd-kaart h2 {
+    font-family: 'Outfit Variable', sans-serif; font-size: clamp(25px, 3.2vw, 34px);
+    font-weight: 800; letter-spacing: -.03em; line-height: 1.1; margin: 0;
+  }
+  .wd-kaart-regel {
+    font-style: italic; font-size: 17px; line-height: 1.55; color: #3c3c39; margin: 14px 0 0;
+  }
+  .wd-kaart-knop {
+    display: inline-flex; align-items: center; gap: 9px; margin-top: 22px;
+    background: #f2f5f3; border: 1px solid #dce6e0; color: var(--green);
+    font-family: 'Outfit Variable', sans-serif; font-weight: 600; font-size: 17px;
+    letter-spacing: -.005em; padding: 14px 26px; border-radius: 4px; text-decoration: none;
+    transition: background .16s ease;
+  }
+  .wd-kaart-knop:hover { background: #e7eeea; }
+
+  .wd-punten { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
+  .wd-punten h3 {
+    font-family: 'Outfit Variable', sans-serif; font-size: 17px; font-weight: 700;
+    color: var(--green); margin: 0 0 6px; line-height: 1.3;
+  }
+  .wd-punten p { font-size: 15.5px; line-height: 1.58; color: #3c3c39; margin: 0; }
+
+  .wd-slot-blok { padding: 0 0 20px; text-align: center; }
+  .wd-slot-blok h2 {
+    font-family: 'Outfit Variable', sans-serif; font-size: clamp(24px, 3.4vw, 36px);
+    font-weight: 800; letter-spacing: -.03em; line-height: 1.12; margin: 0;
+  }
+  .wd-slot-blok p { font-size: 16.5px; line-height: 1.65; color: #3c3c39; margin: 18px auto 0; max-width: 72ch; }
+  .wd-tekstlink {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 18px;
+    font-family: 'Outfit Variable', sans-serif; font-weight: 700; font-size: 16px;
+    color: var(--green); text-decoration: none;
+  }
+  .wd-tekstlink:hover { text-decoration: underline; }
+
+  @media (min-width: 760px) {
+    .wd-drie { grid-template-columns: repeat(3, 1fr); gap: 34px; }
+    .wd-punten { grid-template-columns: repeat(2, 1fr); gap: 24px 30px; }
+  }
+  @media (min-width: 1000px) {
+    .wd-kaart { grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 48px; align-items: start; }
+  }
+  @media (max-width: 640px) {
+    .wd-kaart { padding: 26px 20px; }
+  }
+</style>

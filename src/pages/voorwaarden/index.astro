@@ -1,9 +1,12 @@
 ---
+import SiteNav from '../../components/SiteNav.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
 import Bare from '../../layouts/Bare.astro';
 import '../../styles/legal.css';
-const updated = '6 juli 2026';
+const updated = '21 augustus 2026';
 ---
 <Bare title="Algemene voorwaarden | Local Levers" description="De algemene voorwaarden van Local Levers: afspraken over onze diensten, betaling, looptijd, aansprakelijkheid en toepasselijk recht.">
+  <SiteNav />
   <header class="legal-head">
     <div class="legal-wrap">
       <a href="/" class="legal-brand">Local<span>Levers</span></a>
@@ -36,6 +39,7 @@ const updated = '6 juli 2026';
 
       <h2>6. Prijzen en betaling</h2>
       <p>Prijzen zijn in euro's en exclusief btw, tenzij anders vermeld. Betaling gebeurt via de overeengekomen methode en termijn. Bij een doorlopende dienst wordt periodiek (bijvoorbeeld maandelijks) gefactureerd of geïncasseerd. Bij niet-tijdige betaling mag Local Levers de dienstverlening opschorten en de wettelijke (handels)rente en redelijke incassokosten in rekening brengen.</p>
+      <p>Bij een doorlopende dienst zijn per opdrachtgever 250 geautomatiseerde berichten (WhatsApp en sms samen) per kalendermaand inbegrepen. Voor berichten boven dat aantal geldt een toeslag van €0,17 per bericht, exclusief btw, die met de eerstvolgende factuur wordt verrekend.</p>
 
       <h2>7. Looptijd en opzegging</h2>
       <p>De looptijd, een eventuele minimumperiode en de opzegtermijn staan in de betreffende overeenkomst. Voor doorlopende diensten geldt een minimumperiode als die is overeengekomen. Opzeggen gebeurt schriftelijk of per e-mail tegen het einde van de lopende periode, met inachtneming van de afgesproken opzegtermijn.</p>
@@ -59,9 +63,5 @@ const updated = '6 juli 2026';
     </div>
   </main>
 
-  <footer class="legal-foot">
-    <div class="legal-wrap">
-      Local Levers &middot; KvK 72087986 &middot; <a href="/privacy/">Privacyverklaring</a>
-    </div>
-  </footer>
+  <SiteFooter kaart={false} />
 </Bare>
